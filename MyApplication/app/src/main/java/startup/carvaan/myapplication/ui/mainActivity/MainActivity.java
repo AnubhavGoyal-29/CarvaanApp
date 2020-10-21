@@ -95,8 +95,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector.setVisibility(View.GONE);
                 heartVector1.setVisibility(View.VISIBLE);
                 heartVector2.setVisibility(View.GONE);
-
-
                 selectAnimation(heartVector1);
                 break;
             case R.id.earncredits:
@@ -114,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
 
 
-        return false;
+        return true;
     }
     private void selectAnimation(final VectorMasterView heartVector) {
 
@@ -123,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         outline.setTrimPathEnd(0.0f);
         // initialise valueAnimator and pass start and end float values
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
-        valueAnimator.setDuration(200);
+        valueAnimator.setDuration(500);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -183,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         mView.mSecondCurveControlPoint1.set(mView.mSecondCurveStartPoint.x + (mView.CURVE_CIRCLE_RADIUS * 2) - mView.CURVE_CIRCLE_RADIUS, mView.mSecondCurveStartPoint.y);
         mView.mSecondCurveControlPoint2.set(mView.mSecondCurveEndPoint.x - (mView.CURVE_CIRCLE_RADIUS + (mView.CURVE_CIRCLE_RADIUS / 4)), mView.mSecondCurveEndPoint.y);
-
     }
 
 }
