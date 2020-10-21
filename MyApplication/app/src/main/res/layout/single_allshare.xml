@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="15dp"
+    app:cardElevation="20dp"
+
+    >
+    <LinearLayout
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
+
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            >
+            <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+                android:visibility="visible"
+                android:id="@+id/startupVideo"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentBottom="true"
+
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right|bottom"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/sharename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:lines="1"
+                        android:background="#FF533D78"
+
+
+                        tools:autoSizeTextType="uniform"
+
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:padding="7dp"
+                        android:text="Flipkart Private Limited"
+                        android:textSize="19sp"
+                        app:layout_constraintStart_toEndOf="@+id/imageView3"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tech Startup"
+                android:textStyle="bold"
+
+                android:gravity="center"
+                android:background="#533D78"
+                android:textColor="#FFFFFF"
+                android:padding="4dp"
+                android:textSize="17sp"
+
+
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:text="Lorem Ipsum is simply Lorem Ipsum has been the industry's standard "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/gotoshare"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Invest in me"
+                android:background="#188F84"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                app:layout_constraintHorizontal_bias="0.507"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+            <!--        <ImageView-->
+            <!--            android:id="@+id/imageView4"-->
+            <!--            android:layout_width="45dp"-->
+            <!--            android:layout_height="45dp"-->
+            <!--            android:layout_marginTop="20dp"-->
+            <!--            android:layout_marginEnd="8dp"-->
+            <!--            android:layout_marginRight="8dp"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/textView10"-->
+            <!--            android:background="@drawable/top" />-->
+
+
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:weightSum="2"
+            android:paddingRight="15dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_marginTop="12dp"
+
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="People Invested"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+
+
+                    />
+                <TextView
+                    android:id="@+id/peopleinvested"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="100"
+                    android:layout_marginTop="8dp"
+                    android:textStyle="bold"
+                    android:textColor="#FF533D78"
+                    android:textSize="22sp"
+
+
+
+
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_marginTop="12dp"
+
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Startup growth"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+
+
+                    />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="3dp">
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:progress="60">
+
+                    </ProgressBar>
+
+                    <TextView
+                        android:id="@+id/text_view_progress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="60%" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:layout_marginTop="15dp"
+
+                android:orientation="vertical">
+
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
