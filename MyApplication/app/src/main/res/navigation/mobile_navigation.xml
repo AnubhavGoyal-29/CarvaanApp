@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/allshares">
+
+    <fragment
+        android:id="@+id/allshares"
+        android:name="startup.carvaan.myapplication.ui.allshares.allshares"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_allshares" />
+
+    <fragment
+        android:id="@+id/earncredits"
+        android:name="startup.carvaan.myapplication.ui.earncredits.earncredits"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_earncredits" />
+
+    <fragment
+        android:id="@+id/myshares"
+        android:name="startup.carvaan.myapplication.ui.myshares.myshares"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_myshares" />
+</navigation>
