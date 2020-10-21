@@ -1,4 +1,5 @@
-package startup.carvaan.myapplication.ui.mainActivity;
+package startup.carvaan.myapplication.ui.mainActivity;;
+
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -109,5 +110,4 @@ public class CurvedNavigationBottomView extends BottomNavigationView {
         canvas.drawPath(mPath, mPaint);
     }
 }
-
 
