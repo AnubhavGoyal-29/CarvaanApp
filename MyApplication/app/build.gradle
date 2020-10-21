@@ -51,7 +51,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //multidex
-
     implementation 'com.android.support:multidex:1.0.3'
+    //circleimageview
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //vectormaster
+    implementation 'com.sdsmdg.harjot:vectormaster:1.1.3'
 
 }
