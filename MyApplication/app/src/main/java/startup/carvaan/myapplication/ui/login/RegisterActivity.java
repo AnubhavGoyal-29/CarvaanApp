@@ -25,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import startup.carvaan.myapplication.MainActivity;
+import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 import startup.carvaan.myapplication.R;
 
 public class RegisterActivity extends AppCompatActivity {
