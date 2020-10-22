@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -23,10 +22,7 @@ import com.sdsmdg.harjot.vectormaster.models.PathModel;
 
 import androidx.annotation.NonNull;
 
-import android.os.Bundle;
 import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -59,7 +55,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
         getSupportActionBar().setTitle("Carvaan");
-        mView= findViewById(R.id.aboutsharebottomnavview);
+
+
+        mView= findViewById(R.id.bottom_nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.myshares, R.id.allshares, R.id.earncredits)
                 .build();
