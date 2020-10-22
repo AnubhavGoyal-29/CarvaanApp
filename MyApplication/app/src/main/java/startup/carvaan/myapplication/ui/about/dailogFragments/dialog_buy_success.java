@@ -13,9 +13,10 @@ import startup.carvaan.myapplication.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Buy#newInstance} factory method to
+ * Use the {@link dialog_buy_success#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Buy extends DialogFragment {
+public class dialog_buy_success extends DialogFragment {
+
 
 }
