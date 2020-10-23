@@ -1,5 +1,6 @@
 package startup.carvaan.myapplication.ui.allshares;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -17,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import startup.carvaan.myapplication.R;
+import startup.carvaan.myapplication.ui.about.AboutShare;
 
 
 public class allshares extends Fragment {
@@ -51,7 +54,12 @@ public class allshares extends Fragment {
 
             @Override
             protected void onBindViewHolder(PostViewHolder postViewHolder, int i, allsharemodel allsharemodel) {
-
+                postViewHolder.aboutShare.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getContext().startActivity(new Intent(getContext(), AboutShare.class).putExtra("shareid",allsharemodel.getId()));
+                    }
+                });
             }
         };
         allShareRecyclerView.setAdapter(adapter);
@@ -59,9 +67,10 @@ public class allshares extends Fragment {
         return view;
     }
     public class PostViewHolder extends RecyclerView.ViewHolder {
+        private Button aboutShare;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            aboutShare=itemView.findViewById(R.id.gotoshare);
         }
     }
     @Override

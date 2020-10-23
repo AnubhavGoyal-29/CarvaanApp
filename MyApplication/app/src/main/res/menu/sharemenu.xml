@@ -9,7 +9,4 @@
     <item
         android:id="@+id/sharebuy"
         android:title="Buy" />
-    <item
-        android:id="@+id/shareredeem"
-        android:title="redeem" />
 </menu>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AboutShare">
+    tools:context=".ui.about.AboutShare">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/recyclerScrool"
@@ -57,13 +57,13 @@
 
                         android:src="@drawable/greentriangle"/>
                 </LinearLayout>
-                <com.github.mikephil.charting.charts.LineChart
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/stonkschart"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"/>
+<!--                <com.github.mikephil.charting.charts.LineChart-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="300dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:id="@+id/stonkschart"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:layout_marginTop="10dp"/>-->
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

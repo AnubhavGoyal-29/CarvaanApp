@@ -1,14 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.about.dailogFragments.Buy">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="15dp"
+    app:cardElevation="10dp"
+    >
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#188F84"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-</FrameLayout>
+            <TextView
+                android:id="@+id/shareprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="5dp"
+
+                android:fontFamily="@font/abril_fatface"
+                android:gravity="right"
+                android:text="$ 2.15"
+                android:textColor="#BECA4D"
+                android:textSize="70sp" />
+            <TextView
+                android:layout_width="wrap_content"
+
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/abril_fatface"
+                android:text="Per Share"
+                android:textColor="#BECA4D"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#2a7440"/>
+        <TextView
+            android:id="@+id/totalAvailable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Total available:"
+            android:fontFamily="@font/abril_fatface"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Shares"
+            android:fontFamily="@font/abril_fatface"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"/>
+
+        <EditText
+            android:id="@+id/noofshares"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:hint="Enter"
+            android:textColorHint="#FFFFFF"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border"
+            android:fontFamily="@font/abril_fatface" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="Buy"
+            android:id="@+id/btn_buy"
+            android:textAllCaps="false"
+            android:fontFamily="@font/abril_fatface"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/roundbackground_green"/>
+
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

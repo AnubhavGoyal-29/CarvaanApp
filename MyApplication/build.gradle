@@ -18,6 +18,9 @@ allprojects {
         google()
         jcenter()
     }
+    repositories {
+        maven { url 'https://maven.cashfree.com/release'}
+    }
 }
 
 task clean(type: Delete) {
