@@ -31,7 +31,7 @@
         android:text="Pay Rs 1 by clicking the button below " />
 
     <LinearLayout
-        android:id="@+id/button"
+        android:id="@+id/pay"
         android:layout_marginTop="112dp"
         android:orientation="vertical"
         android:layout_alignParentEnd="true"
