@@ -8,7 +8,6 @@ public class allsharemodel {
 
     public allsharemodel() {
     }
-
     public String getDescription() {
         return description;
     }

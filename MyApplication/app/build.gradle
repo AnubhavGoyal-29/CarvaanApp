@@ -55,7 +55,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.henryblue.mxvideoplayer:xvideoplayer:1.2.1'
     implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
-    implementation 'fm.jiecao:jiecaovideoplayer:5.7'
+    implementation 'fm.jiecao:jiecaovideoplayer:5.8.1'
 
 
     //multidex
@@ -69,5 +69,54 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:6.1.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+
+    //char plus image
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.henryblue.mxvideoplayer:xvideoplayer:1.2.1'
+    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
+    implementation 'fm.jiecao:jiecaovideoplayer:5.8.1'
+    implementation 'com.cashfree.pg:android-support-sdk:1.4.2.2'
+    implementation 'com.cashfree.pg:android-sdk:1.5.1'
+
+    //Dependencies used by all payment modes
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+
+    //doPayment - If OTP Auto read enabled (default)
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.5.0'
+
+    //doUPIPayment
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    //doGPayPayment  - Also add the google maven repository as shown in the consecutive step
+    implementation files ("libs/google-pay-client-api-1.0.0.aar")
+    implementation 'com.google.android.gms:play-services-tasks:17.2.0'
+
+    //doAmazonPayment
+    implementation 'androidx.browser:browser:1.2.0'
+    //
+    //Dependencies used by all payment functions
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+
+    //doPayment - If OTP Auto read enabled (default)
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.5.0'
+
+    implementation 'com.android.volley:volley:1.1.1'
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
+
 
 }
