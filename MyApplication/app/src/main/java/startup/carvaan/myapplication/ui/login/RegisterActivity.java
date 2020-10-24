@@ -91,14 +91,10 @@ public class RegisterActivity extends AppCompatActivity {
                         map.put("Email", firebaseUser.getEmail());
                         map.put("PhoneNumber", "phone Number");
                         map.put("ImageUrl", "imageURL");
-                        ff.collection("Users").document(firebaseUser.getUid())
-                                .collection("PersonalInformation")
-                                .document("personalInformation").set(map);
+                        map.put("Credits","100");
+                        ff.collection("Users").document(firebaseUser.getUid()).set(map);
                         Map<String, Object> credits = new HashMap<>();
                         credits.put("credits", "100");
-                        ff.collection("Users").document(firebaseUser.getUid()).collection("Credits")
-                                .document("Credits").set(credits);
-
                         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                     }
                 }).addOnFailureListener(new OnFailureListener() {

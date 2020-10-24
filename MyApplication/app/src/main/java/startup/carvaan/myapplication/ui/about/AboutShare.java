@@ -1,10 +1,6 @@
 package startup.carvaan.myapplication.ui.about;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Matrix;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,8 +12,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,30 +20,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
-import hb.xvideoplayer.MxVideoPlayer;
-import hb.xvideoplayer.MxVideoPlayerWidget;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.about.dailogFragments.Buy;
 import startup.carvaan.myapplication.ui.about.dailogFragments.Sell;
+import startup.carvaan.myapplication.ui.user.User;
 
 public class AboutShare extends AppCompatActivity  {
     private BottomSheetBehavior bottomSheetBehavior;
@@ -66,6 +52,7 @@ public class AboutShare extends AppCompatActivity  {
     String shareid;
     private TextView coins;
     public static JCVideoPlayerStandard current_vv;
+    User user=new User();
 
     @SuppressLint("WrongConstant")
     @Override
@@ -103,7 +90,7 @@ public class AboutShare extends AppCompatActivity  {
             @Override
             protected void onBindViewHolder(@NonNull final PostViewHolder postViewHolder, int i, @NonNull final PostModal postModal) {
 
-//                postViewHolder.companyname.setText(postModal.getName());
+                postViewHolder.companyname.setText(user.getCredits());
 
 //                if(Integer.parseInt(postModal.getType())==1){
 //                    //postViewHolder.userpostimage.setVisibility(View.VISIBLE);

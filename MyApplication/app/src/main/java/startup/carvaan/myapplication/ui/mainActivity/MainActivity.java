@@ -2,7 +2,6 @@ package startup.carvaan.myapplication.ui.mainActivity;
 
 
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,20 +28,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
 
-import javax.annotation.Nullable;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.allshares.allshares;
 import startup.carvaan.myapplication.ui.earncredits.earncredits;
 import startup.carvaan.myapplication.ui.login.LoginActivity;
-import startup.carvaan.myapplication.ui.mainActivity.CurvedNavigationBottomView;
 import startup.carvaan.myapplication.ui.myshares.myshares;
+import startup.carvaan.myapplication.ui.user.User;
 
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -62,17 +57,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     PathModel outline;
     private ActionBar actionBar;
     TextView coins;
-    @SuppressLint("WrongConstant")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        getSupportActionBar().setElevation(0);
-        getSupportActionBar().setTitle("Karvaan");
-        getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
+        User user=new User();
+        this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        View view= getSupportActionBar().getCustomView();
+        getSupportActionBar().setElevation(0);
+        View view=getSupportActionBar().getCustomView();
+        TextView textView=view.findViewById(R.id.title);
+        textView.setText("Karvaan");
         coins=view.findViewById(R.id.coins);
         ff=FirebaseFirestore.getInstance();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new allshares()).commit();
@@ -80,12 +77,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         heartVector = findViewById(R.id.fab);
         heartVector1 = findViewById(R.id.fab1);
         heartVector2 = findViewById(R.id.fab2);
-
         mlinId = findViewById(R.id.lin_id);
         mView.inflateMenu(R.menu.bottom_nav_menu);
         mView.setSelectedItemId(R.id.allshares);
-
-
         mView.setOnNavigationItemSelectedListener(MainActivity.this);
 
         NavigationView navigationView =findViewById(R.id.n1);
@@ -109,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         gotoLoginActivity();
                         break;
                 }
-
                 return false;
             }
         });
@@ -118,23 +111,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
-        if(firebaseUser!=null) {
-            ff.collection("Users").document(firebaseUser.getUid()).collection("Credits")
-                    .document("Credits").addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                @Override
-                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                    DocumentSnapshot snapshot = documentSnapshot;
-
-                }
-            });
-        }
-
+        loadContent(user);
     }
 
-
+    private void loadContent(User user) {
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
