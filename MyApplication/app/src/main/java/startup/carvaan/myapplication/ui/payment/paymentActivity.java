@@ -18,10 +18,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.functions.Consumer;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import startup.carvaan.myapplication.R;
 
 public class paymentActivity extends AppCompatActivity {
@@ -70,13 +70,15 @@ public class paymentActivity extends AppCompatActivity {
     private void makePaymentRequest() {
         String orderId= UUID.randomUUID().toString();
         Map<String ,String > map=new HashMap<>();
+        map.put("appId","3008091222ee68f67fbc5fd1c08003");
         map.put("orderId", String.valueOf(orderId));
         map.put("orderAmount", String.valueOf(orderAmount.getText()));
         compositeDisposable.add(iCloudFunction.getToken(orderId,orderAmount.getText().toString())
-                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<CashFreeToken>() {
                     @Override
-                    public void accept(CashFreeToken cashFreeToken) throws Throwable {
+                    public void accept(CashFreeToken cashFreeToken) {
                         if(cashFreeToken.getStatus().equals("OK")){
                             CFPaymentService.getCFPaymentServiceInstance().doPayment(paymentActivity.this,map,cashFreeToken.getCftoken(),"TEST");
                         }
@@ -84,7 +86,7 @@ public class paymentActivity extends AppCompatActivity {
                     }
                 }, new Consumer<Throwable>() {
                     @Override
-                    public void accept(Throwable throwable) throws Throwable {
+                    public void accept(Throwable throwable) {
                         Toast.makeText(paymentActivity.this,""+throwable.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 })
