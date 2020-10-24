@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "startup.carvaan.myapplication"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -61,11 +61,13 @@ dependencies {
     //multidex
     implementation 'com.android.support:multidex:1.0.3'
     //circleimageview
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
     //vectormaster
     implementation 'com.sdsmdg.harjot:vectormaster:1.1.3'
     //firebaserecycleradapter
     implementation "com.firebaseui:firebase-ui-auth:6.1.0"
     implementation 'com.firebaseui:firebase-ui-firestore:6.1.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
 }
