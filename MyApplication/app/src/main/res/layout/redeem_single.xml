@@ -29,7 +29,7 @@
                 android:layout_marginLeft="20dp"
 
 
-                android:src="@drawable/pai"
+                android:src="@drawable/vsm_coin"
              />
 
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
 
-                android:text="Get Rs.500 by using  200 credits"
+                android:text="Get 200 credits by watching this add"
                 android:textColor="#000000"
                 android:textSize="20sp"
 
@@ -71,7 +71,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="30dp"
 
-                android:text="Redeem Now"
+                android:text="Watch Now"
                 android:background="@drawable/buty"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
