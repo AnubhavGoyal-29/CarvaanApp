@@ -27,13 +27,14 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             >
-            <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
-                android:visibility="visible"
-                android:id="@+id/startupVideo"
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/sharevideo"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-
-                />
+                app:videoId="Bx8YD1c7MkA"
+                app:autoPlay="false"
+                app:showYouTubeButton="false"
+                tools:ignore="MissingConstraints" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +56,7 @@
                         android:layout_height="wrap_content"
 
                         android:lines="1"
-                        android:background="#FF533D78"
+
 
 
                         tools:autoSizeTextType="uniform"
@@ -64,7 +65,7 @@
                         android:textStyle="bold"
                         android:padding="7dp"
                         android:text="Flipkart Private Limited"
-                        android:textSize="19sp"
+                        android:textSize="20sp"
                         app:layout_constraintStart_toEndOf="@+id/imageView3"
                         app:layout_constraintTop_toTopOf="parent" />
                 </LinearLayout>
