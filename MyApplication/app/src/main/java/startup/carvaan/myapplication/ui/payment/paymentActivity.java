@@ -69,28 +69,30 @@ public class paymentActivity extends AppCompatActivity {
 
     private void makePaymentRequest() {
         String orderId= UUID.randomUUID().toString();
-        Map<String ,String > map=new HashMap<>();
-        map.put("appId","3008091222ee68f67fbc5fd1c08003");
-        map.put("orderId", String.valueOf(orderId));
-        map.put("orderAmount", String.valueOf(orderAmount.getText()));
-        compositeDisposable.add(iCloudFunction.getToken(orderId,orderAmount.getText().toString())
+        Map<String ,String > payment=new HashMap<>();
+        payment.put("appId","3008091222ee68f67fbc5fd1c08003");
+        payment.put("orderId",orderId);
+        payment.put("orderAmount","10");
+        payment.put("orderCurrency","INR");
+        payment.put("customerPhone","+918171365728");
+        payment.put("customerEmail","test@gmail.com");
+        compositeDisposable.add(iCloudFunction.getToken(orderId,"10")
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<CashFreeToken>() {
-                    @Override
-                    public void accept(CashFreeToken cashFreeToken) {
-                        if(cashFreeToken.getStatus().equals("OK")){
-                            CFPaymentService.getCFPaymentServiceInstance().doPayment(paymentActivity.this,map,cashFreeToken.getCftoken(),"TEST");
-                        }
-
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) {
-                        Toast.makeText(paymentActivity.this,""+throwable.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                })
-        );
+                .observeOn(AndroidSchedulers.mainThread()).
+                        subscribe(new Consumer<CashFreeToken>() {
+                                      @Override
+                                      public void accept(CashFreeToken cashFreeToken) throws Exception {
+                                          if(cashFreeToken.getStatus().equals("OK")){
+                                              CFPaymentService.getCFPaymentServiceInstance().doPayment(paymentActivity.this,payment,cashFreeToken.getCftoken(),"TEST");
+                                          }
+                                      }
+                                  }, new Consumer<Throwable>() {
+                                      @Override
+                                      public void accept(Throwable throwable) throws Exception {
+                                          Toast.makeText(paymentActivity.this,""+throwable.getMessage(),Toast.LENGTH_LONG).show();
+                                      }
+                                  }
+                        ));
     }
     @Override
     protected void onStop() {

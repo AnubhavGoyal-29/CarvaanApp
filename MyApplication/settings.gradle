@@ -1,7 +1,3 @@
-include ':cashfreesdk-1.4.9.9-release'
-include ':cashfreesdk-1.2-release'
-include ':cashfreesdk-1.4.9.9-release'
-include ':cashfreesdk-1.4.9.9-release1'
-include ':cashfreesdk-1.4.9.9-release'
-include ':app'
+include ':cashfreesdk-1.4.9.8-release'
 rootProject.name = "My Application"
+include ':app'

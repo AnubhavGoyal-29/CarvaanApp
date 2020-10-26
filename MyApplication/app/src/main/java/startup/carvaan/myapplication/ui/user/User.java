@@ -14,6 +14,7 @@ public class User {
     private FirebaseAuth fauth;
     private FirebaseUser user;
     public User() {
+        user=null;
         loginUser();
     }
     public void setCredits(String credits) {
@@ -52,23 +53,23 @@ public class User {
     public void loginUser(){
         fauth=FirebaseAuth.getInstance();
         setUser(fauth.getCurrentUser());
-        getUserDetails();
+        if(user!=null)
+            getUserDetails();
     }
 
 
 
     public void logoutUser(){
         fauth.signOut();
-        user=null;
     }
 
 
 
     public void addCredits(float a){
-
+        ff.collection("Users").document(user.getUid()).update("Credits",String.valueOf(Integer.valueOf(Credits)+Integer.valueOf((int) a)));
     }
     public void removeCredits(float a){
-
+        ff.collection("Users").document(user.getUid()).update("Credits",String.valueOf(Integer.valueOf(Credits)-Integer.valueOf((int) a)));
     }
 
 }

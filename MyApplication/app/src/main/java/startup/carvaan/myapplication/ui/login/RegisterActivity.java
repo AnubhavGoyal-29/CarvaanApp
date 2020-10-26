@@ -93,8 +93,6 @@ public class RegisterActivity extends AppCompatActivity {
                         map.put("ImageUrl", "imageURL");
                         map.put("Credits","100");
                         ff.collection("Users").document(firebaseUser.getUid()).set(map);
-                        Map<String, Object> credits = new HashMap<>();
-                        credits.put("credits", "100");
                         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                     }
                 }).addOnFailureListener(new OnFailureListener() {

@@ -107,52 +107,6 @@ public class AboutShare extends AppCompatActivity  {
 
                 }
                 postViewHolder.companyname.setText(postModal.getName());
-//                String s=firebaseUser.getEmail();
-//                postViewHolder.username.setText(s.substring(0,s.length()-10));
-//                postViewHolder.noofcomments.setText(postModal.getNo_comments());
-//                //postViewHolder.nooflikes.setText(postModal.getNo_likes());
-//                postViewHolder.description.setText(postModal.getDescription());
-//                postViewHolder.comment.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        CommentDialog commentDialog  = new CommentDialog();
-//                        Bundle bundle = new Bundle();
-//                        bundle.putString("shareid",shareid);
-//                        commentDialog.setArguments(bundle);
-//                        commentDialog.show(getSupportFragmentManager(),"Comments");
-//                    }
-//                });
-//                postViewHolder.nooflikes.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        LikeDialog likeDialog  = new LikeDialog();
-//                        Bundle bundle = new Bundle();
-//                        bundle.putString("shareid",shareid);
-//                        likeDialog.setArguments(bundle);
-//                        likeDialog.show(getSupportFragmentManager(),"Likes");
-//                    }
-//                });
-//                if (Integer.parseInt(postModal.getType())==1){
-//                    postViewHolder.postimage.setVisibility(View.VISIBLE);
-//                }
-//                if (Integer.parseInt(postModal.getType())==2){
-//                    postViewHolder.videoview.setVisibility(View.VISIBLE);
-//                }
-
-//                postViewHolder.addAttatchment.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//
-//                        attachmentManager = new AttachmentManager.AttachmentBuilder(AboutShare.this) // must pass Context
-//                                .activity(AboutShare.this) // container activity
-//                                .fragment(null) // pass fragment reference if you are in fragment
-//                                .setUiTitle("Choose Attatchment") // title of dialog or bottom sheet
-//                                .allowMultiple(false) // set true if you want make multiple selection, default is false
-//                                .asBottomSheet(true) // set true if you need to show selection as bottom sheet, default is as Dialog
-//                                .build();
-//                        attachmentManager.openSelection();
-//                    }
-//                });
             }
 
 
@@ -189,29 +143,6 @@ public class AboutShare extends AppCompatActivity  {
 
             }
         });
-
-//        stonkschart = bottomsheet.findViewById(R.id.stonkschart);
-//        ArrayList<Entry> yvalues = new ArrayList<>();
-//        yvalues.add(new Entry(1,25));
-//        yvalues.add(new Entry(2,50));
-//        yvalues.add(new Entry(3,75));
-//        yvalues.add(new Entry(4,60));
-//        yvalues.add(new Entry(5,35));
-//        yvalues.add(new Entry(6,80));
-//        yvalues.add(new Entry(7,40));
-//        LineDataSet set1 = new LineDataSet(yvalues,"Share Prices");
-//        set1.setColor(Color.GREEN);
-//        set1.setLineWidth(3f);
-//        set1.setFillAlpha(110);
-//        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-//        dataSets.add(set1);
-//        LineData data = new LineData(dataSets);
-//        stonkschart.setData(data);
-//        stonkschart.getAxisRight().setEnabled(false);
-//        String[] values = new String[] {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
-//        XAxis xAxis = stonkschart.getXAxis();
-//        xAxis.setValueFormatter(new myformatter(values));
-//        xAxis.setGranularity(1);
 
     }
     public class PostViewHolder extends RecyclerView.ViewHolder {

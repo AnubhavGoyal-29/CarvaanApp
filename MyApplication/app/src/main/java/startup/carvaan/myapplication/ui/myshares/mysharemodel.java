@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class mysharemodel {
     private String id,name,holdings;
-    Map<String ,String> holdingsatprice=new HashMap<>();
+    Map<String ,String> priceHoldings=new HashMap<>();
 
     public mysharemodel() {
     }
@@ -34,18 +34,18 @@ public class mysharemodel {
         this.holdings = holdings;
     }
 
-    public Map<String, String> getHoldingsatprice() {
-        return holdingsatprice;
+    public Map<String, String> getPriceHoldings() {
+        return priceHoldings;
     }
 
-    public void setHoldingsatprice(Map<String, String> holdingsatprice) {
-        this.holdingsatprice = holdingsatprice;
+    public void setPriceHoldings(Map<String, String> priceHoldings) {
+        this.priceHoldings = priceHoldings;
     }
 
-    public mysharemodel(String id, String name, String holdings, Map<String, String> holdingsatprice) {
+    public mysharemodel(String id, String name, String holdings, Map<String, String> priceHoldings) {
         this.id = id;
         this.name = name;
         this.holdings = holdings;
-        this.holdingsatprice = holdingsatprice;
+        this.priceHoldings = priceHoldings;
     }
 }
