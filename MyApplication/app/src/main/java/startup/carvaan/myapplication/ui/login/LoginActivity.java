@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -53,14 +55,17 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         movetoregister = findViewById(R.id.gotoregister);
         ff = FirebaseFirestore.getInstance();
+
         firebaseAuth = FirebaseAuth.getInstance();
         user_name = findViewById(R.id.username);
         pass_word = findViewById(R.id.password);
         lo_gin = findViewById(R.id.loginbutton);
         TextView forgotPass = findViewById(R.id.forgotPass);
         googlesign = findViewById(R.id.googlelogin);
+
         lo_gin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(LoginActivity.this,googleSignInOptions);
         googlesign.setOnClickListener(new View.OnClickListener() {
             @Override
