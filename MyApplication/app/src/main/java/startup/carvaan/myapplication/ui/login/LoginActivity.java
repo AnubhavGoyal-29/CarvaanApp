@@ -166,10 +166,11 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             }
-            catch (ApiException e)
+            catch (Exception e)
             {
                 //Toast.makeText(LoginActivity.this,"LOGIN UNSUCCESSFUL API EXCEPTION",Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.i("api",e.getMessage());
             }
         }
