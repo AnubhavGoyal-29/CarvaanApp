@@ -52,12 +52,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     PathModel outline;
     private ActionBar actionBar;
     TextView coins;
+    User user=new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        User user=new User();
+
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.logout:
-                        firebaseAuth.signOut();
+                        user.logoutUser();
                         gotoLoginActivity();
                         break;
                 }
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         switch (item.getItemId()) {
             case R.id.logout:
-                    firebaseAuth.signOut();
+                user.logoutUser();
                     break;
         }
         return super.onOptionsItemSelected(item);
