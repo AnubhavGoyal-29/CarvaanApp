@@ -42,6 +42,7 @@ import startup.carvaan.myapplication.R;
 
 
 public class LoginActivity extends AppCompatActivity {
+    private static final int RC_SIGN_IN = 1 ;
     private EditText user_name;
     private EditText pass_word;
     private FirebaseAuth firebaseAuth;
@@ -49,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private ImageView googlesign;
     private TextView movetoregister;
     private FirebaseFirestore ff;
-    public static GoogleSignInClient googleSignInClient;
+    public GoogleSignInClient googleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent newIntent = new Intent(LoginActivity.this, MainActivity.class);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(newIntent);
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -105,14 +107,15 @@ public class LoginActivity extends AppCompatActivity {
     private void gsignin()
     {
         Intent gintent = googleSignInClient.getSignInIntent();
-        startActivityForResult(gintent,12345);
+        startActivityForResult(gintent,RC_SIGN_IN);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==12345)
+        if(requestCode==RC_SIGN_IN)
         {
+            Log.i("TAG", "MATCHES AF");
             final ProgressDialog progressDialog = ProgressDialog.show(LoginActivity.this,"","Please Wait");
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -123,12 +126,15 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
+
                         {
+                            Log.i("TAG", "SUCCESSFUL 1");
                             Toast.makeText(LoginActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_LONG).show();
                             final FirebaseUser user = firebaseAuth.getCurrentUser();
                             ff.collection("Users").document(user.getUid()).collection("Credits").document("Credits").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    Log.i("TAG", "INSIDE ON COMPLETE");
                                     DocumentSnapshot documentSnapshot=task.getResult();
                                     if(!documentSnapshot.exists()){
                                         Map<String,Object> map=new HashMap<>();
@@ -140,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 .document("personalInformation").set(map);
                                         Map<String,Object> credits=new HashMap<>();
                                         credits.put("credits","100");
+                                        Log.i("TAG", "MAYBE TOWARDS ERROR IG");
                                         ff.collection("Users").document(user.getUid()).collection("Credits")
                                                 .document("Credits").set(credits).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
@@ -165,6 +172,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else
                         {
+                            Log.i("TAG", "PEHLA HI UNSUCCESSFUL");
                             Toast.makeText(LoginActivity.this,"TASK UNSUCCESSFUL",Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }
@@ -175,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
             {
                 //Toast.makeText(LoginActivity.this,"LOGIN UNSUCCESSFUL API EXCEPTION",Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.i("api",e.getMessage());
             }
         }
