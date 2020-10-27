@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent newIntent = new Intent(LoginActivity.this, MainActivity.class);
                         newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(newIntent);
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

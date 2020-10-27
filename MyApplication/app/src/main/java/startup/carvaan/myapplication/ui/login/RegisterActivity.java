@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,13 +31,14 @@ import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 import startup.carvaan.myapplication.R;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText user_name;
-    private EditText pass_word;
-    private TextInputLayout confirmLayout;
+    private TextInputEditText user_name;
+
+    private TextInputLayout passwordText;
+    private TextInputLayout confirmPassword;
     private FirebaseAuth firebaseAuth;
     private Button regis_ter;
     private TextView movetologin;
-    private EditText confirmPassword;
+
     FirebaseFirestore ff;
     FirebaseUser firebaseUser;
 
@@ -47,11 +50,11 @@ public class RegisterActivity extends AppCompatActivity {
         ff = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         user_name = findViewById(R.id.username);
-        pass_word = findViewById(R.id.password);
+        passwordText = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);
         regis_ter = findViewById(R.id.register1);
         movetologin = findViewById(R.id.gotologin);
-        confirmPassword.addTextChangedListener(new TextWatcher() {
+        confirmPassword.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -64,16 +67,21 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                String password = pass_word.getText().toString();
+                String password =passwordText.getEditText().getText().toString();
                 if (editable.length() > 0 && password.length() > 0) {
-                    if (!confirmPassword.getText().toString().equals(password)) {
+                    if (!confirmPassword.getEditText().getText().toString().equals(password)) {
                         // give an error that password and confirm password not match
-                        confirmLayout.setErrorEnabled(true);
-                        confirmLayout.setError("You need to enter a name");
+                        if (confirmPassword.getEditText() != null) {
+                            confirmPassword.setErrorEnabled(true);
+                            confirmPassword.setError("Passwords don't match");
+                        }
+                        Log.i("TAG", "SORRY, PASSWORDS DONT MATCH!!!");
                     } else {
-                        confirmLayout.setErrorEnabled(false);
-                        confirmLayout.setError(null);
+                        Log.i("TAG", "HURRAY, PASSWORDS MATCH!!");
+                        confirmPassword.setErrorEnabled(false);
+                        confirmPassword.setError(null);
                         regis_ter.setEnabled(true);
+
                     }
 
                 }
@@ -83,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
         regis_ter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseAuth.createUserWithEmailAndPassword(user_name.getText().toString() + "@gmail.com", pass_word.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                firebaseAuth.createUserWithEmailAndPassword(user_name.getText().toString() + "@gmail.com", passwordText.getEditText().getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         firebaseUser = firebaseAuth.getCurrentUser();
