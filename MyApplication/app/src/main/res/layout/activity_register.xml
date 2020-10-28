@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="10"
+    android:weightSum="5"
     android:orientation="vertical"
     tools:context=".ui.mainActivity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.5"
+        android:layout_weight="1"
         android:addStatesFromChildren="true"
         android:background="@drawable/back1"
         android:orientation="vertical"
@@ -34,13 +34,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
 
-        android:layout_weight="4.55"
+        android:layout_weight="3"
         android:orientation="vertical"
         android:gravity="center">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
 
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
@@ -49,12 +49,12 @@
           >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
 
-            android:textSize="18sp"
 
-            android:textColorHint="#000000"
-            android:textColor="#000000"
+
+
+
             android:id="@+id/username"
             android:background="@drawable/inputtype"
             android:hint="Username"
@@ -63,7 +63,7 @@
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:id="@+id/password"
 
             android:layout_marginLeft="60dp"
@@ -74,12 +74,8 @@
             app:passwordToggleEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textSize="18sp"
-            android:textColor="#000000"
+            android:layout_height="wrap_content"
 
-
-            android:textColorHint="#000000"
             android:background="@drawable/inputtype"
 
 
@@ -91,10 +87,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-
+            android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
+
 
             android:layout_marginTop="30dp"
             app:errorEnabled="true"
@@ -103,11 +99,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textSize="18sp"
+            android:layout_height="wrap_content"
 
-            android:textColor="#000000"
-            android:textColorHint="#000000"
             android:background="@drawable/inputtype"
 
 
@@ -138,7 +131,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.95"
+        android:layout_weight="1"
         android:background="@drawable/back2"
         android:gravity="center|right">
         <LinearLayout

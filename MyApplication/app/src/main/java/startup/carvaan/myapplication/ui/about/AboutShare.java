@@ -176,7 +176,7 @@ public class AboutShare extends AppCompatActivity  {
 //            write_comment = itemView.findViewById(R.id.write_comment_edittext);
 //            post_comment = itemView.findViewById(R.id.post_comment);
             like_icon = itemView.findViewById(R.id.like_icon);
-            videoview = itemView.findViewById(R.id.userPostVideo);
+ //           videoview = itemView.findViewById(R.id.userPostVideo); COMMENTED OUT CAUSE OF ERROR
 
         }
     }
