@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             app:videoId="299270y3b4o"
-            android:id="@+id/uservideo"
+            android:id="@+id/userPostVideo"
             app:autoPlay="false"
             app:showYouTubeButton="false"
              ></com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
