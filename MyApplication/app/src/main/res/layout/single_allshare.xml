@@ -28,13 +28,13 @@
             android:layout_marginRight="15dp"
             >
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                android:id="@+id/sharevideo"
+
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 app:videoId="Bx8YD1c7MkA"
-                app:autoPlay="false"
-                app:showYouTubeButton="false"
-                tools:ignore="MissingConstraints" />
+                app:showSeekBar="true"
+
+              />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
