@@ -33,6 +33,7 @@
             android:label="@string/title_activity_main"></activity>
         <activity
             android:name=".ui.start.SplashScreen"
+
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
 
             <!-- <intent-filter> -->
@@ -46,6 +47,20 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"-->
+<!--            >-->
+<!--                <intent-filter>-->
+<!--                    <action android:name="android.intent.action.MAIN" />-->
+<!--                    <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                </intent-filter>-->
+<!--        </activity>-->
+<!--&lt;!&ndash;        <activity android:name=".ui.login.RegisterActivity">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <intent-filter>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <action android:name="android.intent.action.MAIN" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                 </intent-filter>&ndash;&gt;&ndash;&gt;-->
+
         </activity>
         <activity android:name=".ui.login.LoginActivity">
 

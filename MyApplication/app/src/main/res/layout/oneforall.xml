@@ -56,18 +56,10 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             app:videoId="299270y3b4o"
-           app:showSeekBar="true"
+            android:id="@+id/uservideo"
             app:autoPlay="false"
             app:showYouTubeButton="false"
-            app:handleNetworkEvents="true"
-            app:enableAutomaticInitialization="true"
-            app:showFullScreenButton="true"
-           app:showVideoCurrentTime="true"
-            app:showVideoDuration="true"
-
              ></com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,49 +91,6 @@
                 tools:autoSizeTextType="uniform"
                 android:text="Facebook Pvt. Ltd."></TextView>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/freelancer"
-                android:text=" Need Freelancer"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:padding="10dp"
-                android:background="#FF23C1B2"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/intern"
-                android:layout_marginLeft="10dp"
-                android:text=" Need Intern"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:padding="10dp"
-                android:background="#FF23C1B2"
-                />
-
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/JOB_vacnacy"
-            android:text="Job Vacnacy"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="20dp"
-            android:padding="10dp"
-            android:background="#FF23C1B2"
-            />
         <LinearLayout
 
             android:layout_width="match_parent"

@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,8 +35,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 import startup.carvaan.myapplication.R;
+import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -181,11 +179,14 @@ public class LoginActivity extends AppCompatActivity {
             }
             catch (Exception e)
             {
-                //Toast.makeText(LoginActivity.this,"LOGIN UNSUCCESSFUL API EXCEPTION",Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this,"LOGIN UNSUCCESSFUL API EXCEPTION",Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
-               // Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.i("api",e.getMessage());
             }
+        }
+        else{
+            Toast.makeText(LoginActivity.this,"blaa",Toast.LENGTH_LONG).show();
         }
     }
 }

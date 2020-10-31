@@ -26,7 +26,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,21 +90,6 @@ public class AboutShare extends AppCompatActivity  {
             protected void onBindViewHolder(@NonNull final PostViewHolder postViewHolder, int i, @NonNull final PostModal postModal) {
 
                 postViewHolder.companyname.setText(user.getCredits());
-
-//                if(Integer.parseInt(postModal.getType())==1){
-//                    //postViewHolder.userpostimage.setVisibility(View.VISIBLE);
-//                }
-                //else
-                if(true)//Integer.parseInt(postModal.getType())==2)
-                {
-                    postViewHolder.postimage.setVisibility(View.GONE);
-                    postViewHolder.videoview.setVisibility(View.VISIBLE);
-
-                    postViewHolder.videoview.setUp("https://firebasestorage.googleapis.com/v0/b/vitual-share-market.appspot.com/o/Nature%20Beautiful%20short%20video%20720p%20HD.mp4?alt=media&token=3ad4713e-73b1-4814-8173-bc0f2f4f03d7",JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL,"POST");
-                    Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/vitual-share-market.appspot.com/o/40390415410_4933f04732_b_660_280220071938_180820090351.jpg?alt=media&token=16db16e6-bac6-40c9-ac7c-dd82ae74367c").into(postViewHolder.videoview.thumbImageView);
-                    //postViewHolder.videoview.thumbImageView.setImageURI(Uri.parse("https://firebasestorage.googleapis.com/v0/b/vitual-share-market.appspot.com/o/40390415410_4933f04732_b_660_280220071938_180820090351.jpg?alt=media&token=16db16e6-bac6-40c9-ac7c-dd82ae74367c"));
-
-                }
                 postViewHolder.companyname.setText(postModal.getName());
             }
 
