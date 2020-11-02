@@ -228,13 +228,12 @@
                         android:id="@+id/progress_bar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:indeterminate="false"
+                        style="?android:progressBarStyleHorizontal"
                         android:max="100"
                         android:progress="60"
-                        android:progressDrawable="@drawable/custom_progress"
+                        android:progressDrawable = "@drawable/custom_progress"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:progress="60">
 
@@ -251,7 +250,7 @@
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="60%" />
+                        android:text="60%" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
