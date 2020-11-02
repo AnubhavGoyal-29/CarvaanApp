@@ -231,6 +231,10 @@
 
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progress="60"
+                        android:progressDrawable="@drawable/custom_progress"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:progress="60">
 
