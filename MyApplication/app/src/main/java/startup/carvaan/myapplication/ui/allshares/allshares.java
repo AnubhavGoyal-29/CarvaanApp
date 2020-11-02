@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,12 +29,15 @@ public class allshares extends Fragment {
     private RecyclerView allShareRecyclerView;
     private FirestoreRecyclerAdapter adapter;
     private FirebaseFirestore ff;
+
     public allshares() {
         // Required empty public constructor
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
     }
 
