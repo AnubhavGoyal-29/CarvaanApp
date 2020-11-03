@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,32 +11,32 @@
         android:id="@+id/textFile"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/userImage"
-            android:layout_width="63dp"
-            android:layout_height="62dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/vsm_logo" />
+            <ImageView
+                android:id="@+id/userImage"
+                android:layout_width="63dp"
+                android:layout_height="62dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/vsm_logo" />
 
-        <TextView
-            android:id="@+id/companyName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="32dp"
-            android:text="CompanyName"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/companyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="32dp"
+                android:text="CompanyName"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <ImageView
@@ -54,50 +54,17 @@
         <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
             android:layout_width="match_parent"
-            android:layout_height="194dp"
-            app:autoPlay="false"
-
-            app:enableAutomaticInitialization="true"
-            app:showFullScreenButton="true"
-            app:showSeekBar="true"
-            app:showVideoCurrentTime="true"
-            app:showVideoDuration="true"
-            app:showYouTubeButton="false"
+            android:layout_height="180dp"
             app:videoId="299270y3b4o"
 
+            app:showSeekBar="true"
+            app:showVideoDuration="true"
+            app:showFullScreenButton="true"
+            app:autoPlay="false"
+            app:showYouTubeButton="false"
+            app:enableAutomaticInitialization="true"
+            app:showVideoCurrentTime="true"
             ></com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:padding="2dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="username"
-                android:lines="1"
-                tools:autoSizeTextType="uniform"
-                android:id="@+id/username"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="#FF533D78"
-                android:layout_marginLeft="10dp"
-                android:padding="5dp">
-            </TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="7dp"
-                android:id="@+id/description"
-                android:textColor="#000000"
-                android:textStyle="italic"
-                android:textSize="17sp"
-                android:lines="1"
-                tools:autoSizeTextType="uniform"
-                android:text="Facebook Pvt. Ltd."></TextView>
-        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,19 +72,19 @@
             android:layout_marginRight="20dp"
             android:layout_weight="2"
             android:layout_marginTop="10dp">
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--     -->
-<!--                android:background="#FF23C1B2"-->
-<!--                >-->
-<!--               -->
-<!--                <ImageView-->
-<!--                    android:layout_width="40dp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:src="@drawable/tag"-->
-<!--                    android:layout_marginRight="10dp"-->
-<!--                    />-->
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--     -->
+            <!--                android:background="#FF23C1B2"-->
+            <!--                >-->
+            <!--               -->
+            <!--                <ImageView-->
+            <!--                    android:layout_width="40dp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:src="@drawable/tag"-->
+            <!--                    android:layout_marginRight="10dp"-->
+            <!--                    />-->
 
             <TextView
                 android:layout_width="0dp"
@@ -155,7 +122,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-          android:paddingLeft="30dp"
+            android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
@@ -171,6 +138,37 @@
 
             />
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:padding="2dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="username"
+                android:lines="1"
+                tools:autoSizeTextType="uniform"
+                android:id="@+id/username"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="#FF533D78"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp">
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:id="@+id/description"
+                android:textColor="#000000"
+                android:textStyle="italic"
+                android:textSize="17sp"
+                android:lines="1"
+                tools:autoSizeTextType="uniform"
+                android:text="Facebook Pvt. Ltd."></TextView>
+        </LinearLayout>
+        <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -185,11 +183,11 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="28dp"
-                android:id="@+id/like_icon"
-                android:src="@drawable/like_black"/>
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="28dp"
+                    android:id="@+id/like_icon"
+                    android:src="@drawable/like_black"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -242,4 +240,15 @@
         </LinearLayout>
 
     </LinearLayout>
-</LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textFile"
+        android:id="@+id/add_files"
+        android:layout_centerHorizontal = "true"
+        android:textColor="@color/white"
+        android:text="Add Files"/>
+
+
+</RelativeLayout>

@@ -65,6 +65,13 @@ public class LoginActivity extends AppCompatActivity {
         TextView forgotPass = findViewById(R.id.forgotPass);
         googlesign = findViewById(R.id.googlelogin);
 
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,ForgotPassActivity.class));
+            }
+        });
+
         lo_gin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
