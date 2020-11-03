@@ -4,22 +4,23 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@drawable/round_backgroundred">
+    android:background="#FF971B1B">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Like a Boss!"
+        android:layout_marginTop="18dp"
         android:layout_gravity="center_horizontal"
         android:textSize="35sp"
         android:lines="1"
-        android:textColor="#590101"
+        android:textColor="#FFFFFF"
         tools:autoSizeTextType="uniform"
         android:fontFamily="@font/abril_fatface"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="#960101"
-        android:layout_marginTop="5dp"
+        android:background="#000000"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
         />
     <ImageView
@@ -33,11 +34,11 @@
         android:id="@+id/sellsuccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="- 29 shares"
+        android:text="+ 29 shares"
         android:textColor="#ffd08a"
         android:layout_gravity="center_horizontal"
         android:textSize="35sp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/abril_fatface"/>
     <TextView
         android:layout_width="wrap_content"
@@ -47,8 +48,8 @@
         android:text="You have successfully invested your credits in Random Bullshit Pvt. Ltd."
         android:textSize="20sp"
         android:textAlignment="center"
-        android:textColor="#600101"
+        android:textColor="#FFFFFF"
         android:fontFamily="@font/abril_fatface"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="20dp"/>
 </LinearLayout>
