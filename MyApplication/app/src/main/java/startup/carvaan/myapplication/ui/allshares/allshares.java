@@ -38,7 +38,6 @@ public class allshares extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-
     }
 
     @Override
