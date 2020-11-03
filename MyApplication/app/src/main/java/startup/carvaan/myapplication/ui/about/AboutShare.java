@@ -69,45 +69,6 @@ public class AboutShare extends AppCompatActivity {
     Button add_button;
     Intent myFileIntent;
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case 10:
-                if (resultCode == RESULT_OK) {
-
-                    // Get the Uri of the selected file
-                    Uri uri = data.getData();
-                    String uriString = uri.toString();
-                    File myFile = new File(uriString);
-                    String path = myFile.getAbsolutePath();
-                    Log.i(LOG_TAG, "PATH:" + path);
-                    String displayName = null;
-
-                    if (uriString.startsWith("content://")) {
-                        Cursor cursor=null;
-                        try {
-                            cursor = getApplicationContext().getContentResolver().query(uri, null, null, null, null);
-                            if (cursor != null && cursor.moveToFirst()) {
-                                displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                                Log.i(LOG_TAG, "NAME:" + displayName);
-                            }
-                        } finally {
-                            cursor.close();
-                        }
-                    } else if (uriString.startsWith("file://")) {
-                        displayName = myFile.getName();
-                        Log.i(LOG_TAG, "NAME:" + displayName);
-
-                    }
-
-                }
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + requestCode);
-        }
-    }
-
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,28 +78,8 @@ public class AboutShare extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        add_button = findViewById(R.id.add_files);
-
-        add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkPermissionForReadExtertalStorage()) {
-
-                    myFileIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                    myFileIntent.setType("*/*");
-                    startActivityForResult(myFileIntent, 10);
 
 
-                }else{
-                    try {
-                        requestPermissionForReadExtertalStorage();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-        });
 
         View view = getSupportActionBar().getCustomView();
         coins = view.findViewById(R.id.coins);
@@ -171,6 +112,26 @@ public class AboutShare extends AppCompatActivity {
 
                 postViewHolder.companyname.setText(user.getCredits());
                 postViewHolder.companyname.setText(postModal.getName());
+                postViewHolder.addfiles.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (checkPermissionForReadExtertalStorage()) {
+
+                            myFileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                            myFileIntent.setType("*/*");
+                            startActivityForResult(myFileIntent, 10);
+
+
+                        }else{
+                            try {
+                                requestPermissionForReadExtertalStorage();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+                });
             }
 
 
@@ -239,11 +200,12 @@ public class AboutShare extends AppCompatActivity {
         ImageButton post_comment;
         JCVideoPlayerStandard videoview;
         ImageView userpostimage, like_icon, comment_icon, addAttatchment;
+        Button addfiles;
 
 
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            addfiles=itemView.findViewById(R.id.add_files);
             companyname = itemView.findViewById(R.id.companyName);
             username = itemView.findViewById(R.id.username);
             addAttatchment = itemView.findViewById(R.id.addAttatchment);
@@ -298,6 +260,46 @@ public class AboutShare extends AppCompatActivity {
             return false;
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 10:
+                if (resultCode == RESULT_OK) {
+
+                    // Get the Uri of the selected file
+                    Uri uri = data.getData();
+                    String uriString = uri.toString();
+                    File myFile = new File(uriString);
+                    String path = myFile.getAbsolutePath();
+                    Log.i(LOG_TAG, "PATH:" + path);
+                    String displayName = null;
+
+                    if (uriString.startsWith("content://")) {
+                        Cursor cursor=null;
+                        try {
+                            cursor = getApplicationContext().getContentResolver().query(uri, null, null, null, null);
+                            if (cursor != null && cursor.moveToFirst()) {
+                                displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                                Log.i(LOG_TAG, "NAME:" + displayName);
+                            }
+                        } finally {
+                            cursor.close();
+                        }
+                    } else if (uriString.startsWith("file://")) {
+                        displayName = myFile.getName();
+                        Log.i(LOG_TAG, "NAME:" + displayName);
+
+                    }
+
+                }
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + requestCode);
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
