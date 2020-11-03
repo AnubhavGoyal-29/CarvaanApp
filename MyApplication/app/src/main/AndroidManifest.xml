@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/vsm_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/vsm_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:node="merge">
@@ -44,12 +44,13 @@
             android:name=".ui.start.SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
         <activity android:name=".ui.login.RegisterActivity">
+<<<<<<< HEAD
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -71,6 +72,46 @@
             <!-- &lt;!&ndash;&lt;!&ndash;                    <action android:name="android.intent.action.MAIN" />&ndash;&gt;&ndash;&gt; -->
             <!-- &lt;!&ndash;&lt;!&ndash;                    <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;&ndash;&gt; -->
             <!-- &lt;!&ndash;&lt;!&ndash;                 </intent-filter>&ndash;&gt;&ndash;&gt; -->
+||||||| a0b93f8
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+
+<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"-->
+<!--            >-->
+<!--                <intent-filter>-->
+<!--                    <action android:name="android.intent.action.MAIN" />-->
+<!--                    <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                </intent-filter>-->
+<!--        </activity>-->
+<!--&lt;!&ndash;        <activity android:name=".ui.login.RegisterActivity">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <intent-filter>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <action android:name="android.intent.action.MAIN" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                 </intent-filter>&ndash;&gt;&ndash;&gt;-->
+=======
+
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+
+<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"-->
+<!--            >-->
+<!--                <intent-filter>-->
+<!--                    <action android:name="android.intent.action.MAIN" />-->
+<!--                    <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                </intent-filter>-->
+<!--        </activity>-->
+<!--&lt;!&ndash;        <activity android:name=".ui.login.RegisterActivity">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <intent-filter>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <action android:name="android.intent.action.MAIN" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                 </intent-filter>&ndash;&gt;&ndash;&gt;-->
+>>>>>>> 8a218f018e53729faa5c416c1ed36de66f86e3e3
 
         </activity>
         <activity android:name=".ui.login.LoginActivity">

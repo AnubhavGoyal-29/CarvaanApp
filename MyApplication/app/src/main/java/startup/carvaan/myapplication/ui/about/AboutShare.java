@@ -49,7 +49,102 @@ import startup.carvaan.myapplication.ui.about.dailogFragments.Buy;
 import startup.carvaan.myapplication.ui.about.dailogFragments.Sell;
 import startup.carvaan.myapplication.ui.user.User;
 
+
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.OpenableColumns;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.OpenableColumns;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 //import com.google.firestore.v1.Cursor;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+import startup.carvaan.myapplication.R;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
+import startup.carvaan.myapplication.R;
+
 
 public class AboutShare extends AppCompatActivity {
     private BottomSheetBehavior bottomSheetBehavior;
@@ -67,7 +162,9 @@ public class AboutShare extends AppCompatActivity {
     String shareid;
     private TextView coins;
     public static JCVideoPlayerStandard current_vv;
-    User user = new User();
+
+    User user = new User(); 
+    Button add_button;
 
     Intent myFileIntent;
 
@@ -87,7 +184,7 @@ public class AboutShare extends AppCompatActivity {
                     String displayName = null;
 
                     if (uriString.startsWith("content://")) {
-                        Cursor cursor = null;
+                        Cursor cursor=null;
                         try {
                             cursor = getApplicationContext().getContentResolver().query(uri, null, null, null, null);
                             if (cursor != null && cursor.moveToFirst()) {
