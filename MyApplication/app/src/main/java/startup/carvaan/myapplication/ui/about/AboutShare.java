@@ -49,100 +49,7 @@ import startup.carvaan.myapplication.ui.about.dailogFragments.Buy;
 import startup.carvaan.myapplication.ui.about.dailogFragments.Sell;
 import startup.carvaan.myapplication.ui.user.User;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.OpenableColumns;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.OpenableColumns;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firestore.v1.Cursor;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
-import startup.carvaan.myapplication.R;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
-import startup.carvaan.myapplication.R;
+//import com.google.firestore.v1.Cursor;
 
 public class AboutShare extends AppCompatActivity {
     private BottomSheetBehavior bottomSheetBehavior;
@@ -161,7 +68,7 @@ public class AboutShare extends AppCompatActivity {
     private TextView coins;
     public static JCVideoPlayerStandard current_vv;
     User user = new User();
-    Button add_button;
+
     Intent myFileIntent;
 
     @Override
@@ -212,28 +119,6 @@ public class AboutShare extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        add_button = findViewById(R.id.add_files);
-
-        add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkPermissionForReadExtertalStorage()) {
-
-                    myFileIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                    myFileIntent.setType("*/*");
-                    startActivityForResult(myFileIntent, 10);
-
-
-                }else{
-                    try {
-                        requestPermissionForReadExtertalStorage();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-        });
 
         View view = getSupportActionBar().getCustomView();
         coins = view.findViewById(R.id.coins);
@@ -266,6 +151,30 @@ public class AboutShare extends AppCompatActivity {
 
                 postViewHolder.companyname.setText(user.getCredits());
                 postViewHolder.companyname.setText(postModal.getName());
+
+
+
+                postViewHolder.add_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (checkPermissionForReadExtertalStorage()) {
+
+                            myFileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                            myFileIntent.setType("*/*");
+                            startActivityForResult(myFileIntent, 10);
+
+
+                        } else {
+                            try {
+                                requestPermissionForReadExtertalStorage();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+                });
+
             }
 
 
@@ -333,6 +242,7 @@ public class AboutShare extends AppCompatActivity {
         EditText write_comment;
         ImageButton post_comment;
         JCVideoPlayerStandard videoview;
+        Button add_button;
         ImageView userpostimage, like_icon, comment_icon, addAttatchment;
 
 
@@ -341,6 +251,7 @@ public class AboutShare extends AppCompatActivity {
 
             companyname = itemView.findViewById(R.id.companyName);
             username = itemView.findViewById(R.id.username);
+            add_button = findViewById(R.id.add_files);
             addAttatchment = itemView.findViewById(R.id.addAttatchment);
             description = itemView.findViewById(R.id.description);
             nooflikes = itemView.findViewById(R.id.number_of_likes);
