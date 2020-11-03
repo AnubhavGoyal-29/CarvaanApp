@@ -54,18 +54,25 @@
         <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            app:videoId="299270y3b4o"
-            android:id="@+id/uservideo"
+            android:layout_height="194dp"
             app:autoPlay="false"
+
+            app:enableAutomaticInitialization="true"
+            app:showFullScreenButton="true"
+            app:showSeekBar="true"
+            app:showVideoCurrentTime="true"
+            app:showVideoDuration="true"
             app:showYouTubeButton="false"
-             ></com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+            app:videoId="299270y3b4o"
+
+            ></com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:padding="2dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -91,6 +98,78 @@
                 tools:autoSizeTextType="uniform"
                 android:text="Facebook Pvt. Ltd."></TextView>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="2"
+            android:layout_marginTop="10dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--     -->
+<!--                android:background="#FF23C1B2"-->
+<!--                >-->
+<!--               -->
+<!--                <ImageView-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:src="@drawable/tag"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    />-->
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+
+                android:text="Need Employees"
+                android:textColor="#808080"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/yagborder"
+
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Need Intern"
+                android:textColor="#808080"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:layout_marginLeft="12dp"
+                android:background="@drawable/yagborder"
+                android:textSize="18sp"
+
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+          android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Need Freelancer"
+            android:textColor="#808080"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textStyle="bold"
+
+            android:background="@drawable/yagborder"
+            android:textSize="18sp"
+
+            />
         <LinearLayout
 
             android:layout_width="match_parent"
