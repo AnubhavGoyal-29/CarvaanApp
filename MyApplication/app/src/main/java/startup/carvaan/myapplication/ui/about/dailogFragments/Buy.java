@@ -44,7 +44,7 @@ public class Buy extends DialogFragment {
             public void onClick(View v) {
                 int Nos=Integer.valueOf(nos.getText().toString());
                 int totalPrice=Nos*Integer.valueOf(shareDetails.getBuyingPrice());
-                int credits=Integer.valueOf(user.getCredits());
+                int credits=Integer.valueOf(user.getEarned());
                 if(credits>=totalPrice){
                     Toast.makeText(getContext(),"Proceeding your buying.....",Toast.LENGTH_LONG).show();
                     ff.collection("Users")

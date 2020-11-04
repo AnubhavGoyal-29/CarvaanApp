@@ -17,10 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -78,22 +75,11 @@ public class AboutShare extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-
-
-
         View view = getSupportActionBar().getCustomView();
         coins = view.findViewById(R.id.coins);
         ff = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-
-//        ff.collection("Users").document(firebaseUser.getUid()).collection("Credits")
-//                .document("Credits").addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-//                DocumentSnapshot snapshot=documentSnapshot;
-//            }
-//        });
         shareRecyclerView = findViewById(R.id.shareRecyclerView);
         final Bundle bundle = getIntent().getExtras();
         shareid = bundle.getString("shareid");
@@ -101,8 +87,6 @@ public class AboutShare extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(navlistner);
         ff = FirebaseFirestore.getInstance();
         tech_list = new ArrayList<>();
-
-
         Query query = ff.collection("shares").document(shareid).collection("Bloging");
         FirestoreRecyclerOptions<PostModal> options = new FirestoreRecyclerOptions.Builder<PostModal>().setQuery(query, PostModal.class).build();
         adapter = new FirestoreRecyclerAdapter<PostModal, PostViewHolder>(options) {
@@ -110,28 +94,6 @@ public class AboutShare extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull final PostViewHolder postViewHolder, int i, @NonNull final PostModal postModal) {
 
-                postViewHolder.companyname.setText(user.getCredits());
-                postViewHolder.companyname.setText(postModal.getName());
-                postViewHolder.addfiles.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (checkPermissionForReadExtertalStorage()) {
-
-                            myFileIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                            myFileIntent.setType("*/*");
-                            startActivityForResult(myFileIntent, 10);
-
-
-                        }else{
-                            try {
-                                requestPermissionForReadExtertalStorage();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }
-                });
             }
 
 
@@ -146,81 +108,32 @@ public class AboutShare extends AppCompatActivity {
         shareRecyclerView.setLayoutManager(new LinearLayoutManager(AboutShare.this));
         shareRecyclerView.setAdapter(adapter);
 
-        View bottomsheet = findViewById(R.id.bottomsheet);
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomsheet);
-        //bottomSheetBehavior.setHideable(false);
-        stonksimage = bottomsheet.findViewById(R.id.stonksimage);
-        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if (newState == BottomSheetBehavior.STATE_EXPANDED) {
-                    stonksimage.setRotation(180f);
-                    bottomNavigationView.setVisibility(View.GONE);
-                } else {
-                    stonksimage.setRotation(0f);
-                    bottomNavigationView.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
-            }
-        });
+//        View bottomsheet = findViewById(R.id.bottomsheet);
+//        bottomSheetBehavior = BottomSheetBehavior.from(bottomsheet);
+//        //bottomSheetBehavior.setHideable(false);
+//        stonksimage = bottomsheet.findViewById(R.id.stonksimage);
+//        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+//            @Override
+//            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+//                if (newState == BottomSheetBehavior.STATE_EXPANDED) {
+//                    stonksimage.setRotation(180f);
+//                    bottomNavigationView.setVisibility(View.GONE);
+//                } else {
+//                    stonksimage.setRotation(0f);
+//                    bottomNavigationView.setVisibility(View.VISIBLE);
+//                }
+//            }
+//
+//            @Override
+//            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+//
+//            }
+//        });
 
     }
-
-    private void requestPermissionForReadExtertalStorage() throws Exception {
-        try {
-            ActivityCompat.requestPermissions((Activity) getApplicationContext(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    10);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
-
-    private boolean checkPermissionForReadExtertalStorage() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            int result = getApplicationContext().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
-            return result == PackageManager.PERMISSION_GRANTED;
-        }
-        return false;
-    }
-
     public class PostViewHolder extends RecyclerView.ViewHolder {
-        private TextView companyname, username, description, nooflikes, noofcomments, comment;
-        ImageView postimage, likeicon;
-        String type;
-        TextView name, comment_text, like_text, showcomments, showlikes;
-        boolean isliked = false;
-        boolean iscommented = false;
-        LinearLayout write_comment_layout;
-        EditText write_comment;
-        ImageButton post_comment;
-        JCVideoPlayerStandard videoview;
-        ImageView userpostimage, like_icon, comment_icon, addAttatchment;
-        Button addfiles;
-
-
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            addfiles=itemView.findViewById(R.id.add_files);
-            companyname = itemView.findViewById(R.id.companyName);
-            username = itemView.findViewById(R.id.username);
-            addAttatchment = itemView.findViewById(R.id.addAttatchment);
-            description = itemView.findViewById(R.id.description);
-            nooflikes = itemView.findViewById(R.id.number_of_likes);
-            noofcomments = itemView.findViewById(R.id.number_of_comments);
-            comment = itemView.findViewById(R.id.comments);
-            likeicon = itemView.findViewById(R.id.like_icon);
-            postimage = itemView.findViewById(R.id.userPostImage);
-//
-//            write_comment_layout = itemView.findViewById(R.id.write_comment_layout);
-//            write_comment = itemView.findViewById(R.id.write_comment_edittext);
-//            post_comment = itemView.findViewById(R.id.post_comment);
-            like_icon = itemView.findViewById(R.id.like_icon);
-            //           videoview = itemView.findViewById(R.id.userPostVideo); COMMENTED OUT CAUSE OF ERROR
 
         }
     }
@@ -312,24 +225,21 @@ public class AboutShare extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         super.onBackPressed();
     }
-//    public class myformatter extends ValueFormatter implements IAxisValueFormatter {
-//        private String[] myvalues;
-//        public myformatter(String[] myvalues)
-//        {
-//            this.myvalues = myvalues;
-//        }
-//
-//        @Override
-//        public String getFormattedValue(float value, AxisBase axis) {
-//            return myvalues[(int)value];
-//        }
-//    }
+    private void requestPermissionForReadExtertalStorage() throws Exception {
+        try {
+            ActivityCompat.requestPermissions((Activity) getApplicationContext(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    10);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        ArrayList<AttachmentDetail> list = attachmentManager.manipulateAttachments(requestCode, resultCode, data); // gives you neccessary detail about attachment like uri,name,size,path and mimtype
-//        Toast.makeText(this, list.size()+"", Toast.LENGTH_LONG).show();
-//    }
-
+    private boolean checkPermissionForReadExtertalStorage() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int result = getApplicationContext().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
+            return result == PackageManager.PERMISSION_GRANTED;
+        }
+        return false;
+    }
 }

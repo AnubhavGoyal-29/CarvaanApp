@@ -32,7 +32,7 @@
 
 
                 <TextView
-                    android:id="@+id/cashEarnedTextView"
+                    android:id="@+id/coinsEarnedTextView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -54,7 +54,7 @@
                 android:layout_weight="1">
 
                 <Button
-                    android:id="@+id/cashEarnedButton"
+                    android:id="@+id/earnCoinsButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="96dp"
@@ -161,7 +161,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="Coins added : 400"
+                    android:text="Cash added : 400"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp">
 
@@ -184,12 +184,12 @@
                     android:layout_weight="1">
 
                     <Button
-                        android:id="@+id/addCoinsButton"
+                        android:id="@+id/addCashButton"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="8dp"
                         android:backgroundTint="@color/colorAccent"
-                        android:text="Add Coins"
+                        android:text="Add Cash"
 
 
                         >

@@ -18,6 +18,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.about.AboutShare;
@@ -59,7 +62,22 @@ public class allshares extends Fragment {
 
             @Override
             protected void onBindViewHolder(PostViewHolder postViewHolder, int i, allsharemodel allsharemodel) {
-                postViewHolder.shareName.setText(user.getEmail());
+                postViewHolder.companyName.setText(allsharemodel.getCompanyname());
+                postViewHolder.description.setText(allsharemodel.getDescription());
+                postViewHolder.text_view_progress.setText(allsharemodel.getGrowth());
+                postViewHolder.peopleinvested.setText(allsharemodel.getPeopleinvested());
+                postViewHolder.growth.setMax(100) ;//dummy max Val
+
+                postViewHolder.growth.setProgress(Integer.valueOf(allsharemodel.getGrowth()));
+
+                postViewHolder.videoPlayer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                    @Override
+                    public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                        String videoId = allsharemodel.getIntrovideourl();
+                        youTubePlayer.loadVideo(videoId,0);
+
+                    }
+                });
                 postViewHolder.aboutShare.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -74,10 +92,17 @@ public class allshares extends Fragment {
     }
     public class PostViewHolder extends RecyclerView.ViewHolder {
         private Button aboutShare;
-        private TextView shareName;
+        private YouTubePlayerView videoPlayer;
+        private TextView companyName,description,peopleinvested,text_view_progress;
+        private ProgressBar growth;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            shareName=itemView.findViewById(R.id.sharename);
+            text_view_progress=itemView.findViewById(R.id.text_view_progress);
+            growth=itemView.findViewById(R.id.progress_bar);
+            peopleinvested=itemView.findViewById(R.id.peopleinvested);
+            description=itemView.findViewById(R.id.description);
+            companyName=itemView.findViewById(R.id.companyName);
+            videoPlayer=itemView.findViewById(R.id.videoplayer);
             aboutShare=itemView.findViewById(R.id.gotoshare);
         }
     }

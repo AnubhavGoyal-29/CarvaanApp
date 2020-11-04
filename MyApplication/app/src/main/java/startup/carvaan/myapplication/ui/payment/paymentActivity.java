@@ -72,11 +72,11 @@ public class paymentActivity extends AppCompatActivity {
         Map<String ,String > payment=new HashMap<>();
         payment.put("appId","3008091222ee68f67fbc5fd1c08003");
         payment.put("orderId",orderId);
-        payment.put("orderAmount","10");
+        payment.put("orderAmount",orderAmount.getText().toString());
         payment.put("orderCurrency","INR");
         payment.put("customerPhone","+918171365728");
         payment.put("customerEmail","test@gmail.com");
-        compositeDisposable.add(iCloudFunction.getToken(orderId,"10")
+        compositeDisposable.add(iCloudFunction.getToken(orderId,orderAmount.getText().toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).
                         subscribe(new Consumer<CashFreeToken>() {
