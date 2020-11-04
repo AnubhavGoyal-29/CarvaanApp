@@ -1,11 +1,9 @@
 package startup.carvaan.myapplication.ui.myshares;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +17,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import startup.carvaan.myapplication.R;
-import startup.carvaan.myapplication.ui.about.AboutShare;
 import startup.carvaan.myapplication.ui.user.User;
 
 
@@ -59,12 +56,7 @@ public class myshares extends Fragment {
             protected void onBindViewHolder(PostViewHolder postViewHolder, int i, mysharemodel mysharemodel) {
                 postViewHolder.shareName.setText(user.getEmail());
                 postViewHolder.holdings.setText(mysharemodel.getHoldings());
-                postViewHolder.aboutShare.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        getContext().startActivity(new Intent(getContext(), AboutShare.class).putExtra("shareid",mysharemodel.getId()));
-                    }
-                });
+
             }
         };
         allShareRecyclerView.setAdapter(adapter);
@@ -72,12 +64,12 @@ public class myshares extends Fragment {
         return view;
     }
     public class PostViewHolder extends RecyclerView.ViewHolder {
-        private Button aboutShare;
+
         private TextView shareName,holdings;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             shareName=itemView.findViewById(R.id.sharename);
-            aboutShare=itemView.findViewById(R.id.trade);
+
             holdings=itemView.findViewById(R.id.myHoldings);
         }
     }

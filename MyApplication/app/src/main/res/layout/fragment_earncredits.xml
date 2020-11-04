@@ -1,267 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.earncredits.earncredits">
-
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/credutslayout"
         android:orientation="vertical"
+        tools:context=".ui.earncredits.earncredits">
+
         >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
-            android:background="@drawable/credutslayout"
-
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="Your Total Balance :"
-                android:textStyle="bold"
-
-                android:textColor="#FFFFFF"
-                tools:autoSizeTextType="uniform"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="16dp"
-
-                >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="600"
-                android:layout_marginLeft="20dp"
-
-                android:textColor="#FFFFFF"
-                android:id="@+id/total_coins"
-                tools:autoSizeTextType="uniform"/>
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="18dp"
-                android:src="@drawable/vsm_coin"/>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical"
-            android:paddingTop="25dp"
-            android:paddingBottom="25dp"
-            android:background="@drawable/credutslayout"
-
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="Your Total Cash :"
-                android:textStyle="bold"
-
-                android:textColor="#FFFFFF"
-                tools:autoSizeTextType="uniform"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="16dp"
-
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="22sp"
-                    android:text="600"
-                    android:layout_marginLeft="20dp"
-                    android:id="@+id/total_cash"
-
-                    android:textColor="#FFFFFF"
-                    tools:autoSizeTextType="uniform"/>
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="18dp"
-                    android:src="@drawable/pai"/>
-            </LinearLayout>
-        </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center"
-    android:id="@+id/creditearn"
-    android:layout_marginTop="40dp"
-    >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Earn More credits"
-
-
-
-
-        android:textColor="#000000"
-        android:textSize="19sp"
-
-        ></TextView>
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/downarrow"
-        android:layout_marginLeft="100dp"
-        android:src="@drawable/downarrow"/>
-</LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/earnmorelayout"
-                android:orientation="vertical"
-                android:layout_marginTop="12dp"
-                android:gravity="center"
-                android:visibility="gone"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/buty"
-                    android:padding="15dp"
-                    android:id="@+id/earnthroughcash"
-                    android:text="Earn By  adding Cash"
-                    android:textColor="#FFFFFF"
-
-                    android:textSize="20dp"
-                   />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Earn By watching adds"
-                    android:textColor="#FFFFFF"
-                    android:id="@+id/earnthroughad"
-                    android:padding="15dp"
-                    android:textSize="20dp"
-                    android:layout_marginTop="15dp"
-
-                    android:background="@drawable/butyy"
-                    />
-
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:layout_marginTop="20dp"
-
-
-                android:background="#808080"/>
-
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="vertical">
-            <EditText
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:textSize="18sp"
-                android:textColor="#000000"
+                android:layout_height="0dp"
+                android:layout_marginTop="6dp"
 
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="40dp"
-                android:textColorHint="#000000"
-                android:id="@+id/redeem_amount"
-                android:background="@drawable/inputtype"
-                android:hint="Enter the value to be redeemed"
-                
+                android:layout_weight="1">
 
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buty"
-                android:padding="12dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="16dp"
-                android:text="Redeem Now"
-                android:textColor="#FFFFFF"
-                android:id="@+id/redeemnow"
-                android:textSize="20dp"
-                />
-            <View
+
+                <TextView
+                    android:id="@+id/cashEarnedTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Coins earned : 250"
+                    android:textColor="#FFFFFF"
+
+                    android:textSize="20sp">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/cashEarnedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="96dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:text="Earn Coins"
 
 
-                android:background="#808080"/>
+                    >
+
+                </Button>
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_marginTop="20dp"
-            android:id="@+id/my_transaction"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My Transactions"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginLeft="30dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
 
+                <TextView
+                    android:id="@+id/winningsTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Winnings : 950"
+                    android:textColor="#FFFFFF"
 
-                android:textColor="#000000"
-                android:textSize="19sp"
+                    android:textSize="20sp">
 
-                ></TextView>
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="100dp"
-                android:id="@+id/right_arrow"
-                android:src="@drawable/ic_baseline_arrow_right_24"/>
+                </TextView>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/redeemButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="96dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:text="Redeem"
+
+
+                    >
+
+                </Button>
+
+
+            </LinearLayout>
+
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.6dp"
-            android:layout_marginTop="10dp"
-
-
-            android:background="#808080"/>
-
 
 
     </LinearLayout>
 
-</ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/credutslayout"
+        android:orientation="vertical"
+        tools:context=".ui.earncredits.earncredits">
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/cashAddedTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Coins added : 400"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/addCoinsButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="8dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="Add Coins"
+
+
+                        >
+
+                    </Button>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/buyCoinsButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="8dp"
+                        android:backgroundTint="@color/colorAccent"
+                        android:text="Buy Coins"
+
+
+                        >
+
+                    </Button>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/redeemCashTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Redeem cash : 690"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp">
+
+                </TextView>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/withdrawButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="96dp"
+                    android:backgroundTint="@color/colorAccent"
+                    android:text="Withdraw"
+
+
+                    >
+
+                </Button>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
+

@@ -38,8 +38,8 @@ public class earncredits extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_earncredits, container, false);
-        downarrow= view.findViewById(R.id.downarrow);
-        earncreditlayout=view.findViewById(R.id.earnmorelayout);
+        //downarrow= view.findViewById(R.id.downarrow);
+        //earncreditlayout=view.findViewById(R.id.earnmorelayout);
         downarrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
