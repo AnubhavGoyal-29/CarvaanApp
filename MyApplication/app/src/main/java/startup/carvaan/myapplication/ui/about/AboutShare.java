@@ -5,12 +5,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.OpenableColumns;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,24 +16,31 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +51,7 @@ import startup.carvaan.myapplication.ui.about.dailogFragments.Sell;
 import startup.carvaan.myapplication.ui.user.User;
 
 public class AboutShare extends AppCompatActivity {
+    Uri pdfUri;
     private BottomSheetBehavior bottomSheetBehavior;
     private TextView textView;
     private int a;
@@ -65,13 +70,14 @@ public class AboutShare extends AppCompatActivity {
     User user = new User(); 
     Button add_button;
     Intent myFileIntent;
+    private FirebaseStorage firebaseStorage;
 
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_share);
-
+        firebaseStorage.getInstance();
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
@@ -93,7 +99,19 @@ public class AboutShare extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull final PostViewHolder postViewHolder, int i, @NonNull final PostModal postModal) {
-
+                postViewHolder.attachfile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(ContextCompat.checkSelfPermission
+                                (AboutShare.this,Manifest.permission.READ_EXTERNAL_STORAGE)
+                                ==PackageManager.PERMISSION_GRANTED){
+                            selectPdf();
+                        }
+                        else{
+                            ActivityCompat.requestPermissions(AboutShare.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},9);
+                        }
+                    }
+                });
             }
 
 
@@ -131,9 +149,29 @@ public class AboutShare extends AppCompatActivity {
 //        });
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode==9&& grantResults[0]==PackageManager.PERMISSION_GRANTED){
+            selectPdf();
+        }
+        else{
+            Toast.makeText(AboutShare.this,"please provide permissions",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void selectPdf() {
+        Intent intent=new Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,100);
+    }
+
     public class PostViewHolder extends RecyclerView.ViewHolder {
+        private TextView attachfile;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
+            attachfile=itemView.findViewById(R.id.attachfile);
 
         }
     }
@@ -173,38 +211,35 @@ public class AboutShare extends AppCompatActivity {
             return false;
         }
     };
+    void uploadFile(Uri uri){
+        StorageReference storageReference=firebaseStorage.getReference();
+        storageReference.child(shareid).child("this blog").putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
 
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+
+            }
+        });
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case 10:
-                if (resultCode == RESULT_OK) {
+            case 100:
+                if (resultCode == RESULT_OK&&data!=null) {
 
                     // Get the Uri of the selected file
-                    Uri uri = data.getData();
-                    String uriString = uri.toString();
-                    File myFile = new File(uriString);
-                    String path = myFile.getAbsolutePath();
-                    Log.i(LOG_TAG, "PATH:" + path);
-                    String displayName = null;
-
-                    if (uriString.startsWith("content://")) {
-                        Cursor cursor=null;
-                        try {
-                            cursor = getApplicationContext().getContentResolver().query(uri, null, null, null, null);
-                            if (cursor != null && cursor.moveToFirst()) {
-                                displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                                Log.i(LOG_TAG, "NAME:" + displayName);
-                            }
-                        } finally {
-                            cursor.close();
-                        }
-                    } else if (uriString.startsWith("file://")) {
-                        displayName = myFile.getName();
-                        Log.i(LOG_TAG, "NAME:" + displayName);
-
-                    }
+                    pdfUri = data.getData();
+                    uploadFile(pdfUri);
 
                 }
                 break;
