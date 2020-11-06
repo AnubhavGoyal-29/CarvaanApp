@@ -3,119 +3,132 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.earncredits.earncredits">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+       android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:paddingBottom="15dp"
+        android:paddingTop="10dp"
+
         android:background="@drawable/credutslayout"
         android:orientation="vertical"
-        tools:context=".ui.earncredits.earncredits">
+       >
 
         >
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+           android:gravity="center"
+            android:layout_marginTop="8dp"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="6dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/vsm_coin"/>
 
-                android:layout_weight="1">
 
 
-                <TextView
-                    android:id="@+id/cashEarnedTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="Coins earned : 250"
+            <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="Coins earned :"
                     android:textColor="#FFFFFF"
+                    android:textStyle="bold"
 
-                    android:textSize="20sp">
+                    android:textSize="19sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cashEarnedTextView"
 
-                </TextView>
+                android:layout_marginLeft="15dp"
+                android:text="200"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+
+                android:textSize="19sp"
+                />
 
 
-            </LinearLayout>
+        </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="1">
 
                 <Button
                     android:id="@+id/cashEarnedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="48dp"
                     android:layout_marginHorizontal="96dp"
                     android:backgroundTint="@color/colorAccent"
                     android:text="Earn Coins"
+                    android:layout_marginTop="16dp"
 
 
                     >
 
                 </Button>
 
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="6dp"
-                android:layout_weight="1"
+               android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
                 android:orientation="horizontal">
 
 
                 <TextView
-                    android:id="@+id/winningsTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="Winnings : 950"
-                    android:textColor="#FFFFFF"
 
-                    android:textSize="20sp">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Winnings :"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+
+                    android:textSize="19sp">
 
                 </TextView>
+
+            <TextView
+                android:id="@+id/winningsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=" 950"
+                android:layout_marginLeft="15dp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+
+                android:textSize="19sp">
+
+            </TextView>
 
 
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="1">
+
 
                 <Button
                     android:id="@+id/redeemButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="96dp"
+                    android:layout_width="150dp"
+                    android:layout_height="48dp"
+
                     android:backgroundTint="@color/colorAccent"
                     android:text="Redeem"
+                    android:layout_marginTop="16dp"
 
 
                     >
@@ -123,9 +136,7 @@
                 </Button>
 
 
-            </LinearLayout>
 
-        </LinearLayout>
 
 
     </LinearLayout>
@@ -133,62 +144,80 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        android:layout_weight="1"
-        android:background="@drawable/credutslayout"
+        android:layout_height="wrap_content"
+    android:layout_marginLeft="25dp"
+        android:layout_marginTop="30dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="10dp"
+android:gravity="center_horizontal"
+        android:background="@drawable/crditslay"
         android:orientation="vertical"
-        tools:context=".ui.earncredits.earncredits">
+      >
 
-        >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="6dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+
                 android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/vsm_coin"/>
 
 
                 <TextView
-                    android:id="@+id/cashAddedTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Coins added : 400"
+                    android:text="Coins added :"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp">
+                    android:textStyle="bold"
+                    android:textSize="19sp">
+
+                </TextView>
+                <TextView
+                    android:id="@+id/cashAddedTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text=" 400"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp">
 
                 </TextView>
 
 
             </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:weightSum="2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+            android:orientation="horizontal">
+
 
                     <Button
                         android:id="@+id/addCoinsButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="8dp"
-                        android:backgroundTint="@color/colorAccent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+
+                        android:layout_height="48dp"
+
+                        android:backgroundTint="@color/teal_100"
                         android:text="Add Coins"
 
 
@@ -196,19 +225,15 @@
 
                     </Button>
 
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
 
                     <Button
                         android:id="@+id/buyCoinsButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="8dp"
-                        android:backgroundTint="@color/colorAccent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="15dp"
+                        android:backgroundTint="@color/teal_100"
                         android:text="Buy Coins"
 
 
@@ -219,33 +244,47 @@
                 </LinearLayout>
 
 
-            </LinearLayout>
 
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="6dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+
                 android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/pauyt"/>
+
 
 
                 <TextView
-                    android:id="@+id/redeemCashTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Redeem cash : 690"
+                    android:text="Redeem cash :"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp">
+                    android:textSize="19sp"
+                    android:textStyle="bold">
+
+                </TextView>
+                <TextView
+                    android:id="@+id/redeemCashTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="690"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp"
+                    android:textStyle="bold">
 
                 </TextView>
 
@@ -253,19 +292,14 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="1">
 
                 <Button
                     android:id="@+id/withdrawButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="96dp"
-                    android:backgroundTint="@color/colorAccent"
+                    android:layout_width="150dp"
+                    android:layout_height="48dp"
+                    android:backgroundTint="@color/teal_100"
                     android:text="Withdraw"
+                    android:layout_marginTop="16dp"
 
 
                     >
@@ -273,10 +307,9 @@
                 </Button>
 
 
-            </LinearLayout>
 
 
-        </LinearLayout>
+
 
 
     </LinearLayout>

@@ -132,13 +132,13 @@
                 android:id="@+id/gotoshare"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:text="Invest in me"
-                android:background="#188F84"
+
                 android:textColor="#ffffff"
                 android:textSize="20sp"
-
+       android:backgroundTint="@color/teal_200"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/imageView4"
