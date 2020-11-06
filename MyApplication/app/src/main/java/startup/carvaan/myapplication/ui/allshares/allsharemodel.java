@@ -1,13 +1,8 @@
 package startup.carvaan.myapplication.ui.allshares;
 
-import java.lang.reflect.Array;
-
 public class allsharemodel {
-    private String description,id,growth,nameintrovideourl;
-    private Array arr;
+    private String companyname,description,growth,id,introvideourl,peopleinvested;
 
-    public allsharemodel() {
-    }
     public String getDescription() {
         return description;
     }
@@ -32,27 +27,40 @@ public class allsharemodel {
         this.growth = growth;
     }
 
-    public String getNameintrovideourl() {
-        return nameintrovideourl;
+    public String getIntrovideourl() {
+        return introvideourl;
     }
 
-    public void setNameintrovideourl(String nameintrovideourl) {
-        this.nameintrovideourl = nameintrovideourl;
+    public void setIntrovideourl(String introvideourl) {
+        this.introvideourl = introvideourl;
     }
 
-    public Array getArr() {
-        return arr;
+    public String getPeopleinvested() {
+        return peopleinvested;
     }
 
-    public void setArr(Array arr) {
-        this.arr = arr;
+    public void setPeopleinvested(String peopleinvested) {
+        this.peopleinvested = peopleinvested;
     }
 
-    public allsharemodel(String description, String id, String growth, String nameintrovideourl, Array arr) {
+    public String getCompanyname() {
+        return companyname;
+    }
+
+    public void setCompanyname(String companyname) {
+        this.companyname = companyname;
+    }
+
+
+    public allsharemodel(String companyname, String description, String growth, String id, String introvideourl, String peopleinvested) {
+        this.companyname = companyname;
         this.description = description;
-        this.id = id;
         this.growth = growth;
-        this.nameintrovideourl = nameintrovideourl;
-        this.arr = arr;
+        this.id = id;
+        this.introvideourl = introvideourl;
+        this.peopleinvested = peopleinvested;
+    }
+
+    public allsharemodel() {
     }
 }

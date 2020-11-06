@@ -8,6 +8,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class shareDetails {
+    String buyingPrice,sellingPrice,shareId,name;
     private FirebaseFirestore ff;
 
     public String getShareId() {
@@ -26,7 +27,7 @@ public class shareDetails {
         this.name = name;
     }
 
-    String buyingPrice,sellingPrice,shareId,name;
+
 
     public String getBuyingPrice() {
         return buyingPrice;
