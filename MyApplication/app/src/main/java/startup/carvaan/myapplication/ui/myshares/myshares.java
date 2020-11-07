@@ -38,9 +38,9 @@ public class myshares extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_allshares, container, false);
+        View view=inflater.inflate(R.layout.fragment_myshares, container, false);
         User user=new User();
-        allShareRecyclerView=view.findViewById(R.id.allShareRecyclerView);
+        allShareRecyclerView=view.findViewById(R.id.myShareRecyclerView);
         ff=FirebaseFirestore.getInstance();
         Query query=ff.collection("Users").document(user.getUser().getUid()).collection("myshares");
         FirestoreRecyclerOptions<mysharemodel> options = new FirestoreRecyclerOptions.Builder<mysharemodel>().setQuery(query, mysharemodel.class).build();
