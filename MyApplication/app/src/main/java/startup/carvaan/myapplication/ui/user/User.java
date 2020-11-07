@@ -146,7 +146,9 @@ public class User {
         ff.collection("Users").document(user.getUid()).collection("CreditDetails").document("coins").update("earned",String.valueOf(Integer.valueOf(earned)+Integer.valueOf((int) a)));
     }
     public void removeCredits(float a){
-        ff.collection("Users").document(user.getUid()).update("Credits",String.valueOf(Integer.valueOf(earned)-Integer.valueOf((int) a)));
+        ff.collection("Users").document(user.getUid()).collection("CreditDetails")
+                .document("coins").update("earned",String.valueOf(Integer.valueOf(earned)-Integer.valueOf((int) a)));
+
     }
 
 }

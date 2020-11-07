@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import io.paperdb.Paper;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.login.LoginActivity;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
@@ -27,8 +28,8 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Paper.init(SplashScreen.this);
         setContentView(R.layout.activity_splash_screen);
-
         app_logo = findViewById(R.id.applogo);
         app_motto = findViewById(R.id.appmotto);
         app_name = findViewById(R.id.appname);
@@ -42,11 +43,17 @@ public class SplashScreen extends AppCompatActivity {
 
     }
     private void gotonextpage() {
-        if(user.getUser()!=null){
-            startActivity(new Intent(SplashScreen.this, MainActivity.class));
+        if(Paper.book().contains("isFirst")){
+            if(user.getUser()!=null){
+                startActivity(new Intent(SplashScreen.this, MainActivity.class));
+            }
+            else{
+                startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+            }
         }
-        else{
-            startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+        else {
+            Paper.book().write("isFirst",true);
+            startActivity(new Intent(SplashScreen.this, IntroSliderActivity.class));
         }
     }
 }

@@ -32,10 +32,10 @@ public class Buy extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View view = inflater.inflate(R.layout.fragment_buy,null,false);
-        FirebaseFirestore ff=FirebaseFirestore.getInstance();
         Bundle bundle= getArguments();
         final String shareId= bundle.getString("shareid");
+        final View view = inflater.inflate(R.layout.fragment_buy,null,false);
+        FirebaseFirestore ff=FirebaseFirestore.getInstance();
         shareDetails shareDetails=new shareDetails(shareId);
         nos=view.findViewById(R.id.noofshares);
         buy=view.findViewById(R.id.btn_buy);
@@ -80,8 +80,14 @@ public class Buy extends DialogFragment {
                                         .collection("myshares")
                                         .document(shareId)
                                         .update("holdings",String.valueOf(Integer.valueOf(mysharemodel.getHoldings())+Nos),
-                                                "priceHoldings",map);
-                                user.removeCredits(totalPrice);
+                                                "priceHoldings",map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        user.removeCredits(totalPrice);
+                                        Toast.makeText(getContext(),"done...",Toast.LENGTH_LONG).show();
+                                    }
+                                });
+
                             }
                         }
                     });

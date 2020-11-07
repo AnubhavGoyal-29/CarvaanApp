@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -14,8 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 import startup.carvaan.myapplication.R;
-import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
-import startup.carvaan.myapplication.ui.start.SliderAdaptar;
+import startup.carvaan.myapplication.ui.login.LoginActivity;
 
 public class IntroSliderActivity extends AppCompatActivity {
     private ViewPager viewPager;
@@ -56,7 +54,7 @@ public class IntroSliderActivity extends AppCompatActivity {
                 if(mCurrentPage!=LENGTH_OF_ITEMS-1) {
                     viewPager.setCurrentItem(mCurrentPage + 1);
                 }else {
-                    Toast.makeText(IntroSliderActivity.this, "FINISHED", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(IntroSliderActivity.this, LoginActivity.class));
                     Log.i("TAG", "ENDDDD");
                 }
 
@@ -73,7 +71,7 @@ public class IntroSliderActivity extends AppCompatActivity {
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(IntroSliderActivity.this, "SKIPPED", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(IntroSliderActivity.this, LoginActivity.class));
             }
         });
 
