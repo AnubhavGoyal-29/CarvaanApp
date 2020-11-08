@@ -39,7 +39,6 @@ public class paymentActivity extends AppCompatActivity {
 
         iCloudFunction=RetrofitClient.getInstance().create(ICloudFunction.class);
         orderAmount=findViewById(R.id.amount);
-        orderid=findViewById(R.id.order);
         payAmount=findViewById(R.id.pay);
         payAmount.setOnClickListener(new View.OnClickListener() {
             @Override

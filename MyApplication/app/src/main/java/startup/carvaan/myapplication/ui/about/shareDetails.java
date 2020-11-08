@@ -1,7 +1,10 @@
 package startup.carvaan.myapplication.ui.about;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -63,11 +66,10 @@ public class shareDetails {
             }
         });
         ff.collection("shares")
-                .document(shareId)
-                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                .document(shareId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                setName(value.getString("name"));
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                setName(task.getResult().getString("name"));
             }
         });
     }

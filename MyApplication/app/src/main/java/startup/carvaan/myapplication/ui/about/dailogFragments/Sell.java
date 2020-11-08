@@ -16,9 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.about.shareDetails;
@@ -47,11 +45,11 @@ public class Sell extends DialogFragment {
                 ff.collection("Users")
                         .document(user.getUser().getUid())
                         .collection("myshares")
-                        .document(shareId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                        .document(shareId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                        mysharemodel mysharemodel=value.toObject(startup.carvaan.myapplication.ui.myshares.mysharemodel.class);
-                        if(value.getString("holdings")==null){
+                    public void onComplete(@NonNull Task<DocumentSnapshot> value) {
+                        mysharemodel mysharemodel=value.getResult().toObject(startup.carvaan.myapplication.ui.myshares.mysharemodel.class);
+                        if(value.getResult().getString("holdings")==null){
                             Toast.makeText(getContext(),"you cannot sell as u dont have any share",Toast.LENGTH_LONG).show();
                         }
                         else if(Nos>Integer.valueOf(mysharemodel.getHoldings())){
@@ -69,7 +67,6 @@ public class Sell extends DialogFragment {
                             });
 
                         }
-
                     }
                 });
             }

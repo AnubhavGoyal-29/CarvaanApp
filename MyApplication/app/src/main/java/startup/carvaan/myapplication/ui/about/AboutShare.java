@@ -28,8 +28,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,6 +43,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 import startup.carvaan.myapplication.R;
@@ -78,7 +79,7 @@ AboutShare extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_share);
-        firebaseStorage.getInstance();
+        firebaseStorage=FirebaseStorage.getInstance();
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
@@ -214,15 +215,11 @@ AboutShare extends AppCompatActivity {
     };
     void uploadFile(Uri uri){
         StorageReference storageReference=firebaseStorage.getReference();
-        storageReference.child(shareid).child("this blog").putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        StorageReference finalPath=storageReference.child(UUID.randomUUID().toString()).child("files"+UUID.randomUUID().toString());
+        finalPath.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                String url= String.valueOf(finalPath.getDownloadUrl());
             }
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override

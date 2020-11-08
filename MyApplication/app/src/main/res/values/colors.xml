@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bottomnav">#49407f</color>
     <color name="teal_100">#23C1B2</color>
+    <color name="whiteShadedBlack">#262938</color>
+    <color name="pureBlack">#181A24</color>
+    <color name="colorTransparentWhite">#cccccc</color>
 </resources>
