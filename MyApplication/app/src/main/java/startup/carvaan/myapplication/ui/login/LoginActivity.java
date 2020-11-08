@@ -3,11 +3,13 @@ package startup.carvaan.myapplication.ui.login;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,10 +34,13 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import startup.carvaan.myapplication.R;
+import startup.carvaan.myapplication.ui.ProgressButton;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 
@@ -44,11 +49,13 @@ public class LoginActivity extends AppCompatActivity {
     private EditText user_name;
     private EditText pass_word;
     private FirebaseAuth firebaseAuth;
-    private Button lo_gin;
+    private View lo_gin;
     private ImageView googlesign;
     private TextView movetoregister;
     private FirebaseFirestore ff;
     public GoogleSignInClient googleSignInClient;
+
+//    private ProgressBar logBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +66,15 @@ public class LoginActivity extends AppCompatActivity {
         ff = FirebaseFirestore.getInstance();
 
         firebaseAuth = FirebaseAuth.getInstance();
+
         user_name = findViewById(R.id.username);
         pass_word = findViewById(R.id.password);
         lo_gin = findViewById(R.id.loginbutton);
         TextView forgotPass = findViewById(R.id.forgotPass);
         googlesign = findViewById(R.id.googlelogin);
 
+        ProgressButton progressButton = new ProgressButton(LoginActivity.this,lo_gin);
+        progressButton.initialPhase("LOGIN",false);
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,20 +85,41 @@ public class LoginActivity extends AppCompatActivity {
         lo_gin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseAuth.signInWithEmailAndPassword(user_name.getText().toString() + "@gmail.com", pass_word.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        Intent newIntent = new Intent(LoginActivity.this, MainActivity.class);
-                        newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(newIntent);
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                });
+               // ProgressButton progressButton = new ProgressButton(LoginActivity.this,lo_gin);
+                progressButton.buttonsetEnabledFalse(true);
+                lo_gin.setClickable(false);
+                lo_gin.setEnabled(false);
+                //lo_gin.setEnabled(false);
+
+                if(!TextUtils.isEmpty(user_name.getText().toString())&&!TextUtils.isEmpty(pass_word.getText().toString())) {
+
+
+                    //logBar.setVisibility(View.VISIBLE);
+                    firebaseAuth.signInWithEmailAndPassword(user_name.getText().toString() + "@gmail.com", pass_word.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            Intent newIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(newIntent);
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+//                        logBar.setVisibility(View.INVISIBLE);
+//
+//                        lo_gin.setEnabled(true);
+                            progressButton.buttonsetEnabledTrue("LOGIN");
+                            lo_gin.setClickable(true);
+                            lo_gin.setEnabled(true);
+
+                            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }else{
+                    Toast.makeText(LoginActivity.this, "Empty credentials! Please make sure you don't leave username or/and password empty.", Toast.LENGTH_SHORT).show();
+                }
             }
 
         });

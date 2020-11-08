@@ -55,6 +55,7 @@ public class IntroSliderActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(mCurrentPage + 1);
                 }else {
                     startActivity(new Intent(IntroSliderActivity.this, LoginActivity.class));
+                    finish();
                     Log.i("TAG", "ENDDDD");
                 }
 
@@ -72,6 +73,7 @@ public class IntroSliderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(IntroSliderActivity.this, LoginActivity.class));
+                finish();
             }
         });
 

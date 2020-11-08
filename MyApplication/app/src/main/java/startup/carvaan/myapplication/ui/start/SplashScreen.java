@@ -46,14 +46,17 @@ public class SplashScreen extends AppCompatActivity {
         if(Paper.book().contains("isFirst")){
             if(user.getUser()!=null){
                 startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                finish();
             }
             else{
                 startActivity(new Intent(SplashScreen.this, LoginActivity.class));
+                finish();
             }
         }
         else {
             Paper.book().write("isFirst",true);
             startActivity(new Intent(SplashScreen.this, IntroSliderActivity.class));
+            finish();
         }
     }
 }

@@ -11,5 +11,9 @@
     <color name="teal_100">#23C1B2</color>
     <color name="whiteShadedBlack">#262938</color>
     <color name="pureBlack">#181A24</color>
+    <color name="disabledBtn">#707070</color>
     <color name="colorTransparentWhite">#cccccc</color>
+    <color name="enabledBtn">#FF625088</color>
+
+
 </resources>
