@@ -50,7 +50,8 @@ import startup.carvaan.myapplication.ui.about.dailogFragments.Buy;
 import startup.carvaan.myapplication.ui.about.dailogFragments.Sell;
 import startup.carvaan.myapplication.ui.user.User;
 
-public class AboutShare extends AppCompatActivity {
+public class
+AboutShare extends AppCompatActivity {
     Uri pdfUri;
     private BottomSheetBehavior bottomSheetBehavior;
     private TextView textView;

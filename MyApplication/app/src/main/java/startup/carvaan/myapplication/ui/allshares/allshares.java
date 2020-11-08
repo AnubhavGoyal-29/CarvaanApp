@@ -74,7 +74,7 @@ public class allshares extends Fragment {
                     @Override
                     public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                         String videoId = allsharemodel.getIntrovideourl();
-                        youTubePlayer.loadVideo(videoId,0);
+                        youTubePlayer.cueVideo(videoId,0);
 
                     }
                 });
