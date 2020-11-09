@@ -111,20 +111,29 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <Button
-            android:id="@+id/register1"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="60dp"
-            android:background="@drawable/button"
+<!--        <Button-->
+<!--            android:id="@+id/register1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            -->
+<!--            android:background="@drawable/button"-->
 
-            android:enabled="false"
-            android:text="Register"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+<!--            android:enabled="false"-->
+<!--            android:text="Register"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold" />-->
+
+        <include
+            android:id="@+id/register1"
+            layout="@layout/progress_btn_layout"
+            android:layout_width="match_parent"
+            android:layout_height="-5dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="60dp" />
+
+
+
 
 
     </LinearLayout>
