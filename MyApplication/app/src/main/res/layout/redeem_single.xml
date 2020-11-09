@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp"
     android:layout_margin="17dp"
+    android:background="#0FC8A3"
 
 
+    app:cardCornerRadius="20dp"
     app:cardElevation="15dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FF26D59F"
 
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:layout_marginTop="10dp">
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/redeemImage"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="20dp"
 
 
-                android:src="@drawable/vsm_coin"
-             />
+                android:src="@drawable/vsm_coin" />
 
             <TextView
                 android:id="@+id/Redeemtext"
@@ -40,29 +42,29 @@
                 android:layout_marginRight="20dp"
 
                 android:text="Get 200 credits by watching this add"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
                 android:textSize="20sp"
 
                 />
         </LinearLayout>
 
-      <View
-          android:layout_width="match_parent"
-          android:layout_height="0.6dp"
-          android:layout_marginTop="10dp"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.9dp"
+            android:layout_marginTop="10dp"
 
 
-          android:background="#808080"/>
+            android:background="#FFFFFF" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="right"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp">
-
-
+            android:layout_marginBottom="10dp"
+            android:gravity="right"
+            android:orientation="horizontal">
 
 
             <Button
@@ -71,11 +73,10 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="30dp"
 
-                android:text="Watch Now"
                 android:background="@drawable/buty"
+                android:text="Watch Now"
                 android:textColor="#ffffff"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
         </LinearLayout>
 

@@ -13,243 +13,273 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:elevation="5dp">
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:padding="2dp"
-        android:id="@+id/textFile"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+
         <LinearLayout
+            android:id="@+id/textFile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
             android:padding="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:padding="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:lines="1"
+                    android:padding="5dp"
+
+                    android:text="Description :"
+                    android:textColor="#FF533D78"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:autoSizeTextType="uniform"></TextView>
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:padding="7dp"
+
+                    android:text="gugirgfi hfufwsyd fdufwufdufsuyfwuyf sfduyfsyudfq"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    tools:autoSizeTextType="uniform"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+            <ImageView
+                android:id="@+id/userPostImage"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/vsm_logo"
+                android:scaleType="fitXY"
+                android:visibility="gone"></ImageView>
+
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                app:autoPlay="false"
+                app:enableAutomaticInitialization="true"
+                app:showFullScreenButton="true"
+                app:showSeekBar="true"
+                app:showVideoCurrentTime="true"
+                app:showVideoDuration="true"
+                app:showYouTubeButton="false"></com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="2"
+                android:baselineAligned="false">
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--     -->
+                <!--                android:background="#FF23C1B2"-->
+                <!--                >-->
+                <!--               -->
+                <!--                <ImageView-->
+                <!--                    android:layout_width="40dp"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:src="@drawable/tag"-->
+                <!--                    android:layout_marginRight="10dp"-->
+                <!--                    />-->
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+
+                    android:layout_weight="1"
+                    android:background="@drawable/yagborder"
+                    android:gravity="center"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:text="Need Employees"
+                    android:textColor="#808080"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/yagborder"
+                    android:gravity="center"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:text="Need Intern"
+                    android:textColor="#808080"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+
+                    />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Description :"
-                android:lines="1"
-                tools:autoSizeTextType="uniform"
-
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="#FF533D78"
-                android:layout_marginLeft="10dp"
-                android:padding="5dp">
-            </TextView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="7dp"
-                android:id="@+id/description"
-                android:textColor="#000000"
-
-                android:textSize="15sp"
-                android:lines="1"
-                tools:autoSizeTextType="uniform"
-                android:text="gugirgfi hfufwsyd fdufwufdufsuyfwuyf sfduyfsyudfq"></TextView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"/>
-
-        <ImageView
-            android:visibility="gone"
-            android:id="@+id/userPostImage"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:scaleType="fitXY"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/vsm_logo" ></ImageView>
-
-
-        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            app:showSeekBar="true"
-            app:showVideoDuration="true"
-            app:showFullScreenButton="true"
-            app:autoPlay="false"
-            app:showYouTubeButton="false"
-            app:enableAutomaticInitialization="true"
-            app:showVideoCurrentTime="true"
-            ></com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="2"
-            android:layout_marginTop="10dp">
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--     -->
-            <!--                android:background="#FF23C1B2"-->
-            <!--                >-->
-            <!--               -->
-            <!--                <ImageView-->
-            <!--                    android:layout_width="40dp"-->
-            <!--                    android:layout_height="match_parent"-->
-            <!--                    android:src="@drawable/tag"-->
-            <!--                    android:layout_marginRight="10dp"-->
-            <!--                    />-->
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-
-                android:text="Need Employees"
-                android:textColor="#808080"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:gravity="center"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/yagborder"
+                android:gravity="center"
+                android:paddingLeft="30dp"
+                android:paddingTop="6dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="6dp"
+                android:text="Need Freelancer"
+                android:textColor="#808080"
+
+                android:textSize="15sp"
+                android:textStyle="bold"
 
                 />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Need Intern"
-                android:textColor="#808080"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp"
-                android:layout_marginLeft="12dp"
-                android:background="@drawable/yagborder"
-                android:textSize="15sp"
-
-                />
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:text="Need Freelancer"
-            android:textColor="#808080"
-            android:gravity="center"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:textStyle="bold"
-
-            android:background="@drawable/yagborder"
-            android:textSize="15sp"
-
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp"
-            android:weightSum="8"
-            android:layout_marginLeft="5dp"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:padding="5dp"
-
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:id="@+id/like_icon"
-                    android:src="@drawable/like_black"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/number_of_likes"
-                    android:text="Likes"
-                    android:textColor="#000000"
-                    android:lines="1"
-                    tools:autoSizeTextType="uniform"
-                    android:textSize="15dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:padding="5dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="23"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-
-                    android:id="@+id/number_of_comments"/>
-
-                <TextView
-                    android:id="@+id/comments"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Comments"
-                    android:textColor="#000000"
-                    android:lines="1"
-                    tools:autoSizeTextType="uniform"
-                    android:textSize="15dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:padding="5dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/attchd"/>
-
-                <TextView
-                    android:id="@+id/attachfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="AttachFile"
-                    android:textColor="#000000"
-                    android:lines="1"
-                    tools:autoSizeTextType="uniform"
-                    android:textSize="15dp" />
-            </LinearLayout>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageButton
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_marginTop="15dp"
 
-                android:id="@+id/addAttatchment"
-                android:background="@color/white"/>
+
+                android:background="#808080" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:weightSum="8">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/like_icon"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/like_black" />
+
+                    <TextView
+                        android:id="@+id/number_of_likes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:lines="1"
+                        android:text="Likes"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        tools:autoSizeTextType="uniform" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/number_of_comments"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="23"
+                        android:textSize="16sp"
+
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/comments"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:lines="1"
+                        android:text="Comments"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        tools:autoSizeTextType="uniform" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/attchd" />
+
+                    <TextView
+                        android:id="@+id/attachfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:lines="1"
+                        android:text="AttachFile"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        tools:autoSizeTextType="uniform" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_marginTop="5dp"
+
+
+                android:background="#808080" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/addAttatchment"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="match_parent"
+                    android:background="@color/white" />
+            </LinearLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

@@ -1,10 +1,12 @@
 package startup.carvaan.myapplication.ui.myshares;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class mysharemodel {
-    private String id,name,holdings;
+    private String id,name;
+    private List<String> holdings;
     Map<String ,String> priceHoldings=new HashMap<>();
 
     public mysharemodel() {
@@ -26,13 +28,7 @@ public class mysharemodel {
         this.name = name;
     }
 
-    public String getHoldings() {
-        return holdings;
-    }
 
-    public void setHoldings(String holdings) {
-        this.holdings = holdings;
-    }
 
     public Map<String, String> getPriceHoldings() {
         return priceHoldings;
@@ -42,10 +38,18 @@ public class mysharemodel {
         this.priceHoldings = priceHoldings;
     }
 
-    public mysharemodel(String id, String name, String holdings, Map<String, String> priceHoldings) {
+    public mysharemodel(String id, String name, List<String> holdings, Map<String, String> priceHoldings) {
         this.id = id;
         this.name = name;
         this.holdings = holdings;
         this.priceHoldings = priceHoldings;
+    }
+
+    public List<String> getHoldings() {
+        return holdings;
+    }
+
+    public void setHoldings(List<String> holdings) {
+        this.holdings = holdings;
     }
 }

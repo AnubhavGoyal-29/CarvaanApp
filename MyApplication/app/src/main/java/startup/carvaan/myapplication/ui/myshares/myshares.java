@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -55,7 +56,7 @@ public class myshares extends Fragment {
             @Override
             protected void onBindViewHolder(PostViewHolder postViewHolder, int i, mysharemodel mysharemodel) {
                 postViewHolder.shareName.setText(user.getEmail());
-                postViewHolder.holdings.setText(mysharemodel.getHoldings());
+
 
             }
         };
@@ -65,12 +66,13 @@ public class myshares extends Fragment {
     }
     public class PostViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView shareName,holdings;
+        private TextView shareName;
+        private Spinner spin1;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             shareName=itemView.findViewById(R.id.sharename);
 
-            holdings=itemView.findViewById(R.id.myHoldings);
+            spin1=itemView.findViewById(R.id.spinhold);
         }
     }
     @Override
