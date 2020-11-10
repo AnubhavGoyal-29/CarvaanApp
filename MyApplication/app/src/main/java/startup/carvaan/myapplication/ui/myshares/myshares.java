@@ -57,7 +57,6 @@ public class myshares extends Fragment {
             protected void onBindViewHolder(PostViewHolder postViewHolder, int i, mysharemodel mysharemodel) {
                 postViewHolder.shareName.setText(user.getEmail());
 
-
             }
         };
         allShareRecyclerView.setAdapter(adapter);
@@ -67,12 +66,12 @@ public class myshares extends Fragment {
     public class PostViewHolder extends RecyclerView.ViewHolder {
 
         private TextView shareName;
-        private Spinner spin1;
+        private Spinner spinner;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             shareName=itemView.findViewById(R.id.sharename);
-
-            spin1=itemView.findViewById(R.id.spinhold);
+            spinner=itemView.findViewById(R.id.spinhold);
+            
         }
     }
     @Override

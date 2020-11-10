@@ -1,6 +1,5 @@
 package startup.carvaan.myapplication.ui.mainActivity;
 
-
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Color;
@@ -29,12 +28,10 @@ import com.sdsmdg.harjot.vectormaster.models.PathModel;
 
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.allshares.allshares;
-import startup.carvaan.myapplication.ui.earncredits.earncredits;
 import startup.carvaan.myapplication.ui.login.LoginActivity;
 import startup.carvaan.myapplication.ui.myshares.myshares;
+import startup.carvaan.myapplication.ui.profile.Profile;
 import startup.carvaan.myapplication.ui.user.User;
-
-
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "carvaan";
     FirebaseAuth firebaseAuth;
@@ -160,8 +157,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
                 selectAnimation(heartVector1);
                 break;
-            case R.id.earncredits:
-                selectedFragment = new earncredits();
+            case R.id.profile:
+                selectedFragment = new Profile();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
                 tet();

@@ -72,7 +72,7 @@ public class Buy extends DialogFragment {
                                 });
                             }
                             else{
-                                Map<String ,String >map=new HashMap<>();
+                                Map<Object ,Object >map=new HashMap<>();
                                 map.put(String.valueOf(Nos),shareDetails.getBuyingPrice());
                                 map.putAll(mysharemodel.getPriceHoldings());
                                 ff.collection("Users")

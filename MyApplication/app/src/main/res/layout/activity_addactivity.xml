@@ -5,16 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Addactivity">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="bro"
-        android:textStyle="bold"
-        android:textSize="50dp"></TextView>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/AddRecyclerView"
+        android:id="@+id/addRecyclerView"
         tools:listitem="@layout/redeem_single">
     </androidx.recyclerview.widget.RecyclerView>
 

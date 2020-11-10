@@ -40,6 +40,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,6 +119,14 @@ AboutShare extends AppCompatActivity {
                         }
                     }
                 });
+                postViewHolder.videoPlayer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                    @Override
+                    public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                        String videoId = postModal.getUrl();
+                        youTubePlayer.cueVideo(videoId,0);
+
+                    }
+                });
             }
 
 
@@ -153,6 +164,16 @@ AboutShare extends AppCompatActivity {
 //        });
 
     }
+    public class PostViewHolder extends RecyclerView.ViewHolder {
+        private TextView attachfile;
+        private YouTubePlayerView videoPlayer;
+        public PostViewHolder(@NonNull View itemView) {
+            super(itemView);
+            videoPlayer=itemView.findViewById(R.id.videoplayer);
+            attachfile=itemView.findViewById(R.id.attachfile);
+
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -171,14 +192,7 @@ AboutShare extends AppCompatActivity {
         startActivityForResult(intent,100);
     }
 
-    public class PostViewHolder extends RecyclerView.ViewHolder {
-        private TextView attachfile;
-        public PostViewHolder(@NonNull View itemView) {
-            super(itemView);
-            attachfile=itemView.findViewById(R.id.attachfile);
 
-        }
-    }
 
     @Override
     public void onStart() {

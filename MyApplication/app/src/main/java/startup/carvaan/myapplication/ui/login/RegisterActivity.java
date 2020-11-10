@@ -180,7 +180,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(user_name.getText().toString())) {
                     Toast.makeText(RegisterActivity.this, "Username is empty! Please enter a valid username.", Toast.LENGTH_SHORT).show();
                 } else {
-                    firebaseAuth.createUserWithEmailAndPassword(user_name.getText().toString() + "@gmail.com", passwordText.getEditText().getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    firebaseAuth.createUserWithEmailAndPassword(user_name.getText().toString(), passwordText.getEditText().getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             firebaseUser = firebaseAuth.getCurrentUser();

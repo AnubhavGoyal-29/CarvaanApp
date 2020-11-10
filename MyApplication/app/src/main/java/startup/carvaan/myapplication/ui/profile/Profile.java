@@ -1,4 +1,4 @@
-package startup.carvaan.myapplication.ui.earncredits;
+package startup.carvaan.myapplication.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,15 +24,15 @@ import startup.carvaan.myapplication.ui.user.User;
 /**
 
  */
-public class earncredits extends Fragment {
+public class Profile extends Fragment {
     private TextView earned,winnins,added,redeemed;
     private Button coinEarn,redeemCoin,addCash,buyCoins,withdrawl;
     private User user;
     private FirebaseFirestore ff;
-    public earncredits()
-   {
+    public Profile()
+    {
 
-   }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class earncredits extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_earncredits, container, false);
+        View view= inflater.inflate(R.layout.fragment_profile, container, false);
         ff=FirebaseFirestore.getInstance();
 
         user=new User();
