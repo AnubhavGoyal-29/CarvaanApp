@@ -191,6 +191,7 @@ public class RegisterActivity extends AppCompatActivity {
                             map.put("Credits", "100");
                             ff.collection("Users").document(firebaseUser.getUid()).set(map);
                             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                            finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

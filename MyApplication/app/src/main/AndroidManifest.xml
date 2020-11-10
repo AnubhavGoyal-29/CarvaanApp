@@ -13,14 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:node="merge">
-        <activity android:name=".ui.start.IntroSliderActivity"></activity>
+        <activity android:name=".ui.NewActivity"></activity>
+        <activity android:name=".ui.start.IntroSliderActivity" />
         <activity android:name=".ui.login.ForgotPassActivity" />
         <activity android:name=".Addactivity" />
-        <activity android:name=".ui.payment.paymentActivity"></activity>
-        <activity android:name=".ui.about.AboutShare"></activity>
+        <activity android:name=".ui.payment.paymentActivity" />
+        <activity android:name=".ui.about.AboutShare" />
         <activity
             android:name=".ui.mainActivity.MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main" />
         <activity
             android:name=".ui.start.SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
@@ -30,8 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity"></activity>
-        <activity android:name=".ui.login.RegisterActivity"></activity>
+        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.login.RegisterActivity" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
