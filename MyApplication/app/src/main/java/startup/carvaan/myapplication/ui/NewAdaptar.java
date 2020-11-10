@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +39,12 @@ public class NewAdaptar extends ArrayAdapter<NewListItems> {
 
         Button newBtn = listItemView.findViewById(R.id.newBtn);
         newBtn.setText(currentItem.getmBtnText());
+        newBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"clicked",Toast.LENGTH_LONG).show();
+            }
+        });
 
         return listItemView;
 

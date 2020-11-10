@@ -55,15 +55,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ff=FirebaseFirestore.getInstance();
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
         getSupportActionBar().setElevation(0);
-        View view=getSupportActionBar().getCustomView();
-        TextView textView=view.findViewById(R.id.title);
-        textView.setText("Karvaan");
-        coins=view.findViewById(R.id.coins);
-        ff=FirebaseFirestore.getInstance();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new allshares()).commit();
         mView= findViewById(R.id.aboutsharebottomnavview);
         heartVector = findViewById(R.id.fab);
@@ -73,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mView.inflateMenu(R.menu.bottom_nav_menu);
         mView.setSelectedItemId(R.id.allshares);
         mView.setOnNavigationItemSelectedListener(MainActivity.this);
-
         NavigationView navigationView =findViewById(R.id.n1);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -87,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 return false;
             }
         });
+        View view=getSupportActionBar().getCustomView();
+        TextView textView=view.findViewById(R.id.title);
+        textView.setText("Karvaan");
         drawerLayout = findViewById(R.id.drawerlayout);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
         drawerLayout.addDrawerListener(toggle);

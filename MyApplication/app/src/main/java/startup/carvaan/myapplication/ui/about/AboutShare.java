@@ -89,7 +89,6 @@ AboutShare extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
         View view = getSupportActionBar().getCustomView();
-        coins = view.findViewById(R.id.coins);
         ff = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();

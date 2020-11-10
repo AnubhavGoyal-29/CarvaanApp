@@ -62,7 +62,7 @@ public class Sell extends DialogFragment {
                                     .document(shareId).update("holdings",String.valueOf(Integer.valueOf(mysharemodel.getHoldings())-Nos)).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    user.addCredits(Integer.valueOf(shareDetails.getSellingPrice())*Nos);
+                                    user.addWinnings(Integer.valueOf(shareDetails.getSellingPrice())*Nos);
                                 }
                             });
 

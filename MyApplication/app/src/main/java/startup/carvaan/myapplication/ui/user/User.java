@@ -1,7 +1,10 @@
 package startup.carvaan.myapplication.ui.user;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -101,10 +104,10 @@ public class User {
 
     private void getUserDetails() {
         ff=FirebaseFirestore.getInstance();
-        ff.collection("Users").document(user.getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        ff.collection("Users").document(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                DocumentSnapshot snapshot=value;
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot snapshot=task.getResult();
                 Email=snapshot.getString("Email");
                 ImageUrl=snapshot.getString("ImageUrl");
                 PhoneNumber=snapshot.getString("PhoneNumber");
@@ -114,16 +117,16 @@ public class User {
                 .document("coins").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                earned= value.getString("earned");
-                winnings=value.getString("winnings");
+                setEarned(value.getString("earned"));
+                setWinnings(value.getString("winnings"));
             }
         });
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
                 .document("cash").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                added= value.getString("added");
-                redeemed=value.getString("redeemed");
+                setAdded(value.getString("added"));
+                setRedeemed(value.getString("redeemed"));
             }
         });
     }
@@ -133,22 +136,21 @@ public class User {
         if(user!=null)
             getUserDetails();
     }
-
-
-
     public void logoutUser(){
         fauth.signOut();
     }
 
-
-
-    public void addCredits(float a){
-        ff.collection("Users").document(user.getUid()).collection("CreditDetails").document("coins").update("earned",String.valueOf(Integer.valueOf(earned)+Integer.valueOf((int) a)));
+    public void addEarned(float a){
+        ff.collection("Users").document(user.getUid()).collection("CreditDetails")
+                .document("coins").update("earned",String.valueOf(Integer.valueOf(earned)+Integer.valueOf((int) a)));
     }
-    public void removeCredits(float a){
+     public void addWinnings(float a){
+        ff.collection("Users").document(user.getUid()).collection("CreditDetails")
+                .document("coins").update("winnings",String.valueOf(Integer.valueOf(winnings)+Integer.valueOf((int) a)));
+    }
+    public void removeEarned(float a){
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
                 .document("coins").update("earned",String.valueOf(Integer.valueOf(earned)-Integer.valueOf((int) a)));
-
     }
 
 }
