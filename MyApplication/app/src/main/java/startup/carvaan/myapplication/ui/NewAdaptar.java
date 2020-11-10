@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class NewAdaptar extends RecyclerView.Adapter<NewAdaptar.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.new_single_view, parent, false);
+        View view = mInflater.inflate(R.layout.redeem_single, parent, false);
         return new ViewHolder(view);
 
 
@@ -40,12 +39,10 @@ public class NewAdaptar extends RecyclerView.Adapter<NewAdaptar.ViewHolder> {
         holder.itemView.setTag(mData.get(position));
         NewListItems currentItem = mData.get(position);
 
-        holder.redeemText.setText(currentItem.getmTextViewText());
-        holder.redeemButton.setText(currentItem.getmBtnText());
+        holder.redeemText.setText("may be its good");
+        holder.redeemButton.setText("watch add");
 
     }
-
-
     @Override
     public int getItemCount() {
         return mData.size();

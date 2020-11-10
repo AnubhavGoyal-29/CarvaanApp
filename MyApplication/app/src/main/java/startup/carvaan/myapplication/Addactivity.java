@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -20,6 +21,14 @@ public class Addactivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addactivity);
+        recyclerView = findViewById(R.id.addRecyclerView);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+
         ArrayList<NewListItems> arrayList = new ArrayList<>();
 
         arrayList.add(new NewListItems("Sample text","Sample button"));
@@ -29,11 +38,8 @@ public class Addactivity extends Activity {
         arrayList.add(new NewListItems("Sample text","Sample button"));
         arrayList.add(new NewListItems("Sample text","Sample button"));
 
-
-        listView = findViewById(R.id.addRecyclerView);
-
-        NewAdaptar newAdaptar = new NewAdaptar(getApplicationContext(),arrayList);
-        listView.setAdapter(newAdaptar);
+        mAdapter=new NewAdaptar(arrayList,this);
+        recyclerView.setAdapter(mAdapter);
     }
     // ...
 }
