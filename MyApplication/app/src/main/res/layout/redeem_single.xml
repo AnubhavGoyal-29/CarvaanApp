@@ -4,7 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+<<<<<<< HEAD
 
+=======
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+>>>>>>> b9dabd0ca21e97eaedc81c8d22789704f9f7f32e
 
     android:layout_marginTop="20dp"
     android:layout_marginBottom="20dp"
@@ -75,7 +82,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginLeft="30dp"
+<<<<<<< HEAD
 android:paddingLeft="20dp"
+=======
+                android:paddingLeft="20dp"
+>>>>>>> b9dabd0ca21e97eaedc81c8d22789704f9f7f32e
                 android:paddingRight="20dp"
                 android:background="@drawable/button"
                 android:text="Watch Now"

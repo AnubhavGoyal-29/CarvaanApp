@@ -76,7 +76,7 @@ android:layout_marginTop="10dp"
 
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-
+                android:id="@+id/videoplayer"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 app:autoPlay="false"

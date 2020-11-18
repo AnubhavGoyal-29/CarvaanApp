@@ -14,8 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -188,9 +190,31 @@ public class RegisterActivity extends AppCompatActivity {
                             map.put("Email", firebaseUser.getEmail());
                             map.put("PhoneNumber", "phone Number");
                             map.put("ImageUrl", "imageURL");
-                            map.put("Credits", "100");
                             ff.collection("Users").document(firebaseUser.getUid()).set(map);
-                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                            Map<String,String>coins=new HashMap<>();
+                            coins.put("earned", String.valueOf(100));
+                            coins.put("winnings", String.valueOf(0));
+                            Map<String ,String >cash=new HashMap<>();
+                            cash.put("added", String.valueOf(0));
+                            cash.put("redeemed", String.valueOf(0));
+                            ff.collection("Users").
+                                    document(firebaseUser.getUid()).
+                                    collection("CreditDetails").
+                                    document("coins").set(coins).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    ff.collection("Users").
+                                            document(firebaseUser.getUid()).
+                                            collection("CreditDetails").
+                                            document("cash").set(cash).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                        }
+                                    });
+                                }
+                            });
+
                             finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {

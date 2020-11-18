@@ -7,9 +7,19 @@
     tools:context=".ui.NewActivity">
 
 
-    <ListView
-        android:id="@+id/newList"
+<!--    <ListView-->
+<!--        android:id="@+id/newList"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+
+<!--        tools:listitem="@layout/redeem_single"/>-->
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:id="@+id/newRecyclerView"
+        tools:listitem="@layout/redeem_single">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

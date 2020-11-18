@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -16,6 +18,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.user.User;
@@ -56,6 +61,28 @@ public class myshares extends Fragment {
             @Override
             protected void onBindViewHolder(PostViewHolder postViewHolder, int i, mysharemodel mysharemodel) {
                 postViewHolder.shareName.setText(user.getEmail());
+                List<String> list = new ArrayList<String>();
+                list.add(mysharemodel.getHoldings());
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list);
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                postViewHolder.spinner.setAdapter(arrayAdapter);
+                postViewHolder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if (parent.getItemAtPosition(position).equals("Select problem")) {
+
+                        } else {
+//                            item = parent.getItemAtPosition(position).toString();
+
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+
+                    }
+                });
 
             }
         };

@@ -66,15 +66,15 @@ public class Buy extends DialogFragment {
                                         .document(shareId).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        user.removeCredits(totalPrice);
+                                        user.removeEarned(totalPrice);
                                         Toast.makeText(getContext(),"done...",Toast.LENGTH_LONG).show();
                                     }
                                 });
                             }
                             else{
-                                Map<Object ,Object >map=new HashMap<>();
-                                map.put(String.valueOf(Nos),shareDetails.getBuyingPrice());
+                                Map<String  ,String  >map=new HashMap<>();
                                 map.putAll(mysharemodel.getPriceHoldings());
+                                map.put(String.valueOf(Nos),shareDetails.getBuyingPrice());
                                 ff.collection("Users")
                                         .document(user.getUser().getUid())
                                         .collection("myshares")
@@ -83,7 +83,7 @@ public class Buy extends DialogFragment {
                                                 "priceHoldings",map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        user.removeCredits(totalPrice);
+                                        user.removeEarned(totalPrice);
                                         Toast.makeText(getContext(),"done...",Toast.LENGTH_LONG).show();
                                     }
                                 });

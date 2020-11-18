@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class mysharemodel {
     private String holdings;
-    Map<Object,Object>priceHoldings;
+    Map<String,String>priceHoldings;
 
     public String getHoldings() {
         return holdings;
@@ -14,15 +14,15 @@ public class mysharemodel {
         this.holdings = holdings;
     }
 
-    public Map<Object, Object> getPriceHoldings() {
+    public Map<String, String> getPriceHoldings() {
         return priceHoldings;
     }
 
-    public void setPriceHoldings(Map<Object, Object> priceHoldings) {
+    public void setPriceHoldings(Map<String, String> priceHoldings) {
         this.priceHoldings = priceHoldings;
     }
 
-    public mysharemodel(String holdings, Map<Object, Object> priceHoldings) {
+    public mysharemodel(String holdings, Map<String, String> priceHoldings) {
         this.holdings = holdings;
         this.priceHoldings = priceHoldings;
     }
