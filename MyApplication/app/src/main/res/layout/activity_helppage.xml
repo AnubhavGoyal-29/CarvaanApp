@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".Helppage"
+    android:background="#188F84">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp">
+
+
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="220dp"
+       android:gravity="bottom|center"
+       android:background="@drawable/ty"
+       >
+       <ImageView
+           android:layout_width="40dp"
+           android:layout_height="40dp"
+           android:src="@drawable/pauyt"
+           ></ImageView>
+   </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:text=" 1. How to Earn Coins of this app ?"
+                android:textStyle="bold"
+                android:textSize="17dp"
+                android:textColor="#FFFFFF"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content"
+                android:text="• By watching the ads in our app which comes through clicking on earn coins.Go to profile -> earn coins ->watch ads."
+
+                android:textSize="15dp"
+                android:textColor="#FFFFFF"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See More"
+                android:textStyle="bold"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="16dp"
+            android:paddingRight="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:background="@drawable/help"
+                android:textSize="17dp"
+                android:textColor="#FFFFFF"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginTop="12dp"
+
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_height="wrap_content"
+                    android:text="• By watching the ads in our app which comes through clicking on earn coins.Go to profile -> earn coins ->watch ads."
+
+                    android:textSize="15dp"
+                    android:textColor="#FFFFFF"/>
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="16dp"
+
+
+                android:background="#FFFFFF" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:text="2. How to Earn Coins of this app ?"
+                android:textStyle="bold"
+                android:textSize="17dp"
+                android:textColor="#FFFFFF"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content"
+                android:text="• By watching the ads in our app which comes through clicking on earn coins.Go to profile -> earn coins ->watch ads."
+
+                android:textSize="15dp"
+                android:textColor="#FFFFFF"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See More"
+                android:textStyle="bold"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="16dp"
+                android:paddingRight="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="20dp"
+                android:background="@drawable/help"
+                android:textSize="17dp"
+                android:textColor="#FFFFFF"/>
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</ScrollView>
