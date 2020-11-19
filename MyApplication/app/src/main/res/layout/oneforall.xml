@@ -20,8 +20,6 @@
             android:id="@+id/textFile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background=""
-
             android:orientation="vertical"
             >
 
@@ -295,7 +293,7 @@ android:layout_marginTop="10dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginLeft="20dp"
                     android:background="@drawable/commn"
-                  />
+                    />
             </LinearLayout>
 
 

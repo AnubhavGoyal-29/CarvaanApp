@@ -52,6 +52,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.about.dailogFragments.Buy;
 import startup.carvaan.myapplication.ui.about.dailogFragments.Sell;
+import startup.carvaan.myapplication.ui.about.dailogFragments.comments;
 import startup.carvaan.myapplication.ui.user.User;
 
 public class
@@ -105,6 +106,13 @@ AboutShare extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull final PostViewHolder postViewHolder, int i, @NonNull final PostModal postModal) {
+                postViewHolder.comments.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        comments comments=new comments();
+                        comments.show(getSupportFragmentManager(),"comments");
+                    }
+                });
                 postViewHolder.attachfile.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -166,8 +174,10 @@ AboutShare extends AppCompatActivity {
     public class PostViewHolder extends RecyclerView.ViewHolder {
         private TextView attachfile;
         private YouTubePlayerView videoPlayer;
+        private TextView comments;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
+            comments=itemView.findViewById(R.id.comments);
             videoPlayer=itemView.findViewById(R.id.videoplayer);
             attachfile=itemView.findViewById(R.id.attachfile);
 

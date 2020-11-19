@@ -1,0 +1,788 @@
+{
+	"info": {
+		"_postman_id": "ab3f2808-3138-451b-8c70-a3eda995436d",
+		"name": "Cashfree Payout Gitbook",
+		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests an user can send?",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "db721a98-fa5b-4102-be6f-450b1e3cb3f9",
+						"exec": [
+							"var data = pm.response.json();",
+							"pm.environment.set(\"Token\", data.data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Client-Id",
+						"value": "{{client id}}"
+					},
+					{
+						"key": "X-Client-Secret",
+						"value": "{{client secret}}"
+					}
+				],
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/authorize",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"authorize"
+					]
+				},
+				"description": "To authenticate with the Cashfree system and obtain the Authorization Bearer token. All other API calls must have this token as Authorization header in the format ‘Bearer token’ (without quotes) for them to be processed.\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					}
+				],
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/verifyToken",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"verifyToken"
+					]
+				},
+				"description": "Verify the Bearer token generated. Response will be ‘Token is not valid’ if token does not exist, is invalid or has expired. Regenerate token incase of token expiry by calling Authenticate API"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Beneficiary",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"beneId\": \"JOHN18011343\",\n  \"name\": \"john doe\",\n  \"email\": \"johndoe@cashfree.com\",\n  \"phone\": \"9876543210\",\n  \"bankAccount\": \"00111122233\",\n  \"ifsc\": \"HDFC0000001\",\n  \"address1\": \"ABC Street\",\n  \"city\": \"Bangalore\",\n  \"state\": \"Karnataka\",\n  \"pincode\": \"560001\"\n}"
+				},
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/addBeneficiary",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"addBeneficiary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Beneficiary",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					}
+				],
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/getBeneficiary/JOHN18011343",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"getBeneficiary",
+						"JOHN18011343"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Beneficiary Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					}
+				],
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/getBeneId?bankAccount=00111122233&ifsc=HDFC0000001",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"getBeneId"
+					],
+					"query": [
+						{
+							"key": "bankAccount",
+							"value": "00111122233"
+						},
+						{
+							"key": "ifsc",
+							"value": "HDFC0000001"
+						}
+					]
+				},
+				"description": "Retrieve beneficiary Id of an already added beneficiary from bank account number and ifsc."
+			},
+			"response": []
+		},
+		{
+			"name": "Request Transfer Sync",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"beneId\": \"JOHN18011343\",\n  \"amount\": \"1.00\",\n  \"transferId\": \"JUNOB2018\"\n}"
+				},
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/requestTransfer",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"requestTransfer"
+					]
+				},
+				"description": "Request an amount transfer at CashFree. This API gives responses other than SUCCESS and ERROR. "
+			},
+			"response": []
+		},
+		{
+			"name": "Request Transfer Async",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"beneId\": \"JOHN18011343\",\n  \"amount\": \"1.00\",\n  \"transferId\": \"JUNOB2018\"\n}"
+				},
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/requestAsyncTransfer",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"requestAsyncTransfer"
+					]
+				},
+				"description": "Request an amount transfer at CashFree. This API gives responses other than SUCCESS and ERROR. "
+			},
+			"response": [
+				{
+					"name": "Request Transfer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{Token}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"beneId\": \"JOHN18011343\",\n  \"amount\": \"1.00\",\n  \"transferId\": \"JUNOB2018\"\n}"
+						},
+						"url": {
+							"raw": "{{Host Url}}/payout/v1/requestTransfer",
+							"host": [
+								"{{Host Url}}"
+							],
+							"path": [
+								"payout",
+								"v1",
+								"requestTransfer"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 13 May 2019 14:02:26 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.37 (Unix) PHP/5.6.38"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Fat-Free Framework"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, must-revalidate"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 +0000"
+						},
+						{
+							"key": "Content-Length",
+							"value": "124"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"PENDING\",\n    \"subCode\": \"201\",\n    \"message\": \"Transfer request pending at the bank\",\n    \"data\": {\n        \"referenceId\": \"16525582\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Transfer status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					}
+				],
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/getTransferStatus?referenceId=14057&transferId=JUNOB2018",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"getTransferStatus"
+					],
+					"query": [
+						{
+							"key": "referenceId",
+							"value": "14057"
+						},
+						{
+							"key": "transferId",
+							"value": "JUNOB2018"
+						}
+					]
+				},
+				"description": "Get details of a particular transfer. You can either pass referenceId or transferId to fetch the details."
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Beneficiary",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"beneId\" : \"JOHN18011343\"\n} "
+				},
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/removeBeneficiary",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"removeBeneficiary"
+					]
+				},
+				"description": "Remove a beneficiary from the list of beneficiaries already added.\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Balance ",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					}
+				],
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/getBalance",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"getBalance"
+					]
+				},
+				"description": "Get ledger balance and available balane of your account. Available balance is ledger balance minus sum of all pending transfers (Transfers triggered and being processed or pending now)."
+			},
+			"response": []
+		},
+		{
+			"name": "BulkTransferViaApI",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "NEW",
+						"value": "NO",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"batchTransferId\": \"abc-.12356\",\n    \"batchFormat\": \"BANK_ACCOUNT\",\n    \"batch\": [\n        {\n            \"amount\": \"1\",\n            \"transferId\": \"1234\",\n            \"remarks\": \"Transfer with Id 12356\",\n            \"name\": \"john doe\",\n            \"email\": \"johndoe@cashfree.com\",\n            \"phone\": 9876543210,\n            \"bankAccount\": \"00111122233\",\n            \"ifsc\": \"HDFC0000001\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/requestBatchTransfer",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"requestBatchTransfer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBulkTransferStatus",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					}
+				],
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/getBatchTransferStatus?batchTransferId=test_batch_format_01",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"getBatchTransferStatus"
+					],
+					"query": [
+						{
+							"key": "batchTransferId",
+							"value": "test_batch_format_01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SelfWithdrawal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"withdrawalId\" : \"TEST_1\",\n\t\"amount\" : \"1\",\n\t\"remarks\" : \"test withdrawal\"\n}"
+				},
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/selfWithdrawal",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"selfWithdrawal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bank Details Verification",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}"
+					}
+				],
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/validation/bankDetails?name=Joe&phone=7709736537&bankAccount=142201512769&ifsc=ICIC0001422",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"validation",
+						"bankDetails"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Joe"
+						},
+						{
+							"key": "phone",
+							"value": "7709736537"
+						},
+						{
+							"key": "bankAccount",
+							"value": "142201512769"
+						},
+						{
+							"key": "ifsc",
+							"value": "ICIC0001422"
+						}
+					]
+				},
+				"description": "This operation can be used to verify a bank account and ifsc code combination.The operation will return a success response in two cases: \n1) The bank account or ifsc code or both are invalid \n2) The bank account and ifsc combination are verified \n"
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk Bank Verification",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bulkValidationId\": \"JOHN18011343\",\n    \"entries\": [\n        {\n            \"name\": \"john doe\",\n            \"bankAccount\": \"00111122233\",\n            \"ifsc\": \"HDFC0000001\",\n            \"phone\": \"9876543210\"\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/bulkValidation/bankDetails",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"bulkValidation",
+						"bankDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Bulk Verification Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/getBulkValidationStatus?bulkValidationId=JOHN18011343&bankAccount=00111122233&ifsc=HDFC0000001",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"getBulkValidationStatus"
+					],
+					"query": [
+						{
+							"key": "bulkValidationId",
+							"value": "JOHN18011343"
+						},
+						{
+							"key": "bankAccount",
+							"value": "00111122233"
+						},
+						{
+							"key": "ifsc",
+							"value": "HDFC0000001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cashgram",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\":\"1.01\", \n\t\"phone\":\"9876543210\", \n\t\"email\":\"johndoe@cashfree.com\", \n\t\"notifyCustomer\":0, \n\t\"linkExpiry\":\"2020/02/15\",\n\t\"cashgramId\":\"JOHN18011343\", \n\t\"name\":\"john doe\", \n\t\"remarks\":\"JOHN18011343\"\n}"
+				},
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/createCashgram",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"createCashgram"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cashgram Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/getCashgramStatus?cashgramId=JOHaN10",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"getCashgramStatus"
+					],
+					"query": [
+						{
+							"key": "cashgramId",
+							"value": "JOHaN10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deactivate Cashgram",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"cashgramId\":\"JOHN18011343\"\n}"
+				},
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/deactivateCashgram",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"deactivateCashgram"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPI Verification",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{Token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{Host Url}}/payout/v1/validation/upiDetails?vpa=success@upi&name=Cashfree",
+					"host": [
+						"{{Host Url}}"
+					],
+					"path": [
+						"payout",
+						"v1",
+						"validation",
+						"upiDetails"
+					],
+					"query": [
+						{
+							"key": "vpa",
+							"value": "success@upi"
+						},
+						{
+							"key": "name",
+							"value": "Cashfree"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3402492a-4933-4882-b333-16dfd9b1ec36",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "23f37ed1-3892-4010-be6f-ee3a5523a800",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

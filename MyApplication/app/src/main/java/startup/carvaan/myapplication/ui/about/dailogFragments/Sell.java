@@ -63,6 +63,8 @@ public class Sell extends DialogFragment {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     user.addWinnings(Integer.valueOf(shareDetails.getSellingPrice())*Nos);
+                                    sell_success sell_success=new sell_success();
+                                    sell_success.show(getChildFragmentManager(), "Dialog_Buy");
                                 }
                             });
 
