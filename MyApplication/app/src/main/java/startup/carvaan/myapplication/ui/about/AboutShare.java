@@ -110,6 +110,9 @@ AboutShare extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         comments comments=new comments();
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putString("shareid", shareid);
+                        comments.setArguments(bundle1);
                         comments.show(getSupportFragmentManager(),"comments");
                     }
                 });

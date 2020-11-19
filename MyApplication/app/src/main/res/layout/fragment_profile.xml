@@ -7,6 +7,8 @@
     tools:context=".ui.profile.Profile">
 
     <LinearLayout
+
+        android:id="@+id/profileCoins"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -119,29 +121,18 @@
 
 
 
-
         <Button
             android:id="@+id/redeemButton"
             android:layout_width="150dp"
             android:layout_height="48dp"
-
             android:backgroundTint="@color/colorAccent"
             android:text="Redeem"
             android:layout_marginTop="16dp"
-
-
             >
-
         </Button>
-
-
-
-
-
     </LinearLayout>
-
-
     <LinearLayout
+        android:id="@+id/profileCash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"

@@ -13,10 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:node="merge">
+        <activity android:name=".chartActivity" />
         <activity
             android:name=".Helppage"
             android:label="@string/title_activity_helppage"
-            android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity android:name=".ui.NewActivity" />
         <activity android:name=".ui.start.IntroSliderActivity" />
         <activity android:name=".ui.login.ForgotPassActivity" />
