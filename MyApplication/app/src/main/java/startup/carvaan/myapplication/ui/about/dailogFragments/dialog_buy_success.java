@@ -1,22 +1,24 @@
 package startup.carvaan.myapplication.ui.about.dailogFragments;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import startup.carvaan.myapplication.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link dialog_buy_success#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class dialog_buy_success extends DialogFragment {
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
 
+        final View view = inflater.inflate(R.layout.fragment_dialog_buy_success,null,false);
 
+        builder.setView(view);
+        return builder.create();
+    }
 }

@@ -42,6 +42,7 @@ public class Buy extends DialogFragment {
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 int Nos=Integer.valueOf(nos.getText().toString());
                 int totalPrice=Nos*Integer.valueOf(shareDetails.getBuyingPrice());
                 int credits=Integer.valueOf(user.getEarned());
@@ -85,6 +86,9 @@ public class Buy extends DialogFragment {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         user.removeEarned(totalPrice);
                                         Toast.makeText(getContext(),"done...",Toast.LENGTH_LONG).show();
+                                        dialog_buy_success dialog_buy_success=new dialog_buy_success();
+                                        dialog_buy_success.show(getChildFragmentManager(), "Dialog_Buy");
+
                                     }
                                 });
 
@@ -102,4 +106,9 @@ public class Buy extends DialogFragment {
         return builder.create();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        getDialog().dismiss();
+    }
 }
