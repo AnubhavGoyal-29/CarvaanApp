@@ -280,7 +280,6 @@
                     android:orientation="horizontal"
                     android:padding="5dp">
                     <TextView
-                        android:visibility="gone"
                         android:id="@+id/attachFile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -301,6 +300,15 @@
                         android:textColor="#000000"
                         android:textSize="15dp"
                         tools:autoSizeTextType="uniform" />
+                    <TextView
+                        android:id="@+id/number_of_files"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="23"
+                        android:textSize="16sp"
+                        android:layout_marginLeft="10dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>

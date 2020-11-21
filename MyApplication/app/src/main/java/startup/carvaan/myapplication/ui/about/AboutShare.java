@@ -166,6 +166,9 @@ AboutShare extends AppCompatActivity {
                 });
                 if(pdfUri==null){
                     postViewHolder.attachfile.setVisibility(View.VISIBLE);
+                    Map<String ,String > files=new HashMap<>();
+                    files.putAll(postModal.getFiles());
+                    postViewHolder.nooffiles.setText(String.valueOf(files.size()));
                     postViewHolder.attachfile.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -193,7 +196,9 @@ AboutShare extends AppCompatActivity {
                             postViewHolder.attachfile.setVisibility(View.VISIBLE);
                             Map<String ,String > files=new HashMap<>();
                             files.putAll(postModal.getFiles());
+
                             files.put(user.getUser().getUid(),path);
+                            postViewHolder.nooffiles.setText(String.valueOf(files.size()));
                             ff.collection("shares")
                                     .document(shareid)
                                     .collection("Bloging")
@@ -252,7 +257,7 @@ AboutShare extends AppCompatActivity {
     }
 
     public class PostViewHolder extends RecyclerView.ViewHolder {
-        private TextView attachfile,title,description,likebutton,nooflikes,noofcomments,intern,freelancer,assistance,uploadFile;
+        private TextView attachfile,title,description,likebutton,nooflikes,noofcomments,intern,freelancer,assistance,uploadFile,nooffiles;
         private YouTubePlayerView videoPlayer;
         private TextView comments;
         private Button commentButton;
@@ -273,6 +278,8 @@ AboutShare extends AppCompatActivity {
             uploadFile=itemView.findViewById(R.id.uploadFile);
             commentButton=itemView.findViewById(R.id.commentButton);
             writeComment=itemView.findViewById(R.id.writeComment);
+            nooffiles=itemView.findViewById(R.id.number_of_files);
+
         }
     }
 
