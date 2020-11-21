@@ -61,7 +61,7 @@ public class myshares extends Fragment {
             @Override
             protected void onBindViewHolder(PostViewHolder postViewHolder, int i, mysharemodel mysharemodel) {
                 postViewHolder.shareName.setText(user.getEmail());
-              
+
 
             }
         };
