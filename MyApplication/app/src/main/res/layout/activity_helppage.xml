@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     tools:context=".ui.navbar.Helppage"
+    android:layout_height="match_parent"
     android:background="#188F84">
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,120 +18,326 @@
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="220dp"
+
        android:gravity="bottom|center"
        android:background="@drawable/ty"
        >
-       <ImageView
-           android:layout_width="40dp"
-           android:layout_height="40dp"
-           android:src="@drawable/pauyt"
-           ></ImageView>
+
    </LinearLayout>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+
+         android:layout_margin="5dp"
+         android:gravity="center_vertical"
+         android:elevation="15dp"
+         android:orientation="vertical">
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/howtoinvest"
+             android:background="#FFFFFF"
+             android:gravity="center_vertical">
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="How to Invest ?"
+             android:padding="7dp"
+             android:textSize="18sp"
+             android:id="@+id/Investtest"
+
+             android:textStyle="bold"
+           android:layout_marginLeft="18dp"/>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="right">
+             <ImageView
+                 android:layout_width="30dp"
+                 android:layout_height="30dp"
+                 android:layout_marginRight="20dp"
+                 android:id="@+id/down1"
+                 android:src="@drawable/downarrow"/>
+         </LinearLayout>
+         </LinearLayout>
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="10dp"
+             android:layout_marginBottom="15dp"
+             android:visibility="gone"
+             android:id="@+id/description1"
+             android:orientation="vertical">
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="18dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_height="wrap_content"
+                 android:text=" 1.Choose a share of your interest"
+                 android:textStyle="bold"
+                 android:textSize="17dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• Checking its tag , growth, number of people invested."
+
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• Follow the blog and determine if the startup will grow in recent times or not."
+
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="18dp"
+                 android:layout_marginTop="12dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_height="wrap_content"
+                 android:text="2. When to buy these shares"
+                 android:textStyle="bold"
+                 android:textSize="17dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• When the share is going to start some new things , has completed their previous task."
+
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• When they launched the startup and a nice pitch video is uploaded."
+
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• If people are liking their blogs and they are asking for interns and freelancers"
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF
+"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="18dp"
+                 android:layout_marginTop="12dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_height="wrap_content"
+                 android:text="3. How to buy these shares"
+                 android:textStyle="bold"
+                 android:textSize="17dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• Click on the invest in me button on home page of that startup you want to invest."
+
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• Then a page comes showing the blogs of that startup  and then Click on the Buy button on bottom bar of that page "
+
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• Then a popup appears then enter the amount you want to invest."
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="18dp"
+                 android:layout_marginTop="12dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_height="wrap_content"
+                 android:text="4.When to sell the share"
+                 android:textStyle="bold"
+                 android:textSize="17dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• When they failed to follow deadlines and when people do not like their works."
+
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="18dp"
+                 android:layout_marginTop="12dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_height="wrap_content"
+                 android:text="5. How to sell these shares"
+                 android:textStyle="bold"
+                 android:textSize="17dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• Click on the invest in me button on home page of that startup you want to sell tha shares."
+
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• Then a page comes showing the blogs of that startup  and then Click on the Sell button on bottom bar of that page. "
+
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• Then a popup appears then enter the amount  you want to sell."
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="18dp"
+                 android:layout_marginTop="12dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_height="wrap_content"
+                 android:text="6.How much to hope"
+                 android:textStyle="bold"
+                 android:textSize="17dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• Hope for doubling the money in a week or two"
+
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="20dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_height="wrap_content"
+                 android:text="• You will face no loss so earn by watching ads and invest again and again."
+
+                 android:textSize="15dp"
+                 android:textColor="#FFFFFF"/>
+
+
+
+
+         </LinearLayout>
+
+     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/howtoearn"
+        android:layout_margin="5dp"
+
+        android:elevation="15dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="20dp"
-                android:layout_height="wrap_content"
-                android:text=" 1. How to Earn Coins of this app ?"
-                android:textStyle="bold"
-                android:textSize="17dp"
-                android:textColor="#FFFFFF"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_height="wrap_content"
-                android:text="• By watching the ads in our app which comes through clicking on earn coins.Go to profile -> earn coins ->watch ads."
+            android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How to Earn Money ?"
+            android:padding="7dp"
+            android:textSize="18sp"
 
-                android:textSize="15dp"
-                android:textColor="#FFFFFF"/>
+            android:textStyle="bold"
+            android:layout_marginLeft="18dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/downarrow"/>
+        </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setyougoal"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical"
+            android:elevation="15dp"
+            android:background="#FFFFFF"
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="See More"
+                android:text="How to set your goals ?"
+                android:padding="7dp"
+                android:textSize="18sp"
+
                 android:textStyle="bold"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="16dp"
-            android:paddingRight="20dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="20dp"
-                android:background="@drawable/help"
-                android:textSize="17dp"
-                android:textColor="#FFFFFF"/>
+                android:layout_marginLeft="18dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginTop="12dp"
-
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="25dp"
+                android:gravity="right">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_height="wrap_content"
-                    android:text="• By watching the ads in our app which comes through clicking on earn coins.Go to profile -> earn coins ->watch ads."
-
-                    android:textSize="15dp"
-                    android:textColor="#FFFFFF"/>
-
-
-
+                    android:src="@drawable/downarrow"/>
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:layout_marginTop="16dp"
-
-
-                android:background="#FFFFFF" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_height="wrap_content"
-                android:text="2. How to Earn Coins of this app ?"
-                android:textStyle="bold"
-                android:textSize="17dp"
-                android:textColor="#FFFFFF"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_height="wrap_content"
-                android:text="• By watching the ads in our app which comes through clicking on earn coins.Go to profile -> earn coins ->watch ads."
-
-                android:textSize="15dp"
-                android:textColor="#FFFFFF"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See More"
-                android:textStyle="bold"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="16dp"
-                android:paddingRight="20dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="20dp"
-                android:background="@drawable/help"
-                android:textSize="17dp"
-                android:textColor="#FFFFFF"/>
-
-
-
-
         </LinearLayout>
+
+
     </LinearLayout>
 
 

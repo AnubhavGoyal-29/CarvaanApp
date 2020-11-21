@@ -30,6 +30,7 @@ import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.allshares.allshares;
 import startup.carvaan.myapplication.ui.login.LoginActivity;
 import startup.carvaan.myapplication.ui.myshares.myshares;
+import startup.carvaan.myapplication.ui.navbar.Helppage;
 import startup.carvaan.myapplication.ui.profile.Profile;
 import startup.carvaan.myapplication.ui.user.User;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -78,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         user.logoutUser();
                         gotoLoginActivity();
                         break;
+                    case R.id.howtoplay:
+                        startActivity(new Intent(MainActivity.this, Helppage.class));
+                        break;
                 }
                 return false;
             }
@@ -112,6 +116,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.logout:
                 user.logoutUser();
                     break;
+            case R.id.howtoplay:
+                startActivity(new Intent(MainActivity.this, Helppage.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

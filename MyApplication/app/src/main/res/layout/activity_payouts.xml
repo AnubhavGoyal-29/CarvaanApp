@@ -82,7 +82,7 @@
                 android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
-                android:hint="Enter The amount"
+                android:hint="Enter acount number"
                 ></EditText>
             <EditText
                 android:id="@+id/ifsc_code"
@@ -95,7 +95,7 @@
                 android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
-                android:hint="Enter The amount"
+                android:hint="Enter IFSC"
                 ></EditText>
             <EditText
                 android:id="@+id/account_holder_name"
@@ -108,7 +108,7 @@
                 android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
-                android:hint="Enter The amount"
+                android:hint="Enter Account Holder's name"
                 ></EditText>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -116,7 +116,7 @@
                 android:gravity="center">
                 <Button
                     android:layout_marginTop="20dp"
-                    android:id="@+id/pay"
+                    android:id="@+id/withdrawButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/teal_100"
