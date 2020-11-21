@@ -56,10 +56,9 @@ public class Buy extends DialogFragment {
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             mysharemodel mysharemodel=task.getResult().toObject(mysharemodel.class);
                             if(task.getResult().getString("holdings")==null){
+                                String lastPriceHolding=String.valueOf(shareDetails.getBuyingPrice());
                                 Map<Object,Object>map=new HashMap<>();
-                                Map<String  ,String > holdings=new HashMap<>();
-                                holdings.put(String.valueOf(Nos),shareDetails.getBuyingPrice());
-                                map.put("priceHoldings",holdings);
+                                map.put("priceHoldings",lastPriceHolding);
                                 map.put("holdings",String.valueOf(Nos));
                                 ff.collection("Users")
                                         .document(user.getUser().getUid())
@@ -73,15 +72,13 @@ public class Buy extends DialogFragment {
                                 });
                             }
                             else{
-                                Map<String  ,String  >map=new HashMap<>();
-                                map.putAll(mysharemodel.getPriceHoldings());
-                                map.put(String.valueOf(Nos),shareDetails.getBuyingPrice());
+                                String lastPriceHolding=String.valueOf(shareDetails.getBuyingPrice());
                                 ff.collection("Users")
                                         .document(user.getUser().getUid())
                                         .collection("myshares")
                                         .document(shareId)
                                         .update("holdings",String.valueOf(Integer.valueOf(mysharemodel.getHoldings())+Nos),
-                                                "priceHoldings",map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                "priceHoldings",lastPriceHolding).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         user.removeEarned(totalPrice);

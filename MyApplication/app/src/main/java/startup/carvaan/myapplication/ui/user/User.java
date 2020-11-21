@@ -13,10 +13,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class User {
-    private String Email,ImageUrl,PhoneNumber;
+    private String Email,ImageUrl,PhoneNumber,DisplayName;
     private FirebaseFirestore ff;
     private FirebaseAuth fauth;
     private FirebaseUser user;
+
+    public String getDisplayName() {
+        return DisplayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        DisplayName = displayName;
+    }
+
     public User() {
         user=null;
         loginUser();
@@ -111,6 +120,7 @@ public class User {
                 Email=snapshot.getString("Email");
                 ImageUrl=snapshot.getString("ImageUrl");
                 PhoneNumber=snapshot.getString("PhoneNumber");
+                DisplayName=snapshot.getString("DisplayName");
             }
         });
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
@@ -152,6 +162,11 @@ public class User {
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
                 .document("coins").update("earned",String.valueOf(Integer.valueOf(earned)-Integer.valueOf((int) a)));
     }
+    public void addCash(float a){
+        ff.collection("Users").document(user.getUid()).collection("CreditDetails")
+                .document("cash").update("added",String.valueOf(Integer.valueOf(getAdded())+a));
+    }
+
 
 }
 

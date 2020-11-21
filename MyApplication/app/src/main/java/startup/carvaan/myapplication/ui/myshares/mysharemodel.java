@@ -1,10 +1,7 @@
 package startup.carvaan.myapplication.ui.myshares;
 
-import java.util.Map;
-
 public class mysharemodel {
-    private String holdings;
-    Map<String,String>priceHoldings;
+    private String holdings,lastBuyingPrice;
 
     public String getHoldings() {
         return holdings;
@@ -14,17 +11,17 @@ public class mysharemodel {
         this.holdings = holdings;
     }
 
-    public Map<String, String> getPriceHoldings() {
-        return priceHoldings;
+    public String getLastBuyingPrice() {
+        return lastBuyingPrice;
     }
 
-    public void setPriceHoldings(Map<String, String> priceHoldings) {
-        this.priceHoldings = priceHoldings;
+    public void setLastBuyingPrice(String lastBuyingPrice) {
+        this.lastBuyingPrice = lastBuyingPrice;
     }
 
-    public mysharemodel(String holdings, Map<String, String> priceHoldings) {
+    public mysharemodel(String holdings, String lastBuyingPrice) {
         this.holdings = holdings;
-        this.priceHoldings = priceHoldings;
+        this.lastBuyingPrice = lastBuyingPrice;
     }
 
     public mysharemodel() {

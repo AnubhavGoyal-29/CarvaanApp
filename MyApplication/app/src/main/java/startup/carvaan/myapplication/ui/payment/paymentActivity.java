@@ -2,7 +2,6 @@ package startup.carvaan.myapplication.ui.payment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +22,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import startup.carvaan.myapplication.R;
+import startup.carvaan.myapplication.ui.user.User;
 
 public class paymentActivity extends AppCompatActivity {
 
@@ -30,6 +30,7 @@ public class paymentActivity extends AppCompatActivity {
     private EditText orderAmount;
     private TextView orderid;
     private Button payAmount;
+    User user=new User();
     CompositeDisposable compositeDisposable=new CompositeDisposable();
     ICloudFunction iCloudFunction;
     @Override
@@ -51,18 +52,12 @@ public class paymentActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //Same request code for all payment APIs.
-        Log.d(TAG, "ReqCode : " + CFPaymentService.REQ_CODE);
-        Log.d(TAG, "API Response : ");
-        //Prints all extras. Replace with app logic.
-        if (data != null) {
-            Bundle  bundle = data.getExtras();
-            if (bundle != null)
-                for (String  key  :  bundle.keySet()) {
-                    if (bundle.getString(key) != null) {
-                        Log.d(TAG, key + " : " + bundle.getString(key));
-                    }
-                }
+        if(resultCode==RESULT_OK){
+            user.addCash(Integer.valueOf(orderAmount.getText().toString()));
+            Toast.makeText(paymentActivity.this,"done",Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(paymentActivity.this,"failed",Toast.LENGTH_LONG).show();
         }
     }
 

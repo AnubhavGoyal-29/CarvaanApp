@@ -57,7 +57,13 @@ public class Profile extends Fragment {
         added.setText(user.getAdded());
         redeemed=view.findViewById(R.id.redeemCashTextView);
         redeemed.setText(user.getRedeemed());
-
+        redeemCoin=view.findViewById(R.id.redeemButton);
+        redeemCoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), payouts.class));
+            }
+        });
         withdrawl=view.findViewById(R.id.withdrawButton);
         withdrawl.setOnClickListener(new View.OnClickListener() {
             @Override
