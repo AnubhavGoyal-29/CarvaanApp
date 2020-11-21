@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import startup.carvaan.myapplication.R;
-import startup.carvaan.myapplication.ui.ProgressButton;
+import startup.carvaan.myapplication.ProgressButton;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 

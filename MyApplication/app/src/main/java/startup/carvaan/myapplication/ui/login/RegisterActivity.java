@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import startup.carvaan.myapplication.R;
-import startup.carvaan.myapplication.ui.ProgressButton;
+import startup.carvaan.myapplication.ProgressButton;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 public class RegisterActivity extends AppCompatActivity {

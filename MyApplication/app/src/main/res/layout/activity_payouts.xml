@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:weightSum="10"
     android:background="@color/teal_200"
-    tools:context=".ui.payouts">
+    tools:context=".ui.payment.payouts">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -24,9 +24,10 @@
             android:background="@drawable/rst"
             android:inputType="textPersonName"
             android:gravity="center"
-            android:text="Enter upi id"
+            android:hint="Enter coins"
             />
         <TextView
+            android:id="@+id/convertedMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -59,7 +60,7 @@
                 android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
-                android:text="Enter upi id"
+                android:hint="Enter upi id"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -81,7 +82,7 @@
                 android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
-                android:text="Enter The amount"
+                android:hint="Enter The amount"
                 ></EditText>
             <EditText
                 android:id="@+id/ifsc_code"
@@ -94,7 +95,7 @@
                 android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
-                android:text="Enter The amount"
+                android:hint="Enter The amount"
                 ></EditText>
             <EditText
                 android:id="@+id/account_holder_name"
@@ -107,7 +108,7 @@
                 android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
-                android:text="Enter The amount"
+                android:hint="Enter The amount"
                 ></EditText>
             <LinearLayout
                 android:layout_width="match_parent"

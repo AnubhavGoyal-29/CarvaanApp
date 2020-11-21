@@ -1,4 +1,4 @@
-package startup.carvaan.myapplication.ui;
+package startup.carvaan.myapplication;
 
 import android.content.Context;
 import android.view.View;
@@ -8,9 +8,6 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-
-import startup.carvaan.myapplication.R;
 
 public class ProgressButton {
 

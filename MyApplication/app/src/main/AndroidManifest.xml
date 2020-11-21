@@ -15,7 +15,6 @@
         tools:node="merge">
         <activity android:name=".ui.coins.aboutRci"></activity>
         <activity android:name=".ChartActivity" />
-        <activity android:name=".chartActivity" />
         <activity
             android:name=".ui.navbar.Helppage"
             android:label="@string/title_activity_helppage"
@@ -24,6 +23,7 @@
         <activity android:name=".ui.login.ForgotPassActivity" />
         <activity android:name=".ui.earn.Addactivity" />
         <activity android:name=".ui.payment.paymentActivity" />
+        <activity android:name=".ui.payment.payouts" />
         <activity android:name=".ui.about.AboutShare" />
         <activity
             android:name=".ui.mainActivity.MainActivity"

@@ -61,28 +61,7 @@ public class myshares extends Fragment {
             @Override
             protected void onBindViewHolder(PostViewHolder postViewHolder, int i, mysharemodel mysharemodel) {
                 postViewHolder.shareName.setText(user.getEmail());
-                List<String> list = new ArrayList<String>();
-                list.add(mysharemodel.getHoldings());
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list);
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                postViewHolder.spinner.setAdapter(arrayAdapter);
-                postViewHolder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if (parent.getItemAtPosition(position).equals("Select problem")) {
 
-                        } else {
-//                            item = parent.getItemAtPosition(position).toString();
-
-                        }
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-
-                    }
-                });
 
             }
         };
@@ -93,11 +72,10 @@ public class myshares extends Fragment {
     public class PostViewHolder extends RecyclerView.ViewHolder {
 
         private TextView shareName;
-        private Spinner spinner;
+        private TextView holdings;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             shareName=itemView.findViewById(R.id.sharename);
-
             
         }
     }
