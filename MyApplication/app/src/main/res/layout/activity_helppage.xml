@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Helppage"
+    tools:context=".ui.navbar.Helppage"
     android:background="#188F84">
     <LinearLayout
         android:layout_width="match_parent"

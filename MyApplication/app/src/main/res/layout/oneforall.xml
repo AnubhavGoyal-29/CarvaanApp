@@ -13,8 +13,8 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
-
-        android:elevation="10dp">
+        app:cardCornerRadius="20dp"
+        android:layout_margin="15dp">
 
         <LinearLayout
             android:id="@+id/textFile"
@@ -22,12 +22,44 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:padding="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:lines="1"
+                    android:padding="5dp"
+
+                    android:text="Title :"
+                    android:textColor="#FF533D78"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:autoSizeTextType="uniform"></TextView>
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:padding="7dp"
+
+                    android:text="gugirgfi hfufwsyd fdufwufdufsuyfwuyf sfduyfsyudfq"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    tools:autoSizeTextType="uniform"></TextView>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-android:layout_marginTop="10dp"
+                android:layout_marginTop="10dp"
                 android:padding="2dp">
 
                 <TextView
@@ -76,7 +108,7 @@ android:layout_marginTop="10dp"
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/videoplayer"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="250dp"
                 app:autoPlay="false"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
@@ -91,7 +123,7 @@ android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="22dp"
                 android:layout_marginRight="12dp"
                 android:layout_weight="2"
                 android:baselineAligned="false">
@@ -110,16 +142,17 @@ android:layout_marginTop="10dp"
                 <!--                    />-->
 
                 <TextView
+                    android:visibility="gone"
+                    android:id="@+id/intern"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="8dp"
-
                     android:layout_weight="1"
                     android:background="@drawable/uht"
                     android:gravity="center"
                     android:paddingTop="6dp"
                     android:paddingBottom="6dp"
-                    android:text="Need Employees"
+                    android:text="Apply for Intern"
                     android:textColor="#808080"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -127,6 +160,8 @@ android:layout_marginTop="10dp"
                     />
 
                 <TextView
+                    android:visibility="gone"
+                    android:id="@+id/freelancer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
@@ -135,7 +170,7 @@ android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:paddingTop="6dp"
                     android:paddingBottom="6dp"
-                    android:text="Need Intern"
+                    android:text="Do freelance"
                     android:textColor="#808080"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -144,6 +179,8 @@ android:layout_marginTop="10dp"
             </LinearLayout>
 
             <TextView
+                android:visibility="gone"
+                android:id="@+id/assistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -154,7 +191,7 @@ android:layout_marginTop="10dp"
                 android:paddingTop="6dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="6dp"
-                android:text="Need Freelancer"
+                android:text="provide feedback and assistance"
                 android:textColor="#808080"
 
                 android:textSize="15sp"
@@ -186,20 +223,22 @@ android:layout_marginTop="10dp"
 
                     android:orientation="horizontal"
                     android:padding="5dp">
-
-                    <ImageView
-                        android:id="@+id/like_icon"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/like_black" />
-
+                    <TextView
+                        android:id="@+id/likeButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Likes"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        tools:autoSizeTextType="uniform" />
                     <TextView
                         android:id="@+id/number_of_likes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:lines="1"
-                        android:text="Likes"
+                        android:text="20"
                         android:textColor="#000000"
                         android:textSize="15dp"
                         tools:autoSizeTextType="uniform" />
@@ -211,17 +250,6 @@ android:layout_marginTop="10dp"
                     android:layout_weight="3"
                     android:orientation="horizontal"
                     android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/number_of_comments"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="23"
-                        android:textSize="16sp"
-
-                        android:textStyle="bold" />
-
                     <TextView
                         android:id="@+id/comments"
                         android:layout_width="wrap_content"
@@ -232,6 +260,16 @@ android:layout_marginTop="10dp"
                         android:textColor="#000000"
                         android:textSize="15dp"
                         tools:autoSizeTextType="uniform" />
+                    <TextView
+                        android:id="@+id/number_of_comments"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="23"
+                        android:textSize="16sp"
+                        android:layout_marginLeft="10dp"
+                        android:textStyle="bold" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -240,19 +278,25 @@ android:layout_marginTop="10dp"
                     android:layout_weight="3"
                     android:orientation="horizontal"
                     android:padding="5dp">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/attchd" />
-
                     <TextView
-                        android:id="@+id/attachfile"
+                        android:visibility="gone"
+                        android:id="@+id/attachFile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:lines="1"
                         android:text="AttachFile"
+                        android:textColor="#000000"
+                        android:textSize="15dp"
+                        tools:autoSizeTextType="uniform" />
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/uploadFile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:lines="1"
+                        android:text="UploadFile"
                         android:textColor="#000000"
                         android:textSize="15dp"
                         tools:autoSizeTextType="uniform" />
@@ -285,15 +329,20 @@ android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp">
                 <EditText
-                    android:layout_width="match_parent"
+                    android:id="@+id/writeComment"
+                    android:layout_width="330dp"
                     android:layout_height="44dp"
                     android:hint="Write a Comment ...."
-                    android:layout_marginRight="20dp"
-                    android:paddingLeft="20dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginLeft="20dp"
                     android:background="@drawable/commn"
                     />
+                <Button
+                    android:id="@+id/commentButton"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/vsm_logo">
+                </Button>
             </LinearLayout>
 
 

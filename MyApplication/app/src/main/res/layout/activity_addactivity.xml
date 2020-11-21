@@ -5,7 +5,7 @@
     android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Addactivity">
+    tools:context=".ui.earn.Addactivity">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/addRecyclerView"
         android:scrollbars="vertical"

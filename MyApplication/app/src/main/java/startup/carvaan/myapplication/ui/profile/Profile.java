@@ -16,7 +16,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import startup.carvaan.myapplication.Addactivity;
+import startup.carvaan.myapplication.ui.earn.Addactivity;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.payment.paymentActivity;
 import startup.carvaan.myapplication.ui.user.User;

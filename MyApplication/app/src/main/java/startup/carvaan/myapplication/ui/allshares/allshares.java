@@ -67,7 +67,7 @@ public class allshares extends Fragment {
                 postViewHolder.text_view_progress.setText(allsharemodel.getGrowth());
                 postViewHolder.peopleinvested.setText(allsharemodel.getPeopleinvested());
                 postViewHolder.growth.setMax(100) ;//dummy max Val
-
+                postViewHolder.tag.setText(allsharemodel.getTag());
                 postViewHolder.growth.setProgress(Integer.valueOf(allsharemodel.getGrowth()));
 
                 postViewHolder.videoPlayer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
@@ -81,7 +81,7 @@ public class allshares extends Fragment {
                 postViewHolder.aboutShare.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        getContext().startActivity(new Intent(getContext(), AboutShare.class).putExtra("shareid",allsharemodel.getId()));
+                        getContext().startActivity(new Intent(getContext(), AboutShare.class).putExtra("shareid",allsharemodel.getId()).putExtra("name",allsharemodel.getCompanyname()));
                     }
                 });
             }
@@ -93,7 +93,7 @@ public class allshares extends Fragment {
     public class PostViewHolder extends RecyclerView.ViewHolder {
         private Button aboutShare;
         private YouTubePlayerView videoPlayer;
-        private TextView companyName,description,peopleinvested,text_view_progress;
+        private TextView companyName,description,peopleinvested,text_view_progress,tag;
         private ProgressBar growth;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -104,6 +104,7 @@ public class allshares extends Fragment {
             companyName=itemView.findViewById(R.id.companyName);
             videoPlayer=itemView.findViewById(R.id.videoplayer);
             aboutShare=itemView.findViewById(R.id.gotoshare);
+            tag=itemView.findViewById(R.id.tag);
         }
     }
     @Override

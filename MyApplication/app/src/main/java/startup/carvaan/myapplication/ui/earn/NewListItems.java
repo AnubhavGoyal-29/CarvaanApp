@@ -1,6 +1,4 @@
-package startup.carvaan.myapplication;
-
-import android.widget.TextView;
+package startup.carvaan.myapplication.ui.earn;
 
 public class NewListItems {
     String mBtnText;

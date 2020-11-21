@@ -1,4 +1,4 @@
-package startup.carvaan.myapplication.ui;
+package startup.carvaan.myapplication.ui.earn;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,7 +19,6 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 import java.util.List;
 
-import startup.carvaan.myapplication.NewListItems;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.user.User;
 
@@ -39,7 +38,6 @@ public class NewAdaptar extends RecyclerView.Adapter<NewAdaptar.ViewHolder> impl
         this.mInflater = LayoutInflater.from(mContext);
         this.context=mContext;
     }
-
 
     @NonNull
     @Override

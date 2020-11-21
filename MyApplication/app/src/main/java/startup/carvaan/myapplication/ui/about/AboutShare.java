@@ -9,11 +9,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +29,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -45,7 +47,10 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
@@ -59,25 +64,29 @@ public class
 
 
 AboutShare extends AppCompatActivity {
-    Uri pdfUri;
+    private String path;
+    private Uri pdfUri;
     private BottomSheetBehavior bottomSheetBehavior;
     private TextView textView;
     private int a;
     private static final String LOG_TAG = AboutShare.class.getSimpleName();
     private FirebaseFirestore ff;
     private ImageView stonksimage;
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-    FirestoreRecyclerAdapter adapter;
+    private Button add_button;
+    private Intent myFileIntent;
     private List<PostModal> tech_list;
     private RecyclerView shareRecyclerView;
     private BottomNavigationView bottomNavigationView;
-    String shareid;
+    private String shareid,name;
     private TextView coins;
     public static JCVideoPlayerStandard current_vv;
-    User user = new User(); 
-    Button add_button;
-    Intent myFileIntent;
+    private User user = new User();
+
+
+    //firebase
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private FirestoreRecyclerAdapter adapter;
     private FirebaseStorage firebaseStorage;
 
     @SuppressLint("WrongConstant")
@@ -87,54 +96,144 @@ AboutShare extends AppCompatActivity {
         setContentView(R.layout.activity_about_share);
         firebaseStorage=FirebaseStorage.getInstance();
         getSupportActionBar().setElevation(0);
-        getSupportActionBar().setDisplayOptions(android.app.ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.abs_layout);
-        View view = getSupportActionBar().getCustomView();
         ff = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         shareRecyclerView = findViewById(R.id.shareRecyclerView);
         final Bundle bundle = getIntent().getExtras();
         shareid = bundle.getString("shareid");
+        name=bundle.getString("name");
+        getSupportActionBar().setTitle(name);
         bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(navlistner);
         ff = FirebaseFirestore.getInstance();
         tech_list = new ArrayList<>();
+
+
+        //firebase recycler adapter
         Query query = ff.collection("shares").document(shareid).collection("Bloging");
         FirestoreRecyclerOptions<PostModal> options = new FirestoreRecyclerOptions.Builder<PostModal>().setQuery(query, PostModal.class).build();
         adapter = new FirestoreRecyclerAdapter<PostModal, PostViewHolder>(options) {
 
+
+            // bind holder all work is working from here
             @Override
             protected void onBindViewHolder(@NonNull final PostViewHolder postViewHolder, int i, @NonNull final PostModal postModal) {
+                postViewHolder.title.setText(postModal.getTitle());
+                postViewHolder.description.setText(postModal.getDescription());
+                Map<String, Boolean> userLiking=new HashMap<>();
+                userLiking.putAll(postModal.getUsersLiking());
+                postViewHolder.nooflikes.setText(String.valueOf(userLiking.size()));
+                if(userLiking.containsKey(user.getUser().getUid()))
+                    postViewHolder.likebutton.setTextColor(R.color.progress_color);
+                postViewHolder.likebutton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(AboutShare.this,"you liked this post",Toast.LENGTH_LONG).show();
+                        userLiking.put(user.getUser().getUid(),Boolean.TRUE);
+                        ff.collection("shares")
+                                .document(shareid)
+                                .collection("Bloging")
+                                .document(postModal.getId())
+                                .update("UsersLiking",userLiking).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                            }
+                        });
+                    }
+                });
+                Map<String,String>comments=new HashMap<>();
+                comments.putAll(postModal.getComments());
+                postViewHolder.noofcomments.setText(String.valueOf(comments.size()));
+                if(postModal.getNeedAsistance())
+                    postViewHolder.assistance.setVisibility(View.VISIBLE);
+                if(postModal.getNeedIntern())
+                    postViewHolder.intern.setVisibility(View.VISIBLE);
+                if(postModal.getNeedFreelancer())
+                    postViewHolder.freelancer.setVisibility(View.VISIBLE);
+
                 postViewHolder.comments.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         comments comments=new comments();
                         Bundle bundle1 = new Bundle();
                         bundle1.putString("shareid", shareid);
+                        bundle1.putString("blogid",postModal.getId());
                         comments.setArguments(bundle1);
                         comments.show(getSupportFragmentManager(),"comments");
                     }
                 });
-                postViewHolder.attachfile.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(ContextCompat.checkSelfPermission
-                                (AboutShare.this,Manifest.permission.READ_EXTERNAL_STORAGE)
-                                ==PackageManager.PERMISSION_GRANTED){
-                            selectPdf();
+                if(pdfUri==null){
+                    postViewHolder.attachfile.setVisibility(View.VISIBLE);
+                    postViewHolder.attachfile.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(ContextCompat.checkSelfPermission
+                                    (AboutShare.this,Manifest.permission.READ_EXTERNAL_STORAGE)
+                                    ==PackageManager.PERMISSION_GRANTED){
+                                selectPdf();
+                            }
+                            else{
+                                ActivityCompat.requestPermissions(AboutShare.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},9);
+                            }
                         }
-                        else{
-                            ActivityCompat.requestPermissions(AboutShare.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},9);
+                    });
+                }
+                else{
+                    postViewHolder.attachfile.setVisibility(View.GONE);
+                    postViewHolder.uploadFile.setVisibility(View.VISIBLE);
+                    postViewHolder.uploadFile.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            postViewHolder.uploadFile.setVisibility(View.GONE);
+                            postViewHolder.attachfile.setVisibility(View.VISIBLE);
+                            String path=uploadFile(shareid,postModal.getId(),pdfUri);
+                            postViewHolder.uploadFile.setVisibility(View.GONE);
+                            postViewHolder.attachfile.setVisibility(View.VISIBLE);
+                            Map<String ,String > files=new HashMap<>();
+                            files.putAll(postModal.getFiles());
+                            files.put(user.getUser().getUid(),path);
+                            ff.collection("shares")
+                                    .document(shareid)
+                                    .collection("Bloging")
+                                    .document(postModal.getId())
+                                    .update("files",files).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    postViewHolder.uploadFile.setVisibility(View.GONE);
+                                    postViewHolder.attachfile.setVisibility(View.VISIBLE);
+                                }
+                            });
                         }
-                    }
-                });
+                    });
+                }
                 postViewHolder.videoPlayer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
                     @Override
                     public void onReady(@NonNull YouTubePlayer youTubePlayer) {
                         String videoId = postModal.getUrl();
                         youTubePlayer.cueVideo(videoId,0);
 
+                    }
+                });
+
+                postViewHolder.commentButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String r=UUID.randomUUID().toString();
+                        Map<String,String>comments=new HashMap<>();
+                        comments.putAll(postModal.getComments());
+                        comments.put(user.getUser().getUid()+"@"+r,postViewHolder.writeComment.getText().toString());
+                        ff.collection("shares")
+                                .document(shareid)
+                                .collection("Bloging")
+                                .document(postModal.getId())
+                                .update("comments",comments).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                            }
+                        });
                     }
                 });
             }
@@ -150,40 +249,30 @@ AboutShare extends AppCompatActivity {
         };
         shareRecyclerView.setLayoutManager(new LinearLayoutManager(AboutShare.this));
         shareRecyclerView.setAdapter(adapter);
-
-//        View bottomsheet = findViewById(R.id.bottomsheet);
-//        bottomSheetBehavior = BottomSheetBehavior.from(bottomsheet);
-//        //bottomSheetBehavior.setHideable(false);
-//        stonksimage = bottomsheet.findViewById(R.id.stonksimage);
-//        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-//            @Override
-//            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-//                if (newState == BottomSheetBehavior.STATE_EXPANDED) {
-//                    stonksimage.setRotation(180f);
-//                    bottomNavigationView.setVisibility(View.GONE);
-//                } else {
-//                    stonksimage.setRotation(0f);
-//                    bottomNavigationView.setVisibility(View.VISIBLE);
-//                }
-//            }
-//
-//            @Override
-//            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-//
-//            }
-//        });
-
     }
+
     public class PostViewHolder extends RecyclerView.ViewHolder {
-        private TextView attachfile;
+        private TextView attachfile,title,description,likebutton,nooflikes,noofcomments,intern,freelancer,assistance,uploadFile;
         private YouTubePlayerView videoPlayer;
         private TextView comments;
+        private Button commentButton;
+        private EditText writeComment;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             comments=itemView.findViewById(R.id.comments);
             videoPlayer=itemView.findViewById(R.id.videoplayer);
-            attachfile=itemView.findViewById(R.id.attachfile);
-
+            attachfile=itemView.findViewById(R.id.attachFile);
+            title=itemView.findViewById(R.id.title);
+            description=itemView.findViewById(R.id.description);
+            likebutton=itemView.findViewById(R.id.likeButton);
+            nooflikes=itemView.findViewById(R.id.number_of_likes);
+            noofcomments=itemView.findViewById(R.id.number_of_comments);
+            intern=itemView.findViewById(R.id.intern);
+            freelancer=itemView.findViewById(R.id.freelancer);
+            assistance=itemView.findViewById(R.id.assistance);
+            uploadFile=itemView.findViewById(R.id.uploadFile);
+            commentButton=itemView.findViewById(R.id.commentButton);
+            writeComment=itemView.findViewById(R.id.writeComment);
         }
     }
 
@@ -241,20 +330,25 @@ AboutShare extends AppCompatActivity {
             return false;
         }
     };
-    void uploadFile(Uri uri){
+    public String uploadFile(String shareid,String blogid,Uri uri){
         StorageReference storageReference=firebaseStorage.getReference();
-        StorageReference finalPath=storageReference.child(UUID.randomUUID().toString()).child("files"+UUID.randomUUID().toString());
-        finalPath.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+        StorageReference finalPath=storageReference.child(shareid).child(blogid).child(user.getUser().getUid());
+        finalPath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                String url= String.valueOf(finalPath.getDownloadUrl());
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                pdfUri=null;
+                Toast.makeText(AboutShare.this,"successfully uploaded",Toast.LENGTH_LONG).show();
+                finalPath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                         path = uri.toString();
+                    }
+                });
 
             }
         });
+
+        return path;
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -262,10 +356,8 @@ AboutShare extends AppCompatActivity {
         switch (requestCode) {
             case 100:
                 if (resultCode == RESULT_OK&&data!=null) {
-
                     // Get the Uri of the selected file
                     pdfUri = data.getData();
-                    uploadFile(pdfUri);
 
                 }
                 break;
@@ -273,14 +365,6 @@ AboutShare extends AppCompatActivity {
                 throw new IllegalStateException("Unexpected value: " + requestCode);
         }
     }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.coin_menu, menu);
-        return true;
-    }
-
     @Override
     public void onBackPressed() {
         adapter.notifyDataSetChanged();

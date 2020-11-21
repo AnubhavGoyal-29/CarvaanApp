@@ -97,7 +97,7 @@ public class myshares extends Fragment {
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
             shareName=itemView.findViewById(R.id.sharename);
-            spinner=itemView.findViewById(R.id.spinhold);
+
             
         }
     }

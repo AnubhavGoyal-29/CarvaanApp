@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentRecycler"
         android:layout_width="match_parent"
         android:layout_height="530dp"
         tools:listitem="@layout/single_comment">
@@ -14,16 +15,21 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp">
         <EditText
-            android:layout_width="match_parent"
+            android:id="@+id/writeComment"
+            android:layout_width="300dp"
             android:layout_height="44dp"
             android:hint="Write a Comment ...."
-            android:layout_marginRight="20dp"
-            android:paddingLeft="20dp"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="20dp"
             android:background="@drawable/commn"
-            android:layout_marginBottom="0dp"
             />
+        <Button
+            android:id="@+id/commentButton"
+            android:layout_marginTop="12dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/vsm_logo">
+        </Button>
     </LinearLayout>
+
 
 </LinearLayout>
