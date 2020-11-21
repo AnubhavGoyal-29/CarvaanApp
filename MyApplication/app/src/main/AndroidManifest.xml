@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:node="merge">
+        <activity android:name=".ChartActivity"></activity>
         <activity android:name=".chartActivity" />
         <activity
             android:name=".Helppage"
