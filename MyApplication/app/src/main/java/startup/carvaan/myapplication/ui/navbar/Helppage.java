@@ -37,7 +37,7 @@ private int count=0;
                 count++;
                 if(count%2==1)
                 {
-                        downarrow1.setImageResource(R.drawable.uparrowr);
+                        downarrow1.setImageResource(R.drawable.uparu);
                         invest.setTextColor(Color.parseColor("#FFFFFF"));
                         howtoinvest.setBackgroundColor(Color.parseColor("#000000"));
                         description1.setVisibility(View.VISIBLE);
