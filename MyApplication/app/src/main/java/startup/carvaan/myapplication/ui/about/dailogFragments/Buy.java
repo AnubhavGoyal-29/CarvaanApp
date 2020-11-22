@@ -44,9 +44,9 @@ public class Buy extends DialogFragment {
             @Override
             public void onClick(View v) {
 
-                int Nos=Integer.valueOf(nos.getText().toString());
-                int totalPrice=Nos*Integer.valueOf(shareDetails.getBuyingPrice());
-                int credits=Integer.valueOf(user.getEarned())+Integer.valueOf(user.getWinnings());
+                Double Nos=Double.valueOf(nos.getText().toString());
+                Double totalPrice= Double.valueOf(Nos*Double.valueOf(shareDetails.getBuyingPrice()));
+                Double credits=Double.valueOf(user.getEarned())+Double.valueOf(user.getWinnings());
                 if(credits>=totalPrice){
                     final String[] priceHolding = {null};
                     final String[] holdings={null};
@@ -78,11 +78,11 @@ public class Buy extends DialogFragment {
                                         .document(shareId).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        if(totalPrice<=Integer.valueOf(user.getEarned()))
-                                            user.removeEarned(totalPrice);
+                                        if(totalPrice<=Double.valueOf(user.getEarned()))
+                                            user.removeEarned(Double.valueOf(totalPrice));
                                         else{
-                                            user.removeWinnings(totalPrice-Integer.valueOf(user.getEarned()));
-                                            user.removeEarned(Integer.valueOf(user.getEarned()));
+                                            user.removeWinnings(Double.valueOf(totalPrice-Double.valueOf(user.getEarned())));
+                                            user.removeEarned(Double.valueOf(Double.valueOf(user.getEarned())));
                                         }
                                         dialog_buy_success dialog_buy_success=new dialog_buy_success();
                                         dialog_buy_success.show(getChildFragmentManager(), "Dialog_Buy");
@@ -90,21 +90,21 @@ public class Buy extends DialogFragment {
                                 });
                             }
                             else{
-                                if(Integer.valueOf(priceHolding[0])==Integer.valueOf(shareDetails.getBuyingPrice())|| Integer.valueOf(holdings[0])==0){
+                                if(Integer.valueOf(priceHolding[0])==Integer.valueOf(shareDetails.getBuyingPrice())|| Double.valueOf(holdings[0])==0){
                                     String lastPriceHolding=String.valueOf(shareDetails.getBuyingPrice());
                                     ff.collection("Users")
                                             .document(user.getUser().getUid())
                                             .collection("myshares")
                                             .document(shareId)
-                                            .update("holdings",String.valueOf(Integer.valueOf(mysharemodel.getHoldings())+Nos),
+                                            .update("holdings",String.valueOf(Double.valueOf(mysharemodel.getHoldings())+Nos),
                                                     "priceHoldings",lastPriceHolding).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            if(totalPrice<=Integer.valueOf(user.getEarned()))
-                                                user.removeEarned(totalPrice);
+                                            if(totalPrice<=Double.valueOf(user.getEarned()))
+                                                user.removeEarned(Double.valueOf(totalPrice));
                                             else{
-                                                user.removeWinnings(totalPrice-Integer.valueOf(user.getEarned()));
-                                                user.removeEarned(Integer.valueOf(user.getEarned()));
+                                                user.removeWinnings(Double.valueOf(totalPrice-Double.valueOf(user.getEarned())));
+                                                user.removeEarned(Double.valueOf(Double.valueOf(user.getEarned())));
                                             }
                                             dialog_buy_success dialog_buy_success=new dialog_buy_success();
                                             dialog_buy_success.show(getChildFragmentManager(), "Dialog_Buy");

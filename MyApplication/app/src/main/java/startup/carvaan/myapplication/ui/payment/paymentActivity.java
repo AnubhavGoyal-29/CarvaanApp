@@ -79,7 +79,7 @@ public class paymentActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==RESULT_OK){
-            user.addCash(Integer.valueOf(orderAmount.getText().toString()));
+            user.addCash(Double.valueOf(orderAmount.getText().toString()));
             Toast.makeText(paymentActivity.this,"done",Toast.LENGTH_LONG).show();
         }
         else{

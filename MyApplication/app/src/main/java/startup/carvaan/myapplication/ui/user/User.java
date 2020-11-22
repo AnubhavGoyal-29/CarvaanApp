@@ -150,27 +150,34 @@ public class User {
         fauth.signOut();
     }
 
-    public void addEarned(float a){
+    public void addEarned(Double a){
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
-                .document("coins").update("earned",String.valueOf(Integer.valueOf(earned)+Integer.valueOf((int) a)));
+                .document("coins").update("earned",String.valueOf(Double.valueOf(earned)+Double.valueOf(a)));
     }
-     public void addWinnings(float a){
+     public void addWinnings(Double a){
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
-                .document("coins").update("winnings",String.valueOf(Integer.valueOf(winnings)+Integer.valueOf((int) a)));
+                .document("coins").update("winnings",String.valueOf(Double.valueOf(winnings)+Double.valueOf(a)));
     }
-    public void removeEarned(float a){
+    public void removeEarned(Double a){
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
-                .document("coins").update("earned",String.valueOf(Integer.valueOf(earned)-Integer.valueOf((int) a)));
+                .document("coins").update("earned",String.valueOf(Double.valueOf(earned)-Double.valueOf((a))));
     }
-    public void removeWinnings(float a){
+    public void removeWinnings(Double a){
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
-                .document("coins").update("winnings",String.valueOf(Integer.valueOf(winnings)-Integer.valueOf((int) a)));
+                .document("coins").update("winnings",String.valueOf(Double.valueOf(winnings)-Double.valueOf(a)));
     }
-    public void addCash(float a){
+    public void addCash(Double a){
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
-                .document("cash").update("added",String.valueOf(Integer.valueOf(getAdded())+a));
+                .document("cash").update("added",String.valueOf(Double.valueOf(getAdded())+a));
     }
-
+    public void removeCash(Double a){
+        ff.collection("Users").document(user.getUid()).collection("CreditDetails")
+                .document("cash").update("added",String.valueOf(Double.valueOf(getAdded())-a));
+    }
+    public void addRedeem(Double a){
+        ff.collection("Users").document(user.getUid()).collection("CreditDetails")
+                .document("cash").update("redeemed",String.valueOf(Double.valueOf(getRedeemed())+a));
+    }
 
 }
 

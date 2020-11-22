@@ -27,14 +27,24 @@
             android:hint="Enter coins"
             />
         <TextView
-            android:id="@+id/convertedMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:layout_marginTop="20dp"
-            android:text="Rs 0"
+            android:text="Rs"
+            android:textSize="40dp" />
+        <TextView
+            android:id="@+id/convertedMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="20dp"
+            android:text="0"
             android:textSize="40dp" />
 
     </LinearLayout>

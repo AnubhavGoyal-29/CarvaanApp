@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:node="merge">
-        <activity android:name=".ui.coins.aboutRci"></activity>
+        <activity android:name=".BuyCoin"></activity>
+        <activity android:name=".ui.coins.aboutRci" />
         <activity android:name=".ChartActivity" />
         <activity
             android:name=".ui.navbar.Helppage"

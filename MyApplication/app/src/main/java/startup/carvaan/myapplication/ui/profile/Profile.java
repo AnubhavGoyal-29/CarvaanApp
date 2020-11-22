@@ -16,6 +16,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import startup.carvaan.myapplication.BuyCoin;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.earn.Addactivity;
 import startup.carvaan.myapplication.ui.payment.paymentActivity;
@@ -49,6 +50,13 @@ public class Profile extends Fragment {
         ff=FirebaseFirestore.getInstance();
 
         user=new User();
+        buyCoins=view.findViewById(R.id.buyCoinsButton);
+        buyCoins.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), BuyCoin.class));
+            }
+        });
         earned=view.findViewById(R.id.coinsEarnedTextView);
         earned.setText(user.getEarned());
         winnins=view.findViewById(R.id.winningsTextView);

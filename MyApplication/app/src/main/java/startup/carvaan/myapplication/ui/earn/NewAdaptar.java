@@ -76,13 +76,13 @@ public class NewAdaptar extends RecyclerView.Adapter<NewAdaptar.ViewHolder> impl
 
     @Override
     public void onRewarded(RewardItem reward) {
-        user.addEarned(reward.getAmount());
+        user.addEarned(Double.valueOf(reward.getAmount()));
         // Reward the user.
     }
 
     @Override
     public void onRewardedVideoAdLeftApplication() {
-        user.addEarned(5*3);
+        user.addEarned(Double.valueOf(5*3));
     }
 
     @Override
