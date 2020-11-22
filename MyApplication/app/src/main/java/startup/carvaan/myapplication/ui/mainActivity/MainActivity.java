@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
 
+import io.paperdb.Paper;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.allshares.allshares;
 import startup.carvaan.myapplication.ui.login.LoginActivity;
@@ -224,5 +225,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mView.mSecondCurveControlPoint2.set(mView.mSecondCurveEndPoint.x - (mView.CURVE_CIRCLE_RADIUS + (mView.CURVE_CIRCLE_RADIUS / 4)), mView.mSecondCurveEndPoint.y);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(!Paper.book().contains("isFirst")){
+            Paper.book().write("isFirst",true);
+            startActivity(new Intent(MainActivity.this, Helppage.class));
+        }
+    }
 }

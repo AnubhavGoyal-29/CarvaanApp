@@ -18,6 +18,7 @@
         <activity android:name=".ChartActivity" />
         <activity
             android:name=".ui.navbar.Helppage"
+            android:parentActivityName=".ui.mainActivity.MainActivity"
             android:label="@string/title_activity_helppage"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity android:name=".ui.start.IntroSliderActivity" />
