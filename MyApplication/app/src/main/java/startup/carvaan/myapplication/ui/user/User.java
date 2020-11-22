@@ -162,6 +162,10 @@ public class User {
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
                 .document("coins").update("earned",String.valueOf(Integer.valueOf(earned)-Integer.valueOf((int) a)));
     }
+    public void removeWinnings(float a){
+        ff.collection("Users").document(user.getUid()).collection("CreditDetails")
+                .document("coins").update("winnings",String.valueOf(Integer.valueOf(winnings)-Integer.valueOf((int) a)));
+    }
     public void addCash(float a){
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
                 .document("cash").update("added",String.valueOf(Integer.valueOf(getAdded())+a));

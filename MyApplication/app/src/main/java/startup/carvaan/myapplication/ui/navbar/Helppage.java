@@ -1,20 +1,18 @@
 package startup.carvaan.myapplication.ui.navbar;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import startup.carvaan.myapplication.R;
-
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import startup.carvaan.myapplication.R;
+import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 public class Helppage extends AppCompatActivity {
 private ImageView downarrow1,downarrow2,downarrow3;
@@ -51,7 +49,11 @@ private int count=0;
                 }
             }
         });
+    }
 
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        startActivity(new Intent(Helppage.this, MainActivity.class));
     }
 }

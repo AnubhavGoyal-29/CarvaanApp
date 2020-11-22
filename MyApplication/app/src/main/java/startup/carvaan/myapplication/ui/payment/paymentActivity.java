@@ -2,6 +2,8 @@ package startup.carvaan.myapplication.ui.payment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,24 +24,48 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import startup.carvaan.myapplication.R;
+import startup.carvaan.myapplication.ui.coins.coinModal;
 import startup.carvaan.myapplication.ui.user.User;
 
 public class paymentActivity extends AppCompatActivity {
 
     private static final String TAG = "Anubhav";
     private EditText orderAmount;
-    private TextView orderid;
+    private TextView coins;
     private Button payAmount;
     User user=new User();
+    coinModal coinModal=new coinModal();
     CompositeDisposable compositeDisposable=new CompositeDisposable();
     ICloudFunction iCloudFunction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-
+        coins=findViewById(R.id.coins);
         iCloudFunction=RetrofitClient.getInstance().create(ICloudFunction.class);
         orderAmount=findViewById(R.id.amount);
+        orderAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length()==0) {
+                    coins.setText("0 coins");
+                }
+                else{
+                    coins.setText(String.valueOf(Integer.valueOf((int) (Integer.valueOf(orderAmount.getText().toString())/Double.valueOf(coinModal.getValue()))))+" coins");
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         payAmount=findViewById(R.id.pay);
         payAmount.setOnClickListener(new View.OnClickListener() {
             @Override

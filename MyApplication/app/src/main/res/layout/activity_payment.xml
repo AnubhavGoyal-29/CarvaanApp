@@ -36,27 +36,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:gravity="center"
                 android:textStyle="bold"
-                android:layout_marginLeft="30dp"
-
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="30dp"
-
-
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="30dp"
-                android:text="coins you will get:"
-
+                android:text="coins you can buy:"
                 android:textSize="30dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:gravity="center"
                 android:textStyle="bold"
-
-                android:text="345"
+                android:id="@+id/coins"
+                android:text="0"
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="30dp"
                 android:textSize="30dp" />

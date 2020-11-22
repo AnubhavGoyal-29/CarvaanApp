@@ -29,7 +29,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -39,7 +38,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -50,7 +48,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
@@ -64,8 +61,8 @@ public class
 
 
 AboutShare extends AppCompatActivity {
-    private String path;
-    private Uri pdfUri;
+    private String path=null;
+    private Uri pdfUri=null;
     private BottomSheetBehavior bottomSheetBehavior;
     private TextView textView;
     private int a;
@@ -166,6 +163,7 @@ AboutShare extends AppCompatActivity {
                 });
                 if(pdfUri==null){
                     postViewHolder.attachfile.setVisibility(View.VISIBLE);
+                    postViewHolder.uploadFile.setVisibility(View.GONE);
                     Map<String ,String > files=new HashMap<>();
                     files.putAll(postModal.getFiles());
                     postViewHolder.nooffiles.setText(String.valueOf(files.size()));
@@ -183,33 +181,34 @@ AboutShare extends AppCompatActivity {
                         }
                     });
                 }
-                else{
+                if(pdfUri!=null){
                     postViewHolder.attachfile.setVisibility(View.GONE);
                     postViewHolder.uploadFile.setVisibility(View.VISIBLE);
                     postViewHolder.uploadFile.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            postViewHolder.uploadFile.setVisibility(View.GONE);
-                            postViewHolder.attachfile.setVisibility(View.VISIBLE);
-                            String path=uploadFile(shareid,postModal.getId(),pdfUri);
-                            postViewHolder.uploadFile.setVisibility(View.GONE);
-                            postViewHolder.attachfile.setVisibility(View.VISIBLE);
+                            uploadFile(shareid,postModal.getId(),pdfUri);
                             Map<String ,String > files=new HashMap<>();
                             files.putAll(postModal.getFiles());
-
                             files.put(user.getUser().getUid(),path);
-                            postViewHolder.nooffiles.setText(String.valueOf(files.size()));
-                            ff.collection("shares")
-                                    .document(shareid)
-                                    .collection("Bloging")
-                                    .document(postModal.getId())
-                                    .update("files",files).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    postViewHolder.uploadFile.setVisibility(View.GONE);
-                                    postViewHolder.attachfile.setVisibility(View.VISIBLE);
-                                }
-                            });
+                            if(path==null){
+                                Toast.makeText(AboutShare.this,"files does not uploaded successfully please try again",Toast.LENGTH_LONG).show();
+                            }
+                            else{
+                                ff.collection("shares")
+                                        .document(shareid)
+                                        .collection("Bloging")
+                                        .document(postModal.getId())
+                                        .update("files",files).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        pdfUri=null;
+                                        Toast.makeText(AboutShare.this,"file successfully uploaded",Toast.LENGTH_LONG).show();
+                                        postViewHolder.uploadFile.setVisibility(View.GONE);
+                                        postViewHolder.attachfile.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                            }
                         }
                     });
                 }
@@ -228,7 +227,7 @@ AboutShare extends AppCompatActivity {
                         String r=UUID.randomUUID().toString();
                         Map<String,String>comments=new HashMap<>();
                         comments.putAll(postModal.getComments());
-                        comments.put(user.getUser().getUid()+"@"+r,postViewHolder.writeComment.getText().toString());
+                        comments.put(user.getDisplayName()+"//"+r,postViewHolder.writeComment.getText().toString());
                         ff.collection("shares")
                                 .document(shareid)
                                 .collection("Bloging")
@@ -337,25 +336,20 @@ AboutShare extends AppCompatActivity {
             return false;
         }
     };
-    public String uploadFile(String shareid,String blogid,Uri uri){
+    public void uploadFile(String shareid,String blogid,Uri uri){
         StorageReference storageReference=firebaseStorage.getReference();
         StorageReference finalPath=storageReference.child(shareid).child(blogid).child(user.getUser().getUid());
         finalPath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                pdfUri=null;
-                Toast.makeText(AboutShare.this,"successfully uploaded",Toast.LENGTH_LONG).show();
                 finalPath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
                          path = uri.toString();
                     }
                 });
-
             }
         });
-
-        return path;
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

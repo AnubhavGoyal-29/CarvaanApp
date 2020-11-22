@@ -34,7 +34,7 @@
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:layout_marginTop="20dp"
-            android:text="Rs 1500"
+            android:text="Rs 0"
             android:textSize="40dp" />
 
     </LinearLayout>

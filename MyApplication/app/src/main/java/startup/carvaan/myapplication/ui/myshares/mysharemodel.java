@@ -1,7 +1,7 @@
 package startup.carvaan.myapplication.ui.myshares;
 
 public class mysharemodel {
-    private String holdings,lastBuyingPrice;
+    private String holdings,priceHoldings;
 
     public String getHoldings() {
         return holdings;
@@ -11,17 +11,17 @@ public class mysharemodel {
         this.holdings = holdings;
     }
 
-    public String getLastBuyingPrice() {
-        return lastBuyingPrice;
+    public String getPriceHoldings() {
+        return priceHoldings;
     }
 
-    public void setLastBuyingPrice(String lastBuyingPrice) {
-        this.lastBuyingPrice = lastBuyingPrice;
+    public void setPriceHoldings(String priceHoldings) {
+        this.priceHoldings = priceHoldings;
     }
 
-    public mysharemodel(String holdings, String lastBuyingPrice) {
+    public mysharemodel(String holdings, String priceHoldings) {
         this.holdings = holdings;
-        this.lastBuyingPrice = lastBuyingPrice;
+        this.priceHoldings = priceHoldings;
     }
 
     public mysharemodel() {

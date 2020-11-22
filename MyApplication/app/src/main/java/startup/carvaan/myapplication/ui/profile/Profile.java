@@ -27,7 +27,7 @@ import startup.carvaan.myapplication.ui.user.User;
  */
 public class Profile extends Fragment {
     private TextView earned,winnins,added,redeemed;
-    private Button coinEarn,redeemCoin,addCash,buyCoins,withdrawl;
+    private Button coinEarn,redeemCoin,addCash,buyCoins;
     private User user;
     private FirebaseFirestore ff;
     public Profile()
@@ -64,13 +64,6 @@ public class Profile extends Fragment {
                 startActivity(new Intent(getContext(), payouts.class));
             }
         });
-        withdrawl=view.findViewById(R.id.withdrawButton);
-        withdrawl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), payouts.class));
-            }
-        });
         buyCoins=view.findViewById(R.id.buyCoinsButton);
         addCash=view.findViewById(R.id.addCashButton);
         addCash.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +95,7 @@ public class Profile extends Fragment {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 added.setText("Cash added   "+value.getString("added"));
-                redeemed.setText("Redeemed cash  "+value.getString("redeemed"));
+                redeemed.setText(" "+value.getString("redeemed"));
             }
         });
         return view;

@@ -83,12 +83,12 @@ public class payouts extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length()==0){
-                    convertedMoney.setText("0");
+                    convertedMoney.setText("Rs 0");
 
                 }
                 else{
                     int a=Integer.valueOf(coins.getText().toString());
-                    convertedMoney.setText(String.valueOf(a*Double.valueOf(rci[0])));
+                    convertedMoney.setText("Rs"+String.valueOf(a*Double.valueOf(rci[0])));
                 }
             }
 

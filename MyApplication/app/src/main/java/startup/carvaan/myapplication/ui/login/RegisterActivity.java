@@ -29,9 +29,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import startup.carvaan.myapplication.R;
+import io.paperdb.Paper;
 import startup.carvaan.myapplication.ProgressButton;
+import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
+import startup.carvaan.myapplication.ui.navbar.Helppage;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextInputEditText user_name,display_name;
@@ -211,7 +213,15 @@ public class RegisterActivity extends AppCompatActivity {
                                             document("cash").set(cash).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                            if(Paper.book().contains("isFirst")){
+                                                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                            }
+                                            else{
+                                                Paper.book().write("isFirst",true);
+                                                startActivity(new Intent(RegisterActivity.this, Helppage.class));
+                                                finish();
+                                            }
+
                                         }
                                     });
                                 }
