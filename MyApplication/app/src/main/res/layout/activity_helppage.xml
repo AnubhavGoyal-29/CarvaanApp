@@ -18,10 +18,10 @@
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="220dp"
-
+android:id="@+id/pict"
        android:gravity="bottom|center"
        android:background="@drawable/ty"
-       >
+       android:orientation="vertical">
 
    </LinearLayout>
      <LinearLayout
@@ -314,8 +314,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="15dp"
+          android:visibility="gone"
 
             android:id="@+id/description2"
             android:orientation="vertical">
@@ -327,7 +328,7 @@
                 android:text="• Invest coins in different shares when ever a share is newly listed or is growing rapidly
 "
 
-                android:textSize="17dp"
+                android:textSize="15sp"
                 android:textColor="#FFFFFF"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -335,7 +336,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="8dp"
                 android:layout_height="wrap_content"
-                android:text="• If a startup stops growing sell its share and invest to other share and get "
+                android:text="• If a startup stops growing sell its share and after selling you get coins from them So you either invest to other share from the coins. "
 
                 android:textSize="15dp"
                 android:textColor="#FFFFFF"/>
@@ -346,6 +347,17 @@
                 android:layout_marginTop="8dp"
                 android:layout_height="wrap_content"
                 android:text="• Try to sell your holding of a particular share when you need money for personal use otherwise let them invested."
+
+                android:textSize="15dp"
+                android:textColor="#FFFFFF"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:text="• As a UG student try to grab opportunities like internships and freelancing as it will be your best benefit."
 
                 android:textSize="15dp"
                 android:textColor="#FFFFFF"/>
@@ -353,32 +365,75 @@
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
-                android:text="• Watch more and more ads and use ads to earn a lot."
+                android:text=" 1.How to get real money from coins ?"
+                android:textStyle="bold"
+                android:textSize="17dp"
+                android:textColor="#FFFFFF"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:text="• You can get real money by redeem coins.First you go in coin section where you see how much you get for how many coins then click on redeem button.Then a page comes then enter your upi id or your bank details or enter the amount of coins you want to get money for and you got your money in 2-3 days in your account."
 
-
+                android:layout_marginTop="8dp"
                 android:textSize="15dp"
                 android:textColor="#FFFFFF"/>
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="18dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="8dp"
                 android:layout_height="wrap_content"
-                android:text="• If a startup stops growing sell its share and invest to other share and get "
+                android:text="• You can also redeem coins by going in your profile section and then click on the redeem button in winnings section."
 
+                android:layout_marginTop="8dp"
                 android:textSize="15dp"
                 android:textColor="#FFFFFF"/>
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="18dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
-                android:text="• Try to sell your holding of a particular share when you need money for personal use otherwise let them invested."
+                android:text=" 2.How to get more coins ?"
+                android:textStyle="bold"
+                android:textSize="17dp"
+                android:textColor="#FFFFFF"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:text="• Watch more and more ads and use ads to earn a lot of coins."
 
+                android:layout_marginTop="8dp"
                 android:textSize="15dp"
                 android:textColor="#FFFFFF"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:text="• You can get coins by selling your shares. "
+
+                android:layout_marginTop="8dp"
+                android:textSize="15dp"
+                android:textColor="#FFFFFF"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:text="• You can also get coins from the real money .First add cash by going in Your profile section and then click on add cash button and then a pages comes then enter the amount you want to add.Then go to Buy coin option in the navigation drawer or in the prfile section you can click on buy coins option then a page comes showing the different options then click on buy now button of your desirable amount."
+
+                android:layout_marginTop="8dp"
+                android:textSize="15dp"
+                android:textColor="#FFFFFF"/>
+
+
+
         </LinearLayout>
     </LinearLayout>
         <LinearLayout
@@ -393,9 +448,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="How to set your goals ?"
+                android:text="Rules and Regulations"
                 android:padding="7dp"
                 android:textSize="18sp"
+                android:id="@+id/rules"
 
                 android:textStyle="bold"
                 android:layout_marginLeft="18dp"/>
@@ -407,10 +463,70 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginRight="20dp"
+                    android:id="@+id/down3"
                     android:src="@drawable/downarrow"/>
             </LinearLayout>
         </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="15dp"
+android:visibility="gone"
+        android:id="@+id/description3"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="20dp"
 
+            android:layout_height="wrap_content"
+            android:text="1. You can only have holdings of a share at one price, i.e. you cannot have two different price holdings of a share, before buying another holdings of different price you must have to sell your previous holdings.
+"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:text="• Suppose you have 100 shares at price 5 , then you can buy more shares at price 5 but if price increase to 6 then first you have to sell previous 100 and then only you can buy new ones."
+
+            android:textSize="15dp"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="2.A share will only be in the list until it reaches it goal state which ever it defined in the beginning , at the time when startup reaches its goal state all of your holdings will be reflected in your account with an increase of 15 percent."
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:text="• Suppose you have 10000 share of startup A , and now A has touched its goal state , then A will be removed from the listing and you will be given (10000+1500)*price of A."
+
+            android:textSize="15dp"
+            android:textColor="#FFFFFF"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="3. You can withdraw only one amount till you get that amount in your account. "
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
 
     </LinearLayout>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="#330033">
+    android:background="#FF533D78">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
