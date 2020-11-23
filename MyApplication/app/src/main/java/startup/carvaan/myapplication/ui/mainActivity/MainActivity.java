@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Paper.init(this);
         ff=FirebaseFirestore.getInstance();
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -230,10 +231,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onStop();
     }
 
+
+
     @Override
     protected void onStart() {
         super.onStart();
-        if(!Paper.book().contains("isFirst")){
+        if(!(Paper.book().contains("isFirst"))){
             Paper.book().write("isFirst",true);
             startActivity(new Intent(MainActivity.this, Helppage.class));
         }

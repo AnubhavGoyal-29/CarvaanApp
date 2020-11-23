@@ -11,8 +11,24 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class shareDetails {
-    String buyingPrice,sellingPrice,shareId,name;
+    String buyingPrice,sellingPrice,shareId,name,totalShares,occupied;
     private FirebaseFirestore ff;
+
+    public String getTotalShares() {
+        return totalShares;
+    }
+
+    public void setTotalShares(String totalShares) {
+        this.totalShares = totalShares;
+    }
+
+    public String getOccupied() {
+        return occupied;
+    }
+
+    public void setOccupied(String occupied) {
+        this.occupied = occupied;
+    }
 
     public String getShareId() {
         return shareId;
@@ -63,6 +79,8 @@ public class shareDetails {
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 setBuyingPrice(value.getString("buyingPrice"));
                 setSellingPrice(value.getString("sellingPrice"));
+                setTotalShares(value.getString("totalShares"));
+                setOccupied(value.getString("occupied"));
             }
         });
         ff.collection("shares")
@@ -78,5 +96,19 @@ public class shareDetails {
         this.buyingPrice = buyingPrice;
         this.sellingPrice = sellingPrice;
     }
+    void addOccupied(Double d){
+        ff.collection("shares")
+                .document(shareId)
+                .collection("Price")
+                .document("price").update("occupied",String.valueOf(Double.valueOf(getOccupied())+d));
+    }
+    void removeOccupied(Double d){
+        ff.collection("shares")
+                .document(shareId)
+                .collection("Price")
+                .document("price").update("occupied",String.valueOf(Double.valueOf(getOccupied())-d));
+    }
+
+
 
 }

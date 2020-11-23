@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class Buy extends DialogFragment {
     User user=new User();
     EditText nos;
     Button buy;
+    private TextView shareprice,totalavailable,yourpreviousholdings;
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -38,6 +40,11 @@ public class Buy extends DialogFragment {
         final View view = inflater.inflate(R.layout.fragment_buy,null,false);
         FirebaseFirestore ff=FirebaseFirestore.getInstance();
         shareDetails shareDetails=new shareDetails(shareId);
+
+        shareprice=view.findViewById(R.id.shareprice);
+        totalavailable=view.findViewById(R.id.totalAvailable);
+        totalavailable.setText(String.valueOf(shareDetails.getTotalShares()));
+        shareprice.setText("Rs"+shareDetails.getBuyingPrice());
         nos=view.findViewById(R.id.noofshares);
         buy=view.findViewById(R.id.btn_buy);
         buy.setOnClickListener(new View.OnClickListener() {
