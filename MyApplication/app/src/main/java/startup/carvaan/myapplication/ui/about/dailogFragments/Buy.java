@@ -18,7 +18,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +33,7 @@ public class Buy extends DialogFragment {
     User user=new User();
     EditText nos;
     Button buy;
+    String totalShares,occupied;
     private TextView shareprice,totalavailable,yourpreviousholdings;
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -43,7 +46,17 @@ public class Buy extends DialogFragment {
 
         shareprice=view.findViewById(R.id.shareprice);
         totalavailable=view.findViewById(R.id.totalAvailable);
-        totalavailable.setText(String.valueOf(shareDetails.getTotalShares()));
+        ff.collection("shares")
+                .document(shareId)
+                .collection("Price")
+                .document("price").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                totalShares=value.getString("totalShares");
+                occupied=value.getString("occupied");
+                totalavailable.setText("Available Shares "+String.valueOf(Integer.valueOf((int) (Double.valueOf(totalShares)-Double.valueOf(occupied)))));
+            }
+        });
         shareprice.setText("Rs"+shareDetails.getBuyingPrice());
         nos=view.findViewById(R.id.noofshares);
         buy=view.findViewById(R.id.btn_buy);
@@ -92,6 +105,9 @@ public class Buy extends DialogFragment {
                                             user.removeEarned(Double.valueOf(Double.valueOf(user.getEarned())));
                                         }
                                         dialog_buy_success dialog_buy_success=new dialog_buy_success();
+                                        Bundle bundle1=new Bundle();
+                                        bundle1.putString("nos",String.valueOf(nos.getText().toString()));
+                                        dialog_buy_success.setArguments(bundle1);
                                         dialog_buy_success.show(getChildFragmentManager(), "Dialog_Buy");
                                     }
                                 });
@@ -114,6 +130,9 @@ public class Buy extends DialogFragment {
                                                 user.removeEarned(Double.valueOf(Double.valueOf(user.getEarned())));
                                             }
                                             dialog_buy_success dialog_buy_success=new dialog_buy_success();
+                                            Bundle bundle1=new Bundle();
+                                            bundle1.putString("nos",String.valueOf(nos.getText().toString()));
+                                            dialog_buy_success.setArguments(bundle1);
                                             dialog_buy_success.show(getChildFragmentManager(), "Dialog_Buy");
 
                                         }
