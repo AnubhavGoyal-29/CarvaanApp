@@ -33,7 +33,7 @@ public class Buy extends DialogFragment {
     User user=new User();
     EditText nos;
     Button buy;
-    String totalShares,occupied;
+    String totalShares,occupied,buyingprice;
     private TextView shareprice,totalavailable,yourpreviousholdings;
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -54,9 +54,12 @@ public class Buy extends DialogFragment {
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 totalShares=value.getString("totalShares");
                 occupied=value.getString("occupied");
+                buyingprice=value.getString("buyingPrice");
+                shareprice.setText("Rs"+buyingprice);
                 totalavailable.setText("Available Shares "+String.valueOf(Integer.valueOf((int) (Double.valueOf(totalShares)-Double.valueOf(occupied)))));
             }
         });
+
         shareprice.setText("Rs"+shareDetails.getBuyingPrice());
         nos=view.findViewById(R.id.noofshares);
         buy=view.findViewById(R.id.btn_buy);
