@@ -9,7 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import startup.carvaan.myapplication.R;
 
-public class aboutRci extends AppCompatActivity {
+public class
+aboutRci extends AppCompatActivity {
     private TextView coinsexchnge;
     private EditText coins,amount;
     private Button redeem,buy;
