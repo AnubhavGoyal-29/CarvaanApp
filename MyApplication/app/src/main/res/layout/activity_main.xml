@@ -60,7 +60,7 @@
                 android:layout_margin="12dp"
                 android:visibility="gone"
                 app:elevation="6dp"
-                app:vector_src="@drawable/ic_dashboard_black_24dp" />
+                app:vector_src="@drawable/ic_baseline_attach_money_24" />
 
             <com.sdsmdg.harjot.vectormaster.VectorMasterView
                 android:id="@+id/fab1"
