@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().setElevation(0);
+        getSupportActionBar().setTitle("");
         movetoregister = findViewById(R.id.gotoregister);
         ff = FirebaseFirestore.getInstance();
 

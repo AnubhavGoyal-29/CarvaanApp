@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="#FF971B1B">
+    android:background="#614A87">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+ 29 shares"
-        android:textColor="#ffd08a"
+        android:textColor="#E8D63C"
         android:layout_gravity="center_horizontal"
         android:textSize="35sp"
         android:layout_marginBottom="20dp"

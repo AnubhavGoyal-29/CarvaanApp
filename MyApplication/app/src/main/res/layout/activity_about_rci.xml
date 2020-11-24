@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
 
     tools:context=".ui.coins.aboutRci">
     <LinearLayout
@@ -21,7 +22,7 @@
         android:gravity="center"
         android:layout_marginLeft="30dp"
         android:background="@drawable/thy">
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:src="@drawable/vsm_coin"
@@ -46,7 +47,7 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/rd"
+            android:src="@drawable/coi"
             android:layout_marginLeft="7dp"/>
 
     </LinearLayout>
@@ -68,11 +69,11 @@
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:layout_height="wrap_content"
-                android:text="Conversion"
+                android:text=" Check Conversion"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/teal_700"
                 android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textSize="20sp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,17 +83,19 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp">
                 <EditText
+                    android:inputType="number"
                     android:layout_width="0dp"
                     android:layout_height="38dp"
                     android:layout_weight="1"
                     android:id="@+id/conversionrs"
                     android:background="@drawable/buty"
-                    android:hint="Enter the rs"
+                    android:hint="Enter the Rs"
                     android:gravity="center"
                     android:textSize="15sp"
                     android:textColor="#FFFFFF"
                     android:textColorHint="#FFFFFF"/>
                 <EditText
+                    android:inputType="number"
                     android:layout_width="0dp"
                     android:layout_height="38dp"
                     android:layout_weight="1"

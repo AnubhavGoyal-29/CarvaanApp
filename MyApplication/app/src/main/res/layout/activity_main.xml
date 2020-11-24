@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:id="@+id/drawerlayout">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -59,7 +60,7 @@
                 android:layout_margin="12dp"
                 android:visibility="gone"
                 app:elevation="6dp"
-                app:vector_src="@drawable/ic_baseline_account_circle_24" />
+                app:vector_src="@drawable/ic_dashboard_black_24dp" />
 
             <com.sdsmdg.harjot.vectormaster.VectorMasterView
                 android:id="@+id/fab1"
@@ -78,7 +79,7 @@
                 android:layout_margin="12dp"
                 android:visibility="gone"
                 app:elevation="6dp"
-                app:vector_src="@drawable/ic_baseline_attach_money_24" />
+                app:vector_src="@drawable/ic_baseline_account_circle_24" />
 
         </RelativeLayout>
 

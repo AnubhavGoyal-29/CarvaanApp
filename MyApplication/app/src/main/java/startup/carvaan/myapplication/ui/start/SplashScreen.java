@@ -54,7 +54,6 @@ public class SplashScreen extends AppCompatActivity {
             }
         }
         else {
-            Paper.book().write("isFirst",true);
             startActivity(new Intent(SplashScreen.this, IntroSliderActivity.class));
             finish();
         }

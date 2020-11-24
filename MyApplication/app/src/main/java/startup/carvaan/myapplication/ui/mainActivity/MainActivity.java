@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -26,6 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
 
+import io.paperdb.Paper;
+import startup.carvaan.myapplication.BuyCoin;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.allshares.allshares;
 import startup.carvaan.myapplication.ui.login.LoginActivity;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Paper.init(this);
         ff=FirebaseFirestore.getInstance();
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -82,6 +84,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     case R.id.howtoplay:
                         startActivity(new Intent(MainActivity.this, Helppage.class));
                         break;
+                    case R.id.buyc:
+                        startActivity(new Intent(MainActivity.this, BuyCoin.class));
+                        break;
+
                 }
                 return false;
             }
@@ -94,43 +100,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        loadContent(user);
     }
-
-    private void loadContent(User user) {
+    private void gotoLoginActivity() {
+        Intent logIntent = new Intent(MainActivity.this, LoginActivity.class);
+        logIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(logIntent);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.coin_menu,menu);
-        return true;
-    }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (toggle.onOptionsItemSelected(item)) {
 
             return true;
         }
-        switch (item.getItemId()) {
-            case R.id.logout:
-                user.logoutUser();
-                    break;
-            case R.id.howtoplay:
-                startActivity(new Intent(MainActivity.this, Helppage.class));
-                break;
-        }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-    private void gotoLoginActivity() {
-        Intent logIntent = new Intent(MainActivity.this, LoginActivity.class);
-        logIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(logIntent);
-    }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment selectedFragment = null;
@@ -248,5 +231,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mView.mSecondCurveControlPoint2.set(mView.mSecondCurveEndPoint.x - (mView.CURVE_CIRCLE_RADIUS + (mView.CURVE_CIRCLE_RADIUS / 4)), mView.mSecondCurveEndPoint.y);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(!(Paper.book().contains("isFirst"))){
+            Paper.book().write("isFirst",true);
+            startActivity(new Intent(MainActivity.this, Helppage.class));
+        }
+    }
 }

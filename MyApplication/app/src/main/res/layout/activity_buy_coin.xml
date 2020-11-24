@@ -4,12 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".BuyCoin">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
+        android:background="#FFFFFF"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/text_input_bg"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Check Conversion"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/teal_700"
+                android:textStyle="bold"
+                android:textSize="22sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginBottom="14dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp">
+                <EditText
+                    android:inputType="number"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:id="@+id/rupees"
+                    android:background="@drawable/buty"
+                    android:hint="Enter the Rs"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="15dp"
+                    android:id="@+id/conversioncoin"
+                    android:background="@drawable/buty"
+                    android:hint="Enter the coin"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF"/>
+            </LinearLayout>
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/buyNow"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:backgroundTint="@color/teal_700"
+                android:text="Buy Now"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+        </LinearLayout>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +99,7 @@
 
                 android:orientation="horizontal">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
 
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -49,8 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-
-                    android:text="Get 200 coins from 200 rs"
+                    android:text="Get 200 coins from 120 rs"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:textSize="19sp"
@@ -77,7 +141,7 @@
 
 
                 <Button
-                    android:id="@+id/BuyNow1"
+                    android:id="@+id/BuyNow120"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginLeft="30dp"
@@ -122,7 +186,7 @@
 
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
 
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -138,7 +202,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
 
-                        android:text="Get 200 coins from 200 rs"
+                        android:text="Get 500 coins from 260 rs"
                         android:textColor="#FFFFFF"
                         android:textSize="19sp"
                         android:textStyle="bold"
@@ -166,7 +230,7 @@
 
 
                     <Button
-                        android:id="@+id/BuyNow2"
+                        android:id="@+id/BuyNow260"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
@@ -207,7 +271,7 @@
 
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
 
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -223,7 +287,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
 
-                        android:text="Get 200 coins from 200 rs"
+                        android:text="Get 1000 coins from 500 rs"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:textSize="19sp"
@@ -250,7 +314,7 @@
 
 
                     <Button
-                        android:id="@+id/BuyNow3"
+                        android:id="@+id/BuyNow500"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
@@ -293,7 +357,7 @@
 
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
 
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -303,13 +367,13 @@
                         android:src="@drawable/vsm_coin" />
 
                     <TextView
-                        android:id="@+id/text4"
+                        android:id="@+id/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
 
-                        android:text="Get 200 coins from 200 rs"
+                        android:text="Get 1600 coins from 775 rs"
                         android:textColor="#FFFFFF"
                         android:textSize="19sp"
                         android:textStyle="bold"
@@ -337,7 +401,7 @@
 
 
                     <Button
-                        android:id="@+id/BuyNow4"
+                        android:id="@+id/BuyNow775"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
@@ -381,7 +445,7 @@
 
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
 
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -397,7 +461,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
 
-                        android:text="Get 200 coins from 200 rs"
+                        android:text="Get 2000 coins from 1000 rs"
                         android:textColor="#FFFFFF"
                         android:textSize="19sp"
                         android:textStyle="bold"
@@ -425,7 +489,7 @@
 
 
                     <Button
-                        android:id="@+id/BuyNow5"
+                        android:id="@+id/BuyNow1000"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
@@ -465,8 +529,7 @@
                     android:layout_marginRight="10dp"
 
                     android:orientation="horizontal">
-
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
 
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -476,13 +539,13 @@
                         android:src="@drawable/vsm_coin" />
 
                     <TextView
-                        android:id="@+id/text6"
+                        android:id="@+id/text1400"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
 
-                        android:text="Get 200 coins from 200 rs"
+                        android:text="Get 3000 coins from 1400 rs"
                         android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         android:textSize="19sp"
@@ -509,7 +572,7 @@
 
 
                     <Button
-                        android:id="@+id/BuyNow6"
+                        android:id="@+id/BuyNow1400"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"

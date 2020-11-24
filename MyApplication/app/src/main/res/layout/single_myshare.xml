@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="20dp"
     android:layout_margin="14dp"
+    android:background="#FFFFFF"
 
 
     app:cardElevation="15dp"
@@ -25,11 +26,9 @@
             android:layout_marginTop="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circleImageView3"
+                android:id="@+id/companyLogo"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-
-
                 android:src="@drawable/vsm_logo"
                 ></de.hdodenhof.circleimageview.CircleImageView>
 
@@ -60,49 +59,44 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-
+                android:text="Buying price :"
                 android:textColor="#000000"
                 android:textSize="16sp"
-
-                android:text="Buying price"/>
-
+                />
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/buyingPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="12dp"
                 android:textColor="#000000"
                 android:textSize="16sp"
-
+                android:textStyle="bold"
                 android:text="up"
                 />
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+
                 android:layout_marginLeft="12dp"
-
-
                 android:src="@drawable/top"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:text="Selling price :"
                 android:layout_marginLeft="12dp"
                 android:textColor="#000000"
                 android:textSize="16sp"
-
-                android:text="selling price"/>
+                />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/sellingPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:textColor="#000000"
+                android:textStyle="bold"
                 android:textSize="15sp"
 
                 android:text="do"
@@ -115,12 +109,20 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_marginBottom="10dp"
+            android:weightSum="5"
             android:layout_marginTop="16dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="3.2"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="5dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+
                 android:text="Your holdings :"
                 android:textSize="16sp"
                 android:textColor="#000000"
@@ -134,8 +136,19 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#000000"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/price"
+                android:text="23"
+                android:layout_marginLeft="7dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
+            </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1.8"
                 android:layout_height="wrap_content"
                 android:gravity="right">
 
@@ -146,8 +159,7 @@
                     android:layout_marginRight="15dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
+
                     android:text="trade"
                     android:background="@drawable/button"
                     android:textColor="#ffffff"

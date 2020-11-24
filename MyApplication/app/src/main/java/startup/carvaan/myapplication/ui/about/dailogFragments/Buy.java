@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,9 +15,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +33,8 @@ public class Buy extends DialogFragment {
     User user=new User();
     EditText nos;
     Button buy;
+    String totalShares,occupied;
+    private TextView shareprice,totalavailable,yourpreviousholdings;
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -37,16 +43,42 @@ public class Buy extends DialogFragment {
         final View view = inflater.inflate(R.layout.fragment_buy,null,false);
         FirebaseFirestore ff=FirebaseFirestore.getInstance();
         shareDetails shareDetails=new shareDetails(shareId);
+
+        shareprice=view.findViewById(R.id.shareprice);
+        totalavailable=view.findViewById(R.id.totalAvailable);
+        ff.collection("shares")
+                .document(shareId)
+                .collection("Price")
+                .document("price").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                totalShares=value.getString("totalShares");
+                occupied=value.getString("occupied");
+                totalavailable.setText("Available Shares "+String.valueOf(Integer.valueOf((int) (Double.valueOf(totalShares)-Double.valueOf(occupied)))));
+            }
+        });
+        shareprice.setText("Rs"+shareDetails.getBuyingPrice());
         nos=view.findViewById(R.id.noofshares);
         buy=view.findViewById(R.id.btn_buy);
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                int Nos=Integer.valueOf(nos.getText().toString());
-                int totalPrice=Nos*Integer.valueOf(shareDetails.getBuyingPrice());
-                int credits=Integer.valueOf(user.getEarned());
+                Double Nos=Double.valueOf(nos.getText().toString());
+                Double totalPrice= Double.valueOf(Nos*Double.valueOf(shareDetails.getBuyingPrice()));
+                Double credits=Double.valueOf(user.getEarned())+Double.valueOf(user.getWinnings());
                 if(credits>=totalPrice){
+                    final String[] priceHolding = {null};
+                    final String[] holdings={null};
+                    ff.collection("Users")
+                            .document(user.getUser().getUid())
+                            .collection("myshares").document(shareId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            priceHolding[0] =documentSnapshot.getString("priceHoldings");
+                            holdings[0] =documentSnapshot.getString("holdings");
+                        }
+                    });
                     Toast.makeText(getContext(),"Proceeding your buying.....",Toast.LENGTH_LONG).show();
                     ff.collection("Users")
                             .document(user.getUser().getUid())
@@ -56,10 +88,9 @@ public class Buy extends DialogFragment {
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             mysharemodel mysharemodel=task.getResult().toObject(mysharemodel.class);
                             if(task.getResult().getString("holdings")==null){
+                                String lastPriceHolding=String.valueOf(shareDetails.getBuyingPrice());
                                 Map<Object,Object>map=new HashMap<>();
-                                Map<String  ,String > holdings=new HashMap<>();
-                                holdings.put(String.valueOf(Nos),shareDetails.getBuyingPrice());
-                                map.put("priceHoldings",holdings);
+                                map.put("priceHoldings",lastPriceHolding);
                                 map.put("holdings",String.valueOf(Nos));
                                 ff.collection("Users")
                                         .document(user.getUser().getUid())
@@ -67,30 +98,50 @@ public class Buy extends DialogFragment {
                                         .document(shareId).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        user.removeEarned(totalPrice);
-                                        Toast.makeText(getContext(),"done...",Toast.LENGTH_LONG).show();
+                                        if(totalPrice<=Double.valueOf(user.getEarned()))
+                                            user.removeEarned(Double.valueOf(totalPrice));
+                                        else{
+                                            user.removeWinnings(Double.valueOf(totalPrice-Double.valueOf(user.getEarned())));
+                                            user.removeEarned(Double.valueOf(Double.valueOf(user.getEarned())));
+                                        }
+                                        dialog_buy_success dialog_buy_success=new dialog_buy_success();
+                                        Bundle bundle1=new Bundle();
+                                        bundle1.putString("nos",String.valueOf(nos.getText().toString()));
+                                        dialog_buy_success.setArguments(bundle1);
+                                        dialog_buy_success.show(getChildFragmentManager(), "Dialog_Buy");
                                     }
                                 });
                             }
                             else{
-                                Map<String  ,String  >map=new HashMap<>();
-                                map.putAll(mysharemodel.getPriceHoldings());
-                                map.put(String.valueOf(Nos),shareDetails.getBuyingPrice());
-                                ff.collection("Users")
-                                        .document(user.getUser().getUid())
-                                        .collection("myshares")
-                                        .document(shareId)
-                                        .update("holdings",String.valueOf(Integer.valueOf(mysharemodel.getHoldings())+Nos),
-                                                "priceHoldings",map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        user.removeEarned(totalPrice);
-                                        Toast.makeText(getContext(),"done...",Toast.LENGTH_LONG).show();
-                                        dialog_buy_success dialog_buy_success=new dialog_buy_success();
-                                        dialog_buy_success.show(getChildFragmentManager(), "Dialog_Buy");
+                                if(Integer.valueOf(priceHolding[0])==Integer.valueOf(shareDetails.getBuyingPrice())|| Double.valueOf(holdings[0])==0){
+                                    String lastPriceHolding=String.valueOf(shareDetails.getBuyingPrice());
+                                    ff.collection("Users")
+                                            .document(user.getUser().getUid())
+                                            .collection("myshares")
+                                            .document(shareId)
+                                            .update("holdings",String.valueOf(Double.valueOf(mysharemodel.getHoldings())+Nos),
+                                                    "priceHoldings",lastPriceHolding).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(totalPrice<=Double.valueOf(user.getEarned()))
+                                                user.removeEarned(Double.valueOf(totalPrice));
+                                            else{
+                                                user.removeWinnings(Double.valueOf(totalPrice-Double.valueOf(user.getEarned())));
+                                                user.removeEarned(Double.valueOf(Double.valueOf(user.getEarned())));
+                                            }
+                                            dialog_buy_success dialog_buy_success=new dialog_buy_success();
+                                            Bundle bundle1=new Bundle();
+                                            bundle1.putString("nos",String.valueOf(nos.getText().toString()));
+                                            dialog_buy_success.setArguments(bundle1);
+                                            dialog_buy_success.show(getChildFragmentManager(), "Dialog_Buy");
 
-                                    }
-                                });
+                                        }
+                                    });
+                                }
+                                else{
+                                    Toast.makeText(getContext(),"unable to buy shares because you have other holdings at different price first sell your previous holdings",Toast.LENGTH_LONG).show();
+                                }
+
 
                             }
                         }

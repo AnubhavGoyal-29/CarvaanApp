@@ -13,10 +13,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class User {
-    private String Email,ImageUrl,PhoneNumber;
+    private String Email,ImageUrl,PhoneNumber,DisplayName;
     private FirebaseFirestore ff;
     private FirebaseAuth fauth;
     private FirebaseUser user;
+
+    public String getDisplayName() {
+        return DisplayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        DisplayName = displayName;
+    }
+
     public User() {
         user=null;
         loginUser();
@@ -111,6 +120,7 @@ public class User {
                 Email=snapshot.getString("Email");
                 ImageUrl=snapshot.getString("ImageUrl");
                 PhoneNumber=snapshot.getString("PhoneNumber");
+                DisplayName=snapshot.getString("DisplayName");
             }
         });
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
@@ -140,17 +150,33 @@ public class User {
         fauth.signOut();
     }
 
-    public void addEarned(float a){
+    public void addEarned(Double a){
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
-                .document("coins").update("earned",String.valueOf(Integer.valueOf(earned)+Integer.valueOf((int) a)));
+                .document("coins").update("earned",String.valueOf(Double.valueOf(earned)+Double.valueOf(a)));
     }
-     public void addWinnings(float a){
+     public void addWinnings(Double a){
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
-                .document("coins").update("winnings",String.valueOf(Integer.valueOf(winnings)+Integer.valueOf((int) a)));
+                .document("coins").update("winnings",String.valueOf(Double.valueOf(winnings)+Double.valueOf(a)));
     }
-    public void removeEarned(float a){
+    public void removeEarned(Double a){
         ff.collection("Users").document(user.getUid()).collection("CreditDetails")
-                .document("coins").update("earned",String.valueOf(Integer.valueOf(earned)-Integer.valueOf((int) a)));
+                .document("coins").update("earned",String.valueOf(Double.valueOf(earned)-Double.valueOf((a))));
+    }
+    public void removeWinnings(Double a){
+        ff.collection("Users").document(user.getUid()).collection("CreditDetails")
+                .document("coins").update("winnings",String.valueOf(Double.valueOf(winnings)-Double.valueOf(a)));
+    }
+    public void addCash(Double a){
+        ff.collection("Users").document(user.getUid()).collection("CreditDetails")
+                .document("cash").update("added",String.valueOf(Double.valueOf(getAdded())+a));
+    }
+    public void removeCash(Double a){
+        ff.collection("Users").document(user.getUid()).collection("CreditDetails")
+                .document("cash").update("added",String.valueOf(Double.valueOf(getAdded())-a));
+    }
+    public void addRedeem(Double a){
+        ff.collection("Users").document(user.getUid()).collection("CreditDetails")
+                .document("cash").update("redeemed",String.valueOf(Double.valueOf(getRedeemed())+a));
     }
 
 }

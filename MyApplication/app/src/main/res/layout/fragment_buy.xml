@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="20dp"
-    android:layout_margin="15dp"
-    app:cardElevation="10dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#009688"
+    android:orientation="vertical"
+
     >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#188F84"
-        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -25,58 +20,47 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginRight="5dp"
-
                 android:fontFamily="@font/abril_fatface"
                 android:gravity="right"
-                android:text="$ 2.15"
-                android:textColor="#BECA4D"
-                android:textSize="70sp" />
+                android:text="Rs"
+                android:textColor="#f0ff8a"
+                android:textSize="40sp" />
             <TextView
                 android:layout_width="wrap_content"
-
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:fontFamily="@font/abril_fatface"
                 android:text="Per Share"
-                android:textColor="#BECA4D"
-                android:textSize="20sp"
+                android:textColor="#f0ff8a"
+                android:textSize="30sp"
                 />
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="14dp"
             android:background="#2a7440"/>
         <TextView
             android:id="@+id/totalAvailable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
             android:text="Total available:"
             android:fontFamily="@font/abril_fatface"
             android:layout_gravity="center_horizontal"
             android:textSize="20sp"
             android:textColor="#FFFFFF"/>
-        <TextView
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Number of Shares"
-            android:fontFamily="@font/abril_fatface"
-            android:layout_gravity="center_horizontal"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF"/>
 
         <EditText
+            android:inputType="number"
             android:id="@+id/noofshares"
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:textColor="#FFFFFF"
             android:gravity="center"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="15dp"
             android:hint="Enter"
             android:textColorHint="#FFFFFF"
             android:layout_gravity="center_horizontal"
@@ -95,10 +79,8 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:layout_marginBottom="22dp"
-
             android:backgroundTint="@color/teal_100"/>
 
 
 
     </LinearLayout>
-</androidx.cardview.widget.CardView>

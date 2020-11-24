@@ -18,10 +18,20 @@
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="220dp"
-android:id="@+id/pict"
-       android:gravity="bottom|center"
+       android:id="@+id/pict"
+       android:gravity="center|bottom"
        android:background="@drawable/ty"
        android:orientation="vertical">
+       <TextView
+           android:layout_marginBottom="20dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="How to Play ?"
+           android:padding="7dp"
+           android:textSize="24sp"
+           android:textColor="#ffffff"
+           android:textStyle="bold"
+           android:layout_marginLeft="18dp"/>
 
    </LinearLayout>
      <LinearLayout

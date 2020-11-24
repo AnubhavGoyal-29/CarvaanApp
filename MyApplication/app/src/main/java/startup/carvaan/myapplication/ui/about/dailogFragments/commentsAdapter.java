@@ -33,7 +33,7 @@ public class commentsAdapter extends RecyclerView.Adapter<commentsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull commentsAdapter.ViewHolder holder, int position) {
-        holder.username.setText(mData.get(position).username);
+        holder.username.setText(display(mData.get(position).username));
         holder.comment.setText(mData.get(position).comment);
     }
 
@@ -52,5 +52,17 @@ public class commentsAdapter extends RecyclerView.Adapter<commentsAdapter.ViewHo
             username = (TextView) itemView.findViewById(R.id.username);
             comment = (TextView) itemView.findViewById(R.id.comment);
         }
+    }
+    String display(String username){
+        String temp = null;
+        int i=0;
+        for(;i<username.length();i++){
+            if(username.charAt(i)=='/'){
+                if(username.charAt(i+1)=='/')
+                    if(username.charAt(i+2)!='/')
+                        temp=username.substring(0,i);
+            }
+        }
+        return temp;
     }
 }

@@ -1,41 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
+
     android:background="@color/teal_200"
     tools:context=".ui.payment.payouts">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3.8"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+
         android:gravity="center|bottom"
         android:orientation="horizontal"
         android:background="@drawable/ty">
         <EditText
             android:id="@+id/coins"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:layout_marginRight="15dp"
+            android:layout_width="140dp"
+            android:layout_height="38dp"
+            android:layout_marginRight="11dp"
             android:ems="10"
-            android:background="@drawable/rst"
-            android:inputType="textPersonName"
+            android:textColorHint="#FFFFFF"
+            android:background="@drawable/inputtype"
+            android:inputType="number"
+            android:textSize="16sp"
             android:gravity="center"
-            android:hint="Enter coins"
+            android:hint="Enter No.of coins"
             />
         <TextView
-            android:id="@+id/convertedMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:layout_marginTop="20dp"
-            android:text="Rs 1500"
-            android:textSize="40dp" />
+            android:text="You get"
+            android:textSize="18dp" />
+        <TextView
+            android:id="@+id/convertedMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="20dp"
+            android:text="0"
+            android:textSize="20dp" />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/coi"/>
 
     </LinearLayout>
 
@@ -49,50 +72,69 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+
             android:gravity="center">
             <EditText
                 android:id="@+id/upi_id"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="40dp"
+                android:layout_height="38dp"
+                android:layout_marginRight="55dp"
+                android:layout_marginLeft="55dp"
                 android:ems="10"
-                android:background="@drawable/rst"
+                android:background="@drawable/inputtype"
                 android:inputType="textPersonName"
                 android:gravity="center"
+                android:textColorHint="#FFFFFF"
                 android:hint="Enter upi id"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textStyle="bold"
+
                 android:textColor="#FFFFFF"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:text="or enter bank account details"
-                android:textSize="25dp" />
+                android:textSize="18dp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+app:cardBackgroundColor="@color/white"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="10dp"
+                app:cardElevation="15dp"
+                android:layout_marginLeft="40dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
             <EditText
                 android:id="@+id/bank_account"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="40dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 android:ems="10"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/rst"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/inputtype"
                 android:inputType="textPersonName"
                 android:gravity="center"
+                android:textSize="15sp"
+                android:textColorHint="@color/black"
                 android:hint="Enter acount number"
                 ></EditText>
             <EditText
                 android:id="@+id/ifsc_code"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="40dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 android:ems="10"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/rst"
+                android:layout_marginTop="12dp"
+                android:textSize="15sp"
+                android:textColorHint="@color/black"
+                android:background="@drawable/inputtype"
                 android:inputType="textPersonName"
                 android:gravity="center"
                 android:hint="Enter IFSC"
@@ -100,22 +142,27 @@
             <EditText
                 android:id="@+id/account_holder_name"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="40dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
                 android:ems="10"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/rst"
+                android:textSize="15sp"
+                android:layout_marginBottom="10dp"
+                android:textColorHint="@color/black"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/inputtype"
                 android:inputType="textPersonName"
                 android:gravity="center"
                 android:hint="Enter Account Holder's name"
                 ></EditText>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
                 <Button
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:id="@+id/withdrawButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -127,4 +174,5 @@
         </LinearLayout>
 
     </LinearLayout>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

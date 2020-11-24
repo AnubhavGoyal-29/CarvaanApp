@@ -41,7 +41,7 @@ public class Sell extends DialogFragment {
         sell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int Nos=Integer.valueOf(nos.getText().toString());
+                Double Nos=Double.valueOf(nos.getText().toString());
                 ff.collection("Users")
                         .document(user.getUser().getUid())
                         .collection("myshares")
@@ -52,17 +52,17 @@ public class Sell extends DialogFragment {
                         if(value.getResult().getString("holdings")==null){
                             Toast.makeText(getContext(),"you cannot sell as u dont have any share",Toast.LENGTH_LONG).show();
                         }
-                        else if(Nos>Integer.valueOf(mysharemodel.getHoldings())){
+                        else if(Nos>Double.valueOf(mysharemodel.getHoldings())){
                             Toast.makeText(getContext(),"dont have enough",Toast.LENGTH_LONG).show();
                         }
                         else{
                             ff.collection("Users")
                                     .document(user.getUser().getUid())
                                     .collection("myshares")
-                                    .document(shareId).update("holdings",String.valueOf(Integer.valueOf(mysharemodel.getHoldings())-Nos)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    .document(shareId).update("holdings",String.valueOf(Double.valueOf(Double.valueOf(mysharemodel.getHoldings()))-Nos)).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    user.addWinnings(Integer.valueOf(shareDetails.getSellingPrice())*Nos);
+                                    user.addWinnings(Double.valueOf(shareDetails.getSellingPrice())*Nos);
                                     sell_success sell_success=new sell_success();
                                     sell_success.show(getChildFragmentManager(), "Dialog_Buy");
                                 }

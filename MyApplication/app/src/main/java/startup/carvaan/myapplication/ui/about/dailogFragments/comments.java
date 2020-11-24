@@ -80,7 +80,7 @@ public class comments extends DialogFragment {
                 String r= UUID.randomUUID().toString();
                 Map<String,String>comments=new HashMap<>();
                 comments.putAll(commentsMap);
-                comments.put(user.getUser().getUid()+"@"+r,comment.getText().toString());
+                comments.put(user.getDisplayName()+"//"+r,comment.getText().toString());
                 ff.collection("shares")
                         .document(shareId)
                         .collection("Bloging")
@@ -88,7 +88,7 @@ public class comments extends DialogFragment {
                         .update("comments",comments).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-
+                        getDialog().dismiss();
                     }
                 });
             }

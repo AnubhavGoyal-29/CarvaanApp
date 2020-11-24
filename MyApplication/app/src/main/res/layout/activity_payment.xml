@@ -16,8 +16,8 @@
         android:orientation="vertical"
         android:background="@drawable/ty">
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:src="@drawable/pauy"/>
 
     </LinearLayout>
@@ -29,38 +29,16 @@
         android:gravity="center_horizontal"
 
       >
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
 
-                android:gravity="center"
-                android:textStyle="bold"
-                android:layout_marginLeft="30dp"
-
-                android:layout_marginRight="30dp"
-
-
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="30dp"
-                android:text="coins you will get:"
-
-                android:textSize="30dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:gravity="center"
-                android:textStyle="bold"
-
-                android:text="345"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="30dp"
-                android:textSize="30dp" />
-        </LinearLayout>
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="15dp"
+            android:text="Add Real Money"
+            android:textSize="24dp"
+            ></TextView>
 
 
 
@@ -70,21 +48,53 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center">
-
-
-        <EditText
-        android:id="@+id/amount"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
-
-        android:ems="10"
-            android:layout_marginTop="20dp"
-        android:background="@drawable/rst"
-        android:inputType="textPersonName"
         android:gravity="center"
-        android:hint="Enter The amount"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+
+            android:textColor="#FFFFFF"
+
+            android:text="Coins you can buy form this amount:"
+            android:textSize="18dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+         android:layout_marginLeft="5dp"
+            android:id="@+id/coins"
+            android:text="0"
+            android:textColor="#FFFFFF"
+
+            android:textSize="18dp" />
+    </LinearLayout>
+
+
+
+    <EditText
+            android:id="@+id/amount"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:ems="10"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rst"
+            android:inputType="number"
+            android:gravity="center"
+            android:hint="Enter The amount"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+
      />
 <LinearLayout
     android:layout_width="match_parent"
@@ -98,6 +108,7 @@
         android:layout_marginRight="60dp"
         android:backgroundTint="@color/teal_100"
         android:text="ADD"
+        android:textStyle="bold"
       />
 
 </LinearLayout>

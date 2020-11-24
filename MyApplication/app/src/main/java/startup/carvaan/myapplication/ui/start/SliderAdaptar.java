@@ -30,16 +30,16 @@ public class SliderAdaptar extends PagerAdapter {
     };
 
     public String[] slide_headings = {
-            "EAT",
-            "SLEEP",
-            "CODE"
+            "Connect with StartUps",
+            "Invest Without money in StartUps",
+            "Get Real Money"
 
     };
 
     public String[] slide_descriptions = {
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            "Feel Free to connect with the new emerging StartUps, get to know about them ,their work,their blogs and to trade with whosoever you'd like",
+            "Invest in the StartUp of your choice without real money  and help in the raising of a StartUp.",
+            "Get real Money from trading in StartUps or by achieving your targets and  get real life benefits also gets a chance to get intern and free lancing in them.  "
     };
 
 

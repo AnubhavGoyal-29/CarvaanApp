@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FF971B1B"
+    android:background="#614A87"
     android:orientation="vertical"
 
     >
@@ -22,7 +22,7 @@
             android:fontFamily="@font/abril_fatface"
             android:gravity="right"
             android:text="$ 2.15"
-            android:textColor="#ffd08a"
+            android:textColor="#E8D63C"
             android:textSize="80sp" />
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_weight="2"
             android:fontFamily="@font/abril_fatface"
             android:text="Per Share"
-            android:textColor="#ffd08a"
+            android:textColor="#FFE8D63C"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -74,6 +74,7 @@
         android:background="@drawable/border_sell"
         android:fontFamily="@font/abril_fatface"
         android:gravity="center"
+        android:inputType="number"
         android:textColor="#ffffff" />
 
     <Button
@@ -81,8 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:background="#ffd08a"
+        android:layout_marginBottom="18dp"
+        android:backgroundTint="@color/teal_200"
         android:fontFamily="@font/abril_fatface"
         android:text="Sell"
         android:textAllCaps="false"

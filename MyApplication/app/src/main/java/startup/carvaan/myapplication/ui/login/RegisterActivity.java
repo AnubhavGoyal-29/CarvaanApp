@@ -29,19 +29,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ProgressButton;
+import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 public class RegisterActivity extends AppCompatActivity {
-    private TextInputEditText user_name;
+    private TextInputEditText user_name,display_name;
 
     private TextInputLayout passwordText;
     private TextInputLayout confirmPassword;
     private FirebaseAuth firebaseAuth;
     private View regis_ter;
     private TextView movetologin;
-
     FirebaseFirestore ff;
     FirebaseUser firebaseUser;
 
@@ -50,9 +49,11 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         getSupportActionBar().setElevation(0);
+        getSupportActionBar().setTitle("");
         ff = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         user_name = findViewById(R.id.username);
+        display_name=findViewById(R.id.displayName);
         passwordText = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);
         regis_ter = findViewById(R.id.register1);
@@ -188,6 +189,7 @@ public class RegisterActivity extends AppCompatActivity {
                             firebaseUser = firebaseAuth.getCurrentUser();
                             Map<String, Object> map = new HashMap<>();
                             map.put("Email", firebaseUser.getEmail());
+                            map.put("DisplayName", display_name.getText().toString());
                             map.put("PhoneNumber", "phone Number");
                             map.put("ImageUrl", "imageURL");
                             ff.collection("Users").document(firebaseUser.getUid()).set(map);
@@ -209,7 +211,8 @@ public class RegisterActivity extends AppCompatActivity {
                                             document("cash").set(cash).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+
                                         }
                                     });
                                 }
