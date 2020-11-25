@@ -8,8 +8,11 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -220,10 +223,35 @@ AboutShare extends AppCompatActivity {
 
                     }
                 });
+                postViewHolder.writeComment.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        bottomNavigationView.setVisibility(View.GONE);
+                        return false;
+                    }
+                });
+                postViewHolder.writeComment.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
 
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(s.length()==0){
+                            bottomNavigationView.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        if(s.length()!=0)
+                            bottomNavigationView.setVisibility(View.GONE);
+                    }
+                });
                 postViewHolder.commentButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        bottomNavigationView.setVisibility(View.VISIBLE);
                         String r=UUID.randomUUID().toString();
                         Map<String,String>comments=new HashMap<>();
                         comments.putAll(postModal.getComments());
@@ -261,8 +289,10 @@ AboutShare extends AppCompatActivity {
         private TextView comments;
         private Button commentButton;
         private EditText writeComment;
+        private BottomNavigationView bottomBar;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
+
             comments=itemView.findViewById(R.id.comments);
             videoPlayer=itemView.findViewById(R.id.videoplayer);
             attachfile=itemView.findViewById(R.id.attachFile);

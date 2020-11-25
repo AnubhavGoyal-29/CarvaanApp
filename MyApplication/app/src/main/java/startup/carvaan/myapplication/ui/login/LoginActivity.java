@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,8 +34,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ProgressButton;
+import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 
@@ -68,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         pass_word = findViewById(R.id.password);
         lo_gin = findViewById(R.id.loginbutton);
         TextView forgotPass = findViewById(R.id.forgotPass);
-        googlesign = findViewById(R.id.googlelogin);
+//        googlesign = findViewById(R.id.googlelogin);
 
         ProgressButton progressButton = new ProgressButton(LoginActivity.this,lo_gin);
         progressButton.initialPhase("LOGIN",false);
@@ -127,21 +126,21 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        googleSignInClient = GoogleSignIn.getClient(LoginActivity.this,googleSignInOptions);
-        googlesign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gsignin();
-            }
-        });
+//        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+//        googleSignInClient = GoogleSignIn.getClient(LoginActivity.this,googleSignInOptions);
+//        googlesign.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                gsignin();
+//            }
+//        });
 
     }
-    private void gsignin()
-    {
-        Intent gintent = googleSignInClient.getSignInIntent();
-        startActivityForResult(gintent,RC_SIGN_IN);
-    }
+//    private void gsignin()
+//    {
+//        Intent gintent = googleSignInClient.getSignInIntent();
+//        startActivityForResult(gintent,RC_SIGN_IN);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

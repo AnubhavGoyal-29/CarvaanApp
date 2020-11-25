@@ -174,8 +174,6 @@ public class RegisterActivity extends AppCompatActivity {
         regis_ter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 progressButton.buttonsetEnabledFalse(true);
                 regis_ter.setClickable(false);
                 regis_ter.setEnabled(false);
