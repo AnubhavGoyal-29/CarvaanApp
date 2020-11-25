@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
-        android:text="You have successfully invested your credits in Random Bullshit Pvt. Ltd."
+        android:text="You have successfully Sell the shares of this company."
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"

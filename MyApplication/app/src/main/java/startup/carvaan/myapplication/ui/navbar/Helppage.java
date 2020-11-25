@@ -46,6 +46,8 @@ private int count=0,count2=0,count3=0;
                 if (count % 2 == 1) {
                     count2=0;
                     count3=0;
+                    description3.setVisibility(View.GONE);
+                    description2.setVisibility(View.GONE);
                     picture.setVisibility(View.GONE);
                     downarrow1.setImageResource(R.drawable.expanda);
                     invest.setTextColor(Color.parseColor("#FFFFFF"));
@@ -71,6 +73,8 @@ private int count=0,count2=0,count3=0;
                 if (count2 % 2 == 1) {
                     count=0;
                     count3=0;
+                    description3.setVisibility(View.GONE);
+                    description1.setVisibility(View.GONE);
                     picture.setVisibility(View.GONE);
                     downarrow1.setImageResource(R.drawable.expanda);
                     earn.setTextColor(Color.parseColor("#FFFFFF"));
@@ -92,6 +96,8 @@ private int count=0,count2=0,count3=0;
                 if (count3 % 2 == 1) {
                     count2=0;
                     count=0;
+                    description2.setVisibility(View.GONE);
+                    description1.setVisibility(View.GONE);
                     picture.setVisibility(View.GONE);
                     downarrow3.setImageResource(R.drawable.expanda);
                     rules.setTextColor(Color.parseColor("#FFFFFF"));
