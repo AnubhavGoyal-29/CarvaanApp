@@ -60,6 +60,12 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // SEND OTP CODE HERE
+
+            }
+        });
+        confirmOtp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 String Otp=otp.getText().toString();
                 Double otp=Double.valueOf(Otp);
             }
