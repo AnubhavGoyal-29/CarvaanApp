@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +36,7 @@ import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 public class RegisterActivity extends AppCompatActivity {
     private TextInputEditText user_name,otp,display_name;
-
+    private LinearLayout beforeEmailVerification;
     private TextInputLayout passwordText;
     private TextInputLayout confirmPassword;
     private FirebaseAuth firebaseAuth;
@@ -44,47 +44,15 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView movetologin;
     FirebaseFirestore ff;
     FirebaseUser firebaseUser;
-    private Button sendOtp,confirmOtp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        beforeEmailVerification=findViewById(R.id.beforeEmailVerification);
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setTitle("");
         // do your code here
-        otp=findViewById(R.id.otp);
-        confirmOtp=findViewById(R.id.confirmOtp);
-        sendOtp=findViewById(R.id.sendOtp);
-        sendOtp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // SEND OTP CODE HERE
-
-            }
-        });
-        confirmOtp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String Otp=otp.getText().toString();
-                Double otp=Double.valueOf(Otp);
-            }
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         ff = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -227,10 +195,10 @@ public class RegisterActivity extends AppCompatActivity {
                             map.put("PhoneNumber", "phone Number");
                             map.put("ImageUrl", "imageURL");
                             ff.collection("Users").document(firebaseUser.getUid()).set(map);
-                            Map<String,String>coins=new HashMap<>();
+                            Map<String, String> coins = new HashMap<>();
                             coins.put("earned", String.valueOf(100));
                             coins.put("winnings", String.valueOf(0));
-                            Map<String ,String >cash=new HashMap<>();
+                            Map<String, String> cash = new HashMap<>();
                             cash.put("added", String.valueOf(0));
                             cash.put("redeemed", String.valueOf(0));
                             ff.collection("Users").
@@ -245,7 +213,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             document("cash").set(cash).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
 
                                         }
                                     });
@@ -267,7 +235,6 @@ public class RegisterActivity extends AppCompatActivity {
                     });
                 }
 
-                /////////////////////////////////////////////////////////////////////////
             }
 
         });
@@ -281,4 +248,3 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 }
-
