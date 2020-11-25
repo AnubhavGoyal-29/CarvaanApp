@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -39,7 +40,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -355,11 +359,26 @@ AboutShare extends AppCompatActivity {
                     dialog_buy.show(getSupportFragmentManager(), "Dialog_Buy");
                     break;
                 case R.id.sharesell:
-                    Sell dialog_sell = new Sell();
-                    Bundle bundle1 = new Bundle();
-                    bundle1.putString("shareid", shareid);
-                    dialog_sell.setArguments(bundle1);
-                    dialog_sell.show(getSupportFragmentManager(), "Dialog_Buy");
+                    ff.collection("Users")
+                            .document(user.getUser().getUid())
+                            .collection("myshares")
+                            .document(shareid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot documentSnapshot=task.getResult();
+                            if(documentSnapshot.exists()){
+                                Sell dialog_sell = new Sell();
+                                Bundle bundle1 = new Bundle();
+                                bundle1.putString("shareid", shareid);
+                                dialog_sell.setArguments(bundle1);
+                                dialog_sell.show(getSupportFragmentManager(), "Dialog_Buy");
+                            }
+                            else{
+                                Toast.makeText(AboutShare.this,"you have do not have any share",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
                     break;
 
             }

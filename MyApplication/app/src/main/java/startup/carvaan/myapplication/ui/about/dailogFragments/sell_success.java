@@ -26,7 +26,7 @@ public class sell_success extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         final View view = inflater.inflate(R.layout.fragment_sell_success,null,false);
-        closesell=view.findViewById(R.id.closebuy);
+        closesell=view.findViewById(R.id.closesell);
         closesell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

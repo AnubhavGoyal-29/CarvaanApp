@@ -22,9 +22,6 @@ allprojects {
     repositories {
         maven { url 'https://maven.cashfree.com/release'}
     }
-    repositories {
-        maven { url "https://oss.jfrog.org/libs-snapshot" }
-    }
 
 
 

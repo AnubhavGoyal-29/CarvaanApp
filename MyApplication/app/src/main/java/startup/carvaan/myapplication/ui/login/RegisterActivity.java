@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,7 @@ import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 public class RegisterActivity extends AppCompatActivity {
-    private TextInputEditText user_name,display_name;
+    private TextInputEditText user_name,otp,display_name;
 
     private TextInputLayout passwordText;
     private TextInputLayout confirmPassword;
@@ -43,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView movetologin;
     FirebaseFirestore ff;
     FirebaseUser firebaseUser;
+    private Button sendOtp,confirmOtp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,34 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setTitle("");
+        // do your code here
+        otp=findViewById(R.id.otp);
+        confirmOtp=findViewById(R.id.confirmOtp);
+        sendOtp=findViewById(R.id.sendOtp);
+        sendOtp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // SEND OTP CODE HERE
+                String Otp=otp.getText().toString();
+                Double otp=Double.valueOf(Otp);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         ff = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         user_name = findViewById(R.id.username);
