@@ -9,7 +9,7 @@
         android:layout_height="100dp"
         android:orientation="horizontal">
         <TextView
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:gravity="start"
             android:layout_marginLeft="5dp"
             android:textStyle="bold"
@@ -18,11 +18,11 @@
             android:text="username :">
         </TextView>
         <TextView
-            android:textSize="18dp"
+            android:textSize="17dp"
             android:gravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="comment">
+            android:text="commenhvdugduye3fduye3fdt">
         </TextView>
     </LinearLayout>
 
