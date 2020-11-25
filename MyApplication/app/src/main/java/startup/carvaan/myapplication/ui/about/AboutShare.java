@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -125,7 +126,7 @@ AboutShare extends AppCompatActivity {
                 userLiking.putAll(postModal.getUsersLiking());
                 postViewHolder.nooflikes.setText(String.valueOf(userLiking.size()));
                 if(userLiking.containsKey(user.getUser().getUid()))
-                    postViewHolder.likebutton.setTextColor(R.color.progress_color);
+                    postViewHolder.likebutton.setTextColor(R.color.red);
                 postViewHolder.likebutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -190,7 +191,7 @@ AboutShare extends AppCompatActivity {
                     postViewHolder.uploadFile.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            uploadFile(shareid,postModal.getId(),pdfUri);
+                            path=uploadFile(shareid,postModal.getId(),pdfUri);
                             Map<String ,String > files=new HashMap<>();
                             files.putAll(postModal.getFiles());
                             files.put(user.getUser().getUid(),path);
@@ -206,7 +207,6 @@ AboutShare extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         pdfUri=null;
-                                        Toast.makeText(AboutShare.this,"file successfully uploaded",Toast.LENGTH_LONG).show();
                                         postViewHolder.uploadFile.setVisibility(View.GONE);
                                         postViewHolder.attachfile.setVisibility(View.VISIBLE);
                                     }
@@ -366,20 +366,16 @@ AboutShare extends AppCompatActivity {
             return false;
         }
     };
-    public void uploadFile(String shareid,String blogid,Uri uri){
+    public String uploadFile(String shareid,String blogid,Uri uri){
         StorageReference storageReference=firebaseStorage.getReference();
-        StorageReference finalPath=storageReference.child(shareid).child(blogid).child(user.getUser().getUid());
+        StorageReference finalPath=storageReference.child("shareFiles").child(shareid).child(blogid).child(user.getUser().getUid()+".pdf");
         finalPath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                finalPath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                         path = uri.toString();
-                    }
-                });
+                Toast.makeText(AboutShare.this,"file upload successfully",Toast.LENGTH_SHORT).show();
             }
         });
+        return finalPath.toString();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

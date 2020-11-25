@@ -29,9 +29,11 @@ import io.paperdb.Paper;
 import startup.carvaan.myapplication.BuyCoin;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.allshares.allshares;
+import startup.carvaan.myapplication.ui.coins.aboutRci;
 import startup.carvaan.myapplication.ui.login.LoginActivity;
 import startup.carvaan.myapplication.ui.myshares.myshares;
 import startup.carvaan.myapplication.ui.navbar.Helppage;
+import startup.carvaan.myapplication.ui.payment.payouts;
 import startup.carvaan.myapplication.ui.profile.Profile;
 import startup.carvaan.myapplication.ui.user.User;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -87,7 +89,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     case R.id.buyc:
                         startActivity(new Intent(MainActivity.this, BuyCoin.class));
                         break;
-
+                    case R.id.aboutRci:
+                        startActivity(new Intent(MainActivity.this, aboutRci.class));
+                        break;
+                    case R.id.coin:
+                        startActivity(new Intent(MainActivity.this, payouts.class));
+                        break;
                 }
                 return false;
             }
@@ -243,7 +250,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onStart();
         if(!(Paper.book().contains("isFirst"))){
             Paper.book().write("isFirst",true);
-            startActivity(new Intent(MainActivity.this, Helppage.class));
         }
     }
 }

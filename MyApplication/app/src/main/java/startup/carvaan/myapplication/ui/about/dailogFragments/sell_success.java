@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -24,6 +25,10 @@ public class sell_success extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         final View view = inflater.inflate(R.layout.fragment_sell_success,null,false);
+        Bundle bundle=getArguments();
+        final String nos=bundle.getString("credits");
+        TextView credits = view.findViewById(R.id.sellsuccess);
+        credits.setText("+"+nos);
         builder.setView(view);
         return builder.create();
     }

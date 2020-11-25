@@ -13,6 +13,8 @@
             android:title="Buy coins"></item>
         <item android:id="@+id/transactions"
             android:title="Your transactions"></item>
+        <item android:id="@+id/aboutRci"
+            android:title="About Rci"></item>
 
     </group>
 </menu>
