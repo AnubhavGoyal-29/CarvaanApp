@@ -56,7 +56,7 @@
         android:layout_marginBottom="22dp"
         android:fontFamily="@font/abril_fatface"
         android:gravity="center_horizontal"
-        android:text="You have successfully invested your credits in Random Bullshit Pvt. Ltd."
+        android:text="You have successfully invested Your coins in this company."
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="19sp" />

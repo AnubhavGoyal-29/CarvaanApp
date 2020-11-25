@@ -24,16 +24,16 @@
                 android:gravity="right"
                 android:text="Rs"
                 android:textColor="#f0ff8a"
-                android:textSize="40sp" />
+                android:textSize="48sp" />
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="12dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:fontFamily="@font/abril_fatface"
                 android:text="Per Share"
                 android:textColor="#f0ff8a"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 />
         </LinearLayout>
         <TextView

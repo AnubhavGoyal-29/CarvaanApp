@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="210dp"
 
-        android:gravity="center|bottom"
+        android:gravity="center_horizontal|bottom"
         android:orientation="horizontal"
         android:background="@drawable/ty">
         <EditText
@@ -77,14 +77,15 @@
             <EditText
                 android:id="@+id/upi_id"
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:layout_marginRight="55dp"
-                android:layout_marginLeft="55dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
                 android:ems="10"
-                android:background="@drawable/inputtype"
+                android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
-                android:textColorHint="#FFFFFF"
+                android:textColorHint="#000000"
+                android:layout_marginTop="10dp"
                 android:hint="Enter upi id"
                 />
             <TextView
@@ -93,31 +94,20 @@
                 android:gravity="center"
 
                 android:textColor="#FFFFFF"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="25dp"
                 android:text="or enter bank account details"
                 android:textSize="18dp" />
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
 
-app:cardBackgroundColor="@color/white"
-                android:layout_marginRight="40dp"
-                android:layout_marginTop="10dp"
-                app:cardElevation="15dp"
-                android:layout_marginLeft="40dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+
             <EditText
                 android:id="@+id/bank_account"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
                 android:ems="10"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/inputtype"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
                 android:textSize="15sp"
@@ -127,14 +117,14 @@ app:cardBackgroundColor="@color/white"
             <EditText
                 android:id="@+id/ifsc_code"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
                 android:ems="10"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="18dp"
                 android:textSize="15sp"
                 android:textColorHint="@color/black"
-                android:background="@drawable/inputtype"
+                android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
                 android:hint="Enter IFSC"
@@ -142,27 +132,27 @@ app:cardBackgroundColor="@color/white"
             <EditText
                 android:id="@+id/account_holder_name"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
                 android:ems="10"
                 android:textSize="15sp"
-                android:layout_marginBottom="10dp"
+
                 android:textColorHint="@color/black"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/inputtype"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
                 android:hint="Enter Account Holder's name"
                 ></EditText>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
                 <Button
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="18dp"
                     android:id="@+id/withdrawButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
