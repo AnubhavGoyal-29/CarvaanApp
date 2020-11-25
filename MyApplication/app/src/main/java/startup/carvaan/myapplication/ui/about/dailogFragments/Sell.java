@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class Sell extends DialogFragment {
     EditText nos;
     Button sell;
     String sellingPrice;
+    private ImageView cosert;
     TextView shareprice,myholdings;
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -43,6 +45,13 @@ public class Sell extends DialogFragment {
         final String shareId= bundle.getString("shareid");
         nos=view.findViewById(R.id.noofshares);
         sell=view.findViewById(R.id.btn_sell);
+        cosert=view.findViewById(R.id.close67);
+        cosert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
         shareDetails shareDetails=new shareDetails(shareId);
         ff.collection("Users")
                 .document(user.getUser().getUid())
