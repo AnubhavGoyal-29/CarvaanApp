@@ -46,6 +46,8 @@ private int count=0,count2=0,count3=0;
                 if (count % 2 == 1) {
                     count2=0;
                     count3=0;
+                    description3.setVisibility(View.GONE);
+                    description2.setVisibility(View.GONE);
                     picture.setVisibility(View.GONE);
                     downarrow1.setImageResource(R.drawable.expanda);
                     invest.setTextColor(Color.parseColor("#FFFFFF"));
