@@ -14,7 +14,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="25dp"
         app:cardCornerRadius="15dp"
-        android:elevation="20dp">
+        app:cardElevation="20dp">
     <LinearLayout
 
         android:id="@+id/profileCoins"
@@ -149,7 +149,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="25dp"
             app:cardCornerRadius="15dp"
-            android:elevation="20dp">
+           app:cardElevation="20dp">
     <LinearLayout
         android:id="@+id/profileCash"
         android:layout_width="match_parent"
