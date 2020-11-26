@@ -24,8 +24,10 @@
             android:id="@+id/writeComment"
             android:layout_width="match_parent"
             android:layout_height="44dp"
+            android:textColorHint="#000000"
             android:hint="Write a Comment ...."
             android:layout_marginTop="12dp"
+            android:textColor="#000000"
             android:background="@drawable/commn"
             />
         <Button
