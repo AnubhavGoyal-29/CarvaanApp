@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 public class RegisterActivity extends AppCompatActivity {
-    private TextInputEditText user_name,otp,display_name;
+    private TextInputEditText user_name, otp, display_name;
 
     private TextInputLayout passwordText;
     private TextInputLayout confirmPassword;
@@ -43,8 +44,12 @@ public class RegisterActivity extends AppCompatActivity {
     private View regis_ter;
     private TextView movetologin;
     FirebaseFirestore ff;
+    FirebaseAuth.AuthStateListener mAuthListener;
     FirebaseUser firebaseUser;
-    private Button sendOtp,confirmOtp;
+    FirebaseAuth mAuth;
+    EditText mail;
+    EditText pass;
+    private Button sendOtp, confirmOtp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,43 +58,104 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setTitle("");
         // do your code here
-        otp=findViewById(R.id.otp);
-        confirmOtp=findViewById(R.id.confirmOtp);
-        sendOtp=findViewById(R.id.sendOtp);
+        mail = findViewById(R.id.username);
+        pass = findViewById(R.id.pass);
+//        otp = findViewById(R.id.otp);
+        confirmOtp = findViewById(R.id.confirmOtp);
+        sendOtp = findViewById(R.id.sendOtp);
+
+        String email = mail.getText().toString().trim();
+        String password = pass.getText().toString().trim();
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d("TAG", "createUserWithEmail:onComplete:" + task.isSuccessful());
+
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            // Show the message task.getException()
+                        }
+                        else
+                        {
+                            // successfully account created
+                            // now the AuthStateListener runs the onAuthStateChanged callback
+                        }
+
+                        // ...
+                    }
+                });
+
         sendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // SEND OTP CODE HERE
+                mAuthListener = new FirebaseAuth.AuthStateListener() {
+                    @Override
+                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        if (user != null) {
+                            // User is signed in
+                            // NOTE: this Activity should get open only when the user is not signed in, otherwise
+                            // the user will receive another verification email.
+                            sendVerificationEmail();
+                        } else {
+                            // User is signed out
+
+                        }
+                        // ...
+                    }
+                };
+
+            }
+
+            private void sendVerificationEmail() {
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                assert user != null;
+                user.sendEmailVerification()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    // email sent
+
+
+                                    // after email is sent just logout the user and finish this activity
+                                    FirebaseAuth.getInstance().signOut();
+                                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                    finish();
+                                } else {
+                                    // email not sent, so display message and restart the activity or do whatever you wish to do
+
+                                    //restart this activity
+                                    overridePendingTransition(0, 0);
+                                    finish();
+                                    overridePendingTransition(0, 0);
+                                    startActivity(getIntent());
+
+                                }
+                            }
+                        });
 
             }
         });
         confirmOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Otp=otp.getText().toString();
-                Double otp=Double.valueOf(Otp);
+
+
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         ff = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         user_name = findViewById(R.id.username);
-        display_name=findViewById(R.id.displayName);
+        display_name = findViewById(R.id.displayName);
         passwordText = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);
         regis_ter = findViewById(R.id.register1);
@@ -227,10 +293,10 @@ public class RegisterActivity extends AppCompatActivity {
                             map.put("PhoneNumber", "phone Number");
                             map.put("ImageUrl", "imageURL");
                             ff.collection("Users").document(firebaseUser.getUid()).set(map);
-                            Map<String,String>coins=new HashMap<>();
+                            Map<String, String> coins = new HashMap<>();
                             coins.put("earned", String.valueOf(100));
                             coins.put("winnings", String.valueOf(0));
-                            Map<String ,String >cash=new HashMap<>();
+                            Map<String, String> cash = new HashMap<>();
                             cash.put("added", String.valueOf(0));
                             cash.put("redeemed", String.valueOf(0));
                             ff.collection("Users").
@@ -245,7 +311,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             document("cash").set(cash).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
 
                                         }
                                     });

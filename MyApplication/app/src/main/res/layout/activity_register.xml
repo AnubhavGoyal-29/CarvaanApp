@@ -86,23 +86,23 @@ android:weightSum="10"
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/otp"
+                        android:id="@+id/pass"
                         android:background="@drawable/inputtype"
                         android:textColor="@color/black"
                         android:textSize="15sp"
-                        android:hint="enter otp"
+                        android:hint="enter password"
                         android:textColorHint="#000000"
                         android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
-                <Button
-                    android:id="@+id/confirmOtp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="confirm email">
-                </Button>
+<!--                <Button-->
+<!--                    android:id="@+id/confirmOtp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:gravity="center"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:text="confirm email">-->
+<!--                </Button>-->
             </LinearLayout>
             </LinearLayout>
             <LinearLayout
