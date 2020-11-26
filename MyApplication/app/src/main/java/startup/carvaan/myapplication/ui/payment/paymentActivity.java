@@ -41,6 +41,8 @@ public class paymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+        getSupportActionBar().setTitle("Add Cash ");
+        getSupportActionBar().setElevation(0);
         coins=findViewById(R.id.coins);
         iCloudFunction=RetrofitClient.getInstance().create(ICloudFunction.class);
         orderAmount=findViewById(R.id.amount);

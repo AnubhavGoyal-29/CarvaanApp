@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
         getSupportActionBar().setElevation(0);
+        getSupportActionBar().setTitle("StartupCarvaan");
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new allshares()).commit();
         mView= findViewById(R.id.aboutsharebottomnavview);
         heartVector = findViewById(R.id.fab);
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         });
         View view=getSupportActionBar().getCustomView();
         TextView textView=view.findViewById(R.id.title);
-        textView.setText("Karvaan");
+        textView.setText("StartupCarvaan");
         drawerLayout = findViewById(R.id.drawerlayout);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
         drawerLayout.addDrawerListener(toggle);

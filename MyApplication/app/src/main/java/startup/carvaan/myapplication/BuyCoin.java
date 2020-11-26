@@ -27,6 +27,8 @@ public class BuyCoin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_coin);
+        getSupportActionBar().setTitle("Buy Some Coins");
+        getSupportActionBar().setElevation(0);
         buy120=findViewById(R.id.BuyNow120);
         buy260=findViewById(R.id.BuyNow260);
         buy500=findViewById(R.id.BuyNow500);

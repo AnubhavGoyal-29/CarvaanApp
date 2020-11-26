@@ -199,6 +199,7 @@ AboutShare extends AppCompatActivity {
                             Map<String ,String > files=new HashMap<>();
                             files.putAll(postModal.getFiles());
                             files.put(user.getUser().getUid(),path);
+                            postViewHolder.nooffiles.setText(String.valueOf(files.size()));
                             if(path==null){
                                 Toast.makeText(AboutShare.this,"files does not uploaded successfully please try again",Toast.LENGTH_LONG).show();
                             }
@@ -210,7 +211,6 @@ AboutShare extends AppCompatActivity {
                                         .update("files",files).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        pdfUri=null;
                                         postViewHolder.uploadFile.setVisibility(View.GONE);
                                         postViewHolder.attachfile.setVisibility(View.VISIBLE);
                                     }
@@ -391,6 +391,7 @@ AboutShare extends AppCompatActivity {
         finalPath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                pdfUri=null;
                 Toast.makeText(AboutShare.this,"file upload successfully",Toast.LENGTH_SHORT).show();
             }
         });
