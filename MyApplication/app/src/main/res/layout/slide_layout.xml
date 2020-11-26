@@ -42,7 +42,7 @@
 
         android:layout_marginRight="30dp"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="#FFFFFF"
         />
 
     <TextView
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:textColor="@color/white"
+        android:textColor="#FFFFFF"
 android:textSize="17sp"
         android:layout_marginTop="22dp"
         android:layout_marginRight="30dp"

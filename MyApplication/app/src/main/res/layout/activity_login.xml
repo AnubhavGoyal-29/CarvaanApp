@@ -52,6 +52,7 @@
                 android:background="@drawable/inputtype"
                 android:hint="login with you Email"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="18sp"
 
                 />
@@ -68,6 +69,7 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="18sp"
 
                 />

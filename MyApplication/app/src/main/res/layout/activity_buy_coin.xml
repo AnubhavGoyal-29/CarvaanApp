@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="Check Conversion"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/teal_700"
+                android:textColor="#FF018786"
                 android:textStyle="bold"
                 android:textSize="22sp"/>
             <LinearLayout
@@ -70,7 +70,7 @@
                 android:layout_height="40dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:backgroundTint="@color/teal_700"
+                android:backgroundTint="#FF018786"
                 android:text="Buy Now"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
@@ -87,7 +87,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple_500"
+            android:background="#533D78"
 
             android:orientation="vertical">
             <LinearLayout
@@ -148,7 +148,7 @@
                     android:paddingLeft="20dp"
 
                     android:paddingRight="20dp"
-                    android:backgroundTint="@color/teal_700"
+                    android:backgroundTint="#188F84"
                     android:text="Buy Now"
                     android:textColor="#ffffff"
                     android:textStyle="bold" />
@@ -172,7 +172,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:background="@color/teal_700"
+                android:background="#188F84"
 
 
                 android:orientation="vertical">
@@ -321,7 +321,7 @@
                         android:paddingLeft="20dp"
 
                         android:paddingRight="20dp"
-                        android:backgroundTint="@color/purple_500"
+                        android:backgroundTint="#533D78"
                         android:text="Buy Now"
                         android:textColor="#ffffff"
                         android:textStyle="bold" />
@@ -344,7 +344,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/purple_500"
+                android:background="#533D78"
 
                 android:orientation="vertical">
 
@@ -405,7 +405,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
-                        android:backgroundTint="@color/teal_700"
+                        android:backgroundTint="#188F84"
 
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
@@ -432,7 +432,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:background="@color/teal_700"
+                android:background="#188F84"
 
                 android:orientation="vertical">
 
@@ -579,7 +579,7 @@
                         android:paddingLeft="20dp"
 
                         android:paddingRight="20dp"
-                        android:backgroundTint="@color/purple_500"
+                        android:backgroundTint="##533D78"
                         android:text="Buy Now"
                         android:textColor="#ffffff"
                         android:textStyle="bold" />

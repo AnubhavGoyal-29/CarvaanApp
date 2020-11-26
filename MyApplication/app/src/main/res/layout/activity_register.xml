@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:weightSum="10"
+    android:weightSum="10"
     android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".ui.mainActivity.MainActivity">
@@ -20,9 +20,9 @@ android:weightSum="10"
         android:orientation="vertical"
         android:gravity="center">
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/vsm_logo"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/startupcarvaanlogo"
 
             />
 
@@ -32,79 +32,60 @@ android:weightSum="10"
         android:layout_height="0dp"
         android:layout_weight="5.8">
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
+                android:id="@+id/beforeEmailVerification"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="55dp"
                     android:layout_marginRight="55dp"
-                    android:layout_marginTop="15dp">
+                    android:layout_marginTop="17dp"
+                    android:textColorHint="#000000"
+                    android:textSize="15sp"
+                    android:textColor="#000000"
+                    >
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/username"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textColorHint="#000000"
                         android:background="@drawable/inputtype"
-                        android:hint="Email" />
-                </com.google.android.material.textfield.TextInputLayout>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="send otp">
-                </Button>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="55dp"
-                    android:layout_marginRight="55dp"
-                    android:layout_marginTop="15dp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/otp"
-                        android:textColor="@color/black"
+                        android:textColor="#000000"
                         android:textSize="15sp"
-                        android:textColorHint="#000000"
-                        android:background="@drawable/inputtype"
-                        android:hint="enter otp" />
+                        android:hint="Email"
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="confirm email">
-                </Button>
                 <LinearLayout
-                    android:visibility="gone"
-                    android:orientation="vertical"
+                    android:id="@+id/afterOtp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="55dp"
                         android:layout_marginRight="55dp"
-                        android:layout_marginTop="17dp"
-                        >
+                        android:textColorHint="#000000"
+                        android:textSize="15sp"
+                        android:textColor="#000000"
+                        android:layout_marginTop="15dp">
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/displayName"
-                            android:background="@drawable/inputtype"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            android:hint="Name to be dispalyed"
-                            android:textColorHint="#000000"/>
+                            android:textColorHint="#000000"
+                            android:background="@drawable/inputtype"
+                            android:hint="Display name" />
                     </com.google.android.material.textfield.TextInputLayout>
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -113,6 +94,9 @@ android:weightSum="10"
                         android:layout_marginRight="55dp"
                         android:layout_marginTop="15dp"
                         app:errorEnabled="true"
+                        android:textColorHint="#000000"
+                        android:textSize="15sp"
+                        android:textColor="#000000"
                         app:passwordToggleEnabled="true">
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -132,6 +116,9 @@ android:weightSum="10"
                         android:layout_marginRight="55dp"
                         android:layout_marginTop="15dp"
                         app:errorEnabled="true"
+                        android:textColorHint="#000000"
+                        android:textSize="15sp"
+                        android:textColor="#000000"
                         android:id="@+id/confirmPassword"
                         app:passwordToggleEnabled="true">
                         <com.google.android.material.textfield.TextInputEditText
@@ -144,69 +131,78 @@ android:weightSum="10"
                             android:textColorHint="#000000"
                             android:inputType="textPassword"/>
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <include
+                        android:id="@+id/register1"
+                        layout="@layout/progress_btn_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="-5dp"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginRight="60dp" />
                 </LinearLayout>
-                <include
-                    android:visibility="gone"
-                    android:id="@+id/register1"
-                    layout="@layout/progress_btn_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="-5dp"
-                    android:layout_marginLeft="60dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginRight="60dp" />
             </LinearLayout>
+            <!--            <Button-->
+            <!--                android:gravity="center"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:visibility="gone"-->
+            <!--                android:id="@+id/emailVerified"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:text="email verified">-->
+            <!--            </Button>-->
         </LinearLayout>
 
     </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-    android:layout_weight="1.8"
+        android:layout_weight="1.8"
         android:background="@drawable/back2"
         android:gravity="center|right">
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
 
-<!--            android:orientation="vertical"-->
-
-
-
-<!--            android:layout_marginRight="40dp"-->
-<!--            android:gravity="center"-->
-<!--            >-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Or Sign in with"-->
-<!--                android:textColor="#FFFFFF"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textSize="16sp"-->
-
-<!--                />-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:orientation="horizontal"-->
+        <!--            android:orientation="vertical"-->
 
 
 
+        <!--            android:layout_marginRight="40dp"-->
+        <!--            android:gravity="center"-->
+        <!--            >-->
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="Or Sign in with"-->
+        <!--                android:textColor="#FFFFFF"-->
+        <!--                android:textStyle="bold"-->
+        <!--                android:textSize="16sp"-->
 
-<!--                android:gravity="center">-->
+        <!--                />-->
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="10dp"-->
+        <!--                android:orientation="horizontal"-->
 
-<!--                <ImageView-->
-<!--                    android:layout_width="42dp"-->
-<!--                    android:layout_height="42dp"-->
-<!--                    android:id="@+id/googlesignup"-->
 
-<!--                    android:src="@drawable/google"-->
 
-<!--                    />-->
 
-<!--            </LinearLayout>-->
-<!--        </LinearLayout>-->
+        <!--                android:gravity="center">-->
+
+        <!--                <ImageView-->
+        <!--                    android:layout_width="42dp"-->
+        <!--                    android:layout_height="42dp"-->
+        <!--                    android:id="@+id/googlesignup"-->
+
+        <!--                    android:src="@drawable/google"-->
+
+        <!--                    />-->
+
+        <!--            </LinearLayout>-->
+        <!--        </LinearLayout>-->
         <TextView
             android:layout_width="120dp"
             android:layout_height="42dp"
@@ -221,6 +217,4 @@ android:weightSum="10"
 
 
     </LinearLayout>
-    </LinearLayout>
-
-
+</LinearLayout>

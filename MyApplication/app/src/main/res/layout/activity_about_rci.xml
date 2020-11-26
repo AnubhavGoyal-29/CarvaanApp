@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:text=" Check Conversion"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/teal_700"
+                android:textColor="#FF018786"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
             <LinearLayout
