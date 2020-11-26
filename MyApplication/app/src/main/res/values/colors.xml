@@ -15,6 +15,7 @@
     <color name="colorTransparentWhite">#cccccc</color>
     <color name="enabledBtn">#FF625088</color>
     <color name="red">#FF0000</color>
+    <color name="actionbar_background">#533D78</color>
 
 
 </resources>
