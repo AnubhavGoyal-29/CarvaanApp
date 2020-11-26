@@ -27,6 +27,8 @@ public class BuyCoin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_coin);
+        getSupportActionBar().setTitle("Buy Some Coins");
+        getSupportActionBar().setElevation(0);
         buy120=findViewById(R.id.BuyNow120);
         buy260=findViewById(R.id.BuyNow260);
         buy500=findViewById(R.id.BuyNow500);
@@ -145,13 +147,16 @@ public class BuyCoin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(Double.valueOf(convertedCoins.getText().toString())!=0){
-                    if(Double.valueOf(user.getAdded())>=Double.valueOf(rupees.getText().toString())){
+                    if(Double.valueOf(user.getAdded())>=Double.valueOf(rupees.getText().toString())) {
                         user.removeCash(Double.valueOf(rupees.getText().toString()));
-                        user.addEarned((Double) (Integer.valueOf(Integer.valueOf(rupees.getText().toString()))/Double.valueOf(coinModal.getValue())));
+                        user.addEarned((Double) (Integer.valueOf(Integer.valueOf(rupees.getText().toString())) / Double.valueOf(coinModal.getValue())));
+                        Toast.makeText(BuyCoin.this,"done buying",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(BuyCoin.this,MainActivity.class));
                     }
-                    Toast.makeText(BuyCoin.this,"done checking",Toast.LENGTH_LONG).show();
+                    else{
+                        Toast.makeText(BuyCoin.this,"you do not have enough cash",Toast.LENGTH_SHORT).show();
+                    }
                 }
-                Toast.makeText(BuyCoin.this,"done buying",Toast.LENGTH_LONG).show();
             }
         });
     }

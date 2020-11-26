@@ -25,7 +25,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
 
-public class ChartActivity extends AppCompatActivity implements OnChartGestureListener, OnChartValueSelectedListener {
+public class    ChartActivity extends AppCompatActivity implements OnChartGestureListener, OnChartValueSelectedListener {
 
     private static final String TAG = "ChartActivity";
 

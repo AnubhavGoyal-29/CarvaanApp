@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -32,13 +33,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -125,7 +130,7 @@ AboutShare extends AppCompatActivity {
                 userLiking.putAll(postModal.getUsersLiking());
                 postViewHolder.nooflikes.setText(String.valueOf(userLiking.size()));
                 if(userLiking.containsKey(user.getUser().getUid()))
-                    postViewHolder.likebutton.setTextColor(R.color.progress_color);
+                    postViewHolder.likebutton.setTextColor(R.color.red);
                 postViewHolder.likebutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -190,10 +195,11 @@ AboutShare extends AppCompatActivity {
                     postViewHolder.uploadFile.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            uploadFile(shareid,postModal.getId(),pdfUri);
+                            path=uploadFile(shareid,postModal.getId(),pdfUri);
                             Map<String ,String > files=new HashMap<>();
                             files.putAll(postModal.getFiles());
                             files.put(user.getUser().getUid(),path);
+                            postViewHolder.nooffiles.setText(String.valueOf(files.size()));
                             if(path==null){
                                 Toast.makeText(AboutShare.this,"files does not uploaded successfully please try again",Toast.LENGTH_LONG).show();
                             }
@@ -205,8 +211,6 @@ AboutShare extends AppCompatActivity {
                                         .update("files",files).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        pdfUri=null;
-                                        Toast.makeText(AboutShare.this,"file successfully uploaded",Toast.LENGTH_LONG).show();
                                         postViewHolder.uploadFile.setVisibility(View.GONE);
                                         postViewHolder.attachfile.setVisibility(View.VISIBLE);
                                     }
@@ -355,31 +359,43 @@ AboutShare extends AppCompatActivity {
                     dialog_buy.show(getSupportFragmentManager(), "Dialog_Buy");
                     break;
                 case R.id.sharesell:
-                    Sell dialog_sell = new Sell();
-                    Bundle bundle1 = new Bundle();
-                    bundle1.putString("shareid", shareid);
-                    dialog_sell.setArguments(bundle1);
-                    dialog_sell.show(getSupportFragmentManager(), "Dialog_Buy");
+                    ff.collection("Users")
+                            .document(user.getUser().getUid())
+                            .collection("myshares")
+                            .document(shareid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot documentSnapshot=task.getResult();
+                            if(documentSnapshot.exists()){
+                                Sell dialog_sell = new Sell();
+                                Bundle bundle1 = new Bundle();
+                                bundle1.putString("shareid", shareid);
+                                dialog_sell.setArguments(bundle1);
+                                dialog_sell.show(getSupportFragmentManager(), "Dialog_Buy");
+                            }
+                            else{
+                                Toast.makeText(AboutShare.this,"you have do not have any share",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
                     break;
 
             }
             return false;
         }
     };
-    public void uploadFile(String shareid,String blogid,Uri uri){
+    public String uploadFile(String shareid,String blogid,Uri uri){
         StorageReference storageReference=firebaseStorage.getReference();
-        StorageReference finalPath=storageReference.child(shareid).child(blogid).child(user.getUser().getUid());
+        StorageReference finalPath=storageReference.child("shareFiles").child(shareid).child(blogid).child(user.getUser().getUid()+".pdf");
         finalPath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                finalPath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                         path = uri.toString();
-                    }
-                });
+                pdfUri=null;
+                Toast.makeText(AboutShare.this,"file upload successfully",Toast.LENGTH_SHORT).show();
             }
         });
+        return finalPath.toString();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

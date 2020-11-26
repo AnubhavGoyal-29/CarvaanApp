@@ -14,6 +14,7 @@
     <color name="disabledBtn">#707070</color>
     <color name="colorTransparentWhite">#cccccc</color>
     <color name="enabledBtn">#FF625088</color>
+    <color name="red">#FF0000</color>
 
 
 </resources>

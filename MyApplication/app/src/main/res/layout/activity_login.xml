@@ -21,27 +21,21 @@
         <ImageView
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/vsm_logo"
-
+            android:src="@drawable/startupcarvaanlogo"
             />
-
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
         android:layout_weight="4.9"
         android:gravity="center"
         android:orientation="vertical">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:orientation="vertical">
-
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
@@ -52,10 +46,12 @@
                 android:background="@drawable/inputtype"
                 android:hint="login with you Email"
                 android:textColor="#000000"
+
                 android:textColorHint="#000000"
                 android:textSize="18sp"
 
                 />
+
 
             <EditText
                 android:id="@+id/password"
@@ -71,7 +67,6 @@
                 android:textColor="#000000"
                 android:textColorHint="#000000"
                 android:textSize="18sp"
-
                 />
         </LinearLayout>
 
