@@ -63,23 +63,23 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Paper.init(this);
-        new MaterialTapTargetPrompt.Builder(MainActivity.this)
-                .setTarget(R.id.n1)
-                .setPrimaryText("Hii Carvaan User")
-                .setSecondaryText("Go to the How to play page in the navigation drawer by clicking in this icon to know everything about this app")
-                .setIcon(R.drawable.menur)
-                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
-                {
-                    @Override
-                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
-                    {
-                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
-                        {
-                               AppDemo();
-                        }
-                    }
-                })
-                .show();
+        AppDemo();
+//        new MaterialTapTargetPrompt.Builder(MainActivity.this)
+//                .setTarget(R.id.n1)
+//                .setPrimaryText("Hii Carvaan User")
+//                .setSecondaryText("Go to the How to play page in the navigation drawer by clicking in this icon to know everything about this app")
+//                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
+//                {
+//                    @Override
+//                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
+//                    {
+//                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
+//                        {
+//                               AppDemo();
+//                        }
+//                    }
+//                })
+//                .show();
         ff=FirebaseFirestore.getInstance();
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -158,8 +158,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector.setVisibility(View.VISIBLE);
                 heartVector1.setVisibility(View.GONE);
                 heartVector2.setVisibility(View.GONE);
-
-
                 break;
             case R.id.allshares:
                 selectedFragment = new allshares();
@@ -170,9 +168,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector.setVisibility(View.GONE);
                 heartVector1.setVisibility(View.VISIBLE);
                 heartVector2.setVisibility(View.GONE);
-
-
-
                 break;
             case R.id.profile:
                 selectedFragment = new Profile();
@@ -183,9 +178,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector.setVisibility(View.GONE);
                 heartVector1.setVisibility(View.GONE);
                 heartVector2.setVisibility(View.VISIBLE);
-
-
-
                 break;
         }
 
