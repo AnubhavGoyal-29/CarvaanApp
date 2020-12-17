@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     {
                         if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
                         {
-
+                               AppDemo();
                         }
                     }
                 })
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector1.setVisibility(View.GONE);
                 heartVector2.setVisibility(View.GONE);
 
-                selectAnimation(heartVector);
+
                 break;
             case R.id.allshares:
                 selectedFragment = new allshares();
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector2.setVisibility(View.GONE);
 
 
-                selectAnimation(heartVector1);
+
                 break;
             case R.id.profile:
                 selectedFragment = new Profile();
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector2.setVisibility(View.VISIBLE);
 
 
-                selectAnimation(heartVector2);
+               
                 break;
         }
 
