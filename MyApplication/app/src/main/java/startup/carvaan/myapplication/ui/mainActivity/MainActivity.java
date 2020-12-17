@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 .setTarget(R.id.n1)
                 .setPrimaryText("Hii Carvaan User")
                 .setSecondaryText("Go to the How to play page in the navigation drawer by clicking in this icon to know everything about this app")
+                .setIcon(R.drawable.menur)
                 .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
                 {
                     @Override
@@ -184,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector2.setVisibility(View.VISIBLE);
 
 
-               
+
                 break;
         }
 
@@ -279,16 +280,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         .setTarget(findViewById(R.id.allshares))
                         .setPrimaryText("All shares page ")
                         .setSecondaryText("Here you can see all the startups that are listed in this app to invest.Invest in it by clicking on invest in me button. ")
+                        .setIcon(R.drawable.ic_home_black_24dp)
                         .create(), 4000)
                 .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
                         .setTarget(findViewById(R.id.myshares))
                         .setPrimaryText("My share button")
                         .setSecondaryText("Here you can see all the shares in which you invest ")
+                        .setIcon(R.drawable.ic_baseline_account_circle_24)
                         .create(), 4000)
                 .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
                         .setTarget(findViewById(R.id.profile))
                         .setPrimaryText("Profile")
                         .setSecondaryText("Here you can see  how much coins you have.You can redeem them here or buy coins here to invest more. ")
+                        .setIcon(R.drawable.ic_baseline_attach_money_24)
                         .create(), 4000)
                 .show();
     }
