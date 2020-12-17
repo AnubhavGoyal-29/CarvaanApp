@@ -1,6 +1,7 @@
 package startup.carvaan.myapplication.ui.allshares;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,21 +15,27 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.about.AboutShare;
 import startup.carvaan.myapplication.ui.user.User;
 
 
 public class allshares extends Fragment {
-
+    private StorageReference firebaseStorage=FirebaseStorage.getInstance().getReference();
     private RecyclerView allShareRecyclerView;
     private FirestoreRecyclerAdapter adapter;
     private FirebaseFirestore ff;
@@ -78,6 +85,16 @@ public class allshares extends Fragment {
 
                     }
                 });
+                StorageReference storageReference=firebaseStorage.child(allsharemodel.getLogoUrl());
+                storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        Glide.with(getContext())
+                                .load(task.getResult())
+                                .into(postViewHolder.circleImageView);
+                    }
+                });
+
                 postViewHolder.aboutShare.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -95,8 +112,10 @@ public class allshares extends Fragment {
         private YouTubePlayerView videoPlayer;
         private TextView companyName,description,peopleinvested,text_view_progress,tag;
         private ProgressBar growth;
+        private CircleImageView circleImageView;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
+            circleImageView=itemView.findViewById(R.id.logo);
             text_view_progress=itemView.findViewById(R.id.text_view_progress);
             growth=itemView.findViewById(R.id.progress_bar);
             peopleinvested=itemView.findViewById(R.id.peopleinvested);

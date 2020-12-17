@@ -579,7 +579,7 @@
                         android:paddingLeft="20dp"
 
                         android:paddingRight="20dp"
-                        android:backgroundTint="##533D78"
+                        android:backgroundTint="#533D78"
                         android:text="Buy Now"
                         android:textColor="#ffffff"
                         android:textStyle="bold" />

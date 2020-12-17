@@ -37,7 +37,7 @@
                 android:layout_height="73dp"
                 app:itemIconTint="#FFFFFF"
                 app:itemTextColor="#FFFFFF"
-
+                android:background="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
