@@ -39,7 +39,7 @@ private int count=0,count2=0,count3=0;
         rulesre = findViewById(R.id.setyougoal);
         rules = findViewById(R.id.rules);
 
-        downarrow1.setOnClickListener(new View.OnClickListener() {
+        howtoinvest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 count++;
@@ -74,7 +74,7 @@ private int count=0,count2=0,count3=0;
         });
 
 
-        downarrow2.setOnClickListener(new View.OnClickListener() {
+        howtoearn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 count2++;
@@ -92,7 +92,7 @@ private int count=0,count2=0,count3=0;
                     rulesre.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     description3.setVisibility(View.GONE);
                     picture.setVisibility(View.GONE);
-                    downarrow1.setImageResource(R.drawable.expanda);
+                    downarrow1.setImageResource(R.drawable.downarrow);
                     earn.setTextColor(Color.parseColor("#FFFFFF"));
                     howtoearn.setBackgroundColor(Color.parseColor("#FF533D78"));
                     description2.setVisibility(View.VISIBLE);
@@ -105,7 +105,7 @@ private int count=0,count2=0,count3=0;
                 }
             }
         });
-        downarrow3.setOnClickListener(new View.OnClickListener() {
+        rulesre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 count3++;

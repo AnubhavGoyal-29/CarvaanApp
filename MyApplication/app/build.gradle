@@ -126,6 +126,7 @@ dependencies {
 
     implementation 'io.paperdb:paperdb:2.7.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'uk.co.samuelwall:material-tap-target-prompt:3.0.0'
 
 }
 apply plugin: 'com.google.gms.google-services'

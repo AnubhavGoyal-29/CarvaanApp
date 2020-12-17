@@ -36,6 +36,9 @@ import startup.carvaan.myapplication.ui.navbar.Helppage;
 import startup.carvaan.myapplication.ui.payment.payouts;
 import startup.carvaan.myapplication.ui.profile.Profile;
 import startup.carvaan.myapplication.ui.user.User;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetSequence;
+
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "carvaan";
     FirebaseAuth firebaseAuth;
@@ -60,6 +63,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Paper.init(this);
+        new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                .setTarget(R.id.n1)
+                .setPrimaryText("Hii Carvaan User")
+                .setSecondaryText("Go to the How to play page in the navigation drawer by clicking in this icon to know everything about this app")
+                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
+                {
+                    @Override
+                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
+                    {
+                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
+                        {
+
+                        }
+                    }
+                })
+                .show();
         ff=FirebaseFirestore.getInstance();
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -74,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mlinId = findViewById(R.id.lin_id);
         mView.inflateMenu(R.menu.bottom_nav_menu);
         mView.setSelectedItemId(R.id.allshares);
+
         mView.setOnNavigationItemSelectedListener(MainActivity.this);
         NavigationView navigationView =findViewById(R.id.n1);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -177,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         outline.setTrimPathEnd(0.0f);
         // initialise valueAnimator and pass start and end float values
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
-        valueAnimator.setDuration(500);
+        valueAnimator.setDuration(1);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -252,5 +272,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if(!(Paper.book().contains("isFirst"))){
             Paper.book().write("isFirst",true);
         }
+    }
+    public void AppDemo() {
+        new MaterialTapTargetSequence()
+                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                        .setTarget(findViewById(R.id.allshares))
+                        .setPrimaryText("All shares page ")
+                        .setSecondaryText("Here you can see all the startups that are listed in this app to invest.Invest in it by clicking on invest in me button. ")
+                        .create(), 4000)
+                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                        .setTarget(findViewById(R.id.myshares))
+                        .setPrimaryText("My share button")
+                        .setSecondaryText("Here you can see all the shares in which you invest ")
+                        .create(), 4000)
+                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                        .setTarget(findViewById(R.id.profile))
+                        .setPrimaryText("Profile")
+                        .setSecondaryText("Here you can see  how much coins you have.You can redeem them here or buy coins here to invest more. ")
+                        .create(), 4000)
+                .show();
     }
 }
