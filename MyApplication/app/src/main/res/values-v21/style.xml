@@ -20,10 +20,4 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> d43a408dc246893e5093b26b5dab95c280858cbb
 </resources>
