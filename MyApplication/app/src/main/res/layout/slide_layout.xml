@@ -19,8 +19,8 @@
             android:layout_weight="4.2">
             <ImageView
                 android:id="@+id/slideImage"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
 
 
                 android:src="@drawable/investing" />
@@ -53,6 +53,7 @@
         android:layout_marginLeft="30dp"
         android:textColor="#FFFFFF"
     android:textSize="17sp"
+        android:gravity="center"
         android:layout_marginTop="22dp"
         android:layout_marginRight="30dp"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."

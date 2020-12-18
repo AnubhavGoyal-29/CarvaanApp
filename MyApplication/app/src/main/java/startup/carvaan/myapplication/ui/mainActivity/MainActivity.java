@@ -83,23 +83,38 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
         },2000);
         Paper.init(this);
-        AppDemo();
-//        new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                .setTarget(R.id.n1)
-//                .setPrimaryText("Hii Carvaan User")
-//                .setSecondaryText("Go to the How to play page in the navigation drawer by clicking in this icon to know everything about this app")
-//                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
-//                {
-//                    @Override
-//                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
-//                    {
-//                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
-//                        {
-//                               AppDemo();
-//                        }
-//                    }
-//                })
-//                .show();
+
+        new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                .setTarget(R.id.n1)
+                .setPrimaryText("Hii Carvaan User")
+                .setSecondaryText("Go to the How to play page in the navigation drawer by clicking in this icon to know everything about this app")
+                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
+                {
+                    @Override
+                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
+                    {
+                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
+                        {
+                            new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                                    .setTarget(R.id.lin_id)
+                                    .setPrimaryText("Home page button")
+                                    .setSecondaryText("This contains all the startups that are list on our app.You can invest in any startup by clicking on invest in me button.")
+                                    .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
+                                    {
+                                        @Override
+                                        public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
+                                        {
+                                            if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
+                                            {
+
+                                            }
+                                        }
+                                    })
+                                    .show();
+                        }
+                    }
+                })
+                .show();
         ff=FirebaseFirestore.getInstance();
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -286,26 +301,26 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             Paper.book().write("isFirst",true);
         }
     }
-    public void AppDemo() {
-        new MaterialTapTargetSequence()
-                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-                        .setTarget(findViewById(R.id.allshares))
-                        .setPrimaryText("All shares page ")
-                        .setSecondaryText("Here you can see all the startups that are listed in this app to invest.Invest in it by clicking on invest in me button. ")
-                        .setIcon(R.drawable.ic_home_black_24dp)
-                        .create(), 4000)
-                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-                        .setTarget(findViewById(R.id.myshares))
-                        .setPrimaryText("My share button")
-                        .setSecondaryText("Here you can see all the shares in which you invest ")
-                        .setIcon(R.drawable.ic_baseline_account_circle_24)
-                        .create(), 4000)
-                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-                        .setTarget(findViewById(R.id.profile))
-                        .setPrimaryText("Profile")
-                        .setSecondaryText("Here you can see  how much coins you have.You can redeem them here or buy coins here to invest more. ")
-                        .setIcon(R.drawable.ic_baseline_attach_money_24)
-                        .create(), 4000)
-                .show();
-    }
+//    public void AppDemo() {
+//        new MaterialTapTargetSequence()
+//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+//                        .setTarget(findViewById(R.id.allshares))
+//                        .setPrimaryText("All shares page ")
+//                        .setSecondaryText("Here you can see all the startups that are listed in this app to invest.Invest in it by clicking on invest in me button. ")
+//                        .setIcon(R.drawable.ic_home_black_24dp)
+//                        .create(), 4000)
+//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+//                        .setTarget(findViewById(R.id.myshares))
+//                        .setPrimaryText("My share button")
+//                        .setSecondaryText("Here you can see all the shares in which you invest ")
+//                        .setIcon(R.drawable.ic_baseline_account_circle_24)
+//                        .create(), 4000)
+//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+//                        .setTarget(findViewById(R.id.profile))
+//                        .setPrimaryText("Profile")
+//                        .setSecondaryText("Here you can see  how much coins you have.You can redeem them here or buy coins here to invest more. ")
+//                        .setIcon(R.drawable.ic_baseline_attach_money_24)
+//                        .create(), 4000)
+//                .show();
+//    }
 }
