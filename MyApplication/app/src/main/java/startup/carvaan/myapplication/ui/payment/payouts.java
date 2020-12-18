@@ -1,7 +1,9 @@
 package startup.carvaan.myapplication.ui.payment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.HashMap;
 import java.util.Map;
 
+import startup.carvaan.myapplication.ProgDialogue;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 import startup.carvaan.myapplication.ui.user.User;
@@ -49,45 +52,63 @@ public class payouts extends AppCompatActivity {
         withdrawl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(coins.getText().toString()==null||coins.getText().length()==0){
-                    Toast.makeText(payouts.this,"input some coins to redeem",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    if(Double.valueOf(coins.getText().toString())<=Double.valueOf(user.getWinnings())) {
-                        if(!(upi_id.getText().toString().length()==0)||!(bank_account.getText().toString().length()==0)) {
-                            Map<String, String> withDrawDetails = new HashMap<>();
-                            withDrawDetails.put("amount", convertedMoney.getText().toString());
-                            if (upi_id.getText().length() == 0) {
-                                withDrawDetails.put("upi_id", null);
-                                withDrawDetails.put("bank_account", bank_account.getText().toString());
-                                withDrawDetails.put("ifsc_code", ifsc_code.getText().toString());
-                                withDrawDetails.put("account_holder_name", account_holder_name.getText().toString());
-                            }
-                            if (upi_id.getText().length() != 0) {
-                                withDrawDetails.put("upi_id", upi_id.getText().toString());
-                                withDrawDetails.put("bank_account", bank_account.getText().toString());
-                                withDrawDetails.put("ifsc_code", ifsc_code.getText().toString());
-                                withDrawDetails.put("account_holder_name", account_holder_name.getText().toString());
-                            }
-                            ff.collection("Withdrawls").document().set(withDrawDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(payouts.this, "withdrawl is successful, will be reflected in 2-3 days", Toast.LENGTH_LONG).show();
-                                    user.addRedeem(Double.valueOf(convertedMoney.getText().toString()));
-                                    user.removeWinnings(Double.valueOf(coins.getText().toString()
-                                    ));
-                                    startActivity(new Intent(payouts.this, MainActivity.class));
-                                }
-                            });
+                ProgressDialog progressDialog = new ProgressDialog(payouts.this);
+                progressDialog.setMessage("dialogueMessage"); // Setting Message
+                progressDialog.setTitle("dialogueTitle"); // Setting Title
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                progressDialog.show(); // Display Progress Dialog
+                progressDialog.setCanceledOnTouchOutside(false);
+
+                progressDialog.setCancelable(false);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        progressDialog.dismiss();
+                        if(coins.getText().toString()==null||coins.getText().length()==0){
+                            Toast.makeText(payouts.this,"input some coins to redeem",Toast.LENGTH_LONG).show();
                         }
                         else{
-                            Toast.makeText(payouts.this,"Enter either of payment option",Toast.LENGTH_LONG).show();
+                            if(Double.valueOf(coins.getText().toString())<=Double.valueOf(user.getWinnings())) {
+                                if(!(upi_id.getText().toString().length()==0)||!(bank_account.getText().toString().length()==0)) {
+                                    Map<String, String> withDrawDetails = new HashMap<>();
+                                    withDrawDetails.put("amount", convertedMoney.getText().toString());
+                                    if (upi_id.getText().length() == 0) {
+                                        withDrawDetails.put("upi_id", null);
+                                        withDrawDetails.put("bank_account", bank_account.getText().toString());
+                                        withDrawDetails.put("ifsc_code", ifsc_code.getText().toString());
+                                        withDrawDetails.put("account_holder_name", account_holder_name.getText().toString());
+                                    }
+                                    if (upi_id.getText().length() != 0) {
+                                        withDrawDetails.put("upi_id", upi_id.getText().toString());
+                                        withDrawDetails.put("bank_account", bank_account.getText().toString());
+                                        withDrawDetails.put("ifsc_code", ifsc_code.getText().toString());
+                                        withDrawDetails.put("account_holder_name", account_holder_name.getText().toString());
+                                    }
+                                    ff.collection("Withdrawls").document().set(withDrawDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Toast.makeText(payouts.this, "withdrawl is successful, will be reflected in 2-3 days", Toast.LENGTH_LONG).show();
+                                            user.addRedeem(Double.valueOf(convertedMoney.getText().toString()));
+                                            user.removeWinnings(Double.valueOf(coins.getText().toString()
+                                            ));
+                                            startActivity(new Intent(payouts.this, MainActivity.class));
+                                        }
+                                    });
+                                }
+                                else{
+                                    Toast.makeText(payouts.this,"Enter either of payment option",Toast.LENGTH_LONG).show();
+                                }
+                            }
+                            else{
+                                Toast.makeText(payouts.this,"you do not have enough coins to redeem",Toast.LENGTH_LONG).show();
+                            }
                         }
+
                     }
-                    else{
-                        Toast.makeText(payouts.this,"you do not have enough coins to redeem",Toast.LENGTH_LONG).show();
-                    }
-                }
+                },2000);
+
             }
         });
         ff.collection("Coins").document("coins").addSnapshotListener(new EventListener<DocumentSnapshot>() {

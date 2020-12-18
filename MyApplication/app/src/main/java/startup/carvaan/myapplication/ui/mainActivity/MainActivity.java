@@ -1,9 +1,13 @@
 package startup.carvaan.myapplication.ui.mainActivity;
 
 import android.animation.ValueAnimator;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import startup.carvaan.myapplication.ProgDialogue;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +31,7 @@ import com.sdsmdg.harjot.vectormaster.models.PathModel;
 
 import io.paperdb.Paper;
 import startup.carvaan.myapplication.BuyCoin;
+import startup.carvaan.myapplication.ProgDialogue;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.allshares.allshares;
 import startup.carvaan.myapplication.ui.coins.aboutRci;
@@ -62,6 +67,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Context context;
+
+        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+        progressDialog.setMessage("dialogueMessage"); // Setting Message
+        progressDialog.setTitle("dialogueTitle"); // Setting Title
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+        progressDialog.show(); // Display Progress Dialog
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                progressDialog.dismiss();
+
+
+            }
+        },2000);
         Paper.init(this);
 
         new MaterialTapTargetPrompt.Builder(MainActivity.this)
