@@ -1,7 +1,9 @@
 package startup.carvaan.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -38,85 +40,171 @@ public class BuyCoin extends AppCompatActivity {
         buy120.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Double.valueOf(user.getAdded())>=Double.valueOf(120)){
-                    user.addEarned(Double.valueOf(200));
-                    user.removeCash(Double.valueOf(120));
-                    startActivity(new Intent(BuyCoin.this, MainActivity.class));
-                    Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(BuyCoin.this,"You do not have 120 rupees add now",Toast.LENGTH_LONG).show();
-                }
+                ProgressDialog progressDialog = new ProgressDialog(BuyCoin.this);
+                ProgDialogue progDialogue = new ProgDialogue("message","title",false,Buy.this,progressDialog);
+                progDialogue.showDialogue(progressDialog);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        progressDialog.dismiss();
+                        if(Double.valueOf(user.getAdded())>=Double.valueOf(120)){
+                            user.addEarned(Double.valueOf(200));
+                            user.removeCash(Double.valueOf(120));
+                            startActivity(new Intent(BuyCoin.this, MainActivity.class));
+                            Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(BuyCoin.this,"You do not have 120 rupees add now",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                },2000);
+
             }
         });
         buy260.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Double.valueOf(user.getAdded())>=Double.valueOf(260)){
-                    user.addEarned(Double.valueOf(500));
-                    user.removeCash(Double.valueOf(260));
-                    startActivity(new Intent(BuyCoin.this, MainActivity.class));
-                    Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(BuyCoin.this,"You do not have 260 rupees add now",Toast.LENGTH_LONG).show();
-                }
+                ProgressDialog progressDialog = new ProgressDialog(BuyCoin.this);
+                ProgDialogue progDialogue = new ProgDialogue("message","title",false,BuyCoin.this,progressDialog);
+                progDialogue.showDialogue(progressDialog);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        progressDialog.dismiss();
+                        if(Double.valueOf(user.getAdded())>=Double.valueOf(260)){
+                            user.addEarned(Double.valueOf(500));
+                            user.removeCash(Double.valueOf(260));
+                            startActivity(new Intent(BuyCoin.this, MainActivity.class));
+                            Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(BuyCoin.this,"You do not have 260 rupees add now",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                },2000);
+
             }
         });
         buy500.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Double.valueOf(user.getAdded())>=Double.valueOf(500)){
-                    user.addEarned(Double.valueOf(1000));
-                    user.removeCash(Double.valueOf(500));
-                    startActivity(new Intent(BuyCoin.this, MainActivity.class));
-                    Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(BuyCoin.this,"You do not have 500 rupees add now",Toast.LENGTH_LONG).show();
-                }
+                ProgressDialog progressDialog = new ProgressDialog(BuyCoin.this);
+                ProgDialogue progDialogue = new ProgDialogue("message","title",false,BuyCoin.this,progressDialog);
+                progDialogue.showDialogue(progressDialog);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        progressDialog.dismiss();
+
+                        if(Double.valueOf(user.getAdded())>=Double.valueOf(500)){
+                            user.addEarned(Double.valueOf(1000));
+                            user.removeCash(Double.valueOf(500));
+                            startActivity(new Intent(BuyCoin.this, MainActivity.class));
+                            Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(BuyCoin.this,"You do not have 500 rupees add now",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                },2000);
+
             }
         });
         buy775.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Double.valueOf(user.getAdded())>=Double.valueOf(775)){
-                    user.addEarned(Double.valueOf(1000));
-                    user.removeCash(Double.valueOf(775));
-                    startActivity(new Intent(BuyCoin.this, MainActivity.class));
-                    Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(BuyCoin.this,"You do not have 775 rupees add now",Toast.LENGTH_LONG).show();
-                }
+                ProgressDialog progressDialog = new ProgressDialog(BuyCoin.this);
+                ProgDialogue progDialogue = new ProgDialogue("message","title",false,BuyCoin.this,progressDialog);
+                progDialogue.showDialogue(progressDialog);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        progressDialog.dismiss();
+
+                        if(Double.valueOf(user.getAdded())>=Double.valueOf(775)){
+                            user.addEarned(Double.valueOf(1000));
+                            user.removeCash(Double.valueOf(775));
+                            startActivity(new Intent(BuyCoin.this, MainActivity.class));
+                            Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(BuyCoin.this,"You do not have 775 rupees add now",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                },2000);
+
+
             }
         });
         buy1000.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Double.valueOf(user.getAdded())>=Double.valueOf(1000)){
-                    user.addEarned(Double.valueOf(2100));
-                    user.removeCash(Double.valueOf(1000));
-                    startActivity(new Intent(BuyCoin.this, MainActivity.class));
-                    Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(BuyCoin.this,"You do not have 1000 rupees add now",Toast.LENGTH_LONG).show();
-                }
+                ProgressDialog progressDialog = new ProgressDialog(BuyCoin.this);
+                ProgDialogue progDialogue = new ProgDialogue("message","title",false,BuyCoin.this,progressDialog);
+                progDialogue.showDialogue(progressDialog);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        progressDialog.dismiss();
+
+
+                        if(Double.valueOf(user.getAdded())>=Double.valueOf(1000)){
+                            user.addEarned(Double.valueOf(2100));
+                            user.removeCash(Double.valueOf(1000));
+                            startActivity(new Intent(BuyCoin.this, MainActivity.class));
+                            Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(BuyCoin.this,"You do not have 1000 rupees add now",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                },2000);
+
             }
         });
         buy1400.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Double.valueOf(user.getAdded())>=Double.valueOf(1400)){
-                    user.addEarned(Double.valueOf(3000));
-                    user.removeCash(Double.valueOf(1400));
-                    startActivity(new Intent(BuyCoin.this, MainActivity.class));
-                    Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(BuyCoin.this,"You do not have 1400 rupees add now",Toast.LENGTH_LONG).show();
-                }
+                ProgressDialog progressDialog = new ProgressDialog(BuyCoin.this);
+                ProgDialogue progDialogue = new ProgDialogue("message","title",false,BuyCoin.this,progressDialog);
+                progDialogue.showDialogue(progressDialog);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        progressDialog.dismiss();
+
+
+                        if(Double.valueOf(user.getAdded())>=Double.valueOf(1400)){
+                            user.addEarned(Double.valueOf(3000));
+                            user.removeCash(Double.valueOf(1400));
+                            startActivity(new Intent(BuyCoin.this, MainActivity.class));
+                            Toast.makeText(BuyCoin.this,"Transaction successful",Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(BuyCoin.this,"You do not have 1400 rupees add now",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                },2000);
+
+
             }
         });
         rupees=findViewById(R.id.rupees);
