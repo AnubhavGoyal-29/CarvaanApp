@@ -41,7 +41,7 @@ public class BuyCoin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ProgressDialog progressDialog = new ProgressDialog(BuyCoin.this);
-                ProgDialogue progDialogue = new ProgDialogue("message","title",false,Buy.this,progressDialog);
+                ProgDialogue progDialogue = new ProgDialogue("message","title",false, BuyCoin.this,progressDialog);
                 progDialogue.showDialogue(progressDialog);
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {

@@ -68,19 +68,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Context context;
-        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-        ProgDialogue progDialogue = new ProgDialogue("message","title",false,MainActivity.this,progressDialog);
-        progDialogue.showDialogue(progressDialog);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-               // progressDialog.dismiss();
-                progDialogue.dissmissDialogue(progressDialog);
-
-            }
-        },2000);
+//        ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+//        ProgDialogue progDialogue = new ProgDialogue("message","title",false,MainActivity.this,progressDialog);
+//        progDialogue.showDialogue(progressDialog);
+//        Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//               // progressDialog.dismiss();
+//                progDialogue.dissmissDialogue(progressDialog);
+//
+//            }
+//        },2000);
         Paper.init(this);
         AppDemo();
 //        new MaterialTapTargetPrompt.Builder(MainActivity.this)
