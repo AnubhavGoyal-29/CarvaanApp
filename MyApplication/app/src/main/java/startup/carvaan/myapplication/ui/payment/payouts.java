@@ -53,8 +53,13 @@ public class payouts extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ProgressDialog progressDialog = new ProgressDialog(payouts.this);
-                ProgDialogue progDialogue = new ProgDialogue("message","title",false,payouts.this,progressDialog);
-                progDialogue.showDialogue(progressDialog);
+                progressDialog.setMessage("dialogueMessage"); // Setting Message
+                progressDialog.setTitle("dialogueTitle"); // Setting Title
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                progressDialog.show(); // Display Progress Dialog
+                progressDialog.setCanceledOnTouchOutside(false);
+
+                progressDialog.setCancelable(false);
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override

@@ -30,7 +30,6 @@ public class ProgDialogue {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
         progressDialog.show(); // Display Progress Dialog
         progressDialog.setCanceledOnTouchOutside(false);
-
         progressDialog.setCancelable(setCancellable);
 
     }
