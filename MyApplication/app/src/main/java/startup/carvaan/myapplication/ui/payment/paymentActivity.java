@@ -1,7 +1,9 @@
 package startup.carvaan.myapplication.ui.payment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -23,8 +25,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import startup.carvaan.myapplication.ProgDialogue;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.coins.coinModal;
+import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 import startup.carvaan.myapplication.ui.user.User;
 
 public class paymentActivity extends AppCompatActivity {
@@ -70,9 +74,23 @@ public class paymentActivity extends AppCompatActivity {
         });
         payAmount=findViewById(R.id.pay);
         payAmount.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                makePaymentRequest();
+
+                ProgressDialog progressDialog = new ProgressDialog(paymentActivity.this);
+                ProgDialogue progDialogue = new ProgDialogue("message","title",false,paymentActivity.this,progressDialog);
+                progDialogue.showDialogue(progressDialog);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        progressDialog.dismiss();
+                        makePaymentRequest();
+                    }
+                },2000);
+
             }
         });
     }
