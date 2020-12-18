@@ -76,7 +76,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             @Override
             public void run() {
 
-                progressDialog.dismiss();
+               // progressDialog.dismiss();
+                progDialogue.dissmissDialogue(progressDialog);
 
             }
         },2000);

@@ -35,9 +35,9 @@ public class ProgDialogue {
 
     }
 
-//    public static void dissmissDialogue(ProgressDialog progressDialog){
-//
-//        progressDialog.dismiss();
-//
-//    }
+    public static void dissmissDialogue(ProgressDialog progressDialog){
+
+        progressDialog.dismiss();
+
+    }
 }
