@@ -24,7 +24,6 @@ import com.google.firebase.firestore.Query;
 
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.about.AboutShare;
-import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 import startup.carvaan.myapplication.ui.user.User;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
@@ -49,7 +48,6 @@ public class myshares extends Fragment {
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_myshares, container, false);
         new MaterialTapTargetPrompt.Builder(myshares.this)
-                .setTarget(R.id.n1)
                 .setPrimaryText("My share page")
                 .setSecondaryText("Here you can see all the shares in which you invest")
                 .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()

@@ -1,11 +1,9 @@
 package startup.carvaan.myapplication.ui.mainActivity;
-
 import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import startup.carvaan.myapplication.ProgDialogue;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.GestureDetector;
@@ -13,14 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,10 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
-
 import io.paperdb.Paper;
 import startup.carvaan.myapplication.BuyCoin;
-import startup.carvaan.myapplication.ProgDialogue;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.allshares.allshares;
 import startup.carvaan.myapplication.ui.coins.aboutRci;
@@ -42,7 +36,6 @@ import startup.carvaan.myapplication.ui.payment.payouts;
 import startup.carvaan.myapplication.ui.profile.Profile;
 import startup.carvaan.myapplication.ui.user.User;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
-import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetSequence;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "carvaan";
@@ -62,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private ActionBar actionBar;
     TextView coins;
     User user=new User();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
                         {
                             new MaterialTapTargetPrompt.Builder(MainActivity.this)
-                                    .setTarget(R.id.lin_id)
+                                    .setTarget(R.id.n1)
                                     .setPrimaryText("Home page button")
                                     .setSecondaryText("This contains all the startups that are list on our app.You can invest in any startup by clicking on invest in me button.")
                                     .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
@@ -129,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mlinId = findViewById(R.id.lin_id);
         mView.inflateMenu(R.menu.bottom_nav_menu);
         mView.setSelectedItemId(R.id.allshares);
-
         mView.setOnNavigationItemSelectedListener(MainActivity.this);
         NavigationView navigationView =findViewById(R.id.n1);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -215,7 +208,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector2.setVisibility(View.VISIBLE);
                 break;
         }
-
         return true;
     }
     private void selectAnimation(final VectorMasterView heartVector) {
