@@ -244,12 +244,14 @@ AboutShare extends AppCompatActivity {
                         if(s.length()==0){
                             bottomNavigationView.setVisibility(View.VISIBLE);
                         }
+                        else bottomNavigationView.setVisibility(View.GONE);
                     }
 
                     @Override
                     public void afterTextChanged(Editable s) {
                         if(s.length()!=0)
                             bottomNavigationView.setVisibility(View.GONE);
+                        else bottomNavigationView.setVisibility(View.VISIBLE);
                     }
                 });
                 postViewHolder.commentButton.setOnClickListener(new View.OnClickListener() {
