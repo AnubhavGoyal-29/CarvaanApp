@@ -48,22 +48,7 @@ public class myshares extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_myshares, container, false);
-        new MaterialTapTargetPrompt.Builder(myshares.this)
-                .setTarget(R.id.n1)
-                .setPrimaryText("My share page")
-                .setSecondaryText("Here you can see all the shares in which you invest")
-                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
-                {
-                    @Override
-                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
-                    {
-                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
-                        {
 
-                        }
-                    }
-                })
-                .show();
         User user=new User();
         allShareRecyclerView=view.findViewById(R.id.myShareRecyclerView);
         ff=FirebaseFirestore.getInstance();
