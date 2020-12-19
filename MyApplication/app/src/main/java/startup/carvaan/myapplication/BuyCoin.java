@@ -41,6 +41,8 @@ public class BuyCoin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ProgressDialog progressDialog = new ProgressDialog(BuyCoin.this);
+                ProgDialogue progDialogue = new ProgDialogue("message","title",false, BuyCoin.this,progressDialog);
+                progDialogue.showDialogue(progressDialog);
                 progressDialog.setMessage("dialogueMessage"); // Setting Message
                 progressDialog.setTitle("dialogueTitle"); // Setting Title
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
@@ -234,6 +236,7 @@ public class BuyCoin extends AppCompatActivity {
         rupees = findViewById(R.id.rupees);
         convertedCoins = findViewById(R.id.conversioncoin);
         buyNow = findViewById(R.id.buyNow);
+        buyNow.setVisibility(View.GONE);
         rupees.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -243,8 +246,10 @@ public class BuyCoin extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 0) {
-
+                    buyNow.setVisibility(View.GONE);
+                    Toast.makeText(BuyCoin.this,"Please enter some rupees",Toast.LENGTH_LONG).show();
                 } else {
+                    buyNow.setVisibility(View.VISIBLE);
                     convertedCoins.setText(String.valueOf(Integer.valueOf(Integer.valueOf(rupees.getText().toString())) / Double.valueOf(coinModal.getValue())));
                 }
             }

@@ -1,11 +1,9 @@
 package startup.carvaan.myapplication.ui.mainActivity;
-
 import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import startup.carvaan.myapplication.ProgDialogue;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.GestureDetector;
@@ -13,14 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,10 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
-
 import io.paperdb.Paper;
 import startup.carvaan.myapplication.BuyCoin;
-import startup.carvaan.myapplication.ProgDialogue;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.allshares.allshares;
 import startup.carvaan.myapplication.ui.coins.aboutRci;
@@ -63,12 +57,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     TextView coins;
     User user=new User();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Context context;
+
         AppDemo();
+
 
         ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("dialogueMessage"); // Setting Message
@@ -81,10 +78,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 progressDialog.dismiss();
-
-
             }
         },2000);
         Paper.init(this);
@@ -122,6 +116,39 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //                    }
 //                })
 //                .show();
+
+//        new MaterialTapTargetPrompt.Builder(MainActivity.this)
+//                .setTarget(R.id.n1)
+//                .setPrimaryText("Hii Carvaan User")
+//                .setSecondaryText("Go to the How to play page in the navigation drawer by clicking in this icon to know everything about this app")
+//                .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
+//                {
+//                    @Override
+//                    public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
+//                    {
+//                        if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
+//                        {
+//                            new MaterialTapTargetPrompt.Builder(MainActivity.this)
+//                                    .setTarget(R.id.n1)
+//                                    .setPrimaryText("Home page button")
+//                                    .setSecondaryText("This contains all the startups that are list on our app.You can invest in any startup by clicking on invest in me button.")
+//                                    .setPromptStateChangeListener(new MaterialTapTargetPrompt.PromptStateChangeListener()
+//                                    {
+//                                        @Override
+//                                        public void onPromptStateChanged(MaterialTapTargetPrompt prompt, int state)
+//                                        {
+//                                            if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
+//                                            {
+//
+//                                            }
+//                                        }
+//                                    })
+//                                    .show();
+//                        }
+//                    }
+//                })
+//                .show();
+
         ff=FirebaseFirestore.getInstance();
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -136,7 +163,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mlinId = findViewById(R.id.lin_id);
         mView.inflateMenu(R.menu.bottom_nav_menu);
         mView.setSelectedItemId(R.id.allshares);
-
         mView.setOnNavigationItemSelectedListener(MainActivity.this);
         NavigationView navigationView =findViewById(R.id.n1);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -222,7 +248,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 heartVector2.setVisibility(View.VISIBLE);
                 break;
         }
-
         return true;
     }
     private void selectAnimation(final VectorMasterView heartVector) {

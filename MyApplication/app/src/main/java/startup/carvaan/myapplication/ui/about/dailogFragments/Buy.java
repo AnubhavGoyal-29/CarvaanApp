@@ -3,6 +3,8 @@ package startup.carvaan.myapplication.ui.about.dailogFragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -72,6 +74,26 @@ public class Buy extends DialogFragment {
         shareprice.setText("Rs"+shareDetails.getBuyingPrice());
         nos=view.findViewById(R.id.noofshares);
         buy=view.findViewById(R.id.btn_buy);
+        buy.setVisibility(View.GONE);
+        nos.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(count==0){
+                    buy.setVisibility(View.GONE);
+                }
+                else buy.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
