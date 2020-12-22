@@ -34,6 +34,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844859435167:android:b00e2c4ee4e89935c89aaa",
+        "android_client_info": {
+          "package_name": "startup.carvaan.newapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844859435167-10nndeqloi79dlns1f8fqgqpont2g80k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA14nivDkoa_ifWdMngq21oSW9OZD5xkBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844859435167-10nndeqloi79dlns1f8fqgqpont2g80k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

@@ -19,7 +19,7 @@ import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 import startup.carvaan.myapplication.ui.user.User;
 
 public class BuyCoin extends AppCompatActivity {
-    coinModal coinModal = new coinModal();
+    startup.carvaan.myapplication.ui.coins.coinModal coinModal = new coinModal();
     User user = new User();
     private TextView convertedCoins;
     private EditText rupees;

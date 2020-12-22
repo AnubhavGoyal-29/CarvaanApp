@@ -28,10 +28,10 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.HashMap;
 import java.util.Map;
 
-import startup.carvaan.myapplication.R;
-import startup.carvaan.myapplication.ui.about.shareDetails;
 import startup.carvaan.myapplication.ui.myshares.mysharemodel;
 import startup.carvaan.myapplication.ui.user.User;
+import startup.carvaan.myapplication.R;
+import startup.carvaan.myapplication.ui.about.shareDetails;
 public class Buy extends DialogFragment {
     User user=new User();
     EditText nos;
@@ -142,7 +142,7 @@ public class Buy extends DialogFragment {
                                                     .document(shareId)
                                                     .collection("Price")
                                                     .document("price").update("occupied", String.valueOf(Double.valueOf(occupied) + Double.valueOf(nos.getText().toString())));
-                                            dialog_buy_success dialog_buy_success = new dialog_buy_success();
+                                            startup.carvaan.myapplication.ui.about.dailogFragments.dialog_buy_success dialog_buy_success = new dialog_buy_success();
                                             Bundle bundle1 = new Bundle();
                                             bundle1.putString("nos", String.valueOf(nos.getText().toString()));
                                             dialog_buy_success.setArguments(bundle1);
@@ -170,7 +170,7 @@ public class Buy extends DialogFragment {
                                                         .document(shareId)
                                                         .collection("Price")
                                                         .document("price").update("occupied", String.valueOf(Double.valueOf(occupied) + Double.valueOf(nos.getText().toString())));
-                                                dialog_buy_success dialog_buy_success = new dialog_buy_success();
+                                                startup.carvaan.myapplication.ui.about.dailogFragments.dialog_buy_success dialog_buy_success = new dialog_buy_success();
                                                 Bundle bundle1 = new Bundle();
                                                 bundle1.putString("nos", String.valueOf(nos.getText().toString()));
                                                 dialog_buy_success.setArguments(bundle1);

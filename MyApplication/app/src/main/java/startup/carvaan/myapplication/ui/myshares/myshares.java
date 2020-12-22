@@ -25,7 +25,6 @@ import com.google.firebase.firestore.Query;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.about.AboutShare;
 import startup.carvaan.myapplication.ui.user.User;
-import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
 
 public class myshares extends Fragment {

@@ -1,6 +1,5 @@
 package startup.carvaan.myapplication.ui.navbar;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import startup.carvaan.myapplication.R;
-import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 public class Helppage extends AppCompatActivity {
 private ImageView downarrow1,downarrow2,downarrow3;

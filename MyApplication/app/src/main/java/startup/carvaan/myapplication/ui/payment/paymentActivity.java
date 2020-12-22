@@ -25,11 +25,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import startup.carvaan.myapplication.ProgDialogue;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.coins.coinModal;
-import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 import startup.carvaan.myapplication.ui.user.User;
+
 
 public class paymentActivity extends AppCompatActivity {
 
@@ -38,7 +37,7 @@ public class paymentActivity extends AppCompatActivity {
     private TextView coins;
     private Button payAmount;
     User user=new User();
-    coinModal coinModal=new coinModal();
+    startup.carvaan.myapplication.ui.coins.coinModal coinModal=new coinModal();
     CompositeDisposable compositeDisposable=new CompositeDisposable();
     ICloudFunction iCloudFunction;
     @Override
