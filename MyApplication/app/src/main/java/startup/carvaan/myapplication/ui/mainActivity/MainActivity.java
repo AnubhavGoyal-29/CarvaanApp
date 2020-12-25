@@ -1,4 +1,5 @@
 package startup.carvaan.myapplication.ui.mainActivity;
+
 import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,12 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
+
 import io.paperdb.Paper;
 import startup.carvaan.myapplication.BuyCoin;
 import startup.carvaan.myapplication.R;
@@ -63,9 +67,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Context context;
-
+        Paper.init(MainActivity.this);
+        if(!Paper.book().contains("isFirst"))
         AppDemo();
-
 
         ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("dialogueMessage"); // Setting Message
@@ -82,9 +86,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
         },2000);
         Paper.init(this);
-
-
-
 //        new MaterialTapTargetPrompt.Builder(MainActivity.this)
 //                .setTarget(R.id.n1)
 //                .setPrimaryText("Hii Carvaan User")

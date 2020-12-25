@@ -134,9 +134,14 @@ public class allshares extends Fragment {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        adapter.stopListening();
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         adapter.stopListening();
-
     }
 }

@@ -12,8 +12,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.login.LoginActivity;
+import startup.carvaan.myapplication.R;
 
 public class IntroSliderActivity extends AppCompatActivity {
     private ViewPager viewPager;

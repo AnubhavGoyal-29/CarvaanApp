@@ -71,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
 
         ProgressButton progressButton = new ProgressButton(LoginActivity.this,lo_gin);
         progressButton.initialPhase("LOGIN",false);
+        lo_gin.setClickable(false);
+        lo_gin.setEnabled(false);
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         lo_gin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                // ProgressButton progressButton = new ProgressButton(LoginActivity.this,lo_gin);
                 progressButton.buttonsetEnabledFalse(true);
@@ -115,6 +118,10 @@ public class LoginActivity extends AppCompatActivity {
                     });
                 }else{
                     Toast.makeText(LoginActivity.this, "Empty credentials! Please make sure you don't leave username or/and password empty.", Toast.LENGTH_SHORT).show();
+                    progressButton.buttonsetEnabledTrue("LOGIN");
+                    lo_gin.setClickable(true);
+                    lo_gin.setEnabled(true);
+
                 }
             }
 

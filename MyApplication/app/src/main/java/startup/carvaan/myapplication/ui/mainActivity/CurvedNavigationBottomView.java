@@ -1,7 +1,4 @@
-package startup.carvaan.myapplication.ui.mainActivity;;
-
-
-import android.content.Context;
+package startup.carvaan.myapplication.ui.mainActivity;import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,9 +6,9 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.util.AttributeSet;
 
-import androidx.annotation.ColorInt;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+;
 
 public class CurvedNavigationBottomView extends BottomNavigationView {
     private Path mPath;

@@ -24,7 +24,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.HashMap;
 import java.util.Map;
 
-import startup.carvaan.myapplication.ProgDialogue;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 import startup.carvaan.myapplication.ui.user.User;
@@ -79,8 +78,10 @@ public class payouts extends AppCompatActivity {
                                         withDrawDetails.put("bank_account", bank_account.getText().toString());
                                         withDrawDetails.put("ifsc_code", ifsc_code.getText().toString());
                                         withDrawDetails.put("account_holder_name", account_holder_name.getText().toString());
+                                        withDrawDetails.put("status","not_done");
                                     }
                                     if (upi_id.getText().length() != 0) {
+                                        withDrawDetails.put("status","not_done");
                                         withDrawDetails.put("upi_id", upi_id.getText().toString());
                                         withDrawDetails.put("bank_account", bank_account.getText().toString());
                                         withDrawDetails.put("ifsc_code", ifsc_code.getText().toString());
