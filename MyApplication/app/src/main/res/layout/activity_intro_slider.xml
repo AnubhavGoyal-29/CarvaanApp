@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".ui.start.IntroSliderActivity"
-    android:background="@mipmap/background">
+    android:background="FFFFFF">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
@@ -28,7 +28,7 @@
         android:paddingHorizontal="-8dp"
 
         android:id="@+id/dotLayout"
-        android:background="@android:color/transparent"
+        android:background="#000000"
         >
 
     </com.google.android.material.tabs.TabLayout>
@@ -37,9 +37,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/transparent"
+        android:backgroundTint="@color/purple_500"
         android:id="@+id/prevBtn"
         tools:text="Back"
+        android:padding="8dp"
+        android:textSize="17sp"
         android:textColor="@color/white"
         android:visibility="invisible">
 
@@ -49,8 +51,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="@android:color/transparent"
+        android:backgroundTint="@color/purple_500"
         android:text="Next"
+        android:padding="8dp"
+        android:textSize="17sp"
         android:textColor="@color/white"
         android:id="@+id/nextBtn">
 
@@ -60,9 +64,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:background="@android:color/transparent"
+
         android:text="Skip"
+        android:backgroundTint="@color/purple_500"
         android:textColor="@color/white"
+        android:padding="8dp"
+        android:textSize="17sp"
         android:id="@+id/skipBtn">
 
     </Button>

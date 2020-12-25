@@ -7,18 +7,20 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     tools:context=".ui.earn.Addactivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
 
             app:cardCornerRadius="20dp"
             app:cardElevation="18dp">
@@ -26,7 +28,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FFFFFF"
+                android:background="#70DDA5"
+
 
                 android:orientation="vertical">
 
@@ -37,7 +40,7 @@
 
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
 
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -55,8 +58,8 @@
 
                         android:text="Get 200 credits by watching this add"
                         android:textColor="#000000"
-                        android:textStyle="bold"
                         android:textSize="17sp"
+                        android:textStyle="bold"
 
                         />
                 </LinearLayout>
@@ -67,7 +70,7 @@
                     android:layout_marginTop="10dp"
 
 
-                    android:background="#808080" />
+                    android:background="#FFFFFF" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -84,10 +87,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
-                        android:paddingLeft="20dp"
-
-                        android:paddingRight="20dp"
                         android:background="@drawable/button"
+
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
                         android:text="Watch Now"
                         android:textColor="#ffffff"
                         android:textStyle="bold" />
@@ -97,13 +100,14 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
 
             app:cardCornerRadius="20dp"
             app:cardElevation="18dp">
@@ -111,7 +115,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FFFFFF"
+                android:background="#EDDF6A"
 
                 android:orientation="vertical">
 
@@ -122,7 +126,7 @@
 
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
 
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -140,8 +144,8 @@
 
                         android:text="Get 200 credits by watching this add"
                         android:textColor="#000000"
-                        android:textStyle="bold"
                         android:textSize="17sp"
+                        android:textStyle="bold"
 
                         />
                 </LinearLayout>
@@ -152,7 +156,7 @@
                     android:layout_marginTop="10dp"
 
 
-                    android:background="#808080" />
+                    android:background="#FFFFFF" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -169,10 +173,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
-                        android:paddingLeft="20dp"
-
-                        android:paddingRight="20dp"
                         android:background="@drawable/button"
+
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
                         android:text="Watch Now"
                         android:textColor="#ffffff"
                         android:textStyle="bold" />
@@ -182,13 +186,14 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
 
             app:cardCornerRadius="20dp"
             app:cardElevation="18dp">
@@ -196,8 +201,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FFFFFF"
 
+                android:background="#F18C8C"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -205,9 +210,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
 
+
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
 
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -225,8 +231,8 @@
 
                         android:text="Get 200 credits by watching this add"
                         android:textColor="#000000"
-                        android:textStyle="bold"
                         android:textSize="17sp"
+                        android:textStyle="bold"
 
                         />
                 </LinearLayout>
@@ -237,7 +243,7 @@
                     android:layout_marginTop="10dp"
 
 
-                    android:background="#808080" />
+                    android:background="#FFFFFF" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -254,10 +260,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
-                        android:paddingLeft="20dp"
-
-                        android:paddingRight="20dp"
                         android:background="@drawable/button"
+
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
                         android:text="Watch Now"
                         android:textColor="#ffffff"
                         android:textStyle="bold" />
@@ -267,13 +273,14 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
 
             app:cardCornerRadius="20dp"
             app:cardElevation="18dp">
@@ -281,8 +288,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FFFFFF"
 
+                android:background="#70DDA5"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -292,7 +299,7 @@
 
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
 
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -310,8 +317,8 @@
 
                         android:text="Get 200 credits by watching this add"
                         android:textColor="#000000"
-                        android:textStyle="bold"
                         android:textSize="17sp"
+                        android:textStyle="bold"
 
                         />
                 </LinearLayout>
@@ -322,7 +329,7 @@
                     android:layout_marginTop="10dp"
 
 
-                    android:background="#808080" />
+                    android:background="#FFFFFF" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -339,10 +346,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
-                        android:paddingLeft="20dp"
-
-                        android:paddingRight="20dp"
                         android:background="@drawable/button"
+
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
                         android:text="Watch Now"
                         android:textColor="#ffffff"
                         android:textStyle="bold" />
@@ -352,13 +359,14 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
 
             app:cardCornerRadius="20dp"
             app:cardElevation="18dp">
@@ -366,7 +374,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FFFFFF"
+                android:background="#EDDF6A"
 
                 android:orientation="vertical">
 
@@ -377,7 +385,7 @@
 
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
 
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -395,8 +403,8 @@
 
                         android:text="Get 200 credits by watching this add"
                         android:textColor="#000000"
-                        android:textStyle="bold"
                         android:textSize="17sp"
+                        android:textStyle="bold"
 
                         />
                 </LinearLayout>
@@ -407,7 +415,7 @@
                     android:layout_marginTop="10dp"
 
 
-                    android:background="#808080" />
+                    android:background="#FFFFFF" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -424,10 +432,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
-                        android:paddingLeft="20dp"
-
-                        android:paddingRight="20dp"
                         android:background="@drawable/button"
+
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
                         android:text="Watch Now"
                         android:textColor="#ffffff"
                         android:textStyle="bold" />
@@ -437,13 +445,14 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
 
             app:cardCornerRadius="20dp"
             app:cardElevation="18dp">
@@ -451,7 +460,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FFFFFF"
+                android:background="#F18C8C"
 
                 android:orientation="vertical">
 
@@ -462,7 +471,7 @@
 
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
 
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -480,8 +489,8 @@
 
                         android:text="Get 200 credits by watching this add"
                         android:textColor="#000000"
-                        android:textStyle="bold"
                         android:textSize="17sp"
+                        android:textStyle="bold"
 
                         />
                 </LinearLayout>
@@ -492,7 +501,7 @@
                     android:layout_marginTop="10dp"
 
 
-                    android:background="#808080" />
+                    android:background="#FFFFFF" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -509,10 +518,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
-                        android:paddingLeft="20dp"
-
-                        android:paddingRight="20dp"
                         android:background="@drawable/button"
+
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
                         android:text="Watch Now"
                         android:textColor="#ffffff"
                         android:textStyle="bold" />
