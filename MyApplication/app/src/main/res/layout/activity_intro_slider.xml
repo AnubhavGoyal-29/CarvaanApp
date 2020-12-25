@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".ui.start.IntroSliderActivity"
-    android:background="FFFFFF">
+    android:background="#FFFFFF">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"

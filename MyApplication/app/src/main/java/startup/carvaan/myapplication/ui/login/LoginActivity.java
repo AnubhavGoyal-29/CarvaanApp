@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseFirestore ff;
     public GoogleSignInClient googleSignInClient;
 
+
 //    private ProgressBar logBar;
 
     @Override
@@ -71,8 +72,8 @@ public class LoginActivity extends AppCompatActivity {
 
         ProgressButton progressButton = new ProgressButton(LoginActivity.this,lo_gin);
         progressButton.initialPhase("LOGIN",false);
-        lo_gin.setClickable(false);
-        lo_gin.setEnabled(false);
+        lo_gin.setClickable(true);
+        lo_gin.setEnabled(true);
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
