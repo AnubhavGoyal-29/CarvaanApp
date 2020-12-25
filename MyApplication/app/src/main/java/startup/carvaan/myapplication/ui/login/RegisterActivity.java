@@ -34,6 +34,7 @@ import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 public class RegisterActivity extends AppCompatActivity {
+    private static final String TAG = "bla";
     private TextInputEditText user_name,display_name;
 
     private TextInputLayout passwordText;
@@ -184,6 +185,13 @@ public class RegisterActivity extends AppCompatActivity {
                     firebaseAuth.createUserWithEmailAndPassword(user_name.getText().toString(), passwordText.getEditText().getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
+                            FirebaseUser user=authResult.getUser();
+                            user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(RegisterActivity.this,"email successfully sent",Toast.LENGTH_LONG).show();
+                                }
+                            });
                             firebaseUser = firebaseAuth.getCurrentUser();
                             Map<String, Object> map = new HashMap<>();
                             map.put("Email", firebaseUser.getEmail());

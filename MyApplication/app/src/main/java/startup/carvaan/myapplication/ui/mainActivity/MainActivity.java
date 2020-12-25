@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -66,6 +67,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(!user.getUser().isEmailVerified()){
+            Toast.makeText(MainActivity.this, "please verify your mail first", Toast.LENGTH_SHORT).show();
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+        }
         Context context;
         Paper.init(MainActivity.this);
         if(!Paper.book().contains("isFirst"))

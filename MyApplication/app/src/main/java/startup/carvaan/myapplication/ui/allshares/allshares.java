@@ -43,12 +43,13 @@ public class allshares extends Fragment {
     public allshares() {
         // Required empty public constructor
     }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

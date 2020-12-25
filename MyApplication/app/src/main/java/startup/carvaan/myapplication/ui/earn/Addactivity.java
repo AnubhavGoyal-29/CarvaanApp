@@ -35,12 +35,11 @@ public class Addactivity extends Activity {
     ListView listView;
     Button adds;
     User user=new User();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addactivity);
-        adds=findViewById(R.id.add);
+        adds=findViewById(R.id.add1watch);
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -95,10 +94,6 @@ public class Addactivity extends Activity {
                 });
             }
         });
-
-
-
-
     }
     public RewardedAd createAndLoadRewardedAd() {
         RewardedAd rewardedAd = new RewardedAd(this,
@@ -108,7 +103,6 @@ public class Addactivity extends Activity {
             public void onRewardedAdLoaded() {
                 // Ad successfully loaded.
             }
-
             @Override
             public void onRewardedAdFailedToLoad(LoadAdError error) {
                 // Ad failed to load.
@@ -131,15 +125,10 @@ public class Addactivity extends Activity {
                     AdError cause = error.getCause();
                     // All of this information is available via the error's toString() method.
                     Log.d("Ads", error.toString());
-
-
             }
-
         };
         rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
         return rewardedAd;
     }
-
-    // ...
 }
 
