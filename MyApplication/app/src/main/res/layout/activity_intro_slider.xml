@@ -28,7 +28,7 @@
         android:paddingHorizontal="-8dp"
 
         android:id="@+id/dotLayout"
-        android:background="#000000"
+        android:background="@android:color/transparent"
         >
 
     </com.google.android.material.tabs.TabLayout>
