@@ -35,6 +35,7 @@ import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.allshares.allshares;
 import startup.carvaan.myapplication.ui.coins.aboutRci;
 import startup.carvaan.myapplication.ui.login.LoginActivity;
+import startup.carvaan.myapplication.ui.login.verificationactivity;
 import startup.carvaan.myapplication.ui.myshares.myshares;
 import startup.carvaan.myapplication.ui.navbar.Helppage;
 import startup.carvaan.myapplication.ui.payment.payouts;
@@ -67,16 +68,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(!user.getUser().isEmailVerified()){
-            Toast.makeText(MainActivity.this, "please verify your mail first", Toast.LENGTH_SHORT).show();
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(MainActivity.this,LoginActivity.class));
-        }
-        Context context;
         Paper.init(MainActivity.this);
-        if(!Paper.book().contains("isFirst"))
-        AppDemo();
 
+        Context context;
         ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("dialogueMessage"); // Setting Message
         progressDialog.setTitle("dialogueTitle"); // Setting Title
@@ -336,8 +330,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onStart() {
         super.onStart();
-        if(!(Paper.book().contains("isFirst"))){
-            Paper.book().write("isFirst",true);
+        if(!user.getUser().isEmailVerified()){
+            Toast.makeText(MainActivity.this, "please verify your mail first", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, verificationactivity.class));
+        }
+        else{
+            if(!Paper.book().contains("isFirst"))
+                AppDemo();
+            Paper.book().write("isFirst","true");
         }
     }
     public void AppDemo() {
@@ -368,26 +368,5 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         .create(), 4000)
                 .show();
     }
-//    public void AppDemo() {
-//        new MaterialTapTargetSequence()
-//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                        .setTarget(findViewById(R.id.allshares))
-//                        .setPrimaryText("All shares page ")
-//                        .setSecondaryText("Here you can see all the startups that are listed in this app to invest.Invest in it by clicking on invest in me button. ")
-//                        .setIcon(R.drawable.ic_home_black_24dp)
-//                        .create(), 4000)
-//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                        .setTarget(findViewById(R.id.myshares))
-//                        .setPrimaryText("My share button")
-//                        .setSecondaryText("Here you can see all the shares in which you invest ")
-//                        .setIcon(R.drawable.ic_baseline_account_circle_24)
-//                        .create(), 4000)
-//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                        .setTarget(findViewById(R.id.profile))
-//                        .setPrimaryText("Profile")
-//                        .setSecondaryText("Here you can see  how much coins you have.You can redeem them here or buy coins here to invest more. ")
-//                        .setIcon(R.drawable.ic_baseline_attach_money_24)
-//                        .create(), 4000)
-//                .show();
-//    }
+
 }

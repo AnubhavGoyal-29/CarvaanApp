@@ -83,7 +83,7 @@ public class Buy extends DialogFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(count==0){
+                if(s.length()==0){
                     buy.setVisibility(View.GONE);
                 }
                 else buy.setVisibility(View.VISIBLE);

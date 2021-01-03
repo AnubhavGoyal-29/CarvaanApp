@@ -13,13 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:node="merge">
-        <activity android:name=".BuyCoin"></activity>
+        <activity android:name=".ui.login.verificationactivity"></activity>
+        <activity android:name=".BuyCoin" />
         <activity android:name=".ui.coins.aboutRci" />
         <activity android:name=".ChartActivity" />
         <activity
             android:name=".ui.navbar.Helppage"
-            android:parentActivityName=".ui.mainActivity.MainActivity"
             android:label="@string/title_activity_helppage"
+            android:parentActivityName=".ui.mainActivity.MainActivity"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity android:name=".ui.start.IntroSliderActivity" />
         <activity android:name=".ui.login.ForgotPassActivity" />

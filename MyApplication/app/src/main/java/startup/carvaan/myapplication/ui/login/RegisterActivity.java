@@ -189,7 +189,7 @@ public class RegisterActivity extends AppCompatActivity {
                             user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(RegisterActivity.this,"email successfully sent",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(RegisterActivity.this,"verification email successfully sent",Toast.LENGTH_LONG).show();
                                 }
                             });
                             firebaseUser = firebaseAuth.getCurrentUser();

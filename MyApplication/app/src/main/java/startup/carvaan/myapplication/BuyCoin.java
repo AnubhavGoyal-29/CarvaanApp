@@ -41,8 +41,6 @@ public class BuyCoin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ProgressDialog progressDialog = new ProgressDialog(BuyCoin.this);
-                ProgDialogue progDialogue = new ProgDialogue("message","title",false, BuyCoin.this,progressDialog);
-                progDialogue.showDialogue(progressDialog);
                 progressDialog.setMessage("dialogueMessage"); // Setting Message
                 progressDialog.setTitle("dialogueTitle"); // Setting Title
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner

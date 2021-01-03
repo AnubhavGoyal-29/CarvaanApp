@@ -23,10 +23,6 @@ import startup.carvaan.myapplication.ui.payment.paymentActivity;
 import startup.carvaan.myapplication.ui.payment.payouts;
 import startup.carvaan.myapplication.ui.user.User;
 
-
-/**
-
- */
 public class Profile extends Fragment {
     private TextView earned,winnins,added,redeemed;
     private Button coinEarn,redeemCoin,addCash,buyCoins;
@@ -36,13 +32,11 @@ public class Profile extends Fragment {
     {
 
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +69,7 @@ public class Profile extends Fragment {
         });
         buyCoins=view.findViewById(R.id.buyCoinsButton);
         addCash=view.findViewById(R.id.addCashButton);
+        addCash.setVisibility(View.GONE);
         addCash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
