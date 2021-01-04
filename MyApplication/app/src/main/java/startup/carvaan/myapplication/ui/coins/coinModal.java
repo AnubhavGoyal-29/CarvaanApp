@@ -2,7 +2,6 @@ package startup.carvaan.myapplication.ui.coins;
 
 import androidx.annotation.Nullable;
 
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -12,14 +11,14 @@ import java.util.Map;
 
 public class coinModal {
     FirebaseFirestore ff=FirebaseFirestore.getInstance();
-    Map<String, Timestamp> graph;
+    Map<String, String> graph;
     String value;
 
-    public Map<String, Timestamp> getGraph() {
+    public Map<String, String> getGraph() {
         return graph;
     }
 
-    public void setGraph(Map<String, Timestamp> graph) {
+    public void setGraph(Map<String, String> graph) {
         this.graph = graph;
     }
 
@@ -40,7 +39,7 @@ public class coinModal {
         });
     }
 
-    public coinModal(Map<String, Timestamp> graph, String value) {
+    public coinModal(Map<String, String> graph, String value) {
         this.graph = graph;
         this.value = value;
     }
