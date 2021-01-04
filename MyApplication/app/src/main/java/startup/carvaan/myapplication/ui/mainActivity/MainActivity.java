@@ -35,7 +35,6 @@ import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.allshares.allshares;
 import startup.carvaan.myapplication.ui.coins.aboutRci;
 import startup.carvaan.myapplication.ui.login.LoginActivity;
-import startup.carvaan.myapplication.ui.login.verificationactivity;
 import startup.carvaan.myapplication.ui.myshares.myshares;
 import startup.carvaan.myapplication.ui.navbar.Helppage;
 import startup.carvaan.myapplication.ui.payment.payouts;
@@ -332,7 +331,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onStart();
         if(!user.getUser().isEmailVerified()){
             Toast.makeText(MainActivity.this, "please verify your mail first", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(MainActivity.this, verificationactivity.class));
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
         else{
             if(!Paper.book().contains("isFirst"))

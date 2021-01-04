@@ -59,11 +59,7 @@ import startup.carvaan.myapplication.ui.about.dailogFragments.Buy;
 import startup.carvaan.myapplication.ui.about.dailogFragments.Sell;
 import startup.carvaan.myapplication.ui.about.dailogFragments.comments;
 import startup.carvaan.myapplication.ui.user.User;
-
-public class
-
-
-AboutShare extends AppCompatActivity {
+public class AboutShare extends AppCompatActivity {
     private String path=null;
     private Uri pdfUri=null;
     private BottomSheetBehavior bottomSheetBehavior;
@@ -81,9 +77,6 @@ AboutShare extends AppCompatActivity {
     private TextView coins;
     public static JCVideoPlayerStandard current_vv;
     private User user = new User();
-
-
-    //firebase
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private FirestoreRecyclerAdapter adapter;
@@ -164,56 +157,56 @@ AboutShare extends AppCompatActivity {
                         comments.show(getSupportFragmentManager(),"comments");
                     }
                 });
-                if(pdfUri==null){
-                    postViewHolder.attachfile.setVisibility(View.VISIBLE);
-                    postViewHolder.uploadFile.setVisibility(View.GONE);
-                    Map<String ,String > files=new HashMap<>();
-                    files.putAll(postModal.getFiles());
-                    postViewHolder.nooffiles.setText(String.valueOf(files.size()));
-                    postViewHolder.attachfile.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(ContextCompat.checkSelfPermission
-                                    (AboutShare.this,Manifest.permission.READ_EXTERNAL_STORAGE)
-                                    ==PackageManager.PERMISSION_GRANTED){
-                                selectPdf();
-                            }
-                            else{
-                                ActivityCompat.requestPermissions(AboutShare.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},9);
-                            }
-                        }
-                    });
-                }
-                if(pdfUri!=null){
-                    postViewHolder.attachfile.setVisibility(View.GONE);
-                    postViewHolder.uploadFile.setVisibility(View.VISIBLE);
-                    postViewHolder.uploadFile.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            path=uploadFile(shareid,postModal.getId(),pdfUri);
-                            Map<String ,String > files=new HashMap<>();
-                            files.putAll(postModal.getFiles());
-                            files.put(user.getUser().getUid(),path);
-                            postViewHolder.nooffiles.setText(String.valueOf(files.size()));
-                            if(path==null){
-                                Toast.makeText(AboutShare.this,"files does not uploaded successfully please try again",Toast.LENGTH_LONG).show();
-                            }
-                            else{
-                                ff.collection("shares")
-                                        .document(shareid)
-                                        .collection("Bloging")
-                                        .document(postModal.getId())
-                                        .update("files",files).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        postViewHolder.uploadFile.setVisibility(View.GONE);
-                                        postViewHolder.attachfile.setVisibility(View.VISIBLE);
-                                    }
-                                });
-                            }
-                        }
-                    });
-                }
+//                if(pdfUri==null){
+//                    postViewHolder.attachfile.setVisibility(View.VISIBLE);
+//                    postViewHolder.uploadFile.setVisibility(View.GONE);
+//                    Map<String ,String > files=new HashMap<>();
+//                    files.putAll(postModal.getFiles());
+//                    postViewHolder.nooffiles.setText(String.valueOf(files.size()));
+//                    postViewHolder.attachfile.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            if(ContextCompat.checkSelfPermission
+//                                    (AboutShare.this,Manifest.permission.READ_EXTERNAL_STORAGE)
+//                                    ==PackageManager.PERMISSION_GRANTED){
+//                                selectPdf();
+//                            }
+//                            else{
+//                                ActivityCompat.requestPermissions(AboutShare.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},9);
+//                            }
+//                        }
+//                    });
+//                }
+//                if(pdfUri!=null){
+//                    postViewHolder.attachfile.setVisibility(View.GONE);
+//                    postViewHolder.uploadFile.setVisibility(View.VISIBLE);
+//                    postViewHolder.uploadFile.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            path=uploadFile(shareid,postModal.getId(),pdfUri);
+//                            Map<String ,String > files=new HashMap<>();
+//                            files.putAll(postModal.getFiles());
+//                            files.put(user.getUser().getUid(),path);
+//                            postViewHolder.nooffiles.setText(String.valueOf(files.size()));
+//                            if(path==null){
+//                                Toast.makeText(AboutShare.this,"files does not uploaded successfully please try again",Toast.LENGTH_LONG).show();
+//                            }
+//                            else{
+//                                ff.collection("shares")
+//                                        .document(shareid)
+//                                        .collection("Bloging")
+//                                        .document(postModal.getId())
+//                                        .update("files",files).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<Void> task) {
+//                                        postViewHolder.uploadFile.setVisibility(View.GONE);
+//                                        postViewHolder.attachfile.setVisibility(View.VISIBLE);
+//                                    }
+//                                });
+//                            }
+//                        }
+//                    });
+//                }
                 postViewHolder.videoPlayer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
                     @Override
                     public void onReady(@NonNull YouTubePlayer youTubePlayer) {
@@ -289,7 +282,6 @@ AboutShare extends AppCompatActivity {
 
             comments=itemView.findViewById(R.id.comments);
             videoPlayer=itemView.findViewById(R.id.videoplayer);
-            attachfile=itemView.findViewById(R.id.attachFile);
             title=itemView.findViewById(R.id.title);
             description=itemView.findViewById(R.id.description);
             likebutton=itemView.findViewById(R.id.likeButton);
@@ -298,10 +290,8 @@ AboutShare extends AppCompatActivity {
             intern=itemView.findViewById(R.id.intern);
             freelancer=itemView.findViewById(R.id.freelancer);
             assistance=itemView.findViewById(R.id.assistance);
-            uploadFile=itemView.findViewById(R.id.uploadFile);
             commentButton=itemView.findViewById(R.id.commentButton);
             writeComment=itemView.findViewById(R.id.writeComment);
-            nooffiles=itemView.findViewById(R.id.number_of_files);
 
         }
     }

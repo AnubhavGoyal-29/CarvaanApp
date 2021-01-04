@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:background="#FFFFFF"
     tools:context=".ui.profile.Profile">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,6 +16,7 @@
         android:layout_marginLeft="25dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="20dp">
+
     <LinearLayout
 
         android:id="@+id/profileCoins"

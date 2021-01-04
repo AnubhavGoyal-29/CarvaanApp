@@ -217,8 +217,8 @@ public class RegisterActivity extends AppCompatActivity {
                                             document("cash").set(cash).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-
+                                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class).putExtra("email",user_name.getText().toString()).putExtra("password",passwordText.getEditText().getText().toString()));
+                                            Toast.makeText(RegisterActivity.this,"First verify your email and then login",Toast.LENGTH_LONG).show();
                                         }
                                     });
                                 }
