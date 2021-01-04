@@ -218,15 +218,20 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
                 android:orientation="horizontal"
-                android:weightSum="8">
+                android:weightSum="10">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.8"
+                    android:layout_weight="5"
                          android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="5dp">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/like_black"/>
                     <TextView
                         android:textStyle="bold"
                         android:id="@+id/likeButton"
@@ -241,7 +246,7 @@
                         android:id="@+id/number_of_likes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
+                        android:layout_marginLeft="10dp"
                         android:lines="1"
                         android:text="20"
                         android:textColor="#000000"
@@ -252,10 +257,15 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3.1"
+                    android:layout_weight="5"
                     android:orientation="horizontal"
                     android:gravity="center"
                     android:padding="5dp">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/chat"/>
                     <TextView
                         android:textStyle="bold"
                         android:id="@+id/comments"
@@ -279,46 +289,7 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:visibility="gone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.1"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:padding="5dp">
-                    <TextView
-                        android:textStyle="bold"
-                        android:id="@+id/attachFile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
 
-                        android:lines="1"
-                        android:text="AttachFile"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-                        tools:autoSizeTextType="uniform" />
-                    <TextView
-                        android:visibility="gone"
-                        android:id="@+id/uploadFile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:lines="1"
-                        android:text="UploadFile"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-                        tools:autoSizeTextType="uniform" />
-                    <TextView
-                        android:id="@+id/number_of_files"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="23"
-                        android:textSize="16sp"
-                        android:layout_marginLeft="7dp"
-                        android:textStyle="bold" />
-                </LinearLayout>
 
             </LinearLayout>
 
