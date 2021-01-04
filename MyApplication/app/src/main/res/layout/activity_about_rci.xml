@@ -56,7 +56,12 @@
             android:layout_width="match_parent"
             android:layout_height="300dp">
         </com.github.mikephil.charting.charts.LineChart>
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rci is the only source of transaction in the app.
+This is the initials of our company name recreateindia, but it has some more significance rather than buying and selling on this app.this rci directly reflects our company share and one day you can buy our company shares through these rci , also one day you can buy products on our different app through this rci so it is wise if you hold these rci for some time and later use it more benificialy">
+        </TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"

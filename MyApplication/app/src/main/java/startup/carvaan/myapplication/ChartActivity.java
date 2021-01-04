@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.LimitLine;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -22,14 +20,22 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import startup.carvaan.myapplication.ui.coins.coinModal;
 
 public class    ChartActivity extends AppCompatActivity implements OnChartGestureListener, OnChartValueSelectedListener {
 
     private static final String TAG = "ChartActivity";
 
-
+    coinModal coinModal=new coinModal();
     private LineChart mChart;
 
     @Override
@@ -41,41 +47,44 @@ public class    ChartActivity extends AppCompatActivity implements OnChartGestur
         mChart.setOnChartValueSelectedListener(ChartActivity.this);
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(false);
+        FirebaseFirestore ff=FirebaseFirestore.getInstance();
+        ff.collection("Coins").document("coins").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                coinModal coinModal=value.toObject(coinModal.class);
+            }   
+        });
+//        //OPTIONAL FOR CREATING UPPER AND LOWER LIMITS ON GRAPH
+//        LimitLine upper_limit = new LimitLine(65f, "Danger");
+//        upper_limit.setLineWidth(4f);
+//        upper_limit.enableDashedLine(10f, 10f, 0f);
+//        upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+//        upper_limit.setTextSize(15f);
+//        //OPTIONAL FOR CREATING UPPER AND LOWER LIMITS ON GRAPH
+//        LimitLine lower_limit = new LimitLine(35f, "Too Low");
+//        lower_limit.setLineWidth(4f);
+//        lower_limit.enableDashedLine(10f, 10f, 0f);
+//        lower_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+//        lower_limit.setTextSize(15f);
+//        //OPTIONAL FOR CREATING UPPER AND LOWER LIMITS ON GRAPH
+//        YAxis leftAxis = mChart.getAxisLeft();
+//        leftAxis.removeAllLimitLines();
+//        leftAxis.addLimitLine(upper_limit);
+//        leftAxis.addLimitLine(lower_limit);
+//        leftAxis.setAxisMinimum(25f);
+//        leftAxis.setAxisMaximum(25f);
+//        leftAxis.enableGridDashedLine(10f, 10f, 0);
+//        leftAxis.setDrawLimitLinesBehindData(true);
+//
+//        //OPTIONAL FOR CREATING UPPER AND LOWER LIMITS ON GRAPH
+//        mChart.getAxisLeft().setEnabled(false);
 
-        //OPTIONAL FOR CREATING UPPER AND LOWER LIMITS ON GRAPH
-        LimitLine upper_limit = new LimitLine(65f, "Danger");
-        upper_limit.setLineWidth(4f);
-        upper_limit.enableDashedLine(10f, 10f, 0f);
-        upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-        upper_limit.setTextSize(15f);
-        //OPTIONAL FOR CREATING UPPER AND LOWER LIMITS ON GRAPH
-        LimitLine lower_limit = new LimitLine(35f, "Too Low");
-        lower_limit.setLineWidth(4f);
-        lower_limit.enableDashedLine(10f, 10f, 0f);
-        lower_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        lower_limit.setTextSize(15f);
-        //OPTIONAL FOR CREATING UPPER AND LOWER LIMITS ON GRAPH
-        YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.removeAllLimitLines();
-        leftAxis.addLimitLine(upper_limit);
-        leftAxis.addLimitLine(lower_limit);
-        leftAxis.setAxisMinimum(25f);
-        leftAxis.setAxisMaximum(25f);
-        leftAxis.enableGridDashedLine(10f, 10f, 0);
-        leftAxis.setDrawLimitLinesBehindData(true);
-
-        //OPTIONAL FOR CREATING UPPER AND LOWER LIMITS ON GRAPH
-        mChart.getAxisLeft().setEnabled(false);
+        Map<String,String >map=new HashMap<>();
 
         ArrayList<Entry> yValues = new ArrayList<>();
-
-        //use fo loop if retrieving from any database
-        yValues.add(new Entry(1, 60f));
-        yValues.add(new Entry(2, 50f));
-        yValues.add(new Entry(3, 70f));
-        yValues.add(new Entry(4, 50f));
-        yValues.add(new Entry(5, 60f));
-        yValues.add(new Entry(6, 65f));
+        for (Map.Entry<String,String> entry : map.entrySet()){
+            yValues.add(new Entry(Integer.valueOf(entry.getKey()),Integer.valueOf(entry.getValue())));
+        }
 
         LineDataSet set1 = new LineDataSet(yValues, "Data Set 1");
         set1.setFillAlpha(110);
@@ -89,13 +98,6 @@ public class    ChartActivity extends AppCompatActivity implements OnChartGestur
         LineData data = new LineData(dataSets);
 
         mChart.setData(data);
-
-        //optional for writing custom x axis headers
-        String[] values = new String[]{"Jan", "Feb", "Mar", "Apr", "May",};
-        XAxis xAxis = mChart.getXAxis();
-        xAxis.setValueFormatter(new MyXAxisValueFormatter(values));
-        xAxis.setGranularity(1);
-        xAxis.setPosition(XAxis.XAxisPosition.BOTH_SIDED); //x axis ka parameter name will be shown on both sides
 
     }
 

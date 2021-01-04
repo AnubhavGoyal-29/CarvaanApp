@@ -51,6 +51,9 @@ public class payouts extends AppCompatActivity {
         withdrawl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(Integer.valueOf(user.getWinnings())<500){
+                    Toast.makeText(payouts.this,"you should have minimum 500 coins before redeem",Toast.LENGTH_LONG).show();
+                }
                 ProgressDialog progressDialog = new ProgressDialog(payouts.this);
                 progressDialog.setMessage("dialogueMessage"); // Setting Message
                 progressDialog.setTitle("dialogueTitle"); // Setting Title
