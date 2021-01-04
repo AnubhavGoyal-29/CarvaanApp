@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -20,8 +21,10 @@ import startup.carvaan.myapplication.ui.payment.payouts;
 
 public class
 aboutRci extends AppCompatActivity {
-    private TextView coinvalue;
+    private TextView coinvalue,seetext;
     private Button redeem,buy;
+
+    private LinearLayout butsee,rcimore;
     FirebaseFirestore ff=FirebaseFirestore.getInstance();
     coinModal coinModal=new coinModal();
 
@@ -31,6 +34,17 @@ aboutRci extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_rci);
         coinvalue=findViewById(R.id.coinvalue);
+        butsee=findViewById(R.id.butsee);
+        rcimore=findViewById(R.id.rcimore);
+        seetext=findViewById(R.id.seetext);
+
+        seetext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rcimore.setVisibility(View.VISIBLE);
+                butsee.setVisibility(View.GONE);
+            }
+        });
         ff.collection("Coins").document("coins").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {

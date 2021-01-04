@@ -59,15 +59,72 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rci is the only source of transaction in the app.
-This is the initials of our company name recreateindia, but it has some more significance rather than buying and selling on this app.this rci directly reflects our company share and one day you can buy our company shares through these rci , also one day you can buy products on our different app through this rci so it is wise if you hold these rci for some time and later use it more benificialy">
-        </TextView>
+            android:text="What is RCI ?"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="• RCI is the only source of transaction in the app.
+This is the initials of our company name Recreate India and is represented as coins in our app."/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/butsee"
+            >
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="See More"
+            android:id="@+id/seetext"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:background="@drawable/tfyu"
+            android:textStyle="bold"
+
+            />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rcimore"
+            android:visibility="gone"
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:text="• These RCIs has some more significance rather than buying and selling on this app.It directly reflects our company share and one day you can buy our company shares through these RCIs."/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+        android:text="• Also one day you can buy products on our different app through RCI so it is wise if you hold these coins or RCIs for some time and later use it more benefits."/>
+        </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:weightSum="2"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginRight="15dp">
