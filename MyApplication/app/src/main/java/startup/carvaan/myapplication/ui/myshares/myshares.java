@@ -83,6 +83,9 @@ public class myshares extends Fragment {
                         postViewHolder.shareName.setText(value.getString("companyname"));
                     }
                 });
+                if(Double.valueOf(mysharemodel.getHoldings())==0){
+                    ff.collection("Users").document(user.getUser().getUid()).collection("myshares").document(docId).delete();
+                }
                 postViewHolder.holdings.setText(mysharemodel.getHoldings());
                 postViewHolder.price.setText("at price  "+mysharemodel.getPriceHoldings());
                 postViewHolder.trade.setOnClickListener(new View.OnClickListener() {

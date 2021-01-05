@@ -35,7 +35,7 @@ public class    ChartActivity extends AppCompatActivity implements OnChartGestur
 
     private static final String TAG = "ChartActivity";
 
-    coinModal coinModal=new coinModal();
+    coinModal coinModal;
     private LineChart mChart;
 
     @Override
@@ -51,8 +51,8 @@ public class    ChartActivity extends AppCompatActivity implements OnChartGestur
         ff.collection("Coins").document("coins").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                coinModal coinModal=value.toObject(coinModal.class);
-            }   
+                coinModal=value.toObject(coinModal.class);
+            }
         });
 //        //OPTIONAL FOR CREATING UPPER AND LOWER LIMITS ON GRAPH
 //        LimitLine upper_limit = new LimitLine(65f, "Danger");
@@ -80,7 +80,7 @@ public class    ChartActivity extends AppCompatActivity implements OnChartGestur
 //        mChart.getAxisLeft().setEnabled(false);
 
         Map<String,String >map=new HashMap<>();
-
+        map.putAll(coinModal.getGraph());
         ArrayList<Entry> yValues = new ArrayList<>();
         for (Map.Entry<String,String> entry : map.entrySet()){
             yValues.add(new Entry(Integer.valueOf(entry.getKey()),Integer.valueOf(entry.getValue())));

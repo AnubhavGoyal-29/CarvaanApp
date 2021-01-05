@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +43,7 @@ public class comments extends DialogFragment {
     ArrayList<commentsModal> arrayList = new ArrayList<>();
     EditText comment;
     Button sendcomment;
+    TextView nocomment;
 
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -56,6 +58,7 @@ public class comments extends DialogFragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
+        nocomment=view.findViewById(R.id.nocomment);
         ff.collection("shares")
                 .document(shareId)
                 .collection("Bloging")
@@ -68,6 +71,9 @@ public class comments extends DialogFragment {
                 commentsMap.putAll(postModal.getComments());
                 for (Map.Entry<String,String> entry : commentsMap.entrySet()){
                     arrayList.add(new commentsModal(entry.getKey(),entry.getValue()));
+                }
+                if(arrayList.size()!=0){
+                    nocomment.setVisibility(View.GONE);
                 }
                 mAdapter=new commentsAdapter(arrayList,getContext());
                 recyclerView.setAdapter(mAdapter);

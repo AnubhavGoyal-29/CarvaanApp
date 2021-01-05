@@ -142,6 +142,14 @@ public class Buy extends DialogFragment {
                                                     .document(shareId)
                                                     .collection("Price")
                                                     .document("price").update("occupied", String.valueOf(Double.valueOf(occupied) + Double.valueOf(nos.getText().toString())));
+                                            ff.collection("shares").document(shareId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                    String peopleinvested=task.getResult().getString("peopleinvested");
+                                                    ff.collection("shares").document(shareId).update("peopleinvested",String.valueOf(Integer.valueOf(peopleinvested)+1));
+                                                }
+                                            });
+
                                             startup.carvaan.myapplication.ui.about.dailogFragments.dialog_buy_success dialog_buy_success = new dialog_buy_success();
                                             Bundle bundle1 = new Bundle();
                                             bundle1.putString("nos", String.valueOf(nos.getText().toString()));
