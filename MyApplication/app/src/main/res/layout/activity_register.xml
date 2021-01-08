@@ -112,16 +112,6 @@
                             android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginRight="55dp"
-                        android:gravity="left"
-                        android:layout_height="wrap_content"
-                        android:text="Minimum of 8 and maximum of 12 letters"
-                        android:textColor="#B63333"
-                        android:textSize="14sp" />
-
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
