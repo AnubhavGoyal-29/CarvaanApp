@@ -18,6 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:cardCornerRadius="25dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:backgroundTint="#FF625088">
 
         <androidx.constraintlayout.widget.ConstraintLayout
