@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onStart() {
         super.onStart();
         adapter.startListening();
-        Paper.book().write("version_name","1.15");
+        Paper.book().write("version_name","1.16");
         if(!user.getUser().isEmailVerified()){
             Toast.makeText(MainActivity.this, "please verify your mail first", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
