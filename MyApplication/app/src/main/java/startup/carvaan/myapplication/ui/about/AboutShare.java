@@ -157,56 +157,6 @@ public class AboutShare extends AppCompatActivity {
                         comments.show(getSupportFragmentManager(),"comments");
                     }
                 });
-//                if(pdfUri==null){
-//                    postViewHolder.attachfile.setVisibility(View.VISIBLE);
-//                    postViewHolder.uploadFile.setVisibility(View.GONE);
-//                    Map<String ,String > files=new HashMap<>();
-//                    files.putAll(postModal.getFiles());
-//                    postViewHolder.nooffiles.setText(String.valueOf(files.size()));
-//                    postViewHolder.attachfile.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            if(ContextCompat.checkSelfPermission
-//                                    (AboutShare.this,Manifest.permission.READ_EXTERNAL_STORAGE)
-//                                    ==PackageManager.PERMISSION_GRANTED){
-//                                selectPdf();
-//                            }
-//                            else{
-//                                ActivityCompat.requestPermissions(AboutShare.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},9);
-//                            }
-//                        }
-//                    });
-//                }
-//                if(pdfUri!=null){
-//                    postViewHolder.attachfile.setVisibility(View.GONE);
-//                    postViewHolder.uploadFile.setVisibility(View.VISIBLE);
-//                    postViewHolder.uploadFile.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            path=uploadFile(shareid,postModal.getId(),pdfUri);
-//                            Map<String ,String > files=new HashMap<>();
-//                            files.putAll(postModal.getFiles());
-//                            files.put(user.getUser().getUid(),path);
-//                            postViewHolder.nooffiles.setText(String.valueOf(files.size()));
-//                            if(path==null){
-//                                Toast.makeText(AboutShare.this,"files does not uploaded successfully please try again",Toast.LENGTH_LONG).show();
-//                            }
-//                            else{
-//                                ff.collection("shares")
-//                                        .document(shareid)
-//                                        .collection("Bloging")
-//                                        .document(postModal.getId())
-//                                        .update("files",files).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<Void> task) {
-//                                        postViewHolder.uploadFile.setVisibility(View.GONE);
-//                                        postViewHolder.attachfile.setVisibility(View.VISIBLE);
-//                                    }
-//                                });
-//                            }
-//                        }
-//                    });
-//                }
                 postViewHolder.videoPlayer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
                     @Override
                     public void onReady(@NonNull YouTubePlayer youTubePlayer) {
@@ -299,19 +249,19 @@ public class AboutShare extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode==9&& grantResults[0]==PackageManager.PERMISSION_GRANTED){
-            selectPdf();
+//            selectPdf();
         }
         else{
             Toast.makeText(AboutShare.this,"please provide permissions",Toast.LENGTH_LONG).show();
         }
     }
 
-    private void selectPdf() {
-        Intent intent=new Intent();
-        intent.setType("application/pdf");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent,100);
-    }
+//    private void selectPdf() {
+//        Intent intent=new Intent();
+//        intent.setType("application/pdf");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(intent,100);
+//    }
 
 
 
