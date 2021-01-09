@@ -31,11 +31,10 @@ import java.util.Objects;
 
 import startup.carvaan.myapplication.ProgressButton;
 import startup.carvaan.myapplication.R;
-import startup.carvaan.myapplication.ui.mainActivity.MainActivity;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String TAG = "bla";
-    private TextInputEditText user_name,display_name;
+    private TextInputEditText user_name, display_name;
 
     private TextInputLayout passwordText;
     private TextInputLayout confirmPassword;
@@ -54,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         ff = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         user_name = findViewById(R.id.username);
-        display_name=findViewById(R.id.displayName);
+        display_name = findViewById(R.id.displayName);
         passwordText = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);
         regis_ter = findViewById(R.id.register1);
@@ -104,15 +103,29 @@ public class RegisterActivity extends AppCompatActivity {
 
                         }
                     } else {
-                        confirmPassword.setErrorEnabled(false);
-                        confirmPassword.setError(null);
+                        if (passwordText.getEditText().getText().toString().trim().length() >= 6 && passwordText.getEditText().getText().toString().trim().length() <= 15) {
+                            confirmPassword.setErrorEnabled(false);
+                            confirmPassword.setError(null);
 
-                        passwordText.setErrorEnabled(false);
-                        passwordText.setError(null);
-                        if (!progressButton.isEnabled()) {
-                            progressButton.buttonsetEnabledTrue("REGISTER");
-                            regis_ter.setClickable(true);
-                            regis_ter.setEnabled(true);
+                            passwordText.setErrorEnabled(false);
+                            passwordText.setError(null);
+                            if (!progressButton.isEnabled()) {
+                                progressButton.buttonsetEnabledTrue("REGISTER");
+                                regis_ter.setClickable(true);
+                                regis_ter.setEnabled(true);
+                            }
+                        } else {
+                            passwordText.setErrorEnabled(true);
+                            passwordText.setError("Password should contain 6 to 15 characters");
+                            confirmPassword.setErrorEnabled(true);
+                            confirmPassword.setError("Password should contain 6 to 15 characters");
+                            if (progressButton.isEnabled()) {
+                                progressButton.buttonsetEnabledFalse(false);
+                                regis_ter.setClickable(false);
+                                regis_ter.setEnabled(false);
+
+                            }
+
                         }
                     }
 
@@ -154,19 +167,34 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                         Log.i("TAG", "SORRY, PASSWORDS DONT MATCH!!!");
                     } else {
-                        Log.i("TAG", "HURRAY, PASSWORDS MATCH!!");
-                        confirmPassword.setErrorEnabled(false);
-                        confirmPassword.setError(null);
-
-                        passwordText.setErrorEnabled(false);
-                        passwordText.setError(null);
-                        if (!progressButton.isEnabled()) {
-                            progressButton.buttonsetEnabledTrue("REGISTER");
-                            regis_ter.setClickable(true);
-                            regis_ter.setEnabled(true);
+                        if (confirmPassword.getEditText().getText().toString().trim().length()>=6 && confirmPassword.getEditText().getText().toString().trim().length() <= 15) {
+                            Log.i("TAG", "HURRAY, PASSWORDS MATCH!!");
+                            confirmPassword.setErrorEnabled(false);
+                            confirmPassword.setError(null);
+                            passwordText.setErrorEnabled(false);
+                            passwordText.setError(null);
+                            if (!progressButton.isEnabled()) {
+                                progressButton.buttonsetEnabledTrue("REGISTER");
+                                regis_ter.setClickable(true);
+                                regis_ter.setEnabled(true);
+                            }
+                        }
+                         else {
+                            passwordText.setErrorEnabled(true);
+                            passwordText.setError("Password should contain 6-15 characters");
+                            confirmPassword.setErrorEnabled(true);
+                            confirmPassword.setError("Password should contain 6-15 characters");
+                            if (progressButton.isEnabled()) {
+                                progressButton.buttonsetEnabledFalse(false);
+                                regis_ter.setClickable(false);
+                                regis_ter.setEnabled(false);
+                            }
+//
                         }
 
                     }
+
+//                    if (password.trim().length()>=6)
 
                 }
             }
@@ -175,21 +203,37 @@ public class RegisterActivity extends AppCompatActivity {
         regis_ter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressButton.buttonsetEnabledFalse(true);
-                regis_ter.setClickable(false);
-                regis_ter.setEnabled(false);
+                if (progressButton.isEnabled()) {
+                    progressButton.buttonsetEnabledFalse(true);
+                    //progressButton.initialPhase("Please wait",true);
+                    regis_ter.setClickable(false);
+                    regis_ter.setEnabled(false);
+                }
 
-                if (TextUtils.isEmpty(user_name.getText().toString())) {
-                    Toast.makeText(RegisterActivity.this, "Username is empty! Please enter a valid username.", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(user_name.getText().toString()) || TextUtils.isEmpty(display_name.getText().toString()) || TextUtils.isEmpty(passwordText.getEditText().getText().toString()) || TextUtils.isEmpty(confirmPassword.getEditText().getText().toString())) {
+                    Toast.makeText(RegisterActivity.this, "Don't leave any fields empty.", Toast.LENGTH_SHORT).show();
+                    if (!progressButton.isEnabled()) {
+                        progressButton.buttonsetEnabledTrue("REGISTER");
+                        regis_ter.setClickable(true);
+                        regis_ter.setEnabled(true);
+                    }
+//                } else if (TextUtils.isEmpty(display_name.getText().toString())) {
+//                    Toast.makeText(RegisterActivity.this, "Display name is empty! Please enter a valid username.", Toast.LENGTH_SHORT).show();
+//                    if (!progressButton.isEnabled()) {
+//                        progressButton.buttonsetEnabledTrue("REGISTER");
+//                        regis_ter.setClickable(true);
+//                        regis_ter.setEnabled(true);
+//                    }
+
                 } else {
                     firebaseAuth.createUserWithEmailAndPassword(user_name.getText().toString(), passwordText.getEditText().getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            FirebaseUser user=authResult.getUser();
+                            FirebaseUser user = authResult.getUser();
                             user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(RegisterActivity.this,"verification email successfully sent",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(RegisterActivity.this, "verification email successfully sent", Toast.LENGTH_LONG).show();
                                 }
                             });
                             firebaseUser = firebaseAuth.getCurrentUser();
@@ -199,10 +243,10 @@ public class RegisterActivity extends AppCompatActivity {
                             map.put("PhoneNumber", "phone Number");
                             map.put("ImageUrl", "imageURL");
                             ff.collection("Users").document(firebaseUser.getUid()).set(map);
-                            Map<String,String>coins=new HashMap<>();
+                            Map<String, String> coins = new HashMap<>();
                             coins.put("earned", String.valueOf(100));
                             coins.put("winnings", String.valueOf(0));
-                            Map<String ,String >cash=new HashMap<>();
+                            Map<String, String> cash = new HashMap<>();
                             cash.put("added", String.valueOf(0));
                             cash.put("redeemed", String.valueOf(0));
                             ff.collection("Users").
@@ -217,8 +261,8 @@ public class RegisterActivity extends AppCompatActivity {
                                             document("cash").set(cash).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class).putExtra("email",user_name.getText().toString()).putExtra("password",passwordText.getEditText().getText().toString()));
-                                            Toast.makeText(RegisterActivity.this,"First verify your email and then login",Toast.LENGTH_LONG).show();
+                                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class).putExtra("email", user_name.getText().toString()).putExtra("password", passwordText.getEditText().getText().toString()));
+                                            Toast.makeText(RegisterActivity.this, "First verify your email and then login", Toast.LENGTH_LONG).show();
                                         }
                                     });
                                 }
