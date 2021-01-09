@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-    
+
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -30,7 +30,7 @@ import static java.lang.Math.abs;
 
 public class Addactivity extends AppCompatActivity {
     User user=new User();
-    private Button rewareded,interestial;
+    private Button rewareded,interestial,rewarded2;
     private RewardedAd rewardedAd;
     private InterstitialAd interstitialAd;
     String[] id={"ca-app-pub-1372656325166770/4738696917","ca-app-pub-1372656325166770/7713274220","ca-app-pub-1372656325166770/3774029214"};
@@ -39,6 +39,7 @@ public class Addactivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addactivity);
         rewareded=findViewById(R.id.rewarded);
+        rewarded2=findViewById(R.id.rewarded2);
         interestial=findViewById(R.id.interestial);
         interstitialAd=new InterstitialAd(this);
         interstitialAd.setAdUnitId("ca-app-pub-1372656325166770/9302166994");
@@ -48,6 +49,40 @@ public class Addactivity extends AppCompatActivity {
         rewardedAd=createAndLoadRewardedAd();
         rewareded=findViewById(R.id.rewarded);
         rewareded.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rewardedAd.isLoaded()) {
+                    Activity activityContext = Addactivity.this;
+                    RewardedAdCallback adCallback = new RewardedAdCallback() {
+                        @Override
+                        public void onRewardedAdOpened() {
+                            // Ad opened.
+                        }
+
+                        @Override
+                        public void onRewardedAdClosed() {
+
+                            rewardedAd=createAndLoadRewardedAd();
+                        }
+
+                        @Override
+                        public void onUserEarnedReward(@NonNull RewardItem reward) {
+                            Toast.makeText(Addactivity.this,"You got "+reward.getAmount()+" coins",Toast.LENGTH_LONG).show();
+                            user.addEarned(Double.valueOf(reward.getAmount()));
+                        }
+
+                        @Override
+                        public void onRewardedAdFailedToShow(AdError adError) {
+                            // Ad failed to display.
+                        }
+                    };
+                    rewardedAd.show(activityContext, adCallback);
+                } else {
+                    Log.d("TAG", "The rewarded ad wasn't loaded yet.");
+                }
+            }
+        });
+        rewarded2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (rewardedAd.isLoaded()) {
