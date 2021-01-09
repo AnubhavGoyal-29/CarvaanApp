@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +26,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
 
@@ -61,8 +65,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private ActionBar actionBar;
     TextView coins;
     User user=new User();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +87,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
         },2000);
         Paper.init(this);
+        FirebaseFirestore.getInstance().collection("version").document("version").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                double version_name=Double.valueOf(Paper.book().read("version_name"));
+                if(version_name!=Double.valueOf(value.getString("name"))){
+                    updateApp updateApp=new updateApp();
+                    updateApp.show(getSupportFragmentManager(),"Update App");
+                }
+            }
+        });
+
 //        new MaterialTapTargetPrompt.Builder(MainActivity.this)
 //                .setTarget(R.id.n1)
 //                .setPrimaryText("Hii Carvaan User")
@@ -329,6 +342,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onStart() {
         super.onStart();
+        Paper.book().write("version_name","1.15");
         if(!user.getUser().isEmailVerified()){
             Toast.makeText(MainActivity.this, "please verify your mail first", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -367,5 +381,4 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         .create(), 4000)
                 .show();
     }
-
 }
