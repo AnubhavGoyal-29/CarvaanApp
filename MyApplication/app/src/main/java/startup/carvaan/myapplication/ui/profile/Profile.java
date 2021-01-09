@@ -2,14 +2,12 @@ package startup.carvaan.myapplication.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -23,69 +21,64 @@ import startup.carvaan.myapplication.ui.payment.paymentActivity;
 import startup.carvaan.myapplication.ui.payment.payouts;
 import startup.carvaan.myapplication.ui.user.User;
 
-public class Profile extends Fragment {
+public class Profile extends AppCompatActivity {
     private TextView earned,winnins,added,redeemed;
     private Button coinEarn,redeemCoin,addCash,buyCoins;
     private User user;
     private FirebaseFirestore ff;
-    public Profile()
-    {
 
-    }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_profile, container, false);
-        ff=FirebaseFirestore.getInstance();
+   @Override
+    protected void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.fragment_profile);
+       ff=FirebaseFirestore.getInstance();
 
         user=new User();
-        buyCoins=view.findViewById(R.id.buyCoinsButton);
+        buyCoins=findViewById(R.id.buyCoinsButton);
         buyCoins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), BuyCoin.class));
+                startActivity(new Intent(Profile.this, BuyCoin.class));
             }
         });
-        earned=view.findViewById(R.id.coinsEarnedTextView);
+        earned=findViewById(R.id.coinsEarnedTextView);
         earned.setText(user.getEarned());
-        winnins=view.findViewById(R.id.winningsTextView);
+        winnins=findViewById(R.id.winningsTextView);
         winnins.setText(user.getWinnings());
-        added=view.findViewById(R.id.cashAddedTextView);
+        added=findViewById(R.id.cashAddedTextView);
         added.setText(user.getAdded());
-        redeemed=view.findViewById(R.id.redeemCashTextView);
+        redeemed=findViewById(R.id.redeemCashTextView);
         redeemed.setText(user.getRedeemed());
-        redeemCoin=view.findViewById(R.id.redeemButton);
-        redeemCoin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), payouts.class));
-            }
-        });
-        buyCoins=view.findViewById(R.id.buyCoinsButton);
-        addCash=view.findViewById(R.id.addCashButton);
+        redeemCoin=findViewById(R.id.redeemButton);
+//        redeemCoin.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getContext(), payouts.class));
+//            }
+//        });
+       redeemCoin.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               startActivity(new Intent(Profile.this, payouts.class));
+           }
+       });
+        buyCoins=findViewById(R.id.buyCoinsButton);
+        addCash=findViewById(R.id.addCashButton);
         addCash.setVisibility(View.GONE);
         addCash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), paymentActivity.class));
+                startActivity(new Intent(Profile.this, paymentActivity.class));
             }
         });
-        redeemCoin=view.findViewById(R.id.redeemButton);
-        coinEarn=view.findViewById(R.id.earnCoinsButton);
+        redeemCoin=findViewById(R.id.redeemButton);
+        coinEarn=findViewById(R.id.earnCoinsButton);
         coinEarn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), Addactivity.class));
+                startActivity(new Intent(Profile.this, Addactivity.class));
             }
         });
-
-
         ff.collection("Users").document(user.getUser().getUid()).collection("CreditDetails")
                 .document("coins").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -102,6 +95,5 @@ public class Profile extends Fragment {
                 redeemed.setText(" "+value.getString("redeemed"));
             }
         });
-        return view;
     }
 }

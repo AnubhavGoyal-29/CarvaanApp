@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,32 +27,24 @@ import startup.carvaan.myapplication.ui.about.AboutShare;
 import startup.carvaan.myapplication.ui.user.User;
 
 
-public class myshares extends Fragment {
+public class myshares extends AppCompatActivity {
 
     private RecyclerView allShareRecyclerView;
     private FirestoreRecyclerAdapter adapter;
     private FirebaseFirestore ff=FirebaseFirestore.getInstance();
     private User user=new User();
-    public myshares() {
-        // Required empty public constructor
-    }
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_myshares, container, false);
-
-
-     
+        setContentView(R.layout.fragment_myshares);
         User user=new User();
-        allShareRecyclerView=view.findViewById(R.id.myShareRecyclerView);
+        allShareRecyclerView=findViewById(R.id.myShareRecyclerView);
         ff=FirebaseFirestore.getInstance();
-        Query query=ff.collection("Users").document(user.getUser().getUid()).collection("myshares");
+        Query query=ff.collection("Users")
+                .document(user.getUser().getUid())
+                .collection("myshares")
+                .orderBy("holdings", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<mysharemodel> options = new FirestoreRecyclerOptions.Builder<mysharemodel>().setQuery(query, mysharemodel.class).build();
         adapter= new FirestoreRecyclerAdapter<mysharemodel, PostViewHolder>(options) {
             @NonNull
@@ -91,14 +83,14 @@ public class myshares extends Fragment {
                 postViewHolder.trade.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(getContext(), AboutShare.class).putExtra("shareid",docId));
+                        startActivity(new Intent(myshares.this, AboutShare.class).putExtra("shareid",docId));
                     }
                 });
             }
         };
         allShareRecyclerView.setAdapter(adapter);
-        allShareRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        return view;
+        allShareRecyclerView.setLayoutManager(new LinearLayoutManager(myshares.this));
+
     }
     public class PostViewHolder extends RecyclerView.ViewHolder {
 

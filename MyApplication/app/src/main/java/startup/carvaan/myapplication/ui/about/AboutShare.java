@@ -1,12 +1,7 @@
 package startup.carvaan.myapplication.ui.about;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,33 +11,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
@@ -60,14 +47,9 @@ import startup.carvaan.myapplication.ui.about.dailogFragments.Sell;
 import startup.carvaan.myapplication.ui.about.dailogFragments.comments;
 import startup.carvaan.myapplication.ui.user.User;
 public class AboutShare extends AppCompatActivity {
-    private String path=null;
-    private Uri pdfUri=null;
-    private BottomSheetBehavior bottomSheetBehavior;
-    private TextView textView;
     private int a;
     private static final String LOG_TAG = AboutShare.class.getSimpleName();
     private FirebaseFirestore ff;
-    private ImageView stonksimage;
     private Button add_button;
     private Intent myFileIntent;
     private List<PostModal> tech_list;
@@ -110,6 +92,7 @@ public class AboutShare extends AppCompatActivity {
 
 
             // bind holder all work is working from here
+            @SuppressLint("ResourceAsColor")
             @Override
             protected void onBindViewHolder(@NonNull final PostViewHolder postViewHolder, int i, @NonNull final PostModal postModal) {
                 postViewHolder.title.setText(postModal.getTitle());
@@ -118,7 +101,7 @@ public class AboutShare extends AppCompatActivity {
                 userLiking.putAll(postModal.getUsersLiking());
                 postViewHolder.nooflikes.setText(String.valueOf(userLiking.size()));
                 if(userLiking.containsKey(user.getUser().getUid()))
-                    postViewHolder.likebutton.setTextColor(R.color.red);
+                    postViewHolder.likebutton.setTextColor(R.color.progress_color);
                 postViewHolder.likebutton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -245,26 +228,6 @@ public class AboutShare extends AppCompatActivity {
 
         }
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode==9&& grantResults[0]==PackageManager.PERMISSION_GRANTED){
-//            selectPdf();
-        }
-        else{
-            Toast.makeText(AboutShare.this,"please provide permissions",Toast.LENGTH_LONG).show();
-        }
-    }
-
-//    private void selectPdf() {
-//        Intent intent=new Intent();
-//        intent.setType("application/pdf");
-//        intent.setAction(Intent.ACTION_GET_CONTENT);
-//        startActivityForResult(intent,100);
-//    }
-
-
-
     @Override
     public void onStart() {
         super.onStart();
@@ -315,53 +278,9 @@ public class AboutShare extends AppCompatActivity {
             return false;
         }
     };
-    public String uploadFile(String shareid,String blogid,Uri uri){
-        StorageReference storageReference=firebaseStorage.getReference();
-        StorageReference finalPath=storageReference.child("shareFiles").child(shareid).child(blogid).child(user.getUser().getUid()+".pdf");
-        finalPath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                pdfUri=null;
-                Toast.makeText(AboutShare.this,"file upload successfully",Toast.LENGTH_SHORT).show();
-            }
-        });
-        return finalPath.toString();
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case 100:
-                if (resultCode == RESULT_OK&&data!=null) {
-                    // Get the Uri of the selected file
-                    pdfUri = data.getData();
-
-                }
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + requestCode);
-        }
-    }
     @Override
     public void onBackPressed() {
         adapter.notifyDataSetChanged();
         super.onBackPressed();
-    }
-    private void requestPermissionForReadExtertalStorage() throws Exception {
-        try {
-            ActivityCompat.requestPermissions((Activity) getApplicationContext(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    10);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
-
-    private boolean checkPermissionForReadExtertalStorage() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            int result = getApplicationContext().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
-            return result == PackageManager.PERMISSION_GRANTED;
-        }
-        return false;
     }
 }

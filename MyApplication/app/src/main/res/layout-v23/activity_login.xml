@@ -44,16 +44,11 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="25dp"
                 android:background="@drawable/inputtype"
-                android:hint="login with you Email"
+                android:hint="Email"
                 android:textColor="#000000"
-
-                android:textColorHint="#000000"
                 android:textSize="18sp"
 
                 />
-
-
-
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
@@ -66,7 +61,6 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:textColor="#000000"
-                android:textColorHint="#000000"
                 android:textSize="18sp"
                 />
         </LinearLayout>

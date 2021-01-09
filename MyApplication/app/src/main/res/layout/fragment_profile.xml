@@ -146,7 +146,7 @@
             android:textColor="#ffffff"
             android:textStyle="bold"
 
-            android:text="you should have atleast 500 coins before redeem">
+            android:text="you should have atleast 750 coins before redeem">
         </TextView>
     </LinearLayout>
     </androidx.cardview.widget.CardView>

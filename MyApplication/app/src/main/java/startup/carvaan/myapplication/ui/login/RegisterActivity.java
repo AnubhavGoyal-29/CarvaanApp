@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView movetologin;
     FirebaseFirestore ff;
     FirebaseUser firebaseUser;
+    private LinearLayout bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,7 +207,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (progressButton.isEnabled()) {
                     progressButton.buttonsetEnabledFalse(true);
-                    //progressButton.initialPhase("Please wait",true);
                     regis_ter.setClickable(false);
                     regis_ter.setEnabled(false);
                 }
@@ -217,14 +218,6 @@ public class RegisterActivity extends AppCompatActivity {
                         regis_ter.setClickable(true);
                         regis_ter.setEnabled(true);
                     }
-//                } else if (TextUtils.isEmpty(display_name.getText().toString())) {
-//                    Toast.makeText(RegisterActivity.this, "Display name is empty! Please enter a valid username.", Toast.LENGTH_SHORT).show();
-//                    if (!progressButton.isEnabled()) {
-//                        progressButton.buttonsetEnabledTrue("REGISTER");
-//                        regis_ter.setClickable(true);
-//                        regis_ter.setEnabled(true);
-//                    }
-
                 } else {
                     firebaseAuth.createUserWithEmailAndPassword(user_name.getText().toString(), passwordText.getEditText().getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
@@ -275,15 +268,12 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Exception e) {
                             String error = e.getMessage();
                             Toast.makeText(RegisterActivity.this, error, Toast.LENGTH_LONG).show();
-//                        regis_ter.setEnabled(true);
                             progressButton.buttonsetEnabledTrue("REGISTER");
                             regis_ter.setClickable(true);
                             regis_ter.setEnabled(true);
                         }
                     });
                 }
-
-                /////////////////////////////////////////////////////////////////////////
             }
 
         });
