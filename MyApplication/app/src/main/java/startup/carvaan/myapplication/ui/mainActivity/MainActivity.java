@@ -345,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         .setTarget(findViewById(R.id.aboutsharebottomnavview))
                         .setPrimaryText("Hii Carvan User ")
                         .setSecondaryText("Welcome to this app ,If you want to know all things about this app anf how to operate it then go to the how to play page in side drawer")
-                        .setIcon(R.drawable.menur)
+                        .setIcon(R.drawable.ic_baseline_toc_24)
                         .create(), 4000)
                 .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
                         .setTarget(findViewById(R.id.aboutsharebottomnavview))
