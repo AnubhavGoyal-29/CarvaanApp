@@ -1,6 +1,8 @@
 package startup.carvaan.myapplication.ui.mainActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -106,8 +108,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.logout:
-                        user.logoutUser();
-                        gotoLoginActivity();
+                        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+                        builder.setMessage("Are you sure you want to logout")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        user.logoutUser();
+                                        gotoLoginActivity();
+                                    }
+                                }).setNegativeButton("No",null);
+                        AlertDialog alert=builder.create();
+                        alert.show();
                         break;
                     case R.id.howtoplay:
                         startActivity(new Intent(MainActivity.this, Helppage.class));
@@ -155,8 +166,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 .document("coins").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                headerCoins.setText(" Your coins :"+value.getString("earned"));
-                headerWinnings.setText(" Your winnings :"+value.get("winnings"));
+                headerCoins.setText(value.getString("earned"));
+                headerWinnings.setText(value.getString("winnings"));
             }
         });
         FirebaseFirestore.getInstance().collection("Users")
@@ -197,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             protected void onBindViewHolder(PostViewHolder postViewHolder, int i, allsharemodel allsharemodel) {
 
                 postViewHolder.companyName.setText(allsharemodel.getCompanyname());
-                postViewHolder.description.setText(allsharemodel.getDescription());
+                postViewHolder.description.setText("Description :  "+allsharemodel.getDescription());
                 postViewHolder.text_view_progress.setText(allsharemodel.getGrowth());
                 postViewHolder.peopleinvested.setText(allsharemodel.getPeopleinvested());
                 postViewHolder.growth.setMax(100) ;//dummy max Val
@@ -344,4 +355,5 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
 }
