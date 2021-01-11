@@ -85,14 +85,6 @@
             android:layout_height="wrap_content"
 
            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:layout_marginLeft="8dp"
-                android:text="Description :"
-                android:layout_marginTop="12dp"
-                android:textStyle="bold"/>
 
 
 
@@ -100,10 +92,10 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="14dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
             android:gravity="center"
             android:textColor="#000000"
             android:text="Lorem Ipsum is simply Lorem Ipsum has been the industry's standard"
@@ -117,7 +109,7 @@
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/videoplayer"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="210dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 app:showSeekBar="true"
@@ -147,7 +139,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="52dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="Invest in me"
                 android:elevation="10dp"
 
@@ -192,7 +184,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="4dp"
 
                 android:orientation="vertical">
                 <TextView
@@ -214,7 +206,7 @@
                     android:layout_marginTop="8dp"
                     android:textStyle="bold"
                     android:textColor="#FF533D78"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
 
 
 
@@ -227,7 +219,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="4dp"
 
                 android:orientation="vertical">
                 <TextView
@@ -243,8 +235,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/relativeLayout"
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="3dp">
 
                     <ProgressBar
@@ -266,15 +258,27 @@
                         android:id="@+id/text_view_progress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:text="60%"
+                        android:text="60"
                         android:textColor="#FF533D78"
                         android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="%"
+                        android:textColor="#FF533D78"
+                        android:textStyle="bold"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@id/text_view_progress"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

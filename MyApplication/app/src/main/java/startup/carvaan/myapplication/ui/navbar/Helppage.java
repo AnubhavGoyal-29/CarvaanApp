@@ -90,7 +90,7 @@ private int count=0,count2=0,count3=0;
                     rulesre.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     description3.setVisibility(View.GONE);
                     picture.setVisibility(View.GONE);
-                    downarrow1.setImageResource(R.drawable.downarrow);
+                    downarrow2.setImageResource(R.drawable.expanda);
                     earn.setTextColor(Color.parseColor("#FFFFFF"));
                     howtoearn.setBackgroundColor(Color.parseColor("#FF533D78"));
                     description2.setVisibility(View.VISIBLE);

@@ -242,7 +242,7 @@
                  android:layout_marginRight="20dp"
                  android:layout_marginTop="8dp"
                  android:layout_height="wrap_content"
-                 android:text="• Then a popup appears then enter the amount  you want to sell."
+                 android:text="• Then a popup appears then enter the amount you want to sell."
                  android:textSize="15dp"
                  android:textColor="#FFFFFF"/>
              <TextView
@@ -386,7 +386,7 @@
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="20dp"
                 android:layout_height="wrap_content"
-                android:text="• You can get real money by redeem coins.First you go in coin section where you see how much you get for how many coins then click on redeem button.Then a page comes then enter your upi id or your bank details or enter the amount of coins you want to get money for and you got your money in 2-3 days in your account."
+                android:text="• You can get real money by redeem coins.First you go in About RCI section where you see how much you get for how many coins then click on redeem button.Then a page comes then enter your upi id or your bank details or enter the amount of coins you want to get money for and you got your money in 2-3 days in your account."
 
                 android:layout_marginTop="8dp"
                 android:textSize="15dp"
@@ -396,7 +396,7 @@
                 android:layout_marginLeft="18dp"
                 android:layout_marginRight="20dp"
                 android:layout_height="wrap_content"
-                android:text="• You can also redeem coins by going in your profile section and then click on the redeem button in winnings section."
+                android:text="• You can also redeem coins by going in your profile section and then click on the redeem button."
 
                 android:layout_marginTop="8dp"
                 android:textSize="15dp"
@@ -431,16 +431,16 @@
                 android:layout_marginTop="8dp"
                 android:textSize="15dp"
                 android:textColor="#FFFFFF"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="18dp"
-                android:layout_marginRight="20dp"
-                android:layout_height="wrap_content"
-                android:text="• You can also get coins from the real money .First add cash by going in Your profile section and then click on add cash button and then a pages comes then enter the amount you want to add.Then go to Buy coin option in the navigation drawer or in the prfile section you can click on buy coins option then a page comes showing the different options then click on buy now button of your desirable amount."
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_marginLeft="18dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="• You can also get coins from the real money .First add cash by going in Your profile section and then click on add cash button and then a pages comes then enter the amount you want to add.Then go to Buy coin option in the navigation drawer or in the prfile section you can click on buy coins option then a page comes showing the different options then click on buy now button of your desirable amount."-->
 
-                android:layout_marginTop="8dp"
-                android:textSize="15dp"
-                android:textColor="#FFFFFF"/>
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:textSize="15dp"-->
+<!--                android:textColor="#FFFFFF"/>-->
 
 
 

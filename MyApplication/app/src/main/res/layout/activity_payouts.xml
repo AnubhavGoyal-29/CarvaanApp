@@ -81,6 +81,7 @@
                 android:layout_marginRight="50dp"
                 android:layout_marginLeft="50dp"
                 android:ems="10"
+                android:textSize="15sp"
                 android:background="@drawable/rst"
                 android:inputType="textPersonName"
                 android:gravity="center"
