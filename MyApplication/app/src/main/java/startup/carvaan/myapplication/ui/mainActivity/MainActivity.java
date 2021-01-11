@@ -43,8 +43,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
+
+import org.jetbrains.annotations.NotNull;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
@@ -203,14 +204,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 postViewHolder.growth.setMax(100) ;//dummy max Val
                 postViewHolder.tag.setText(allsharemodel.getTag());
                 postViewHolder.growth.setProgress(Integer.valueOf(allsharemodel.getGrowth()));
-                postViewHolder.videoPlayer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+//                postViewHolder.videoPlayer.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+//                    @Override
+//                    public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+
+//
+//                    }
+//                });
+                postViewHolder.videoPlayer.addListener(new AbstractYouTubePlayerListener() {
                     @Override
-                    public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                    public void onReady(@NotNull YouTubePlayer youTubePlayer) {
+                        super.onReady(youTubePlayer);
                         String videoId = allsharemodel.getIntrovideourl();
                         youTubePlayer.cueVideo(videoId,0);
-
                     }
                 });
+
                 StorageReference storageReference=firebaseStorage.child(allsharemodel.getLogoUrl());
                 storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
@@ -235,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     public class PostViewHolder extends RecyclerView.ViewHolder {
         private Button aboutShare;
-        private YouTubePlayerView videoPlayer;
+        private YouTubePlayer videoPlayer;
         private TextView companyName,description,peopleinvested,text_view_progress,tag;
         private ProgressBar growth;
         private CircleImageView circleImageView;
