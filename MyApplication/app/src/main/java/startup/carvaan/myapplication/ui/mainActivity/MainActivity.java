@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,12 +34,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.play.core.appupdate.AppUpdateInfo;
-import com.google.android.play.core.appupdate.AppUpdateManager;
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
-import com.google.android.play.core.install.model.AppUpdateType;
-import com.google.android.play.core.install.model.UpdateAvailability;
-import com.google.android.play.core.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -50,10 +43,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
 
 import org.jetbrains.annotations.NotNull;
@@ -71,8 +62,8 @@ import startup.carvaan.myapplication.ui.navbar.Helppage;
 import startup.carvaan.myapplication.ui.payment.payouts;
 import startup.carvaan.myapplication.ui.profile.Profile;
 import startup.carvaan.myapplication.ui.user.User;
-
-import static com.google.android.play.core.install.model.AppUpdateType.FLEXIBLE;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetSequence;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "carvaan";
@@ -96,34 +87,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AppUpdateManager appUpdateManager= AppUpdateManagerFactory.create(MainActivity.this);
-        com.google.android.play.core.tasks.Task<AppUpdateInfo> appUpdateInfoTask=appUpdateManager.getAppUpdateInfo();
-        appUpdateInfoTask.addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+        Paper.init(MainActivity.this);
+        Paper.init(this);
+        AppDemo();
+        FirebaseFirestore.getInstance().collection("version").document("version").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(AppUpdateInfo result) {
-                if(result.updateAvailability()== UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(FLEXIBLE)){
-                    try {
-                        appUpdateManager.startUpdateFlowForResult(result,AppUpdateType.IMMEDIATE,MainActivity.this,01);
-                    } catch (IntentSender.SendIntentException e) {
-                        e.printStackTrace();
-                    }
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                double version_name=Double.valueOf(Paper.book().read("version_name"));
+                if(version_name!=Double.valueOf(value.getString("name"))){
+                    updateApp updateApp=new updateApp();
+                    updateApp.show(getSupportFragmentManager(),"Update App");
                 }
             }
         });
-
-
-        Paper.init(MainActivity.this);
-        Paper.init(this);
-//        FirebaseFirestore.getInstance().collection("version").document("version").addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-//                double version_name=Double.valueOf(Paper.book().read("version_name"));
-//                if(version_name!=Double.valueOf(value.getString("name"))){
-//                    updateApp updateApp=new updateApp();
-//                    updateApp.show(getSupportFragmentManager(),"Update App");
-//                }
-//            }4    3
-//        });
         ff=FirebaseFirestore.getInstance();
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -249,62 +225,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //
 //                    }
 //                });
-//                postViewHolder.videoPlayer.addListener(new AbstractYouTubePlayerListener() {
-//                    @Override
-//                    public void onReady(@NotNull YouTubePlayer youTubePlayer) {
-
-//                    }
-//                });
-                postViewHolder.videoPlayer.addYouTubePlayerListener(new YouTubePlayerListener() {
+                postViewHolder.videoPlayer.addListener(new AbstractYouTubePlayerListener() {
                     @Override
                     public void onReady(@NotNull YouTubePlayer youTubePlayer) {
+                        super.onReady(youTubePlayer);
                         String videoId = allsharemodel.getIntrovideourl();
                         youTubePlayer.cueVideo(videoId,0);
-                    }
-
-                    @Override
-                    public void onStateChange(@NotNull YouTubePlayer youTubePlayer, @NotNull PlayerConstants.PlayerState playerState) {
-
-                    }
-
-                    @Override
-                    public void onPlaybackQualityChange(@NotNull YouTubePlayer youTubePlayer, @NotNull PlayerConstants.PlaybackQuality playbackQuality) {
-
-                    }
-
-                    @Override
-                    public void onPlaybackRateChange(@NotNull YouTubePlayer youTubePlayer, @NotNull PlayerConstants.PlaybackRate playbackRate) {
-
-                    }
-
-                    @Override
-                    public void onError(@NotNull YouTubePlayer youTubePlayer, @NotNull PlayerConstants.PlayerError playerError) {
-
-                    }
-
-                    @Override
-                    public void onCurrentSecond(@NotNull YouTubePlayer youTubePlayer, float v) {
-
-                    }
-
-                    @Override
-                    public void onVideoDuration(@NotNull YouTubePlayer youTubePlayer, float v) {
-
-                    }
-
-                    @Override
-                    public void onVideoLoadedFraction(@NotNull YouTubePlayer youTubePlayer, float v) {
-
-                    }
-
-                    @Override
-                    public void onVideoId(@NotNull YouTubePlayer youTubePlayer, @NotNull String s) {
-
-                    }
-
-                    @Override
-                    public void onApiChange(@NotNull YouTubePlayer youTubePlayer) {
-
                     }
                 });
 
@@ -332,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     public class PostViewHolder extends RecyclerView.ViewHolder {
         private Button aboutShare;
-        private YouTubePlayerView videoPlayer;
+        private YouTubePlayer videoPlayer;
         private TextView companyName,description,peopleinvested,text_view_progress,tag;
         private ProgressBar growth;
         private CircleImageView circleImageView;
@@ -403,34 +329,31 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onStop();
         adapter.stopListening();
     }
-    //    public void AppDemo() {
-//        new MaterialTapTargetSequence()
-//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                        .setTarget(findViewById(R.id.aboutsharebottomnavview))
-//                        .setPrimaryText("Hii Carvan User ")
-//                        .setSecondaryText("Welcome to this app ,If you want to know all things about this app anf how to operate it then go to the how to play page in side drawer")
-//                        .setIcon(R.drawable.ic_baseline_toc_24)
-//                        .create(), 4000)
-//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                        .setTarget(findViewById(R.id.aboutsharebottomnavview))
-//                        .setPrimaryText("All shares page ")
-//                        .setSecondaryText("Here you can see all the startups that are listed in this app to invest.Invest in it by clicking on invest in me button. ")
-//                        .setIcon(R.drawable.ic_baseline_home_24)
-//                        .create(), 4000)
-//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                        .setTarget(findViewById(R.id.aboutsharebottomnavview))
-//                        .setPrimaryText("My share button")
-//                        .setSecondaryText("Here you can see all the shares in which you invest ")
-//                        .setIcon(R.drawable.ic_dashboard_black_24dp)
-//                        .create(), 4000)
-//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                        .setTarget(findViewById(R.id.aboutsharebottomnavview))
-//                        .setPrimaryText("Profile")
-//                        .setSecondaryText("Here you can see  how much coins you have.You can redeem them here or buy coins here to invest more. ")
-//                        .setIcon(R.drawable.ic_baseline_attach_money_24)
-//                        .create(), 4000)
-//                .show();
-//    }
+        public void AppDemo() {
+        new MaterialTapTargetSequence()
+                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                        .setTarget(findViewById(R.id.n1))
+                        .setPrimaryText("Hii Carvan User ")
+                        .setSecondaryText("Welcome to this app ,If you want to know all things about this app anf how to operate it then go to the how to play page in side drawer")
+                        .create(), 4000)
+                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                        .setTarget(findViewById(R.id.allShareRecyclerView))
+                        .setPrimaryText("All shares page ")
+                        .setSecondaryText("Here you can see all the startups that are listed in this app in which you invest.Invest in it by clicking on invest in me button.")
+                        .create(), 4000)
+                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                        .setTarget(findViewById(R.id.myshare))
+                        .setPrimaryText("My share icon")
+                        .setSecondaryText("Here you can see all the shares in which you invested ")
+                        .setIcon(R.drawable.ic_dashboard_black_24dp)
+                        .create(), 4000)
+                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                        .setTarget(findViewById(R.id.profile))
+                        .setPrimaryText("Profile button")
+                        .setSecondaryText("Here you can see  how much coins you have.You can redeem them here or earn coins here to invest more. ")
+                        .create(), 4000)
+                .show();
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -442,11 +365,4 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==01 && resultCode==RESULT_OK){
-            Toast.makeText(MainActivity.this,"start download...",Toast.LENGTH_LONG).show();
-        }
-    }
 }

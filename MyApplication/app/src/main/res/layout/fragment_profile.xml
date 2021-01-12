@@ -39,14 +39,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:layout_marginTop="8dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
 
             android:orientation="horizontal">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="10dp"
                 android:src="@drawable/vsm_coin"/>
 
 
@@ -55,9 +57,9 @@
                 android:layout_height="wrap_content"
 
 
-                android:text="Coins earn :"
+                android:text="Coins earned :"
                 android:textColor="#FFFFFF"
-                android:textSize="19sp"
+                android:textSize="18sp"
 
                 android:textStyle="bold" />
             <TextView
@@ -65,12 +67,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/coinsEarnedTextView"
 
-                android:layout_marginLeft="15dp"
-                android:text="200"
+                android:layout_marginLeft="10dp"
+                android:text="200yugcddc"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
 
-                android:textSize="19sp"
+                android:textSize="18sp"
                 />
 
 
@@ -144,8 +146,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#ffffff"
-            android:textStyle="bold"
 
+            android:layout_marginRight="20dp"
+android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:layout_marginTop="8dp"
             android:text="you should have atleast 750 coins before redeem">
         </TextView>
     </LinearLayout>

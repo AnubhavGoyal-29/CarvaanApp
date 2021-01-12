@@ -82,15 +82,15 @@ public class Profile extends AppCompatActivity {
                 .document("coins").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                earned.setText("Coins earned   "+value.getString("earned"));
-                winnins.setText("Winnings   "+value.getString("winnings"));
+                earned.setText(value.getString("earned"));
+                winnins.setText(value.getString("winnings"));
             }
         });
         ff.collection("Users").document(user.getUser().getUid()).collection("CreditDetails")
                 .document("cash").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                added.setText("Cash added   "+value.getString("added"));
+                added.setText(value.getString("added"));
                 redeemed.setText(" "+value.getString("redeemed"));
             }
         });
