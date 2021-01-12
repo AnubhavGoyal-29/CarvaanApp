@@ -1,6 +1,7 @@
 package startup.carvaan.myapplication.ui.earn;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import java.util.Random;
 
 import startup.carvaan.myapplication.R;
+import startup.carvaan.myapplication.ads.personalizedads;
 import startup.carvaan.myapplication.ui.user.User;
 
 import static java.lang.Math.abs;
@@ -32,12 +34,20 @@ public class Addactivity extends AppCompatActivity {
     User user=new User();
     private Button rewareded,rewarded2,rewarded1;
     private RewardedAd rewardedAd;
+    private Button personalized_ads;
     private InterstitialAd interstitialAd;
     String[] id={"ca-app-pub-1372656325166770/4738696917","ca-app-pub-1372656325166770/7713274220","ca-app-pub-1372656325166770/3774029214"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addactivity);
+        personalized_ads=findViewById(R.id.personalized_ads);
+        personalized_ads.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Addactivity.this, personalizedads.class));
+            }
+        });
         rewareded=findViewById(R.id.rewarded);
         rewarded2=findViewById(R.id.rewarded2);
         rewarded1=findViewById(R.id.rewarded1);
@@ -55,6 +65,7 @@ public class Addactivity extends AppCompatActivity {
                         @Override
                         public void onRewardedAdOpened() {
                             // Ad opened.
+                            loadinterestitial();
                         }
 
                         @Override
@@ -90,6 +101,7 @@ public class Addactivity extends AppCompatActivity {
                         @Override
                         public void onRewardedAdOpened() {
                             // Ad opened.
+                            loadinterestitial();
                         }
 
                         @Override
@@ -125,6 +137,7 @@ public class Addactivity extends AppCompatActivity {
                         @Override
                         public void onRewardedAdOpened() {
                             // Ad opened.
+                            loadinterestitial();
                         }
 
                         @Override
