@@ -71,7 +71,7 @@ public class Sell extends DialogFragment {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 sellingPrice=value.getString("sellingPrice");
-                shareprice.setText("Rs"+sellingPrice);
+                shareprice.setText(sellingPrice+"  Coins");
             }
         });
         sell.setVisibility(View.GONE);

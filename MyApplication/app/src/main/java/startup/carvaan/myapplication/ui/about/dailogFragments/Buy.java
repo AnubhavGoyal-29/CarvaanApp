@@ -66,7 +66,7 @@ public class Buy extends DialogFragment {
                 totalShares=value.getString("totalShares");
                 occupied=value.getString("occupied");
                 buyingprice=value.getString("buyingPrice");
-                shareprice.setText("Rs"+buyingprice);
+                shareprice.setText(buyingprice+"  Coins");
                 totalavailable.setText("Available Shares "+String.valueOf(Integer.valueOf((int) (Double.valueOf(totalShares)-Double.valueOf(occupied)))));
             }
         });
