@@ -61,6 +61,8 @@ import startup.carvaan.myapplication.ui.navbar.Helppage;
 import startup.carvaan.myapplication.ui.payment.payouts;
 import startup.carvaan.myapplication.ui.profile.Profile;
 import startup.carvaan.myapplication.ui.user.User;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetSequence;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "carvaan";
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
         Paper.init(MainActivity.this);
         Paper.init(this);
+        AppDemo();
         FirebaseFirestore.getInstance().collection("version").document("version").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -317,34 +320,31 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onStop();
         adapter.stopListening();
     }
-    //    public void AppDemo() {
-//        new MaterialTapTargetSequence()
-//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                        .setTarget(findViewById(R.id.aboutsharebottomnavview))
-//                        .setPrimaryText("Hii Carvan User ")
-//                        .setSecondaryText("Welcome to this app ,If you want to know all things about this app anf how to operate it then go to the how to play page in side drawer")
-//                        .setIcon(R.drawable.ic_baseline_toc_24)
-//                        .create(), 4000)
-//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                        .setTarget(findViewById(R.id.aboutsharebottomnavview))
-//                        .setPrimaryText("All shares page ")
-//                        .setSecondaryText("Here you can see all the startups that are listed in this app to invest.Invest in it by clicking on invest in me button. ")
-//                        .setIcon(R.drawable.ic_baseline_home_24)
-//                        .create(), 4000)
-//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                        .setTarget(findViewById(R.id.aboutsharebottomnavview))
-//                        .setPrimaryText("My share button")
-//                        .setSecondaryText("Here you can see all the shares in which you invest ")
-//                        .setIcon(R.drawable.ic_dashboard_black_24dp)
-//                        .create(), 4000)
-//                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
-//                        .setTarget(findViewById(R.id.aboutsharebottomnavview))
-//                        .setPrimaryText("Profile")
-//                        .setSecondaryText("Here you can see  how much coins you have.You can redeem them here or buy coins here to invest more. ")
-//                        .setIcon(R.drawable.ic_baseline_attach_money_24)
-//                        .create(), 4000)
-//                .show();
-//    }
+        public void AppDemo() {
+        new MaterialTapTargetSequence()
+                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                        .setTarget(findViewById(R.id.n1))
+                        .setPrimaryText("Hii Carvan User ")
+                        .setSecondaryText("Welcome to this app ,If you want to know all things about this app anf how to operate it then go to the how to play page in side drawer")
+                        .create(), 4000)
+                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                        .setTarget(findViewById(R.id.allShareRecyclerView))
+                        .setPrimaryText("All shares page ")
+                        .setSecondaryText("Here you can see all the startups that are listed in this app in which you invest.Invest in it by clicking on invest in me button.")
+                        .create(), 4000)
+                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                        .setTarget(findViewById(R.id.myshare))
+                        .setPrimaryText("My share icon")
+                        .setSecondaryText("Here you can see all the shares in which you invested ")
+                        .setIcon(R.drawable.ic_dashboard_black_24dp)
+                        .create(), 4000)
+                .addPrompt(new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                        .setTarget(findViewById(R.id.profile))
+                        .setPrimaryText("Profile button")
+                        .setSecondaryText("Here you can see  how much coins you have.You can redeem them here or earn coins here to invest more. ")
+                        .create(), 4000)
+                .show();
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
