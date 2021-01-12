@@ -30,7 +30,7 @@ import static java.lang.Math.abs;
 
 public class Addactivity extends AppCompatActivity {
     User user=new User();
-    private Button rewareded,interestial,rewarded2;
+    private Button rewareded,rewarded2,rewarded1;
     private RewardedAd rewardedAd;
     private InterstitialAd interstitialAd;
     String[] id={"ca-app-pub-1372656325166770/4738696917","ca-app-pub-1372656325166770/7713274220","ca-app-pub-1372656325166770/3774029214"};
@@ -40,11 +40,9 @@ public class Addactivity extends AppCompatActivity {
         setContentView(R.layout.activity_addactivity);
         rewareded=findViewById(R.id.rewarded);
         rewarded2=findViewById(R.id.rewarded2);
-        interestial=findViewById(R.id.interestial);
+        rewarded1=findViewById(R.id.rewarded1);
         interstitialAd=new InterstitialAd(this);
-        interstitialAd.setAdUnitId("ca-app-pub-1372656325166770/9302166994");
-        interstitialAd.loadAd(new AdRequest.Builder().build());
-
+        loadinterestitial();
         MobileAds.initialize(getApplicationContext(),"ca-app-pub-1372656325166770~1018059934");
         rewardedAd=createAndLoadRewardedAd();
         rewareded=findViewById(R.id.rewarded);
@@ -63,6 +61,42 @@ public class Addactivity extends AppCompatActivity {
                         public void onRewardedAdClosed() {
 
                             rewardedAd=createAndLoadRewardedAd();
+                            interstitialAd.show();
+                        }
+
+                        @Override
+                        public void onUserEarnedReward(@NonNull RewardItem reward) {
+                            Toast.makeText(Addactivity.this,"You got "+reward.getAmount()+" coins",Toast.LENGTH_LONG).show();
+                            user.addEarned(Double.valueOf(reward.getAmount()));
+                        }
+
+                        @Override
+                        public void onRewardedAdFailedToShow(AdError adError) {
+                            // Ad failed to display.
+                        }
+                    };
+                    rewardedAd.show(activityContext, adCallback);
+                } else {
+                    Log.d("TAG", "The rewarded ad wasn't loaded yet.");
+                }
+            }
+        });
+        rewarded1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rewardedAd.isLoaded()) {
+                    Activity activityContext = Addactivity.this;
+                    RewardedAdCallback adCallback = new RewardedAdCallback() {
+                        @Override
+                        public void onRewardedAdOpened() {
+                            // Ad opened.
+                        }
+
+                        @Override
+                        public void onRewardedAdClosed() {
+
+                            rewardedAd=createAndLoadRewardedAd();
+                            interstitialAd.show();
                         }
 
                         @Override
@@ -97,6 +131,7 @@ public class Addactivity extends AppCompatActivity {
                         public void onRewardedAdClosed() {
 
                             rewardedAd=createAndLoadRewardedAd();
+                            interstitialAd.show();
                         }
 
                         @Override
@@ -113,16 +148,6 @@ public class Addactivity extends AppCompatActivity {
                     rewardedAd.show(activityContext, adCallback);
                 } else {
                     Log.d("TAG", "The rewarded ad wasn't loaded yet.");
-                }
-            }
-        });
-        interestial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (interstitialAd.isLoaded()) {
-                    interstitialAd.show();
-                } else {
-                    Log.d("TAG", "The interstitial wasn't loaded yet.");
                 }
             }
         });
@@ -155,8 +180,9 @@ public class Addactivity extends AppCompatActivity {
             @Override
             public void onAdClosed() {
                 // Code to be executed when the interstitial ad is closed.
-                Toast.makeText(Addactivity.this,"You got "+1+" coins",Toast.LENGTH_LONG).show();
-                user.addEarned(Double.valueOf(1));
+//                Toast.makeText(Addactivity.this,"You got "+1+" coins",Toast.LENGTH_LONG).show();
+//                user.addEarned(Double.valueOf(1));
+                loadinterestitial();
 
             }
         });
@@ -180,5 +206,9 @@ public class Addactivity extends AppCompatActivity {
         };
         rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
         return rewardedAd;
+    }
+    void loadinterestitial(){
+        interstitialAd.setAdUnitId("ca-app-pub-1372656325166770/9302166994");
+        interstitialAd.loadAd(new AdRequest.Builder().build());
     }
 }

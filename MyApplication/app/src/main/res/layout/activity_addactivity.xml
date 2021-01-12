@@ -123,7 +123,7 @@
                 android:gravity="right"
                 android:orientation="horizontal">
                 <Button
-                    android:id="@+id/interestial"
+                    android:id="@+id/rewarded1"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_marginLeft="30dp"
