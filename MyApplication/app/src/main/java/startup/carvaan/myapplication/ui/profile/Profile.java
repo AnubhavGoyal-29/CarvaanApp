@@ -17,7 +17,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import startup.carvaan.myapplication.BuyCoin;
 import startup.carvaan.myapplication.R;
 import startup.carvaan.myapplication.ui.earn.Addactivity;
-import startup.carvaan.myapplication.ui.payment.paymentActivity;
 import startup.carvaan.myapplication.ui.payment.payouts;
 import startup.carvaan.myapplication.ui.user.User;
 
@@ -65,12 +64,12 @@ public class Profile extends AppCompatActivity {
         buyCoins=findViewById(R.id.buyCoinsButton);
         addCash=findViewById(R.id.addCashButton);
         addCash.setVisibility(View.GONE);
-        addCash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Profile.this, paymentActivity.class));
-            }
-        });
+//        addCash.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(Profile.this, paymentActivity.class));
+//            }
+//        });
         redeemCoin=findViewById(R.id.redeemButton);
         coinEarn=findViewById(R.id.earnCoinsButton);
         coinEarn.setOnClickListener(new View.OnClickListener() {

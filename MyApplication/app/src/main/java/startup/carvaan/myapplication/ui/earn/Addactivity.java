@@ -55,6 +55,7 @@ public class Addactivity extends AppCompatActivity {
                         @Override
                         public void onRewardedAdOpened() {
                             // Ad opened.
+                            loadinterestitial();
                         }
 
                         @Override
@@ -90,6 +91,7 @@ public class Addactivity extends AppCompatActivity {
                         @Override
                         public void onRewardedAdOpened() {
                             // Ad opened.
+                            loadinterestitial();
                         }
 
                         @Override
@@ -125,6 +127,7 @@ public class Addactivity extends AppCompatActivity {
                         @Override
                         public void onRewardedAdOpened() {
                             // Ad opened.
+                            loadinterestitial();
                         }
 
                         @Override

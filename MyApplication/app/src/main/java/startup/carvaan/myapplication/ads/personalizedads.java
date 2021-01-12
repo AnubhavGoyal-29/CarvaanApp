@@ -120,7 +120,7 @@ public class personalizedads extends AppCompatActivity {
             super(itemView);
             timer=itemView.findViewById(R.id.timer);
             progressTimer=itemView.findViewById(R.id.progressTimer);
-            videoPlayer=itemView.findViewById(R.id.adplayer);
+            videoPlayer=itemView.findViewById(R.id.videoplayer);
         }
     }
 

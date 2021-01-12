@@ -66,7 +66,7 @@ public class Buy extends DialogFragment {
                 totalShares=value.getString("totalShares");
                 occupied=value.getString("occupied");
                 buyingprice=value.getString("buyingPrice");
-                shareprice.setText("Rs"+buyingprice);
+                shareprice.setText("Rci "+buyingprice);
                 totalavailable.setText("Available Shares "+String.valueOf(Integer.valueOf((int) (Double.valueOf(totalShares)-Double.valueOf(occupied)))));
             }
         });
@@ -158,7 +158,6 @@ public class Buy extends DialogFragment {
                                         }
                                     });
                                 } else {
-                                    if (Integer.valueOf(priceHolding[0]) == Integer.valueOf(shareDetails.getBuyingPrice()) || Double.valueOf(holdings[0]) == 0) {
                                         String lastPriceHolding = String.valueOf(shareDetails.getBuyingPrice());
                                         ff.collection("Users")
                                                 .document(user.getUser().getUid())
@@ -177,7 +176,8 @@ public class Buy extends DialogFragment {
                                                 ff.collection("shares")
                                                         .document(shareId)
                                                         .collection("Price")
-                                                        .document("price").update("occupied", String.valueOf(Double.valueOf(occupied) + Double.valueOf(nos.getText().toString())));
+                                                        .document("price").update("priceHoldings3",lastPriceHolding);
+                                                ff.collection("Users").document(user.getUser().getUid()).collection("myshares").document(shareId).update("occupied", String.valueOf(Double.valueOf(occupied) + Double.valueOf(nos.getText().toString())));
                                                 startup.carvaan.myapplication.ui.about.dailogFragments.dialog_buy_success dialog_buy_success = new dialog_buy_success();
                                                 Bundle bundle1 = new Bundle();
                                                 bundle1.putString("nos", String.valueOf(nos.getText().toString()));
@@ -186,9 +186,6 @@ public class Buy extends DialogFragment {
 
                                             }
                                         });
-                                    } else {
-                                        Toast.makeText(getContext(), "unable to buy shares because you have other holdings at different price first sell your previous holdings", Toast.LENGTH_LONG).show();
-                                    }
 
 
                                 }
