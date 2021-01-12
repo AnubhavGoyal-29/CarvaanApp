@@ -1,35 +1,45 @@
 package startup.carvaan.myapplication.ads;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import org.jetbrains.annotations.NotNull;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import startup.carvaan.myapplication.R;
+import startup.carvaan.myapplication.ui.user.User;
 
 public class personalizedads extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore=FirebaseFirestore.getInstance();
     private FirestoreRecyclerAdapter adapter;
     private RecyclerView personalized;
+    private FirebaseFirestore ff=FirebaseFirestore.getInstance();
+    YouTubePlayerView youTubePlayerView;
+
+    User user=new User();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,66 +50,46 @@ public class personalizedads extends AppCompatActivity {
         adapter=new FirestoreRecyclerAdapter<ad_model,PostViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull PostViewHolder holder, int position, @NonNull ad_model model) {
-                holder.timer.setText(model.getTimer());
+                holder.addTime.setText(model.getAddTime());
+                holder.progressTimer.setMax(Integer.valueOf(model.getAddTime()));
                 holder.progressTimer.setProgress(0);
-                holder.progressTimer.setMax(Integer.valueOf(model.getTimer()));
-                final float[] remaining = {0};
-                holder.videoPlayer.addYouTubePlayerListener(new YouTubePlayerListener() {
+                holder.progressTimer.setMax(Integer.valueOf(model.getAddTime()));
+                holder.addName.setText(model.getAddName());
+                holder.addDescription.setText(model.getAddDescription());
+                holder.addAddress.setText(model.getAddAddress());
+                holder.addPeopleWatched.setText(model.getAddPeopleWatched());
+                holder.addReward.setText(model.getAddReward()+" Rci");
+                StorageReference firebaseStorage=FirebaseStorage.getInstance().getReference();
+                StorageReference storageReference=firebaseStorage.child(model.getAddImage());
+                storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
-                    public void onReady(@NotNull YouTubePlayer youTubePlayer) {
-                            youTubePlayer.cueVideo(model.getUrl(),0);
-                    }
-
-                    @Override
-                    public void onStateChange(@NotNull YouTubePlayer youTubePlayer, @NotNull PlayerConstants.PlayerState playerState) {
-
-                    }
-
-                    @Override
-                    public void onPlaybackQualityChange(@NotNull YouTubePlayer youTubePlayer, @NotNull PlayerConstants.PlaybackQuality playbackQuality) {
-
-                    }
-
-                    @Override
-                    public void onPlaybackRateChange(@NotNull YouTubePlayer youTubePlayer, @NotNull PlayerConstants.PlaybackRate playbackRate) {
-
-                    }
-
-                    @Override
-                    public void onError(@NotNull YouTubePlayer youTubePlayer, @NotNull PlayerConstants.PlayerError playerError) {
-
-                    }
-
-                    @Override
-                    public void onCurrentSecond(@NotNull YouTubePlayer youTubePlayer, float v) {
-                        if(Integer.valueOf(holder.timer.getText().toString())==Integer.valueOf(model.getTimer())-2)
-                            Toast.makeText(personalizedads.this,"YOU GOT SOME REWARDS",Toast.LENGTH_SHORT).show();
-                        else{
-
-                        }
-                        holder.timer.setText(String.valueOf((int)v));
-                        holder.progressTimer.setProgress((int) v);
-                    }
-
-                    @Override
-                    public void onVideoDuration(@NotNull YouTubePlayer youTubePlayer, float v) {
-                    }
-
-                    @Override
-                    public void onVideoLoadedFraction(@NotNull YouTubePlayer youTubePlayer, float v) {
-
-                    }
-
-                    @Override
-                    public void onVideoId(@NotNull YouTubePlayer youTubePlayer, @NotNull String s) {
-
-                    }
-
-                    @Override
-                    public void onApiChange(@NotNull YouTubePlayer youTubePlayer) {
-
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        Glide.with(personalizedads.this)
+                                .load(task.getResult())
+                                .into(holder.addImage);
                     }
                 });
+                holder.addUrl.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                    @Override
+                    public void onReady(@NotNull YouTubePlayer youTubePlayer) {
+                        super.onReady(youTubePlayer);
+                        youTubePlayer.cueVideo(model.getAddUrl(),0);
+                    }
+
+                    @Override
+                    public void onCurrentSecond(@NotNull YouTubePlayer youTubePlayer, float second) {
+                        super.onCurrentSecond(youTubePlayer, second);
+                        if(Integer.valueOf((int)second)==Integer.valueOf(model.getAddTime())){
+
+                            int a=Integer.valueOf(model.addPeopleWatched)+1;
+                            ff.collection("personalized_ads").document(model.getId()).update("addPeopleWatched",String.valueOf(a));
+                        }
+                        holder.addTime.setText(String.valueOf((int)second));
+                        holder.progressTimer.setProgress(Integer.valueOf((int)second));
+                        user.addEarned(Double.valueOf(model.getAddReward()));
+                    }
+                });
+                final float[] remaining = {0};
             }
 
             @NonNull
@@ -113,14 +103,21 @@ public class personalizedads extends AppCompatActivity {
         personalized.setLayoutManager(new LinearLayoutManager(this));
     }
     public class PostViewHolder extends RecyclerView.ViewHolder {
-        private TextView timer;
+        private TextView addTime,addName,addDescription,addAddress,addPeopleWatched,addReward;
         private ProgressBar progressTimer;
-        private YouTubePlayerView videoPlayer;
+        private YouTubePlayerView addUrl;
+        private CircleImageView addImage;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            timer=itemView.findViewById(R.id.timer);
+            addImage=itemView.findViewById(R.id.addImage);
+            addTime=itemView.findViewById(R.id.addTime);
+            addName=itemView.findViewById(R.id.addName);
+            addDescription=itemView.findViewById(R.id.addDescription);
+            addAddress=itemView.findViewById(R.id.addAddress);
+            addPeopleWatched=itemView.findViewById(R.id.addPeopleWatched);
+            addReward=itemView.findViewById(R.id.addReward);
             progressTimer=itemView.findViewById(R.id.progressTimer);
-            videoPlayer=itemView.findViewById(R.id.videoplayer);
+            addUrl=itemView.findViewById(R.id.addUrl);
         }
     }
 

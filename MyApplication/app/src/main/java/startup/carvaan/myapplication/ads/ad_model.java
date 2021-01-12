@@ -1,29 +1,68 @@
 package startup.carvaan.myapplication.ads;
 
 public class ad_model {
-    String timer,url;
+    String addName;
+    String addUrl;
+    String addImage;
+    String addDescription;
+    String addPeopleWatched;
+    String addReward;
+    String addTime;
+    String addAddress;
+
+    public String getId() {
+        return id;
+    }
+
+    String id;
 
     public ad_model() {
     }
 
-    public ad_model(String timer, String url) {
-        this.timer = timer;
-        this.url = url;
+    public String getAddName() {
+        return addName;
     }
 
-    public String getTimer() {
-        return timer;
+    public String getAddUrl() {
+        return addUrl;
     }
 
-    public void setTimer(String timer) {
-        this.timer = timer;
+    public String getAddImage() {
+        return addImage;
     }
 
-    public String getUrl() {
-        return url;
+    public String getAddDescription() {
+        return addDescription;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public String getAddPeopleWatched() {
+        return addPeopleWatched;
+    }
+
+    public String getAddReward() {
+        return addReward;
+    }
+
+    public String getAddTime() {
+        return addTime;
+    }
+
+    public String getAddAddress() {
+        return addAddress;
+    }
+
+    public ad_model(String id ,String addName, String addUrl, String addImage, String addDescription, String addPeopleWatched, String addReward, String addTime, String addAddress) {
+        this.addName = addName;
+        this.addUrl = addUrl;
+        this.addImage = addImage;
+        this.addDescription = addDescription;
+        this.addPeopleWatched = addPeopleWatched;
+        this.addReward = addReward;
+        this.addTime = addTime;
+        this.addAddress = addAddress;
+        this.id=id;
+    }
+    void updateAddWatched(String a){
+
     }
 }

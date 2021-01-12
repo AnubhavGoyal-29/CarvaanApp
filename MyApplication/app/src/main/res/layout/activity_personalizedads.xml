@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ads.personalizedads">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="this is ad activity"
-        android:textSize="50sp"></TextView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/personalized"
         android:layout_width="match_parent"
