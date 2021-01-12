@@ -86,7 +86,7 @@ public class personalizedads extends AppCompatActivity {
                         }
                         holder.addTime.setText(String.valueOf((int)second));
                         holder.progressTimer.setProgress(Integer.valueOf((int)second));
-                        user.addEarned(Double.valueOf(model.getAddReward()));
+//                        user.addEarned(Double.valueOf(model.getAddReward()));
                     }
                 });
                 final float[] remaining = {0};
