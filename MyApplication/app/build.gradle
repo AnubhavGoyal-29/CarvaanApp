@@ -10,8 +10,8 @@ android {
         applicationId 'startup.carvaan.myapplication'
         minSdkVersion 17
         targetSdkVersion 30
-        versionCode 17
-        versionName "1.17"
+        versionCode 19
+        versionName "1.19"
         multiDexEnabled true
         ndk.abiFilters 'arm64-v8a','x86','x86_64'
     }
@@ -30,6 +30,7 @@ android {
 repositories {
     maven { url 'https://jitpack.io' }
 }
+
 repositories {
     maven { url "https://repo1.maven.org/maven2" }
 }
@@ -74,7 +75,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0-alpha01'
     //sliding up panel
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
-    implementation project(path: ':cashfreesdk-1.4.9.8-release')
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
