@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 .document("cash").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                headerCash.setText(" Your cash :"+value.getString("added"));
+                headerCash.setText(value.getString("added"));
 
             }
         });

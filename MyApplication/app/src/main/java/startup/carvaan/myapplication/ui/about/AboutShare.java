@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -119,6 +120,23 @@ public class AboutShare extends AppCompatActivity {
                         });
                     }
                 });
+                postViewHolder.likeimage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(AboutShare.this,"you liked this post",Toast.LENGTH_LONG).show();
+                        userLiking.put(user.getUser().getUid(),Boolean.TRUE);
+                        ff.collection("shares")
+                                .document(shareid)
+                                .collection("Bloging")
+                                .document(postModal.getId())
+                                .update("UsersLiking",userLiking).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                            }
+                        });
+                    }
+                });
                 Map<String,String>comments=new HashMap<>();
                 comments.putAll(postModal.getComments());
                 postViewHolder.noofcomments.setText(String.valueOf(comments.size()));
@@ -130,6 +148,17 @@ public class AboutShare extends AppCompatActivity {
                     postViewHolder.freelancer.setVisibility(View.VISIBLE);
 
                 postViewHolder.comments.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        comments comments=new comments();
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putString("shareid", shareid);
+                        bundle1.putString("blogid",postModal.getId());
+                        comments.setArguments(bundle1);
+                        comments.show(getSupportFragmentManager(),"comments");
+                    }
+                });
+                postViewHolder.commentimage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         comments comments=new comments();
@@ -153,20 +182,20 @@ public class AboutShare extends AppCompatActivity {
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                     }
 
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        if(s.length()==0){
-                            bottomNavigationView.setVisibility(View.VISIBLE);
-                        }
-                        else bottomNavigationView.setVisibility(View.GONE);
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        if(s.length()!=0)
-                            bottomNavigationView.setVisibility(View.GONE);
-                        else bottomNavigationView.setVisibility(View.VISIBLE);
-                    }
+//                    @Override
+//                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                        if(s.length()==0){
+//                            bottomNavigationView.setVisibility(View.VISIBLE);
+//                        }
+//                        else bottomNavigationView.setVisibility(View.GONE);
+//                    }
+//
+//                    @Override
+//                    public void afterTextChanged(Editable s) {
+//                        if(s.length()!=0)
+//                            bottomNavigationView.setVisibility(View.GONE);
+//                        else bottomNavigationView.setVisibility(View.VISIBLE);
+//                    }
                 });
                 postViewHolder.commentButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -209,6 +238,7 @@ public class AboutShare extends AppCompatActivity {
         private TextView comments;
         private Button commentButton;
         private EditText writeComment;
+        private ImageView likeimage,commentimage;
         private BottomNavigationView bottomBar;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -223,6 +253,8 @@ public class AboutShare extends AppCompatActivity {
             intern=itemView.findViewById(R.id.intern);
             freelancer=itemView.findViewById(R.id.freelancer);
             assistance=itemView.findViewById(R.id.assistance);
+            likeimage=itemView.findViewById(R.id.likeimage);
+            commentimage=itemView.findViewById(R.id.commentimage);
             commentButton=itemView.findViewById(R.id.commentButton);
             writeComment=itemView.findViewById(R.id.writeComment);
 

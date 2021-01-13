@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp"
+    android:padding="10dp"
     android:elevation="0dp"
     android:background="#FF533D78">
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
 
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="Your total coins :"
         android:textColor="#EFDF57"
-        android:textSize="18sp"
+        android:textSize="17sp"
 
         tools:ignore="MissingConstraints"></TextView>
 
@@ -30,7 +30,7 @@
         android:text="20 "
         android:layout_marginLeft="10dp"
         android:textColor="#FFFFFF"
-        android:textSize="19sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         tools:ignore="MissingConstraints"></TextView>
     </LinearLayout>
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your total winnings :"
-        android:textSize="18sp"
+        android:textSize="17sp"
 
         android:textColor="#EFDF57"
         tools:ignore="MissingConstraints"></TextView>
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:text="50 "
             android:layout_marginLeft="10dp"
-            android:textSize="19sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#ffffff"
             tools:ignore="MissingConstraints">
@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Total cash added :"
-        android:textSize="18sp"
+        android:textSize="17sp"
 
         android:textColor="#EFDF57"
         tools:ignore="MissingConstraints">
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:text="00"
             android:layout_marginLeft="10dp"
-            android:textSize="19sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#ffffff"
             tools:ignore="MissingConstraints">
