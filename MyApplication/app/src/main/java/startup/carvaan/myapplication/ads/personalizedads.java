@@ -45,7 +45,7 @@ public class personalizedads extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personalizedads);
         personalized=findViewById(R.id.personalized);
-        Query query= firebaseFirestore.collection("personalized_ads");
+        Query query= firebaseFirestore.collection("personalized_ads").orderBy("rewards", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<ad_model> options=new FirestoreRecyclerOptions.Builder<ad_model>().setQuery(query,ad_model.class).build();
         adapter=new FirestoreRecyclerAdapter<ad_model,PostViewHolder>(options) {
             @Override
