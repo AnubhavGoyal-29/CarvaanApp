@@ -178,11 +178,13 @@ public class Addactivity extends AppCompatActivity {
             @Override
             public void onAdOpened() {
                 // Code to be executed when the ad is displayed.
+                loadinterestitial();
             }
 
             @Override
             public void onAdClicked() {
                 // Code to be executed when the user clicks on an ad.
+                loadinterestitial();
             }
 
             @Override
@@ -221,7 +223,10 @@ public class Addactivity extends AppCompatActivity {
         return rewardedAd;
     }
     void loadinterestitial(){
-        interstitialAd.setAdUnitId("ca-app-pub-1372656325166770/9302166994");
-        interstitialAd.loadAd(new AdRequest.Builder().build());
+        if(!interstitialAd.isLoaded()){
+            interstitialAd.setAdUnitId("ca-app-pub-1372656325166770/9302166994");
+            interstitialAd.loadAd(new AdRequest.Builder().build());
+        }
+
     }
 }
