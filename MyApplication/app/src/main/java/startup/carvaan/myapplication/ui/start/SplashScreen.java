@@ -62,6 +62,6 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Paper.book().write("version","1.19");
+        Paper.book().write("version","1.20");
     }
 }
