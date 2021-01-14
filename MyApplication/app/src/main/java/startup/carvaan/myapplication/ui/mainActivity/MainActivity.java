@@ -8,6 +8,7 @@ import android.content.IntentSender;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -35,12 +36,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+import com.google.android.play.core.install.InstallState;
+import com.google.android.play.core.install.InstallStateUpdatedListener;
 import com.google.android.play.core.install.model.AppUpdateType;
+import com.google.android.play.core.install.model.InstallStatus;
 import com.google.android.play.core.install.model.UpdateAvailability;
-import com.google.android.play.core.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -74,8 +77,6 @@ import startup.carvaan.myapplication.ui.user.User;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetSequence;
 
-import static com.google.android.play.core.install.model.AppUpdateType.FLEXIBLE;
-
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "carvaan";
     FirebaseAuth firebaseAuth;
@@ -93,30 +94,26 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     TextView coins;
     User user=new User();
     private RecyclerView allShareRecyclerView;
-
+    private AppUpdateManager mAppUpdateManager;
+    private static final int RC_APP_UPDATE = 11;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AppUpdateManager appUpdateManager= AppUpdateManagerFactory.create(MainActivity.this);
-        com.google.android.play.core.tasks.Task<AppUpdateInfo> appUpdateInfoTask=appUpdateManager.getAppUpdateInfo();
-        appUpdateInfoTask.addOnSuccessListener(new OnSuccessListener<AppUpdateInfo>() {
+        ff=FirebaseFirestore.getInstance();
+        Paper.init(MainActivity.this);
+        ff.collection("version").document("version").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(AppUpdateInfo result) {
-                if(result.updateAvailability()== UpdateAvailability.UPDATE_AVAILABLE && result.isUpdateTypeAllowed(FLEXIBLE)){
-                    try {
-                        appUpdateManager.startUpdateFlowForResult(result,AppUpdateType.IMMEDIATE,MainActivity.this,01);
-                    } catch (IntentSender.SendIntentException e) {
-                        e.printStackTrace();
-                    }
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                String version=Paper.book().read("version");
+                String name=value.getString("name");
+                if(!name.equals(version)){
+                    update update=new update();
+                    update.show(getSupportFragmentManager(),"update");
                 }
             }
         });
 
-
-        Paper.init(MainActivity.this);
-        Paper.init(this);
-        ff=FirebaseFirestore.getInstance();
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
@@ -213,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
 
         allShareRecyclerView=findViewById(R.id.allShareRecyclerView);
-        Query query=ff.collection("shares").orderBy("peopleinvested", Query.Direction.ASCENDING);
+        Query query=ff.collection("shares").orderBy("peopleinvested", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<allsharemodel> options = new FirestoreRecyclerOptions.Builder<allsharemodel>().setQuery(query, allsharemodel.class).build();
         adapter= new FirestoreRecyclerAdapter<allsharemodel,PostViewHolder>(options) {
 
@@ -343,10 +340,28 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         return super.onOptionsItemSelected(item);
     }
+    InstallStateUpdatedListener installStateUpdatedListener = new
+            InstallStateUpdatedListener() {
+                @Override
+                public void onStateUpdate(InstallState state) {
+                    if (state.installStatus() == InstallStatus.DOWNLOADED){
+                        //CHECK THIS if AppUpdateType.FLEXIBLE, otherwise you can skip
+                        popupSnackbarForCompleteUpdate();
+                    } else if (state.installStatus() == InstallStatus.INSTALLED){
+                        if (mAppUpdateManager != null){
+                            mAppUpdateManager.unregisterListener(installStateUpdatedListener);
+                        }
+
+                    } else {
+                        Log.i(TAG, "InstallStateUpdatedListener: state: " + state.installStatus());
+                    }
+                }
+            };
     @Override
     protected void onStart() {
         super.onStart();
         adapter.startListening();
+
         if(!user.getUser().isEmailVerified()){
             Toast.makeText(MainActivity.this, "please verify your mail first", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -374,6 +389,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 },0000);
             }
         }
+        mAppUpdateManager = AppUpdateManagerFactory.create(this);
+        mAppUpdateManager.registerListener(installStateUpdatedListener);
+        mAppUpdateManager.getAppUpdateInfo().addOnSuccessListener(appUpdateInfo -> {
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE /*AppUpdateType.IMMEDIATE*/)){
+                try {
+                    mAppUpdateManager.startUpdateFlowForResult(
+                            appUpdateInfo, AppUpdateType.FLEXIBLE /*AppUpdateType.IMMEDIATE*/, MainActivity.this, RC_APP_UPDATE);
+
+                } catch (IntentSender.SendIntentException e) {
+                    e.printStackTrace();
+                }
+            } else if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED){
+                //CHECK THIS if AppUpdateType.FLEXIBLE, otherwise you can skip
+                popupSnackbarForCompleteUpdate();
+            } else {
+
+            }
+        });
     }
 
     @Override
@@ -406,7 +440,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         .create(), 4000)
                 .show();
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
@@ -420,8 +453,27 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==01 && resultCode==RESULT_OK){
-            Toast.makeText(MainActivity.this,"start download...",Toast.LENGTH_LONG).show();
+
+        if (requestCode == RC_APP_UPDATE) {
+            if (resultCode != RESULT_OK) {
+                Log.e(TAG, "onActivityResult: app download failed");
+            }
         }
+    }
+    private void popupSnackbarForCompleteUpdate() {
+
+        Snackbar snackbar =
+                Snackbar.make(
+                        findViewById(R.id.coordinatorLayout_main),
+                        "New app is ready!",
+                        Snackbar.LENGTH_INDEFINITE);
+
+        snackbar.setAction("Install", view -> {
+            if (mAppUpdateManager != null){
+                mAppUpdateManager.completeUpdate();
+            }
+        });
+        snackbar.setActionTextColor(getResources().getColor(R.color.bottomnav));
+        snackbar.show();
     }
 }
