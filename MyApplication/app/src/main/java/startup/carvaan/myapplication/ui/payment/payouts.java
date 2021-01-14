@@ -30,7 +30,7 @@ import startup.carvaan.myapplication.ui.user.User;
 
 public class payouts extends AppCompatActivity {
     FirebaseFirestore ff=FirebaseFirestore.getInstance();
-    private EditText coins,upi_id,bank_account,ifsc_code,account_holder_name;
+    private EditText coins,upi_id,bank_account,ifsc_code,account_holder_name,phonenumber,upiname;
     private TextView convertedMoney;
     private Button withdrawl;
     User user=new User();
@@ -44,9 +44,11 @@ public class payouts extends AppCompatActivity {
         convertedMoney=findViewById(R.id.convertedMoney);
         coins=findViewById(R.id.coins);
         upi_id=findViewById(R.id.upi_id);
-        bank_account=findViewById(R.id.bank_account);
-        ifsc_code=findViewById(R.id.ifsc_code);
-        account_holder_name=findViewById(R.id.account_holder_name);
+        upiname=findViewById(R.id.upiname);
+        phonenumber=findViewById(R.id.phonenumber);
+//        bank_account=findViewById(R.id.bank_account);
+//        ifsc_code=findViewById(R.id.ifsc_code);
+//        account_holder_name=findViewById(R.id.account_holder_name);
         withdrawl=findViewById(R.id.withdrawButton);
         withdrawl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,22 +75,23 @@ public class payouts extends AppCompatActivity {
                         }
                         else{
                             if(Double.valueOf(coins.getText().toString())<=Double.valueOf(user.getWinnings())) {
-                                if(!(upi_id.getText().toString().length()==0)||!(bank_account.getText().toString().length()==0)) {
+                                if(!(upi_id.getText().toString().length()==0)) {
                                     Map<String, String> withDrawDetails = new HashMap<>();
                                     withDrawDetails.put("amount", convertedMoney.getText().toString());
-                                    if (upi_id.getText().length() == 0) {
-                                        withDrawDetails.put("upi_id", null);
-                                        withDrawDetails.put("bank_account", bank_account.getText().toString());
-                                        withDrawDetails.put("ifsc_code", ifsc_code.getText().toString());
-                                        withDrawDetails.put("account_holder_name", account_holder_name.getText().toString());
-                                        withDrawDetails.put("status","not_done");
+                                    if (upiname.getText().length() == 0 ||phonenumber.getText().length() == 0 ) {
+                                        Toast.makeText(payouts.this,"please enter the details ",Toast.LENGTH_LONG).show();
+//                                        withDrawDetails.put("upi_id", null);
+//                                        withDrawDetails.put("bank_account", bank_account.getText().toString());
+//                                        withDrawDetails.put("ifsc_code", ifsc_code.getText().toString());
+//                                        withDrawDetails.put("account_holder_name", account_holder_name.getText().toString());
+//                                        withDrawDetails.put("status","not_done");
                                     }
-                                    if (upi_id.getText().length() != 0) {
+                                    if (upi_id.getText().length() != 0 && upiname.getText().length() != 0 && phonenumber.getText().length() == 0  ) {
                                         withDrawDetails.put("status","not_done");
                                         withDrawDetails.put("upi_id", upi_id.getText().toString());
-                                        withDrawDetails.put("bank_account", bank_account.getText().toString());
-                                        withDrawDetails.put("ifsc_code", ifsc_code.getText().toString());
-                                        withDrawDetails.put("account_holder_name", account_holder_name.getText().toString());
+                                        withDrawDetails.put("phonenumber", phonenumber.getText().toString());
+                                        withDrawDetails.put("upiname", upiname.getText().toString());
+//                                        withDrawDetails.put("account_holder_name", account_holder_name.getText().toString());
                                     }
                                     ff.collection("Withdrawls").document().set(withDrawDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
@@ -102,7 +105,7 @@ public class payouts extends AppCompatActivity {
                                     });
                                 }
                                 else{
-                                    Toast.makeText(payouts.this,"Enter either of payment option",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(payouts.this,"please enter your details",Toast.LENGTH_LONG).show();
                                 }
                             }
                             else{

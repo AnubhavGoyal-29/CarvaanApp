@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         TextView headerWinnings=header.findViewById(R.id.headerWinnings);
 
         TextView headerCash=header.findViewById(R.id.headerCash);
+        TextView headername=header.findViewById(R.id.namein);
 
         FirebaseFirestore.getInstance().collection("Users")
                 .document(user.getUser().getUid())
@@ -197,6 +198,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 headerCash.setText(value.getString("added"));
+
+            }
+        });
+        FirebaseFirestore.getInstance().collection("Users")
+                .document(user.getUser().getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                headername.setText(value.getString("DisplayName"));
 
             }
         });

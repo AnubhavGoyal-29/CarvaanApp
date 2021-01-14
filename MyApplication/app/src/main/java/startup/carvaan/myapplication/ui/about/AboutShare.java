@@ -177,26 +177,26 @@ public class AboutShare extends AppCompatActivity {
 
                     }
                 });
-//                postViewHolder.writeComment.addTextChangedListener(new TextWatcher() {
-//                    @Override
-//                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                    }
-//
-//                    @Override
-//                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                        if(s.length()==0){
-//                            bottomNavigationView.setVisibility(View.VISIBLE);
-//                        }
-//                        else bottomNavigationView.setVisibility(View.GONE);
-//                    }
-//
-//                    @Override
-//                    public void afterTextChanged(Editable s) {
-//                        if(s.length()!=0)
-//                            bottomNavigationView.setVisibility(View.GONE);
-//                        else bottomNavigationView.setVisibility(View.VISIBLE);
-//                    }
-//                });
+                postViewHolder.writeComment.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(s.length()==0){
+                            bottomNavigationView.setVisibility(View.VISIBLE);
+                        }
+                        else bottomNavigationView.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        if(s.length()!=0)
+                            bottomNavigationView.setVisibility(View.GONE);
+                        else bottomNavigationView.setVisibility(View.VISIBLE);
+                    }
+                });
                 postViewHolder.commentButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
