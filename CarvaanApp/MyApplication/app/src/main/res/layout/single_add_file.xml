@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    app:cardBackgroundColor="#FFFFFF"
+    android:layout_margin="15dp"
+    >
+    <LinearLayout
+        android:paddingTop="15dp"
+        android:paddingBottom="5dp"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:layout_weight="3.2">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/addImage"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/vsm_logo">
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+                <TextView
+                    android:id="@+id/addName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="company name"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+
+
+                    android:textColor="#000000"
+                    android:textSize="26sp"
+                    ></TextView>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/addAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:text="Lorem Ipsum is simply Lorem Ipsum has been the industry's standard"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        </LinearLayout>
+
+
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/addUrl"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:showFullScreenButton="true"
+            app:autoPlay="false"
+            app:showYouTubeButton="false"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/addDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:text="Lorem Ipsum is simply Lorem Ipsum has been the industry's standard"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:weightSum="3"
+            android:paddingRight="15dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="People Watched"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/addPeopleWatched"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="100"
+                    android:layout_marginTop="8dp"
+                    android:textStyle="bold"
+                    android:textColor="#FF533D78"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rewards"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/addReward"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="7 rci"
+                    android:layout_marginTop="8dp"
+                    android:textStyle="bold"
+                    android:textColor="#FF533D78"
+                    android:textSize="18sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ad time"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="17sp" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="3dp">
+                    <ProgressBar
+                        android:id="@+id/progressTimer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        style="?android:progressBarStyleHorizontal"
+                        android:max="100"
+                        android:progress="40"
+                        android:progressDrawable = "@drawable/custom_progress"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:progress="40">
+                    </ProgressBar>
+                    <TextView
+                        android:id="@+id/addTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="60"
+                        android:textColor="#FF533D78"
+                        android:textStyle="bold"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:padding="2dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:text="10% discount on first visit"
+                android:textSize="20sp"
+                android:clickable="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
